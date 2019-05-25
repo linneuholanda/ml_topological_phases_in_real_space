@@ -40,6 +40,6 @@ b) [Data for SSH systems with first and second neighbours hoppings S]
 
 Extract the files in `/path/to/local/directory` and run the notebooks i)-iii). Once you are finished, deactivate the Python environment with
 
-    ```bash
-    deactivate
-    ```
+``` bash
+deactivate
+```

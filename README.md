@@ -38,4 +38,8 @@ As explained in the paper, the data used in each experiment (SSH with nearest-ne
 a) [Data for SSH systems with nearest-neighbour hoppings]
 b) [Data for SSH systems with first and second neighbours hoppings S]
 
-Extract the files in `/path/to/local/directory` and run the notebooks i)-iii).
+Extract the files in `/path/to/local/directory` and run the notebooks i)-iii). Once you are finished, deactivate the Python environment with
+
+    ```bash
+    deactivate
+    ```

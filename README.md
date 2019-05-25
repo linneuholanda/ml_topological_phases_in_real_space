@@ -5,18 +5,39 @@ This repository contains Python scripts and notebooks for the paper ["Machine le
 
 ## Dependencies
 
-The most straightforward way to run this code is by setting up a virtual environment in a Ubuntu machine. Set up your Python environment following the instructions below.
+The most straightforward way to run this code is by setting up a Python [virtual environment](https://docs.python.org/3/library/venv.html) in a Linux machine. Set up your Python environment following the instructions below.
 
-1. Create and activate a new environment with Python 3.6.
+1. Clone repository to local directory and cd into it.
+```bash
+git clone https://github.com/linneuholanda/ml_topological_phases_in_real_space.git /path/to/local/directory
+cd /path/to/local/directory
+```
+2. Create and activate a new environment with Python 3.6.
     ```bash
-    conda create --name ml_topological python=3.6
-    conda activate ml_topological
-    ```
-    
-2. Move to the repository root folder and install the requirements.
+    python3.6 -m venv ml_topological
+    source ml_topological/bin/activate
+    ``` 
+3. Move to the repository root folder and install the requirements.
    ```bash
    pip install -r requirements.txt
    ```
- ## P Structure
+ ## Repository files
  
- In this preliminary version, the 
+ The repository contains the following script/notebook pairs:
+ 
+ i) preprocessing.py/generate_csv.ipynb 
+ ii) simulation.py/run_simulation.ipynb
+ ii) prediction_grid.py/generate_grids.ipynb
+ 
+ At each step the notebook uses the corresponding script to process .mat files into a single .csv file (step i), run machine learning experiments (step ii) and plot visualizations (step iii).
+ 
+ ## Data
+ 
+As explained in the paper, the data used for experiments consist of real space eigenvectors of Hamiltonians $H(t_1,t_2)$ in the $[-2,2]\times[-2,2]$ square in $t_1-t_2$ parameter space. For each case studied in the paper (nearest-neighbor hoppings and first and second nearest-neighbours hoppings) the grid contains 6,561 Hamiltonians. We provide links to download the data below. 
+
+a) [Data for SSH systems with nearest-neighbour hoppings]
+b) [Data for SSH systems with first and second neighbours hoppings S]
+
+
+ 
+Both 

@@ -33,11 +33,9 @@ cd /path/to/local/directory
  
  ## Data
  
-As explained in the paper, the data used for experiments consist of real space eigenvectors of Hamiltonians $H(t_1,t_2)$ in the $[-2,2]\times[-2,2]$ square in $t_1-t_2$ parameter space. For each case studied in the paper (nearest-neighbor hoppings and first and second nearest-neighbours hoppings) the grid contains 6,561 Hamiltonians. We provide links to download the data below. 
+As explained in the paper, the data used in each experiment (SSH with nearest-neighbour hoppings and SSH with first and second nearest-neighbours hoppings) consist of real space eigenvectors of 6,561 Hamiltonians. We provide links to download the data below. 
 
 a) [Data for SSH systems with nearest-neighbour hoppings]
 b) [Data for SSH systems with first and second neighbours hoppings S]
 
-
- 
-Both 
+Extract the files in `/path/to/local/directory` and run the notebooks i)-iii).

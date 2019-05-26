@@ -25,9 +25,11 @@ cd /path/to/local/directory
  
  The repository contains the following script/notebook pairs:
  
- - i) preprocessing.py/generate_csv.ipynb 
- - ii) simulation.py/run_simulation.ipynb
- - ii) prediction_grid.py/generate_grids.ipynb
+ i) preprocessing.py/generate_csv.ipynb 
+ 
+ ii) simulation.py/run_simulation.ipynb
+ 
+ iii) prediction_grid.py/generate_grids.ipynb
  
  At each step the notebook uses the corresponding script to process .mat files into a single .csv file (step i), run machine learning experiments (step ii) and plot visualizations (step iii).
  

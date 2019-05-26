@@ -36,6 +36,7 @@ cd /path/to/local/directory
 As explained in the paper, the data used in each experiment (SSH with nearest-neighbour hoppings and SSH with first and second nearest-neighbours hoppings) consist of real space eigenvectors of 6,561 Hamiltonians. We provide links to download the data below. 
 
 a) [Data for SSH systems with nearest-neighbour hoppings](https://www.dropbox.com/s/h5pzbibt1z3zda6/nearest_neighbour_SSH_6561.rar?dl=0)
+
 b) [Data for SSH systems with first and second neighbours hoppings S](https://www.dropbox.com/s/zmkfacu53p583na/first_and_second_neighbours_SSH_6561.rar?dl=0)
 
 Extract the files in `/path/to/local/directory` and run the notebooks i)-iii). Once you are finished, deactivate the Python environment with

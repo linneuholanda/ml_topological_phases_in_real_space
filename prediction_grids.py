@@ -626,7 +626,7 @@ class Simulation(object):
         if len(savefig_params) > 0:
             plt.savefig(**savefig_params)  
 
-    def plot_feature_importances(self, n_features=None, bar_params={}, fig_params={}, xlabel_params={}, ylabel_params={}, title_params={}, xlim_params={}, ylim_params={}, xticks_params ={}, yticks_params={}, tight_params = None, savefig_params={}):
+    def plot_feature_importances(self, n_features=None, plot = "bar", hist_precision = 1000, plot_params = {}, fig_params={}, xlabel_params={}, ylabel_params={}, title_params={}, xlim_params={}, ylim_params={}, xticks_params ={}, yticks_params={}, tight_params = None, savefig_params={}):
         """
         Plots feature importances
         
@@ -640,16 +640,28 @@ class Simulation(object):
         importances = list(self.feature_importance.values())[:n_features]
         #print("sorted_args: ", sorted_args)
         #print("importances: ", importances)
-        bar_params["x"] = sorted_args
-        bar_params["height"] = importances
-        plt.bar(**bar_params)
+        if plot == "bar":
+            plot_params["x"] = sorted_args
+            plot_params["height"] = importances
+            plt.bar(**plot_params)
+        elif plot == "hist":
+            #weighted_args = []
+            #for arg, imp in zip(sorted_args, importances):
+            #    weighted_args = weighted_args + [arg]*int(imp*hist_precision)
+            plot_params["x"] = sorted_args
+            plot_params["weights"] = importances
+            #plot_params["height"] = importances
+            if "bins" not in plot_params:
+                plot_params["bins"] = len(sorted_args)
+                #plot_params["bins"] = 30
+                plt.hist(**plot_params)
         if tight_params is not None:
-            plt.tight_layout(**tight_params)
+                plt.tight_layout(**tight_params)
         if len(savefig_params) > 0:
             plt.savefig(**savefig_params)
         #plt.bar(importances)
 
-    def plot_cumulative_feature_importances(self, n_features=None, bar_params={}, fig_params={}, xlabel_params={}, ylabel_params={}, title_params={}, xlim_params={}, ylim_params={}, xticks_params ={}, yticks_params={}, tight_params=None, savefig_params={}):
+    def plot_cumulative_feature_importances(self, n_features=None, plot = "bar", hist_precision = 1000, plot_params = {}, fig_params={}, xlabel_params={}, ylabel_params={}, title_params={}, xlim_params={}, ylim_params={}, xticks_params ={}, yticks_params={}, tight_params=None, savefig_params={}):
         if n_features is None:
             n_features = len(self.feature_importance)
         figure = self.create_plot(fig_params, xlabel_params, ylabel_params, title_params, xlim_params, ylim_params, xticks_params, yticks_params)
@@ -658,13 +670,21 @@ class Simulation(object):
         importances = list(self.cumulative_feature_importance.values())[:n_features]
         #print("sorted_args: ", sorted_args)
         #print("importances: ", importances)
-        bar_params["x"] = sorted_args
-        bar_params["height"] = importances
-        plt.bar(**bar_params)
-        #plt.axis("tight")
-        #plt.margins(0.05,0.05)
-        #xticks_params = {"ticks": sorted_args}
-        #plt.xticks(**xticks_params)
+        if plot == "bar":
+            plot_params["x"] = sorted_args
+            plot_params["height"] = importances
+            plt.bar(**plot_params)
+        elif plot == "hist":
+            #weighted_args = []
+            #for arg, imp in zip(sorted_args, importances):
+            #    weighted_args = weighted_args + [arg]*int(imp*hist_precision)
+            plot_params["x"] = sorted_args
+            plot_params["weights"] = importances
+            #plot_params["height"] = importances
+            if "bins" not in plot_params:
+                plot_params["bins"] = len(sorted_args)
+                #plot_params["bins"] = 30
+                plt.hist(**plot_params)
         if tight_params is not None:
             plt.tight_layout(**tight_params)
         if len(savefig_params) > 0:

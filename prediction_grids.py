@@ -31,7 +31,7 @@ class Experiment(object):
 
         input
         simulation_dir: a string. Path to parent simulation directory.
-        experiment_name: a string. One of the experiments in simulation_name.
+        experiment_name: a string. One of the experiments in simulation_dir.
         """
         #self.working_dir = os.getcwd()
         self.simulation_dir = simulation_dir
@@ -334,22 +334,21 @@ class Experiment(object):
         if len(savefig_params) > 0:
             plt.savefig(**savefig_params)
 
-class Simulation(object):
+class ExperimentEnsemble(object):
     """
     A class to perform data analysis on an ensemble of machine learning experiments.
     """
-    def __init__(self, simulation_name, n_experiments = None, load_hamiltonian_summary = False):
+    def __init__(self, simulation_dir, n_experiments = None, load_hamiltonian_summary = False):
         """
         SimulationAnalysis class constructor.
 
         input
-        simulation_name: a string. Name of folder with simulation results inside the ./simulation_data directory.
-        n_experiments: Number of experiments to consider. If None, all experiments in simulation_name dir will be considered.
+        simulation_dir: a string. Name of dir with simulation results.
+        n_experiments: Number of experiments to consider. If None, all experiments in simulation_dir will be considered.
         load_hamiltonian_summary: a bool. Whether to load hamiltonian_summary csv from disk.
         """
         ### Storing simulation dirs
-        self.simulation_name = simulation_name
-        self.simulation_dir = os.path.join("./simulation", simulation_name)
+        self.simulation_dir = simulation_dir
         self.accuracy_summary_dir = os.path.join(self.simulation_dir, "accuracy")
         self.eigenvector_summary_dir = os.path.join(self.simulation_dir, "eigenvector")
         self.hamiltonian_summary_dir = os.path.join(self.simulation_dir, "hamiltonian")

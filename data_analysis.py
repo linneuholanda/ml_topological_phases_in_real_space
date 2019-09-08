@@ -31,7 +31,7 @@ class Experiment(object):
 
         input
         simulation_dir: a string. Path to parent simulation directory.
-        experiment_name: a string. One of the experiments in simulation_name.
+        experiment_name: a string. One of the experiments in simulation_dir.
         """
         #self.working_dir = os.getcwd()
         self.simulation_dir = simulation_dir
@@ -334,22 +334,21 @@ class Experiment(object):
         if len(savefig_params) > 0:
             plt.savefig(**savefig_params)
 
-class Simulation(object):
+class ExperimentEnsemble(object):
     """
     A class to perform data analysis on an ensemble of machine learning experiments.
     """
-    def __init__(self, simulation_name, n_experiments = None, load_hamiltonian_summary = False):
+    def __init__(self, simulation_dir, n_experiments = None, load_hamiltonian_summary = False):
         """
         SimulationAnalysis class constructor.
 
         input
-        simulation_name: a string. Name of folder with simulation results inside the ./simulation_data directory.
-        n_experiments: Number of experiments to consider. If None, all experiments in simulation_name dir will be considered.
+        simulation_dir: a string. Name of dir with simulation results.
+        n_experiments: Number of experiments to consider. If None, all experiments in simulation_dir will be considered.
         load_hamiltonian_summary: a bool. Whether to load hamiltonian_summary csv from disk.
         """
         ### Storing simulation dirs
-        self.simulation_name = simulation_name
-        self.simulation_dir = os.path.join("./simulation", simulation_name)
+        self.simulation_dir = simulation_dir
         self.accuracy_summary_dir = os.path.join(self.simulation_dir, "accuracy")
         self.eigenvector_summary_dir = os.path.join(self.simulation_dir, "eigenvector")
         self.hamiltonian_summary_dir = os.path.join(self.simulation_dir, "hamiltonian")
@@ -478,7 +477,7 @@ class Simulation(object):
                 w = csv.writer(f)
                 w.writerows(self.bootstrap_accuracy.items())
 
-    def compute_mean_feature_importance(self, save_to_disk = False):
+    def compute_mean_feature_importance(self, sort_importances= False, save_to_disk = False):
         """
         Computes feature importances using averages from all experiments
         """
@@ -487,10 +486,15 @@ class Simulation(object):
             current_model = load(os.path.join(self.simulation_dir, "model", str(exp) + ".joblib"))
             feature_importances.append(current_model.feature_importances_)
         mean_feature_importance = np.mean(feature_importances, axis = 0)
-        sorted_args = np.argsort(mean_feature_importance)[::-1] 
-        sorted_feature_importance = mean_feature_importance[sorted_args]
-        self.feature_importance = dict(zip(sorted_args+1, sorted_feature_importance))  ##Adding 1 so that features start at 1
-        self.cumulative_feature_importance = dict(zip(sorted_args+1, np.cumsum(sorted_feature_importance)))
+        if sort_importances:
+            sorted_args = np.argsort(mean_feature_importance)[::-1] 
+            sorted_feature_importance = mean_feature_importance[sorted_args]
+            self.feature_importance = dict(zip(sorted_args+1, sorted_feature_importance))  ##Adding 1 so that features start at 1
+            self.cumulative_feature_importance = dict(zip(sorted_args+1, np.cumsum(sorted_feature_importance)))
+        else:
+            non_sorted_args = np.arange(len(mean_feature_importance))+1
+            self.feature_importance = dict(zip(non_sorted_args, mean_feature_importance))
+            self.cumulative_feature_importance = dict(zip(non_sorted_args, np.cumsum(mean_feature_importance) ) )
         if save_to_disk:
             with open(os.path.join(self.simulation_dir, "feature_importance.csv"), 'w') as f:  
                 w = csv.writer(f)
@@ -621,7 +625,7 @@ class Simulation(object):
         if len(savefig_params) > 0:
             plt.savefig(**savefig_params)  
 
-    def plot_feature_importances(self, n_features=None, bar_params={}, fig_params={}, xlabel_params={}, ylabel_params={}, title_params={}, xlim_params={}, ylim_params={}, xticks_params ={}, yticks_params={}, tight_params = None, savefig_params={}):
+    def plot_feature_importances(self, n_features=None, plot = "bar", hist_precision = 1000, plot_params = {}, fig_params={}, xlabel_params={}, ylabel_params={}, title_params={}, xlim_params={}, ylim_params={}, xticks_params ={}, yticks_params={}, tight_params = None, savefig_params={}):
         """
         Plots feature importances
         
@@ -635,30 +639,51 @@ class Simulation(object):
         importances = list(self.feature_importance.values())[:n_features]
         #print("sorted_args: ", sorted_args)
         #print("importances: ", importances)
-        bar_params["x"] = sorted_args
-        bar_params["height"] = importances
-        plt.bar(**bar_params)
+        if plot == "bar":
+            plot_params["x"] = sorted_args
+            plot_params["height"] = importances
+            plt.bar(**plot_params)
+        elif plot == "hist":
+            #weighted_args = []
+            #for arg, imp in zip(sorted_args, importances):
+            #    weighted_args = weighted_args + [arg]*int(imp*hist_precision)
+            plot_params["x"] = sorted_args
+            plot_params["weights"] = importances
+            #plot_params["height"] = importances
+            if "bins" not in plot_params:
+                plot_params["bins"] = len(sorted_args)
+                #plot_params["bins"] = 30
+                plt.hist(**plot_params)
         if tight_params is not None:
-            plt.tight_layout(**tight_params)
+                plt.tight_layout(**tight_params)
         if len(savefig_params) > 0:
             plt.savefig(**savefig_params)
         #plt.bar(importances)
 
-    def plot_cumulative_feature_importances(self, n_features=None, bar_params={}, fig_params={}, xlabel_params={}, ylabel_params={}, title_params={}, xlim_params={}, ylim_params={}, xticks_params ={}, yticks_params={}, tight_params=None, savefig_params={}):
+    def plot_cumulative_feature_importances(self, n_features=None, plot = "bar", hist_precision = 1000, plot_params = {}, fig_params={}, xlabel_params={}, ylabel_params={}, title_params={}, xlim_params={}, ylim_params={}, xticks_params ={}, yticks_params={}, tight_params=None, savefig_params={}):
         if n_features is None:
             n_features = len(self.feature_importance)
         figure = self.create_plot(fig_params, xlabel_params, ylabel_params, title_params, xlim_params, ylim_params, xticks_params, yticks_params)
-        sorted_args = [str(ix) for ix in list(self.cumulative_feature_importance.keys())[:n_features]]
+        #sorted_args = [str(ix) for ix in list(self.cumulative_feature_importance.keys())[:n_features]]
+        sorted_args = list(self.cumulative_feature_importance.keys())[:n_features]
         importances = list(self.cumulative_feature_importance.values())[:n_features]
         #print("sorted_args: ", sorted_args)
         #print("importances: ", importances)
-        bar_params["x"] = sorted_args
-        bar_params["height"] = importances
-        plt.bar(**bar_params)
-        #plt.axis("tight")
-        #plt.margins(0.05,0.05)
-        #xticks_params = {"ticks": sorted_args}
-        #plt.xticks(**xticks_params)
+        if plot == "bar":
+            plot_params["x"] = sorted_args
+            plot_params["height"] = importances
+            plt.bar(**plot_params)
+        elif plot == "hist":
+            #weighted_args = []
+            #for arg, imp in zip(sorted_args, importances):
+            #    weighted_args = weighted_args + [arg]*int(imp*hist_precision)
+            plot_params["x"] = sorted_args
+            plot_params["weights"] = importances
+            #plot_params["height"] = importances
+            if "bins" not in plot_params:
+                plot_params["bins"] = len(sorted_args)
+                #plot_params["bins"] = 30
+                plt.hist(**plot_params)
         if tight_params is not None:
             plt.tight_layout(**tight_params)
         if len(savefig_params) > 0:

@@ -21,16 +21,18 @@ class Simulation(object):
     Implements a machine learning simulation 
     """    
        
-    def __init__(self, csv_name, model, allowed_windings, val_split = 0, simulation_name = None, random_state = None):            
+    def __init__(self, csv_path, model, allowed_windings, simulation_dir = "./simulation", val_split = 0, features_to_use = None, shuffle_features = False, random_state = None):            
         """
         Simulation class constructor.
 
         input
-        csv_name: a string. Name of csv file to be loaded from ./csv.
+        csv_path: a string. Path to csv file to be loaded.
         model: a scikit-learn function with fit/predict methods.
         allowed_windings: a list of ints with allowed winding values.
+        simulation_dir: a string. Path to dir where simulation results will be saved.
         val_split: a float. Fraction of training data to be used in validation.
-        simulation_name: a string. Name to use when saving files.
+        features_to_use: a list of ints. Contains features to be used in training/predicting. If None, uses all features.
+        shuffle_features: a bool. Whether to shuffle features or not.
         random_state: an int. Seed for random number generation.
         """
         ##### storing simulation parameters for reference #####
@@ -38,16 +40,21 @@ class Simulation(object):
         del self.parameters["self"]
         if random_state is not None:
             np.random.seed(random_state)
-        self.csv_name = csv_name
+        self.csv_path = csv_path
         self.model = model
         self.allowed_windings = allowed_windings
         self.val_split = val_split
-        self.simulation_name = simulation_name
+        self.features_to_use = features_to_use
+        self.shuffle_features = shuffle_features
         self.random_state = random_state
+        self.simulation_dir = simulation_dir
         ##### Building Dataframe #####
         dtype = {"id":np.int32, "path": str, "winding": np.float64, "phase": np.int32, "pred_phase": np.int32, "type_of": str}
-        self.dataframe = pd.read_csv(filepath_or_buffer = os.path.join("./csv", csv_name), index_col = 0, dtype = dtype)
+        self.dataframe = pd.read_csv(filepath_or_buffer = self.csv_path, index_col = 0, dtype = dtype)
         self.n_features = len(self.dataframe.columns[self.dataframe.columns.get_loc("feat1"):])
+        if shuffle_features:
+            self.shuffle_features_array = np.random.permutation(np.arange(self.n_features))
+            self.parameters["shuffle_features_array"] = self.shuffle_features_array
         self.n_hamiltonians = len(self.dataframe)//self.n_features
         self.n_ts = len(self.dataframe.columns[self.dataframe.columns.get_loc("t1"):self.dataframe.columns.get_loc("winding")])
         self.train_ids = list(np.unique(self.dataframe.id[self.dataframe.type_of == "train"].values))
@@ -62,37 +69,11 @@ class Simulation(object):
         self.hamiltonian_summary_list = []
         self.accuracy_list = {"eigenvector_train": [], "eigenvector_val": [], "eigenvector_test": [], "hamiltonian_train": [], "hamiltonian_val": [], "hamiltonian_test": []}
 
-        ##### Loading Hamiltonians #####
-        #self.hamiltonians = np.array(os.listdir(grid_path))
-        #self.raw_data = load_hamiltonians(grid_path)
-        ##### Building id-t dictionaries #####
-        #self.t_to_ids, self.ids_to_t = build_dictionaries(self.hamiltonians)
-        ##### Building Dataframe #####
-        #self.dataframe = make_dataframe(self.raw_data, self.hamiltonians)
-        
-        ### other attributes
-        #self.majority_vote = None
-        
-        #self.majority_vote_train = None
-        #self.majority_vote_test = None
-        #self.alg_params = None
-        #self.grid_params = None
-        
-        #self.accuracy_scores = None
-        #self.eigen_train_accuracy = None
-        #self.eigen_val_accuracy = None
-        #self.eigen_test_accuracy = None
-        #self.train_accuracy = None
-        #self.val_accuracy = None
-        #self.test_accuracy = None
-        #self.grid_name = None
-        #self.dict_t_elected = None
-        #self.dict_t_true = None
-
     def make_val(self):
         """
         Creates validation set from training data
         """
+        #print("inside make_val!!!")
         n_train_val = len(self.train_ids)+len(self.val_ids)
         n_val = int(n_train_val*self.val_split)
         n_train = n_train_val - n_val
@@ -108,26 +89,51 @@ class Simulation(object):
         ### updating train and val ids
         self.train_ids = new_train_ids
         self.val_ids = new_val_ids
+        #print("leaving make_val!!!")
 
-    def fit(self, fit_params = None):
+    def set_features_to_use(self,features):
+        """
+        Updates features used in simulations
+
+        input
+        features: a list of features to be used.
+        """
+        self.features_to_use = features
+
+    def fit(self, fit_params = None, shuffle_rows=True):
         """
         Fits model to eigenvectors with fit_params parameters
 
         input
-        fit_params: a dict of fitting parameters
+        fit_params: a dict of fitting parameters.
+        shuffle_rows: a bool. Whether to shuffle rows before fitting.
         """
         train_rows = self.dataframe.type_of == "train"
         feat_columns = self.dataframe.columns[self.dataframe.columns.get_loc("feat1"):]
         X, y = self.dataframe.loc[train_rows,feat_columns].values, self.dataframe[train_rows].phase.values
+        ### shuffling features
+        if self.shuffle_features:
+            X = X[:,self.shuffle_features_array]
+        ### selecting features
+        if self.features_to_use is not None:
+            if self.shuffle_features:
+                column_ix = np.argwhere(np.in1d(self.shuffle_features_array, self.features_to_use)).reshape(-1,)
+            else:
+                column_ix = self.features_to_use
+            X = X[:,column_ix]
+            #c = np.argwhere(np.in1d(b, np.array([6,3,5,4,9]))).reshape(-1,)
         ### shuffling training data
-        shuffle = np.random.permutation(len(X)) 
-        X = X[shuffle]
-        y = y[shuffle]
+        if shuffle_rows:
+            shuffle = np.random.permutation(len(X)) 
+            X = X[shuffle]
+            y = y[shuffle]
         if fit_params is None:
             fit_params = {"X": X, "y": y}    
         else:
             fit_params["X"] = X; fit_params["y"] = y
         self.model.fit(**fit_params)
+        #print("X: ", X)
+        #print("shape of X: ", X.shape)
 
     def predict(self, predict_params = None):
         """
@@ -139,6 +145,16 @@ class Simulation(object):
         """ 
         feat_columns = self.dataframe.columns[self.dataframe.columns.get_loc("feat1"):]
         X = self.dataframe.loc[:,feat_columns].values
+        ### shuffling features
+        if self.shuffle_features:
+            X = X[:,self.shuffle_features_array]
+        ### selecting features
+        if self.features_to_use is not None:
+            if self.shuffle_features:
+                column_ix = np.argwhere(np.in1d(self.shuffle_features_array, self.features_to_use)).reshape(-1,)
+            else:
+                column_ix = self.features_to_use
+            X = X[:,column_ix]
         if predict_params is None:
             predict_params = {"X": X}
         else:
@@ -190,10 +206,15 @@ class Simulation(object):
         y_pred = self.eigenvector_summary.pred_phase[boolean_mask].values
         self.accuracy["eigenvector_train"] = accuracy_score(y_true,y_pred)
         ### eigenvector_val accuracy 
+        #print("Before boolean mask!!")
         boolean_mask = self.eigenvector_summary["type_of"]=="val"
-        y_true = self.eigenvector_summary.phase[boolean_mask].values
-        y_pred = self.eigenvector_summary.pred_phase[boolean_mask].values
-        self.accuracy["eigenvector_val"] = accuracy_score(y_true,y_pred)
+        #print("boolean_mask in compute_accuracy!!!")
+        if np.sum(boolean_mask) > 0:
+            y_true = self.eigenvector_summary.phase[boolean_mask].values
+            y_pred = self.eigenvector_summary.pred_phase[boolean_mask].values
+            self.accuracy["eigenvector_val"] = accuracy_score(y_true,y_pred)
+        else: 
+            self.accuracy["eigenvector_val"] = None
         ### eigenvector_test accuracy 
         boolean_mask = np.logical_and(self.eigenvector_summary["type_of"]=="test", np.in1d(self.eigenvector_summary.phase, self.allowed_windings))
         y_true = self.eigenvector_summary.phase[boolean_mask].values
@@ -205,17 +226,22 @@ class Simulation(object):
         y_pred = self.hamiltonian_summary.pred_phase[boolean_mask].values
         self.accuracy["hamiltonian_train"] = accuracy_score(y_true,y_pred)
         ### hamiltonian_val accuracy 
+        #print("boolean_mask for hamiltonian_val")
         boolean_mask = self.hamiltonian_summary["type_of"]=="val"
-        y_true = self.hamiltonian_summary.phase[boolean_mask].values
-        y_pred = self.hamiltonian_summary.pred_phase[boolean_mask].values
-        self.accuracy["hamiltonian_val"] = accuracy_score(y_true,y_pred)
+        if np.sum(boolean_mask) > 0:
+            y_true = self.hamiltonian_summary.phase[boolean_mask].values
+            y_pred = self.hamiltonian_summary.pred_phase[boolean_mask].values
+            self.accuracy["hamiltonian_val"] = accuracy_score(y_true,y_pred)
+        else: 
+            self.accuracy["hamiltonian_val"] = None
+        #print("boolean_mask just after hamiltonian_val")
         ### hamiltonian_test accuracy 
         boolean_mask = np.logical_and(self.hamiltonian_summary["type_of"]=="test", np.in1d(self.hamiltonian_summary.phase, self.allowed_windings))
         y_true = self.hamiltonian_summary.phase[boolean_mask].values
         y_pred = self.hamiltonian_summary.pred_phase[boolean_mask].values
         self.accuracy["hamiltonian_test"] = accuracy_score(y_true,y_pred)
                  
-    def run_simulation(self, n_experiments=1, start_n=0, fit_params=None, pred_params=None, store_in_lists=False, save_eigenvector=False, save_hamiltonian=True, save_accuracy=True, save_model=False):
+    def run_simulation(self, n_experiments=1, start_n=0, fit_params=None, shuffle_rows = True, pred_params=None, random_features = False, store_in_lists=False, save_eigenvector=False, save_hamiltonian=True, save_accuracy=True, save_model=False):
         """
         Fits a machine learning algorithm to training data and writes result of simulation to disk
         
@@ -223,7 +249,9 @@ class Simulation(object):
         n_experiments: an int. Number of experiments to perform.
         start_n: an int. Id number of first simulation.
         fit_params: a dict of fitting parameters
+        shuffle_rows: a bool. Whether to shuffle rows before fitting.
         pred_params: a dict of prediction parameters
+        random_features: int. Number of random features to use.
         store_in_lists: a bool. Whether to store results from simulations in lists
         save_eigenvector: a bool. Whether to save eigenvector summaries in disk.
         save_hamiltonian: a bool. Whether to save hamiltonian summaries in disk.
@@ -231,32 +259,32 @@ class Simulation(object):
         save_model: a bool. Whether to save models in disk.
         """
         if save_eigenvector or save_hamiltonian or save_accuracy or save_models:
-            path = os.path.join("./simulation", self.simulation_name)
-            eigenvector_path = os.path.join(path, "eigenvector")
-            hamiltonian_path = os.path.join(path, "hamiltonian")
-            accuracy_path = os.path.join(path, "accuracy")
-            model_path = os.path.join(path, "model")
-            if not "simulation" in os.listdir(os.getcwd()):
-                os.mkdir("simulation")
-            if not self.simulation_name in os.listdir("simulation"):
-                os.mkdir(path)
-                #results_path = os.path.join("./simulation_data", self.simulation_name)
-            if (save_eigenvector) and not "eigenvector" in os.listdir(path):
+            eigenvector_path = os.path.join(self.simulation_dir, "eigenvector")
+            hamiltonian_path = os.path.join(self.simulation_dir, "hamiltonian")
+            accuracy_path = os.path.join(self.simulation_dir, "accuracy")
+            model_path = os.path.join(self.simulation_dir, "model")
+            if not os.path.isdir(self.simulation_dir):
+                os.mkdir(self.simulation_dir)
+            if (save_eigenvector) and not os.path.isdir(eigenvector_path):
                 os.mkdir(eigenvector_path)
-            if (save_hamiltonian) and not "hamiltonian" in os.listdir(path):
+            if (save_hamiltonian) and not os.path.isdir(hamiltonian_path):
                 os.mkdir(hamiltonian_path) 
-            if (save_accuracy) and not "accuracy" in os.listdir(path):
+            if (save_accuracy) and not os.path.isdir(accuracy_path):
                 os.mkdir(accuracy_path)
-            if (save_model) and not "model" in os.listdir(path):
+            if (save_model) and not os.path.isdir(model_path):
                 os.mkdir(model_path)
-            with open(os.path.join(path, "parameters.csv"), 'w') as f:  
+            with open(os.path.join(self.simulation_dir, "parameters.csv"), 'w') as f:  
                     w = csv.writer(f)
                     w.writerows(self.parameters.items())
         for exp in tqdm(range(start_n,start_n+n_experiments), desc = "running experiments"):
+            ### picking features randomly 
+            if random_features:
+                self.features_to_use = np.random.randint(0,self.n_features,size=random_features)
+                print("random_features: ", self.features_to_use)
             ### making validation sets
             self.make_val()
             ### fitting and predicting
-            self.fit(fit_params)
+            self.fit(fit_params, shuffle_rows)
             self.predict(pred_params)
             ### generating simulation summaries
             self.eigenvector_summary = self.dataframe[self.eigenvector_columns]  
@@ -331,349 +359,9 @@ class Simulation(object):
         if len(savefig_params) > 0:
             plt.savefig(**savefig_params)
         #plt.show()
-                        
-                    
-               
-            
-        #storing simulation parameters for reference
-        
-        #self.summary = {**locals(), **self.summary}
-        #del self.summary["self"]
-        #print("locals: ", locals())
-        #print("\n\n\n")
-        #print("self.summary: ", self.summary)
-        #print("\n\n\n")
-        #self.model = Simulation.algorithms[self.algorithm](alg_params, grid_params)
-        
-
-        #self.fit(fit_params)
-        #self.predict(pred_params)
-        
-
-        #print("self  majority tran: \n", self.majority_vote_train)
-        #print("self  majority test: \n", self.majority_vote_test)
-        #self.majority_vote = pd.concat((self.majority_vote_train, self.majority_vote_test), axis=0)
-        ####HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        #self.majority_vote = self.model.majority_vote(self.dataframe, normalize, tiebreaker)
-        #self.eigen_train_accuracy = (self.train_dataframe.phase == self.train_dataframe.pred_phase).mean()
-        #self.eigen_test_accuracy = (self.test_dataframe.phase == self.test_dataframe.pred_phase).mean()
-        
-
-        ### Computing accuracies
-        #self.eigen_train_accuracy = (self.dataframe[ self.dataframe["type_of"] == "train" ].phase == self.dataframe[ self.dataframe["type_of"] == "train" ].pred_phase).mean()
-        #self.eigen_val_accuracy = (self.dataframe[ self.dataframe["type_of"] == "val" ].phase == self.dataframe[ self.dataframe["type_of"] == "val" ].pred_phase).mean()
-        #self.eigen_test_accuracy = (self.dataframe[ self.dataframe["type_of"] == "test" ].phase == self.dataframe[ self.dataframe["type_of"] == "test" ].pred_phase).mean()
-        #self.eigen_test_accuracy = (self.dataframe[ self.dataframe["type_of"] == "test" ].phase == self.dataframe[ self.dataframe["type_of"] == "test" ].pred_phase).mean()
-        #self.eigen_test_accuracy = None
-       # self.train_accuracy = (self.majority_vote[self.majority_vote["type_of"] == "train"].elected == self.majority_vote[self.majority_vote["type_of"] == "train"].true).mean()
-        #self.val_accuracy = (self.majority_vote[self.majority_vote["type_of"] == "val"].elected == self.majority_vote[self.majority_vote["type_of"] == "val"].true).mean()
-        #self.test_accuracy = None
-        #self.test_accuracy = (self.majority_vote[self.majority_vote["type_of"] == "test"].elected == self.majority_vote[self.majority_vote["type_of"] == "test"].true).mean()
-        #self.train_accuracy = (self.majority_vote_train.elected == self.majority_vote_train.true).mean()
-        #self.test_accuracy = (self.majority_vote_test.elected == self.majority_vote_test.true).mean()
-        #self.accuracy_scores = {"eigen_train": self.eigen_train_accuracy, "eigen_val": self.eigen_val_accuracy,"eigen_test": self.eigen_test_accuracy, "train": self.train_accuracy, "val": self.val_accuracy, "test": self.test_accuracy}
-        #self.train_accuracy = (self.majority_vote_train.elected == self.majority_vote_train.true).mean()
-        #self.test_accuracy = (self.majority_vote_test.elected == self.majority_vote_test.true).mean()
-        #self.scores = {"eigen_train_accuracy": self.eigen_train_accuracy, "eigen_test_accuracy": self.eigen_test_accuracy,
-        #               "train_accuracy": self.train_accuracy, "test_accuracy": self.test_accuracy}
-        #print("self.summary: ", self.summary)
-        #### fill in majority_vote_test
-
-    def grid_predict(self):
-        """
-        Generates numpy arrays suitable for plotting in 2d parameter space 
-
-        input
-       
-        return 
-        grid_arrays: an array containing the grid arrays xx, yy, zz
-        """
-        #t_values_train = np.array(self.majority_vote_train.t_values.values.tolist()) 
-        #t_values_test = np.array(self.majority_vote_test.t_values.values.tolist()) 
-        #t_values = np.vstack((t_values_train, t_values_test))
-        
-        t_values = np.array(self.majority_vote.t_values.values.tolist())
-        #print("shape of t_values: ", t_values.shape)
-        #t_values = self.majority_vote.t_values.values
-        #print("type of t_values: ", type(t_values))
-        #t_values = np.array(t_values.tolist())
-        #print("here!!!\n")
-        #print("t_values: ", t_values)
-        #print("type of t_values: ", type(t_values))
-        #print("shape of t_values: ", t_values.shape)
-        t1, t2 = np.unique(t_values[:,0]), np.unique(t_values [:,1])
-        #print("t1: ", t1)
-        #print("t2: ", t2)
-        xx, yy = np.meshgrid(t1,t2)
-        #print("xx: ", xx)
-        #print("yy: ", yy)
-        zz = []
-
-       #######################################################################
-
-        for point in np.c_[xx.ravel(), yy.ravel()]:
-            #print("point: ", point)
-            #print("tuple(point): ", tuple(point))
-            print("tuple(point): ", tuple(point))
-            print("point: ", point)
-            #print("t_values: ", self.majority_vote["t_values"])
-            #print("point: ", point)
-            ix = self.majority_vote.index[self.majority_vote["t_values"] == tuple(point)]
-            print("ix: ", ix)
-            print("checking equality: " )
-            if len(ix) != 0:
-                zz.append(self.majority_vote.loc[ix, "elected"].values[0])
-            else: 
-                zz.append(np.inf)
-
-        ######################################################################
-        #for point in np.c_[xx.ravel(), yy.ravel()]:
-        #    id_ = self.t_values_id[tuple(point)]
-        #    print("point: ", point)
-        #    print("id_: ", id_)
-        #    print("correct spot in majority_vote: ", self.majority_vote.loc[id_, "t_values"])
-            
-        zz = np.array(zz).reshape(xx.shape)
-        return xx, yy, zz
-        #Z = model.predict(np.c_[xx.ravel(), yy.ravel()])
-        #    Z = Z.reshape(xx.shape)
-        #    cs = pl.contourf(xx, yy, Z)
-        #print("self.t_values_id: \n", )
-        #print(self.t_val
-
-
-
-
-        
-        #for t in np.c_[xx.ravel(), yy.ravel()]:
-        #    print("t: ", t)
-        #    print("selected: ")
-            #print(self.majority_vote[self.majority_vote.t_values == tuple(t)])
-            #zz.append( self.majority_vote.elected[np.equal(self.majority_vote.t_values, t)])
-        #    id_ = self.t_values_id[tuple(t)]
-        #    print("self.majority_vote.id == id_ : ", elf.majority_vote[self.majority_vote.id == id_])
-        #    zz.append( self.majority_vote[self.majority_vote.id == id_].elected.values[0] )
-        #zz = np.array(zz)
-        #zz = self.model.model.predict(np.c_[xx.ravel(), yy.ravel()])
-        #zz = zz.reshape(xx.shape)
-        #cs = plt.countourf(xx,yy,zz)
-        #Z = model.predict(np.c_[xx.ravel(), yy.ravel()])
-        #    Z = Z.reshape(xx.shape)
-        #    cs = pl.contourf(xx, yy, Z)
-        
-        
-        #pass
-    
-    def save(self, simulation_name = None):
-        """
-        Saves simulationt disk
-
-        input
-        simulation_name: a string. Path to folder where files will be saved
-        """
-        #self.summary = {**locals(), **self.summary}
-        #del self.summary["self"]
-        if simulation_name is not None:
-            self.summary["simulation_name"] = simulation_name
-        current_dir = os.getcwd()
-      
-        grid_name = self.grid_path.split("/")[-1]
-        path_to_results = "./results"
-        
-        if not grid_name in os.listdir(path_to_results):
-            os.mkdir(os.path.join(path_to_results,grid_name))
-            os.chdir(os.path.join(path_to_results,grid_name))
-            results_dirs = ["train_dataframe", "test_dataframe", "train_votes", "test_votes", "scores", "summary"]
-            for d in results_dirs:
-                os.mkdir(d)
-        else:
-            os.chdir(os.path.join(path_to_results,grid_name))
-        
-        self.train_dataframe.to_csv(os.path.join("./train_dataframe", simulation_name))
-        self.test_dataframe.to_csv(os.path.join("./test_dataframe", simulation_name))
-        self.majority_vote_train.to_csv(os.path.join("./train_votes", simulation_name))
-        self.majority_vote_test.to_csv(os.path.join("./test_votes", simulation_name))
-        with open(os.path.join("./scores", simulation_name), "w") as f:#####################################3
-            json.dump(self.scores, f)
-        with open(os.path.join("./summary", simulation_name), "w") as f:#####################################3
-            json.dump(self.summary, f)   
-        os.chdir(current_dir)
-
-    #def predict
-    
-    def make_plot2d(self, grid, eigen_probabilities = False, scatter_train = False):
-        """
-        Makes a 2d plot of experiment
-
-        input
-        grid: a tuple of numpy arrays (xarray, yarray). These will be used to generate a meshgrid for the values of the t's
-        eigen_probabilities: a bool. Whether to use eigenvectors votes as probabilities or not
-        scatter_train: a bool. Whether to plot training data as scatter plot or not
-        """  
-        xarray, yarray = grid[0], grid[1]
-        xx, yy = np.meshgrid(xarray, yarray)
-        X = np.c_[xx, yy]
-        Z = self.model.model.predict(X)
-        plt.contourf(xx,)
-        
-        
-        
-        
-        
-        
-
-        
-        
-       
-        
-
-class MonteCarlo(object):
-    """
-    Performs Monte Carlo simulations to determine accuracy of algorithms
-    """
-    alg_dict = {"DecisionTrees": 1}
-    def __init__(self, n_exp, algorithm, data_dir = "../grids/periodic/ssh_t1_t2"):
-        """
-        MonteCarlo class constructor
-
-        input
-        n_exp: an int. Number of experiments to be performed
-        algorithm: a string mapping to a ml algorithm (possibly from scikit-learn). Contains methods like "fit" and "predict"
-        data_dir: a string. Path to folder with hamiltonians
-        """
-        self.n_exp = n_exp
-        self.algorithm = algorithm
-        self.data_dir = data_dir
-
-    def experiment(self, train_data, test_data):
-        """
-        ...    
-        """
-        pass 
-    
-
-
-
-
-#################### metrics ####################
-
-def majority_vote(dataframe, y_vector, unique_phases = np.arange(4), normalize = "index"):
-    """
-    Performs majority vote on the eigenvectors  
-    
-    input
-    dataframe: a pandas dataframe
-    y_vector: a numpy array with phases
-    unique_phases: a numpy array with the unique phases 
-    normalize: a boolean variable flagging whether vote counts should be normalized or not
-    return
-    elected: a dictionary of elected phases
-    votes: a dictionary of percentage votes
-    """
-  
-    votes = pd.crosstab(dataframe.hamiltonian_number, y_vector.astype(int), normalize = normalize)
-    votes.columns.name = "phase"
-    for p in unique_phases:
-        if not p in votes.columns:
-            votes.insert(int(p), p, np.zeros(len(votes)).astype(int)  )
-    elected = votes.idxmax(axis = 1) 
-       
-    return votes, elected
-    
-
-
-def accuracy_ham(elected_true, elected_pred):
-    """
-    Computes accuracy scores for full hamiltonians
-
-    input
-    elected_true: a numpy array with true phases
-    elected_pred: a numpy array predicted phases
-
-    return
-    accuracy: a float
-    """
-    return np.mean(elected_true == elected_pred)
-    
-    
-    
-
-
-
-
-
-        
-
-    
-   
-
-   
-   
-
-  
-
-
-
-
 
 
 #################### visualization ####################
-
-def plot_hamiltonians2d(phase_dict, figsize = (10,10)):
-    """
-    Makes a scatter plot of hamiltonians
-    
-    input
-    phase_dict: a dictionary mapping tuples of t to their phases
-    figsize: figsize to plot function
-    """
-    return None
-
-
-
-def plot_feature_importances(tree_clf, n_features = "all", return_arrays = False):
-    """
-    Plots feature importances for tree based classifiers
-
-    input
-    tree_clf: a tree based classifier
-    n_features: number of features to show in plot. If "all", all are showed
-    return_arrays: a boolean variable. Whether return importance arrays or not
-
-    return 
-    sorted_indices: array of features in decreasing order of importance
-    sorted_importances: array of importances in decreasing order
-    cumulative_importances: array of cumulative importances computed from sorted_importances
-    """
-    importances = tree_clf.feature_importances_
-    sorted_indices = np.argsort(importances)[::-1]
-    sorted_importances = importances[sorted_indices]
-    cumulative_importances = np.cumsum(sorted_importances)
-    sorted_features = np.array([str(ix) for ix in sorted_indices ])
-    if n_features == "all":
-        n_features = len(sorted_indices)
-    fig, ax = plt.subplots(2,1, figsize = (30,50))
-    for ix, feat in enumerate(sorted_features[:n_features]):
-        ax[0].bar(feat, sorted_importances[ix])
-        ax[0].set_title("Feature importances", size = 24)
-        ax[0].set_xlabel("Feature", fontsize = 24)
-        ax[0].set_ylabel("Importance", fontsize = 24)
-        ax[1].bar(feat, cumulative_importances[ix])
-        ax[1].set_title("Cumulative feature importances", size = 24)
-        ax[1].set_xlabel("Feature", fontsize = 24)
-        ax[1].set_ylabel("Cumulative importance ", size = 24)
-   
-    plt.show()
-    if return_arrays:
-        return sorted_indices, sorted_importances, cumulative_importances
-    else:
-        return None
-
-        
-
-
-
-
 
 def visualize_tree(tree_clf, tree_name, feature_names, class_names, destination = "trees"):
     """

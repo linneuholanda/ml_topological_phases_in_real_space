@@ -20,6 +20,45 @@ from collections import defaultdict
 import csv
 #import seaborn
 
+### Defining some color maps
+###Reds_alpha
+ncolors = 256
+color_array = plt.get_cmap('Reds')(range(ncolors))
+# change alpha values
+color_array[:,-1] = np.linspace(0.0,1.0,ncolors)
+# create a colormap object
+map_object = LinearSegmentedColormap.from_list(name='Reds_alpha',colors=color_array)
+plt.register_cmap(cmap=map_object)
+
+
+###Oranges_alpha
+ncolors = 256
+color_array = plt.get_cmap('Oranges')(range(ncolors))
+# change alpha values
+color_array[:,-1] = np.linspace(0.0,1.0,ncolors)
+# create a colormap object
+map_object = LinearSegmentedColormap.from_list(name='Oranges_alpha',colors=color_array)
+plt.register_cmap(cmap=map_object)
+
+
+### Greens_alpha
+ncolors = 256
+color_array = plt.get_cmap('Greens')(range(ncolors))
+# change alpha values
+color_array[:,-1] = np.linspace(0.0,1.0,ncolors)
+# create a colormap object
+map_object = LinearSegmentedColormap.from_list(name='Greens_alpha',colors=color_array)
+plt.register_cmap(cmap=map_object)
+
+### Blues_alpha
+ncolors = 256
+color_array = plt.get_cmap('Blues')(range(ncolors))
+# change alpha values
+color_array[:,-1] = np.linspace(0.0,1.0,ncolors)
+# create a colormap object
+map_object = LinearSegmentedColormap.from_list(name='Blues_alpha',colors=color_array)
+plt.register_cmap(cmap=map_object)
+
 class Experiment(object):
     """
     A class to perform data analysis on machine learning experiments.

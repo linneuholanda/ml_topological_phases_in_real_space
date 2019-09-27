@@ -18,7 +18,46 @@ from matplotlib.colors import LinearSegmentedColormap
 from collections import defaultdict
 #import json
 import csv
-#import seaborn
+
+############### Defining some color maps
+###Reds_alpha
+ncolors = 256
+color_array = plt.get_cmap('Reds')(range(ncolors))
+# change alpha values
+color_array[:,-1] = np.linspace(0.0,1.0,ncolors)
+# create a colormap object
+map_object = LinearSegmentedColormap.from_list(name='Reds_alpha',colors=color_array)
+plt.register_cmap(cmap=map_object)
+
+
+###Oranges_alpha
+ncolors = 256
+color_array = plt.get_cmap('Oranges')(range(ncolors))
+# change alpha values
+color_array[:,-1] = np.linspace(0.0,1.0,ncolors)
+# create a colormap object
+map_object = LinearSegmentedColormap.from_list(name='Oranges_alpha',colors=color_array)
+plt.register_cmap(cmap=map_object)
+
+
+### Greens_alpha
+ncolors = 256
+color_array = plt.get_cmap('Greens')(range(ncolors))
+# change alpha values
+color_array[:,-1] = np.linspace(0.0,1.0,ncolors)
+# create a colormap object
+map_object = LinearSegmentedColormap.from_list(name='Greens_alpha',colors=color_array)
+plt.register_cmap(cmap=map_object)
+
+### Blues_alpha
+ncolors = 256
+color_array = plt.get_cmap('Blues')(range(ncolors))
+# change alpha values
+color_array[:,-1] = np.linspace(0.0,1.0,ncolors)
+# create a colormap object
+map_object = LinearSegmentedColormap.from_list(name='Blues_alpha',colors=color_array)
+plt.register_cmap(cmap=map_object)
+##########
 
 class Experiment(object):
     """
@@ -489,10 +528,10 @@ class ExperimentEnsemble(object):
         if sort_importances:
             sorted_args = np.argsort(mean_feature_importance)[::-1] 
             sorted_feature_importance = mean_feature_importance[sorted_args]
-            self.feature_importance = dict(zip(sorted_args+1, sorted_feature_importance))  ##Adding 1 so that features start at 1
-            self.cumulative_feature_importance = dict(zip(sorted_args+1, np.cumsum(sorted_feature_importance)))
+            self.feature_importance = dict(zip(sorted_args, sorted_feature_importance))  ##Adding 1 so that features start at 1
+            self.cumulative_feature_importance = dict(zip(sorted_args, np.cumsum(sorted_feature_importance)))
         else:
-            non_sorted_args = np.arange(len(mean_feature_importance))+1
+            non_sorted_args = np.arange(len(mean_feature_importance))
             self.feature_importance = dict(zip(non_sorted_args, mean_feature_importance))
             self.cumulative_feature_importance = dict(zip(non_sorted_args, np.cumsum(mean_feature_importance) ) )
         if save_to_disk:
@@ -667,6 +706,10 @@ class ExperimentEnsemble(object):
         #sorted_args = [str(ix) for ix in list(self.cumulative_feature_importance.keys())[:n_features]]
         sorted_args = list(self.cumulative_feature_importance.keys())[:n_features]
         importances = list(self.cumulative_feature_importance.values())[:n_features]
+        #args = np.array(list(self.cumulative_feature_importance.keys())[:n_features])
+        #sorted_ix = np.argsort(args)
+        #sorted_args = args[sorted_ix]
+        #importances = np.array(list(self.cumulative_feature_importance.values())[:n_features])[sorted_ix]
         #print("sorted_args: ", sorted_args)
         #print("importances: ", importances)
         if plot == "bar":

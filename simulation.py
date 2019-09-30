@@ -51,7 +51,7 @@ class Simulation(object):
         ##### Building Dataframe #####
         dtype = {"id":np.int32, "path": str, "winding": np.float64, "phase": np.int32, "pred_phase": np.int32, "type_of": str}
         self.dataframe = pd.read_csv(filepath_or_buffer = self.csv_path, index_col = 0, dtype = dtype)
-        self.n_features = len(self.dataframe.columns[self.dataframe.columns.get_loc("feat1"):])
+        self.n_features = len(self.dataframe.columns[self.dataframe.columns.get_loc("feat0"):])
         if shuffle_features:
             self.shuffle_features_array = np.random.permutation(np.arange(self.n_features))
             self.parameters["shuffle_features_array"] = self.shuffle_features_array
@@ -109,7 +109,7 @@ class Simulation(object):
         shuffle_rows: a bool. Whether to shuffle rows before fitting.
         """
         train_rows = self.dataframe.type_of == "train"
-        feat_columns = self.dataframe.columns[self.dataframe.columns.get_loc("feat1"):]
+        feat_columns = self.dataframe.columns[self.dataframe.columns.get_loc("feat0"):]
         X, y = self.dataframe.loc[train_rows,feat_columns].values, self.dataframe[train_rows].phase.values
         ### shuffling features
         if self.shuffle_features:
@@ -143,7 +143,7 @@ class Simulation(object):
         dataframe: a pandas dataframe with properly named columns
         predict_params: a dict of prediction parameters
         """ 
-        feat_columns = self.dataframe.columns[self.dataframe.columns.get_loc("feat1"):]
+        feat_columns = self.dataframe.columns[self.dataframe.columns.get_loc("feat0"):]
         X = self.dataframe.loc[:,feat_columns].values
         ### shuffling features
         if self.shuffle_features:

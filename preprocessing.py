@@ -90,7 +90,7 @@ def make_dataframe(raw_data, list_of_hamiltonians, allowed_windings = None, epsi
     n_features = raw_data.shape[1] - non_feature_columns
     n_hamiltonians = len(list_of_hamiltonians)
     n_ts = len(list_of_hamiltonians[0].replace("H_","").replace(".dat","").split("_")[:-1])
-    feature_names = ["t" + str(i+1) for i in range(n_ts)] + ["winding"] + ["phase"] + ["feat" + str(i+1) for i in range(n_features)] 
+    feature_names = ["t" + str(i+1) for i in range(n_ts)] + ["winding"] + ["phase"] + ["feat" + str(i) for i in range(n_features)] 
     ### rolling dataframe
     raw_data = np.roll(raw_data,shift = 4, axis=1)
     dataframe = pd.DataFrame(data = raw_data, columns = feature_names)
@@ -112,7 +112,7 @@ def make_dataframe(raw_data, list_of_hamiltonians, allowed_windings = None, epsi
     path_column = np.repeat(list_of_hamiltonians, n_features)
     dataframe.insert(0, "path", path_column)
     ### adding type_of column
-    dataframe.insert(dataframe.columns.get_loc("feat1"), "type_of", ["null"]*len(dataframe))
+    dataframe.insert(dataframe.columns.get_loc("feat0"), "type_of", ["null"]*len(dataframe))
     make_train_test(dataframe, allowed_windings, epsilon)
     ### processing t columns 
     t1_column = dataframe.columns.get_loc("t1")

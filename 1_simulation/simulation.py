@@ -20,8 +20,8 @@ class Simulation(object):
     """
     Implements a machine learning simulation 
     """    
-       
-    def __init__(self, csv_path, model, allowed_windings, simulation_dir = "./simulation", val_split = 0, features_to_use = None, shuffle_features = False, random_state = None):            
+    _models_dict = {"DecisionTreeClassifier": DecisionTreeClassifier, "RandomForestClassifier": RandomForestClassifier}
+    def __init__(self, csv_path, model_name, model_kw, allowed_windings, simulation_dir = "./simulation", val_split = 0, features_to_use = None, shuffle_features = False, random_state = None):            
         """
         Simulation class constructor.
 
@@ -41,7 +41,9 @@ class Simulation(object):
         if random_state is not None:
             np.random.seed(random_state)
         self.csv_path = csv_path
-        self.model = model
+        self.model = None
+        self.model_name = model_name
+        self.model_kw = model_kw
         self.allowed_windings = allowed_windings
         self.val_split = val_split
         self.features_to_use = features_to_use
@@ -143,6 +145,8 @@ class Simulation(object):
         dataframe: a pandas dataframe with properly named columns
         predict_params: a dict of prediction parameters
         """ 
+        print("THIS IS  predict_params: ", predict_params)
+        print("THIS IS  the type of predict_params: ", type(predict_params))
         feat_columns = self.dataframe.columns[self.dataframe.columns.get_loc("feat0"):]
         X = self.dataframe.loc[:,feat_columns].values
         ### shuffling features
@@ -241,7 +245,7 @@ class Simulation(object):
         y_pred = self.hamiltonian_summary.pred_phase[boolean_mask].values
         self.accuracy["hamiltonian_test"] = accuracy_score(y_true,y_pred)
                  
-    def run_simulation(self, n_experiments=1, start_n=0, fit_params=None, shuffle_rows = True, pred_params=None, random_features = False, store_in_lists=False, save_eigenvector=False, save_hamiltonian=True, save_accuracy=True, save_model=False):
+    def run_simulation(self, n_experiments=1, start_n=0, fit_params=None, shuffle_rows = True, pred_params=None, random_features = False, store_in_lists=False, save_eigenvector=False, save_hamiltonian=True, save_accuracy=True, save_models=False):
         """
         Fits a machine learning algorithm to training data and writes result of simulation to disk
         
@@ -256,7 +260,7 @@ class Simulation(object):
         save_eigenvector: a bool. Whether to save eigenvector summaries in disk.
         save_hamiltonian: a bool. Whether to save hamiltonian summaries in disk.
         save_accuracy: a bool. Whether to save accuracy summaries in disk.
-        save_model: a bool. Whether to save models in disk.
+        save_models: a bool. Whether to save models in disk.
         """
         if save_eigenvector or save_hamiltonian or save_accuracy or save_models:
             eigenvector_path = os.path.join(self.simulation_dir, "eigenvector")
@@ -271,12 +275,14 @@ class Simulation(object):
                 os.mkdir(hamiltonian_path) 
             if (save_accuracy) and not os.path.isdir(accuracy_path):
                 os.mkdir(accuracy_path)
-            if (save_model) and not os.path.isdir(model_path):
+            if (save_models) and not os.path.isdir(model_path):
                 os.mkdir(model_path)
             with open(os.path.join(self.simulation_dir, "parameters.csv"), 'w') as f:  
                     w = csv.writer(f)
                     w.writerows(self.parameters.items())
         for exp in tqdm(range(start_n,start_n+n_experiments), desc = "running experiments"):
+            ### creating model
+            self.model = Simulation._models_dict[self.model_name](**self.model_kw)
             ### picking features randomly 
             if random_features:
                 self.features_to_use = np.random.randint(0,self.n_features,size=random_features)
@@ -306,7 +312,7 @@ class Simulation(object):
                 with open(os.path.join(accuracy_path, filename + ".csv"), 'w') as f:  
                     w = csv.writer(f)
                     w.writerows(self.accuracy.items())
-            if save_model:
+            if save_models:
                 dump(self.model, os.path.join(model_path, filename + ".joblib") )
                
     def visualize_scatter_2d(self, fig_params={}, val_params={}, test_params={}, train_params={}, legend_params={}, xlabel_params={}, ylabel_params={}, title_params={}, savefig_params = {}):

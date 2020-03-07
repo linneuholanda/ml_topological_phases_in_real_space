@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2019.7.28)  27 SEP 2019 19:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.2.21)  6 MAR 2020 13:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **main.tex
 (./main.tex
-LaTeX2e <2016/02/01>
-Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
+LaTeX2e <2017-04-15>
+Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
 (./wlscirep.cls
 Document Class: wlscirep 27/02/2017, v1.3
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
@@ -14,14 +14,14 @@ Package: inputenc 2015/03/17 v1.2c Input encoding file
 \inpenc@posthook=\toks15
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
-File: utf8.def 2015/12/03 v1.1r UTF-8 support for inputenc
+File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 Now handling font encoding OML ...
 ... no UTF-8 mapping file for font encoding OML
 Now handling font encoding T1 ...
 ... processing UTF-8 mapping file for font encoding T1
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu
-File: t1enc.dfu 2015/12/03 v1.1r UTF-8 support for inputenc
+File: t1enc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
    defining Unicode char U+00A0 (decimal 160)
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A3 (decimal 163)
@@ -233,11 +233,17 @@ File: t1enc.dfu 2015/12/03 v1.1r UTF-8 support for inputenc
    defining Unicode char U+0219 (decimal 537)
    defining Unicode char U+021A (decimal 538)
    defining Unicode char U+021B (decimal 539)
-   defining Unicode char U+01E02 (decimal 7682)
-   defining Unicode char U+01E03 (decimal 7683)
+   defining Unicode char U+0232 (decimal 562)
+   defining Unicode char U+0233 (decimal 563)
+   defining Unicode char U+1E02 (decimal 7682)
+   defining Unicode char U+1E03 (decimal 7683)
    defining Unicode char U+200C (decimal 8204)
+   defining Unicode char U+2010 (decimal 8208)
+   defining Unicode char U+2011 (decimal 8209)
+   defining Unicode char U+2012 (decimal 8210)
    defining Unicode char U+2013 (decimal 8211)
    defining Unicode char U+2014 (decimal 8212)
+   defining Unicode char U+2015 (decimal 8213)
    defining Unicode char U+2018 (decimal 8216)
    defining Unicode char U+2019 (decimal 8217)
    defining Unicode char U+201A (decimal 8218)
@@ -249,12 +255,14 @@ File: t1enc.dfu 2015/12/03 v1.1r UTF-8 support for inputenc
    defining Unicode char U+2039 (decimal 8249)
    defining Unicode char U+203A (decimal 8250)
    defining Unicode char U+2423 (decimal 9251)
+   defining Unicode char U+1E20 (decimal 7712)
+   defining Unicode char U+1E21 (decimal 7713)
 )
 Now handling font encoding OT1 ...
 ... processing UTF-8 mapping file for font encoding OT1
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu
-File: ot1enc.dfu 2015/12/03 v1.1r UTF-8 support for inputenc
+File: ot1enc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
    defining Unicode char U+00A0 (decimal 160)
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A3 (decimal 163)
@@ -295,7 +303,7 @@ Now handling font encoding OMS ...
 ... processing UTF-8 mapping file for font encoding OMS
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu
-File: omsenc.dfu 2015/12/03 v1.1r UTF-8 support for inputenc
+File: omsenc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
    defining Unicode char U+00A7 (decimal 167)
    defining Unicode char U+00B6 (decimal 182)
    defining Unicode char U+00B7 (decimal 183)
@@ -319,15 +327,21 @@ Now handling font encoding U ...
    defining Unicode char U+2423 (decimal 9251)
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2016/02/24 3.9q The Babel package
+Package: babel 2018/02/14 3.18 The Babel package
 
+(/usr/share/texlive/texmf-dist/tex/generic/babel/switch.def
+File: switch.def 2018/02/14 3.18 Babel switching mechanism
+)
 (/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf
-Language: english 2012/08/20 v3.3p English support from the babel system
+Language: english 2017/06/06 v3.3r English support from the babel system
 
 (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
-File: babel.def 2016/02/24 3.9q Babel common definitions
+File: babel.def 2018/02/14 3.18 Babel common definitions
 \babel@savecnt=\count79
 \U@D=\dimen102
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@dirlevel=\count80
 )
 \l@canadian = a dialect from \language\l@american 
 \l@australian = a dialect from \language\l@british 
@@ -338,21 +352,21 @@ Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count80
-\calc@Bcount=\count81
+\calc@Acount=\count81
+\calc@Bcount=\count82
 \calc@Adimen=\dimen103
 \calc@Bdimen=\dimen104
 \calc@Askip=\skip41
 \calc@Bskip=\skip42
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count82
+\calc@Ccount=\count83
 \calc@Cskip=\skip43
 )
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/fleqn.clo
-File: fleqn.clo 2015/03/31 v1.1i Standard LaTeX option (flush left equations)
+File: fleqn.clo 2016/12/29 v1.2a Standard LaTeX option (flush left equations)
 \mathindent=\dimen105
 Applying: [2015/01/01] Make \[ robust on input line 50.
 LaTeX Info: Redefining \[ on input line 51.
@@ -364,14 +378,14 @@ Already applied: [0000/00/00] Make \] robust on input line 83.
 (/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
-\c@part=\count83
-\c@section=\count84
-\c@subsection=\count85
-\c@subsubsection=\count86
-\c@paragraph=\count87
-\c@subparagraph=\count88
-\c@figure=\count89
-\c@table=\count90
+\c@part=\count84
+\c@section=\count85
+\c@subsection=\count86
+\c@subsubsection=\count87
+\c@paragraph=\count88
+\c@subparagraph=\count89
+\c@figure=\count90
+\c@table=\count91
 \abovecaptionskip=\skip44
 \belowcaptionskip=\skip45
 \bibindent=\dimen106
@@ -416,11 +430,10 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 LaTeX Info: Redefining \hbar on input line 50.
 )
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is detected.
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
 )
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2016/03/03 v2.15a AMS math features
+Package: amsmath 2017/09/02 v2.17a AMS math features
 \@mathmargin=\skip46
 
 For additional information on amsmath, use the `?' option.
@@ -437,32 +450,32 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen108
 )
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
-Package: amsopn 1999/12/14 v2.01 operator names
+Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count91
-LaTeX Info: Redefining \frac on input line 199.
-\uproot@=\count92
-\leftroot@=\count93
-LaTeX Info: Redefining \overline on input line 297.
-\classnum@=\count94
-\DOTSCASE@=\count95
-LaTeX Info: Redefining \ldots on input line 394.
-LaTeX Info: Redefining \dots on input line 397.
-LaTeX Info: Redefining \cdots on input line 518.
+\inf@bad=\count92
+LaTeX Info: Redefining \frac on input line 213.
+\uproot@=\count93
+\leftroot@=\count94
+LaTeX Info: Redefining \overline on input line 375.
+\classnum@=\count95
+\DOTSCASE@=\count96
+LaTeX Info: Redefining \ldots on input line 472.
+LaTeX Info: Redefining \dots on input line 475.
+LaTeX Info: Redefining \cdots on input line 596.
 \Mathstrutbox@=\box26
 \strutbox@=\box27
 \big@size=\dimen109
-LaTeX Font Info:    Redeclaring font encoding OML on input line 630.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 631.
-\macc@depth=\count96
-\c@MaxMatrixCols=\count97
+LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
+\macc@depth=\count97
+\c@MaxMatrixCols=\count98
 \dotsspace@=\muskip10
-\c@parentequation=\count98
-\dspbrk@lvl=\count99
+\c@parentequation=\count99
+\dspbrk@lvl=\count100
 \tag@help=\toks17
-\row@=\count100
-\column@=\count101
-\maxfields@=\count102
+\row@=\count101
+\column@=\count102
+\maxfields@=\count103
 \andhelp@=\toks18
 \eqnshift@=\dimen110
 \alignsep@=\dimen111
@@ -474,8 +487,8 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 631.
 \multlinegap=\skip47
 \multlinetaggap=\skip48
 \mathdisplay@stack=\toks20
-LaTeX Info: Redefining \[ on input line 2735.
-LaTeX Info: Redefining \] on input line 2736.
+LaTeX Info: Redefining \[ on input line 2817.
+LaTeX Info: Redefining \] on input line 2818.
 )
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
@@ -488,56 +501,48 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 )
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
 
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks21
 )
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2016/01/03 v1.0q Standard LaTeX Graphics (DPC,SPQR)
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
 
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
-File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: pdftex.def on input line 95.
+Package graphics Info: Driver file: pdftex.def on input line 99.
 
-(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
-Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
-)
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
-Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
-)
-\Gread@gobject=\count103
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen116
 \Gin@req@width=\dimen117
 )
 (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
-Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
-File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 225.
-Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
-Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
-Package xcolor Info: Model `RGB' extended on input line 1353.
-Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
-Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
-Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
-Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
-Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
-Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
 (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
-Package: booktabs 2005/04/14 v1.61803 publication quality tables
+Package: booktabs 2016/04/27 v1.618033 publication quality tables
 \heavyrulewidth=\dimen118
 \lightrulewidth=\dimen119
 \cmidrulewidth=\dimen120
@@ -568,7 +573,7 @@ Package: authblk 2001/02/27 1.3 (PWD)
 Package: geometry 2010/09/12 v5.6 Page Geometry
 
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty
-Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
 )
 (/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
@@ -591,7 +596,7 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
 
 (/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
-Package: caption3 2016/02/04 v1.7-139 caption3 kernel (AR)
+Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 67.
 \captionmargin=\dimen139
 \captionmargin@=\dimen140
@@ -604,63 +609,63 @@ Package caption3 Info: TeX engine: e-TeX on input line 67.
 \c@ContinuedFloat=\count114
 )
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
+Package: hyperref 2018/02/06 v6.86b Hypertext links for LaTeX
 
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
-Package: hobsub-hyperref 2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
 
 
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
-Package: hobsub-generic 2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
-Package: hobsub 2012/05/28 v1.13 Construct package bundles (HO)
-Package hobsub Info: Skipping package `infwarerr' (already loaded).
-Package hobsub Info: Skipping package `ltxcmds' (already loaded).
-Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
 Package hobsub Info: Skipping package `ifvtex' (already loaded).
-Package: intcalc 2007/09/27 v1.1 Expandable calculations with integers (HO)
+Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
 Package hobsub Info: Skipping package `ifpdf' (already loaded).
-Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
 Package etexcmds Info: Could not find \expanded.
 (etexcmds)             That can mean that you are not using pdfTeX 1.50 or
 (etexcmds)             that some package has redefined \expanded.
 (etexcmds)             In the latter case, load this package earlier.
-Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
-Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
-Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+Package: pdftexcmds 2018/01/21 v0.26 Utility functions of pdfTeX for LuaTeX (HO
 )
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
-Package: pdfescape 2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
-Package: bigintcalc 2012/04/08 v1.3 Expandable calculations on big integers (HO
+Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO
 )
-Package: bitset 2011/01/30 v1.1 Handle bit-vector datatype (HO)
-Package: uniquecounter 2011/01/30 v1.2 Provide unlimited unique counter (HO)
+Package: bitset 2016/05/16 v1.2 Handle bit-vector datatype (HO)
+Package: uniquecounter 2016/05/16 v1.3 Provide unlimited unique counter (HO)
 )
 Package hobsub Info: Skipping package `hobsub' (already loaded).
-Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
-Package: hopatch 2012/05/28 v1.2 Wrapper for package hooks (HO)
-Package: xcolor-patch 2011/01/30 xcolor patch
-Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
+Package: letltxmacro 2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
+Package: hopatch 2016/05/16 v1.3 Wrapper for package hooks (HO)
+Package: xcolor-patch 2016/05/16 xcolor patch
+Package: atveryend 2016/05/16 v1.9 Hooks at the very end of document (HO)
 Package atveryend Info: \enddocument detected (standard20110627).
-Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
-Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
-Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
+Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
+Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty
-Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
+Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
 )
 \@linkdim=\dimen146
 \Hy@linkcounter=\count115
 \Hy@pagecounter=\count116
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2018/02/06 v6.86b Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
@@ -669,48 +674,47 @@ Now handling font encoding PD1 ...
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 4319.
-Package hyperref Info: Hyper figures OFF on input line 4443.
-Package hyperref Info: Link nesting OFF on input line 4448.
-Package hyperref Info: Hyper index ON on input line 4451.
-Package hyperref Info: Plain pages OFF on input line 4458.
-Package hyperref Info: Backreferencing OFF on input line 4463.
+Package hyperref Info: Option `colorlinks' set `true' on input line 4383.
+Package hyperref Info: Hyper figures OFF on input line 4509.
+Package hyperref Info: Link nesting OFF on input line 4514.
+Package hyperref Info: Hyper index ON on input line 4517.
+Package hyperref Info: Plain pages OFF on input line 4524.
+Package hyperref Info: Backreferencing OFF on input line 4529.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4688.
+Package hyperref Info: Bookmarks ON on input line 4762.
 \c@Hy@tempcnt=\count118
 
 (/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip11
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 5041.
+LaTeX Info: Redefining \url on input line 5115.
 \XeTeXLinkMargin=\dimen147
 \Fld@menulength=\count119
 \Field@Width=\dimen148
 \Fld@charsize=\dimen149
-Package hyperref Info: Hyper figures OFF on input line 6295.
-Package hyperref Info: Link nesting OFF on input line 6300.
-Package hyperref Info: Hyper index ON on input line 6303.
-Package hyperref Info: backreferencing OFF on input line 6310.
-Package hyperref Info: Link coloring ON on input line 6313.
-Package hyperref Info: Link coloring with OCG OFF on input line 6320.
-Package hyperref Info: PDF/A mode OFF on input line 6325.
-LaTeX Info: Redefining \ref on input line 6365.
-LaTeX Info: Redefining \pageref on input line 6369.
+Package hyperref Info: Hyper figures OFF on input line 6369.
+Package hyperref Info: Link nesting OFF on input line 6374.
+Package hyperref Info: Hyper index ON on input line 6377.
+Package hyperref Info: backreferencing OFF on input line 6384.
+Package hyperref Info: Link coloring ON on input line 6387.
+Package hyperref Info: Link coloring with OCG OFF on input line 6394.
+Package hyperref Info: PDF/A mode OFF on input line 6399.
+LaTeX Info: Redefining \ref on input line 6439.
+LaTeX Info: Redefining \pageref on input line 6443.
 \Hy@abspage=\count120
 \c@Item=\count121
 \c@Hfootnote=\count122
 )
-
-Package hyperref Message: Driver (autodetected): hpdftex.
+Package hyperref Info: Driver (autodetected): hpdftex.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
+File: hpdftex.def 2018/02/06 v6.86b Hyperref driver for pdfTeX
 \Fld@listcount=\count123
 \c@bookmark@seq@number=\count124
 
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
-Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 )
@@ -723,21 +727,23 @@ Package: cite 2015/02/27  v 5.5
 LaTeX Info: Redefining \cite on input line 441.
 )
 (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
-\fancy@headwidth=\skip52
-\f@ncyO@elh=\skip53
-\f@ncyO@erh=\skip54
-\f@ncyO@olh=\skip55
-\f@ncyO@orh=\skip56
-\f@ncyO@elf=\skip57
-\f@ncyO@erf=\skip58
-\f@ncyO@olf=\skip59
-\f@ncyO@orf=\skip60
+Package: fancyhdr 2017/06/30 v3.9a Extensive control of page headers and footer
+s
+\f@nch@headwidth=\skip52
+\f@nch@O@elh=\skip53
+\f@nch@O@erh=\skip54
+\f@nch@O@olh=\skip55
+\f@nch@O@orh=\skip56
+\f@nch@O@elf=\skip57
+\f@nch@O@erf=\skip58
+\f@nch@O@olf=\skip59
+\f@nch@O@orf=\skip60
 )
 (/usr/share/texlive/texmf-dist/tex/latex/lastpage/lastpage.sty
 Package: lastpage 2015/03/29 v1.2m Refers to last page's name (HMM; JPG)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/titlesec/titlesec.sty
-Package: titlesec 2016/03/15 v2.10.1 Sectioning titles
+Package: titlesec 2016/03/21 v2.10.2 Sectioning titles
 \ttl@box=\box28
 \beforetitleunit=\skip61
 \aftertitleunit=\skip62
@@ -780,31 +786,31 @@ Package: jabbrv 2010/08/18 v0.2 Automatic Journal Title Abbreviation Package
 
 (./jabbrv-ltwa-all.ldf) (./jabbrv-ltwa-en.ldf))
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
-Package: microtype 2013/05/23 v2.5a Micro-typographical refinements (RS)
+Package: microtype 2018/01/14 v2.7a Micro-typographical refinements (RS)
 \MT@toks=\toks27
 \MT@count=\count132
-LaTeX Info: Redefining \textls on input line 766.
+LaTeX Info: Redefining \textls on input line 793.
 \MT@outer@kern=\dimen157
-LaTeX Info: Redefining \textmicrotypecontext on input line 1285.
+LaTeX Info: Redefining \textmicrotypecontext on input line 1339.
 \MT@listname@count=\count133
 
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def
-File: microtype-pdftex.def 2013/05/23 v2.5a Definitions specific to pdftex (RS)
+File: microtype-pdftex.def 2018/01/14 v2.7a Definitions specific to pdftex (RS)
 
-LaTeX Info: Redefining \lsstyle on input line 915.
-LaTeX Info: Redefining \lslig on input line 915.
+LaTeX Info: Redefining \lsstyle on input line 913.
+LaTeX Info: Redefining \lslig on input line 913.
 \MT@outer@space=\skip65
 )
 Package microtype Info: Loading configuration file microtype.cfg.
 
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg
-File: microtype.cfg 2013/05/23 v2.5a microtype main configuration file (RS)
+File: microtype.cfg 2018/01/14 v2.7a microtype main configuration file (RS)
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+Package: fontenc 2017/04/05 v2.0i Standard LaTeX package
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def
-File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+File: t1enc.def 2017/04/05 v2.0i Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.sty
@@ -857,7 +863,7 @@ LaTeX Font Info:    Try loading font information for T1+ptm on input line 24.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
-(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count139
 \scratchdimen=\dimen160
@@ -871,15 +877,17 @@ File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 \makeMPintoPDFobject=\count144
 \everyMPtoPDFconversion=\toks29
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
-Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
 )
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
 Package grfext Info: Graphics extension search list:
-(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
 G,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 452.
+(grfext)             \AppendGraphicsExtensions on input line 456.
 
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
@@ -926,10 +934,10 @@ Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box31
 Package hyperref Info: Link coloring ON on input line 24.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
-Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
+Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
-Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
+Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count145
 )
@@ -963,7 +971,7 @@ LaTeX Font Info:    Try loading font information for T1+phv on input line 33.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
-Package microtype Info: Loading generic settings for font family
+Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `phv' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
@@ -976,7 +984,7 @@ LaTeX Font Info:    Try loading font information for OT1+phv on input line 33.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
-Package microtype Info: Loading generic settings for font family
+Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `phv' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
@@ -986,7 +994,7 @@ LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 33
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
-Package microtype Info: Loading generic settings for font family
+Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `ztmcm' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
@@ -1040,66 +1048,55 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 48.
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] <ssh1.png, id=63, 867.24pt
- x 867.24pt>
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+<ssh1.png, id=63, 867.24pt x 867.24pt>
 File: ssh1.png Graphic file (type png)
-
 <use ssh1.png>
-Package pdftex.def Info: ssh1.png used on input line 60.
+Package pdftex.def Info: ssh1.png  used on input line 60.
 (pdftex.def)             Requested size: 225.21626pt x 225.21242pt.
- <ssh2.png, id=65, 867.24pt x 867.24pt>
+<ssh2.png, id=65, 867.24pt x 867.24pt>
 File: ssh2.png Graphic file (type png)
- <use ssh2.png>
-Package pdftex.def Info: ssh2.png used on input line 61.
+<use ssh2.png>
+Package pdftex.def Info: ssh2.png  used on input line 61.
 (pdftex.def)             Requested size: 225.21626pt x 225.21242pt.
  [2 <./ssh1.png> <./ssh2.png>]
 <fig1a-6561-100-train_val_test_0.png, id=87, 433.62pt x 433.62pt>
 File: fig1a-6561-100-train_val_test_0.png Graphic file (type png)
-
 <use fig1a-6561-100-train_val_test_0.png>
-Package pdftex.def Info: fig1a-6561-100-train_val_test_0.png used on input line
- 87.
+Package pdftex.def Info: fig1a-6561-100-train_val_test_0.png  used on input lin
+e 87.
 (pdftex.def)             Requested size: 160.15854pt x 160.159pt.
-
 <fig1a-6561-100-train_winding_labels_0.png, id=88, 433.62pt x 433.62pt>
 File: fig1a-6561-100-train_winding_labels_0.png Graphic file (type png)
-
 <use fig1a-6561-100-train_winding_labels_0.png>
-Package pdftex.def Info: fig1a-6561-100-train_winding_labels_0.png used on inpu
-t line 88.
+Package pdftex.def Info: fig1a-6561-100-train_winding_labels_0.png  used on inp
+ut line 88.
 (pdftex.def)             Requested size: 160.15854pt x 160.159pt.
-
 <fig1a-6561-100-prediction_grid_0.png, id=89, 433.62pt x 433.62pt>
 File: fig1a-6561-100-prediction_grid_0.png Graphic file (type png)
-
 <use fig1a-6561-100-prediction_grid_0.png>
-Package pdftex.def Info: fig1a-6561-100-prediction_grid_0.png used on input lin
-e 89.
+Package pdftex.def Info: fig1a-6561-100-prediction_grid_0.png  used on input li
+ne 89.
 (pdftex.def)             Requested size: 160.15854pt x 160.159pt.
  [3 <./fig1a-6561-100-train_val_test_0.png> <./fig1a-6561-100-train_winding_lab
 els_0.png> <./fig1a-6561-100-prediction_grid_0.png>]
 <fig1b-6561-100-train_val_test_0.png, id=108, 433.62pt x 433.62pt>
 File: fig1b-6561-100-train_val_test_0.png Graphic file (type png)
-
 <use fig1b-6561-100-train_val_test_0.png>
-Package pdftex.def Info: fig1b-6561-100-train_val_test_0.png used on input line
- 103.
+Package pdftex.def Info: fig1b-6561-100-train_val_test_0.png  used on input lin
+e 103.
 (pdftex.def)             Requested size: 160.15854pt x 160.159pt.
-
 <fig1b-6561-100-train_winding_labels_0.png, id=109, 433.62pt x 433.62pt>
 File: fig1b-6561-100-train_winding_labels_0.png Graphic file (type png)
-
 <use fig1b-6561-100-train_winding_labels_0.png>
-Package pdftex.def Info: fig1b-6561-100-train_winding_labels_0.png used on inpu
-t line 104.
+Package pdftex.def Info: fig1b-6561-100-train_winding_labels_0.png  used on inp
+ut line 104.
 (pdftex.def)             Requested size: 160.15854pt x 160.159pt.
-
 <fig1b-6561-100-prediction_grid_0.png, id=110, 433.62pt x 433.62pt>
 File: fig1b-6561-100-prediction_grid_0.png Graphic file (type png)
-
 <use fig1b-6561-100-prediction_grid_0.png>
-Package pdftex.def Info: fig1b-6561-100-prediction_grid_0.png used on input lin
-e 105.
+Package pdftex.def Info: fig1b-6561-100-prediction_grid_0.png  used on input li
+ne 105.
 (pdftex.def)             Requested size: 160.15854pt x 160.159pt.
  [4 <./fig1b-6561-100-train_val_test_0.png> <./fig1b-6561-100-train_winding_lab
 els_0.png> <./fig1b-6561-100-prediction_grid_0.png>]
@@ -1107,48 +1104,43 @@ els_0.png> <./fig1b-6561-100-prediction_grid_0.png>]
 >
 File: fig1a-6561-100-simulation_merged_winding_grid.png Graphic file (type png)
 
- <use fig1a-6561-100-simulation_merged_winding_grid.png>
-Package pdftex.def Info: fig1a-6561-100-simulation_merged_winding_grid.png used
- on input line 128.
+<use fig1a-6561-100-simulation_merged_winding_grid.png>
+Package pdftex.def Info: fig1a-6561-100-simulation_merged_winding_grid.png  use
+d on input line 128.
 (pdftex.def)             Requested size: 250.24199pt x 250.23602pt.
-
 <fig1b-6561-100-simulation_merged_winding_grid.png, id=131, 867.24pt x 867.24pt
 >
 File: fig1b-6561-100-simulation_merged_winding_grid.png Graphic file (type png)
 
- <use fig1b-6561-100-simulation_merged_winding_grid.png>
-Package pdftex.def Info: fig1b-6561-100-simulation_merged_winding_grid.png used
- on input line 129.
+<use fig1b-6561-100-simulation_merged_winding_grid.png>
+Package pdftex.def Info: fig1b-6561-100-simulation_merged_winding_grid.png  use
+d on input line 129.
 (pdftex.def)             Requested size: 245.2399pt x 245.23395pt.
  [5 <./fig1a-6561-100-simulation_merged_winding_grid.png> <./fig1b-6561-100-sim
 ulation_merged_winding_grid.png>]
 <fig1a-6561-100-feature_importances.png, id=149, 867.24pt x 867.24pt>
 File: fig1a-6561-100-feature_importances.png Graphic file (type png)
-
 <use fig1a-6561-100-feature_importances.png>
-Package pdftex.def Info: fig1a-6561-100-feature_importances.png used on input l
-ine 154.
+Package pdftex.def Info: fig1a-6561-100-feature_importances.png  used on input 
+line 154.
 (pdftex.def)             Requested size: 245.2399pt x 245.23395pt.
-
 <fig1b-6561-100-feature_importances.png, id=150, 867.24pt x 867.24pt>
 File: fig1b-6561-100-feature_importances.png Graphic file (type png)
-
 <use fig1b-6561-100-feature_importances.png>
-Package pdftex.def Info: fig1b-6561-100-feature_importances.png used on input l
-ine 155.
+Package pdftex.def Info: fig1b-6561-100-feature_importances.png  used on input 
+line 155.
 (pdftex.def)             Requested size: 245.2399pt x 245.23395pt.
- [6 <./fig1a-6561-100-feature_importances.png> <./fig1b-6561-100-feature_import
-ances.png>] [7] [8] [9]
+ [6] [7 <./fig1a-6561-100-feature_importances.png> <./fig1b-6561-100-feature_im
+portances.png>] [8] [9]
 <model.pdf, id=205, 234.41824pt x 97.3522pt>
 File: model.pdf Graphic file (type pdf)
- <use model.pdf>
-Package pdftex.def Info: model.pdf used on input line 578.
+<use model.pdf>
+Package pdftex.def Info: model.pdf  used on input line 578.
 (pdftex.def)             Requested size: 185.17662pt x 76.90588pt.
-
 <winding.png, id=206, 439.6425pt x 348.30125pt>
 File: winding.png Graphic file (type png)
- <use winding.png>
-Package pdftex.def Info: winding.png used on input line 585.
+<use winding.png>
+Package pdftex.def Info: winding.png  used on input line 585.
 (pdftex.def)             Requested size: 185.17662pt x 146.70006pt.
 
 Underfull \vbox (badness 1033) has occurred while \output is active []
@@ -1158,131 +1150,112 @@ Underfull \vbox (badness 1033) has occurred while \output is active []
 t>
 File: fig1a-6561-less-simulation_merged_winding_grid.png Graphic file (type png
 )
- <use fig1a-6561-less-simulation_merged_winding_grid.png>
-Package pdftex.def Info: fig1a-6561-less-simulation_merged_winding_grid.png use
-d on input line 640.
+<use fig1a-6561-less-simulation_merged_winding_grid.png>
+Package pdftex.def Info: fig1a-6561-less-simulation_merged_winding_grid.png  us
+ed on input line 640.
 (pdftex.def)             Requested size: 245.2399pt x 245.23395pt.
-
 <fig1b-6561-less-simulation_merged_winding_grid.png, id=342, 867.24pt x 867.24p
 t>
 File: fig1b-6561-less-simulation_merged_winding_grid.png Graphic file (type png
 )
- <use fig1b-6561-less-simulation_merged_winding_grid.png>
-Package pdftex.def Info: fig1b-6561-less-simulation_merged_winding_grid.png use
-d on input line 641.
+<use fig1b-6561-less-simulation_merged_winding_grid.png>
+Package pdftex.def Info: fig1b-6561-less-simulation_merged_winding_grid.png  us
+ed on input line 641.
 (pdftex.def)             Requested size: 245.2399pt x 245.23395pt.
  [11] [12 <./fig1a-6561-less-simulation_merged_winding_grid.png> <./fig1b-6561-
 less-simulation_merged_winding_grid.png>] [13]
 <fig1a-6561-140-feature_importances.png, id=401, 1084.05pt x 1084.05pt>
 File: fig1a-6561-140-feature_importances.png Graphic file (type png)
-
 <use fig1a-6561-140-feature_importances.png>
-Package pdftex.def Info: fig1a-6561-140-feature_importances.png used on input l
-ine 714.
+Package pdftex.def Info: fig1a-6561-140-feature_importances.png  used on input 
+line 714.
 (pdftex.def)             Requested size: 160.15854pt x 160.15237pt.
-
 <fig1a-6561-180-feature_importances.png, id=402, 1084.05pt x 1084.05pt>
 File: fig1a-6561-180-feature_importances.png Graphic file (type png)
-
 <use fig1a-6561-180-feature_importances.png>
-Package pdftex.def Info: fig1a-6561-180-feature_importances.png used on input l
-ine 715.
+Package pdftex.def Info: fig1a-6561-180-feature_importances.png  used on input 
+line 715.
 (pdftex.def)             Requested size: 160.15854pt x 160.15237pt.
-
 <fig1a-6561-220-feature_importances.png, id=403, 1084.05pt x 1084.05pt>
 File: fig1a-6561-220-feature_importances.png Graphic file (type png)
-
 <use fig1a-6561-220-feature_importances.png>
-Package pdftex.def Info: fig1a-6561-220-feature_importances.png used on input l
-ine 716.
+Package pdftex.def Info: fig1a-6561-220-feature_importances.png  used on input 
+line 716.
 (pdftex.def)             Requested size: 160.15854pt x 160.15237pt.
-
 <fig1b-6561-140-feature_importances.png, id=404, 1084.05pt x 1084.05pt>
 File: fig1b-6561-140-feature_importances.png Graphic file (type png)
-
 <use fig1b-6561-140-feature_importances.png>
-Package pdftex.def Info: fig1b-6561-140-feature_importances.png used on input l
-ine 722.
+Package pdftex.def Info: fig1b-6561-140-feature_importances.png  used on input 
+line 722.
 (pdftex.def)             Requested size: 160.15854pt x 160.15237pt.
-
 <fig1b-6561-180-feature_importances.png, id=405, 1084.05pt x 1084.05pt>
 File: fig1b-6561-180-feature_importances.png Graphic file (type png)
-
 <use fig1b-6561-180-feature_importances.png>
-Package pdftex.def Info: fig1b-6561-180-feature_importances.png used on input l
-ine 723.
+Package pdftex.def Info: fig1b-6561-180-feature_importances.png  used on input 
+line 723.
 (pdftex.def)             Requested size: 160.15854pt x 160.15237pt.
-
 <fig1b-6561-220-feature_importances.png, id=406, 1084.05pt x 1084.05pt>
 File: fig1b-6561-220-feature_importances.png Graphic file (type png)
-
 <use fig1b-6561-220-feature_importances.png>
-Package pdftex.def Info: fig1b-6561-220-feature_importances.png used on input l
-ine 724.
+Package pdftex.def Info: fig1b-6561-220-feature_importances.png  used on input 
+line 724.
 (pdftex.def)             Requested size: 160.15854pt x 160.15237pt.
-
 <fig1a-6561-140-cumulative_feature_importances-newer.png, id=407, 1084.05pt x 1
 084.05pt>
 File: fig1a-6561-140-cumulative_feature_importances-newer.png Graphic file (typ
 e png)
- <use fig1a-6561-140-cumulative_feature_importances-newer.png>
+<use fig1a-6561-140-cumulative_feature_importances-newer.png>
 Package pdftex.def Info: fig1a-6561-140-cumulative_feature_importances-newer.pn
-g used on input line 731.
+g  used on input line 731.
 (pdftex.def)             Requested size: 160.15854pt x 160.15237pt.
-
 <fig1a-6561-180-cumulative_feature_importances-newer.png, id=408, 1084.05pt x 1
 084.05pt>
 File: fig1a-6561-180-cumulative_feature_importances-newer.png Graphic file (typ
 e png)
- <use fig1a-6561-180-cumulative_feature_importances-newer.png>
+<use fig1a-6561-180-cumulative_feature_importances-newer.png>
 Package pdftex.def Info: fig1a-6561-180-cumulative_feature_importances-newer.pn
-g used on input line 732.
+g  used on input line 732.
 (pdftex.def)             Requested size: 160.15854pt x 160.15237pt.
-
 <fig1a-6561-220-cumulative_feature_importances-newer.png, id=409, 1084.05pt x 1
 084.05pt>
 File: fig1a-6561-220-cumulative_feature_importances-newer.png Graphic file (typ
 e png)
- <use fig1a-6561-220-cumulative_feature_importances-newer.png>
+<use fig1a-6561-220-cumulative_feature_importances-newer.png>
 Package pdftex.def Info: fig1a-6561-220-cumulative_feature_importances-newer.pn
-g used on input line 733.
+g  used on input line 733.
 (pdftex.def)             Requested size: 160.15854pt x 160.15237pt.
-
 <fig1b-6561-140-cumulative_feature_importances-newer.png, id=410, 1084.05pt x 1
 084.05pt>
 File: fig1b-6561-140-cumulative_feature_importances-newer.png Graphic file (typ
 e png)
- <use fig1b-6561-140-cumulative_feature_importances-newer.png>
+<use fig1b-6561-140-cumulative_feature_importances-newer.png>
 Package pdftex.def Info: fig1b-6561-140-cumulative_feature_importances-newer.pn
-g used on input line 740.
+g  used on input line 740.
 (pdftex.def)             Requested size: 160.15854pt x 160.15237pt.
-
 <fig1b-6561-180-cumulative_feature_importances-newer.png, id=411, 1084.05pt x 1
 084.05pt>
 File: fig1b-6561-180-cumulative_feature_importances-newer.png Graphic file (typ
 e png)
- <use fig1b-6561-180-cumulative_feature_importances-newer.png>
+<use fig1b-6561-180-cumulative_feature_importances-newer.png>
 Package pdftex.def Info: fig1b-6561-180-cumulative_feature_importances-newer.pn
-g used on input line 741.
+g  used on input line 741.
 (pdftex.def)             Requested size: 160.15854pt x 160.15237pt.
-
 <fig1b-6561-220-cumulative_feature_importances-newer.png, id=412, 1084.05pt x 1
 084.05pt>
 File: fig1b-6561-220-cumulative_feature_importances-newer.png Graphic file (typ
 e png)
- <use fig1b-6561-220-cumulative_feature_importances-newer.png>
+<use fig1b-6561-220-cumulative_feature_importances-newer.png>
 Package pdftex.def Info: fig1b-6561-220-cumulative_feature_importances-newer.pn
-g used on input line 742.
+g  used on input line 742.
 (pdftex.def)             Requested size: 160.15854pt x 160.15237pt.
-
-[14 <./fig1a-6561-140-feature_importances.png> <./fig1a-6561-180-feature_import
-ances.png> <./fig1a-6561-220-feature_importances.png> <./fig1b-6561-140-feature
-_importances.png> <./fig1b-6561-180-feature_importances.png> <./fig1b-6561-220-
-feature_importances.png>] [15 <./fig1a-6561-140-cumulative_feature_importances-
-newer.png> <./fig1a-6561-180-cumulative_feature_importances-newer.png> <./fig1a
--6561-220-cumulative_feature_importances-newer.png> <./fig1b-6561-140-cumulativ
-e_feature_importances-newer.png> <./fig1b-6561-180-cumulative_feature_importanc
-es-newer.png> <./fig1b-6561-220-cumulative_feature_importances-newer.png>]
+ [14 <./fig1a-6561-140-feature_importances.png> <./fig1a-6561-180-feature_impor
+tances.png> <./fig1a-6561-220-feature_importances.png> <./fig1b-6561-140-featur
+e_importances.png> <./fig1b-6561-180-feature_importances.png> <./fig1b-6561-220
+-feature_importances.png>] [15 <./fig1a-6561-140-cumulative_feature_importances
+-newer.png> <./fig1a-6561-180-cumulative_feature_importances-newer.png> <./fig1
+a-6561-220-cumulative_feature_importances-newer.png> <./fig1b-6561-140-cumulati
+ve_feature_importances-newer.png> <./fig1b-6561-180-cumulative_feature_importan
+ces-newer.png> <./fig1b-6561-220-cumulative_feature_importances-newer.png>]
 
 AED: lastpage setting LastPage
 [16]
@@ -1296,13 +1269,13 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 798.
  ) 
 Here is how much of TeX's memory you used:
- 19315 strings out of 493029
- 368516 string characters out of 6136234
- 516658 words of memory out of 5000000
- 22219 multiletter control sequences out of 15000+600000
- 82756 words of font info for 260 fonts, out of 8000000 for 9000
+ 19465 strings out of 492982
+ 371442 string characters out of 6134896
+ 519496 words of memory out of 5000000
+ 22394 multiletter control sequences out of 15000+600000
+ 82943 words of font info for 263 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,12n,92p,1461b,493s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,12n,92p,1461b,488s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
@@ -1314,7 +1287,7 @@ uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/font
 s/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (16 pages, 1391055 bytes).
+Output written on main.pdf (16 pages, 1270056 bytes).
 PDF statistics:
  518 PDF objects out of 1000 (max. 8388607)
  405 compressed objects within 5 object streams

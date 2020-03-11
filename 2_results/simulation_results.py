@@ -19,6 +19,11 @@ from collections import defaultdict
 #import json
 import csv
 
+
+############### Defining ListedColorMaps
+ssh1_colormap = ListedColormap(["hotpink", "lightskyblue"],name="ssh1")
+
+
 ############### Defining some color maps
 ###Reds_alpha
 ncolors = 256
@@ -160,7 +165,7 @@ class Experiment(object):
         title_params: a dict with parameters for plt.title.
         
         return
-        figure: a figure with properly set axes for plotting.
+        figure: a figure with properly set axes for plotting.ListedColormap(["hotpink", "lightskyblue"])
         """
         figure = plt.figure(**fig_params)
         #if fit_axes:    

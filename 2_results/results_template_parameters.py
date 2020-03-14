@@ -10,14 +10,14 @@ import numpy as np
 from simulation_results import *
 
 def get_ssh1_parameters(ssh_type, chain_length, n_hamiltonians, experiment_name="0", n_experiments=None, load_hamiltonian_summary=False, 
-                        base_simulations_dir = "/home/linneu/ssh_simulations/ssh1", base_figs_dir="/home/linneu/ml_topological_phases_in_real_space/paper/ssh1"):
+                        base_figs_dir="/home/linneu/ml_topological_phases_in_real_space/paper/ssh1"):
     
     if not os.path.isdir(base_figs_dir):
         os.mkdir(base_figs_dir)
     figs_dir = os.path.join(base_figs_dir,"{}_{}_{}".format(ssh_type,chain_length,n_hamiltonians))
     if not os.path.isdir(figs_dir):
         os.mkdir(figs_dir)    
-    simulation_dir = os.path.join(base_simulations_dir,"{}_{}_{}".format(ssh_type,chain_length,n_hamiltonians)) 
+    #simulation_dir = os.path.join(base_simulations_dir,"{}_{}_{}".format(ssh_type,chain_length,n_hamiltonians)) 
     #experiment = Experiment(simulation_dir, experiment_name)
     #simulation = ExperimentEnsemble(simulation_dir, n_experiments, load_hamiltonian_summary)
     ### Defining parameters dict   
@@ -88,7 +88,9 @@ def get_ssh1_parameters(ssh_type, chain_length, n_hamiltonians, experiment_name=
     "winding": 1,
     "imshow_params": {"cmap": "bwr_r", "aspect": "equal", "alpha": None, "origin": "lower", "extent": [-2,2,-2,2],\
                                      "vmin": 0, "vmax":1},
-    "colorbar_params": {"mappable": None, "labelsize": 24},
+    #"colorbar_params": {"mappable": None, "labelsize": 24},
+    "colorbar_params": {"mappable": None, "labelsize": 24, "ticks": [0, 0.2, 0.4, 0.6, 0.8, 1.0], "pad": 0.1, "shrink": 0.8, \
+                                           "extend": "neither"},
     "fig_params": {"figsize": (12,12)},
     "xlabel_params": {"xlabel": "$t_2$", "fontsize": 48},
     "ylabel_params": {"ylabel": "$t_1$", "fontsize": 48},
@@ -109,6 +111,10 @@ def get_ssh1_parameters(ssh_type, chain_length, n_hamiltonians, experiment_name=
     "merge_imshow_winding_grids_params": {
     "winding_params": {1: {"cmap": "bwr_r", "aspect": "equal", "alpha": None, "origin": "lower", "extent": [-2,2,-2,2], \
                                            "vmin": 0, "vmax": 1}},
+    #"winding_params": {0: {"cmap": "Reds_alpha", "aspect": "equal", "alpha": None, "origin": "lower", "extent": [-2,2,-2,2], \
+    #                                       "vmin": 0, "vmax": 1},
+    #                   1: {"cmap": "Blues_alpha", "aspect": "equal", "alpha": None, "origin": "lower", "extent": [-2,2,-2,2], \
+    #                                       "vmin": 0, "vmax": 1}},
     "colorbar_params": {1: {"mappable": None, "labelsize": 24, "ticks": [0, 0.2, 0.4, 0.6, 0.8, 1.0], "pad": 0.1, "shrink": 0.8, \
                                            "extend": "neither"}},
     "fig_params": {"figsize": (12,12)},

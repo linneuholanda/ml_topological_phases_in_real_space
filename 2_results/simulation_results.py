@@ -21,8 +21,10 @@ import csv
 
 
 ############### Defining ListedColorMaps
-ssh1_colormap = ListedColormap(["hotpink", "lightskyblue"],name="ssh1")
+ssh1_colormap = ListedColormap(["hotpink", "lightskyblue"], name="ssh1")
+ssh2_colormap = ListedColormap(["hotpink", "orange", "lightgreen","lightskyblue"], name="ssh2") 
 plt.register_cmap(cmap=ssh1_colormap)
+plt.register_cmap(cmap=ssh2_colormap)
 
 ############### Defining some color maps
 ###Reds_alpha

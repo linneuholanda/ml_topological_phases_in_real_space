@@ -6,6 +6,19 @@ from itertools import chain
 from tqdm import tqdm
 import json
 
+### Grids dir
+GRIDS_DIR = "/home/rio/ssh_grids"
+SSH1_GRIDS_DIR = "/home/rio/ssh_grids/ssh1"
+SSH2_GRIDS_DIR = "/home/rio/ssh_grids/ssh2"
+### CSVS dir
+CSVS_DIR = "/home/rio/ssh_csvs" 
+SSH1_CSVS_DIR = "/home/rio/ssh_csvs/ssh1" 
+SSH2_CSVS_DIR = "/home/rio/ssh_csvs/ssh2"
+### Generating directories
+generate_dirs = [CSVS_DIR, SSH1_CSVS_DIR, SSH2_CSVS_DIR]
+for d in generate_dirs:
+    if not os.path.isdir(d):
+        os.mkdir(d)       
 
 def load_hamiltonians(grid_folder):
     """"
@@ -70,8 +83,8 @@ def make_train_test(dataframe, allowed_windings = None, epsilon = 0.01):
     dataframe.loc[np.logical_not(boolean_train),"type_of"] = "test"
     is_999 = dataframe.phase == 999
     dataframe.loc[is_999,"type_of"] = "test" 
-                
-def make_dataframe(raw_data, list_of_hamiltonians, allowed_windings = None, epsilon = 0.01, csv_name = None, to_csv = True):
+              
+def make_dataframe(raw_data, list_of_hamiltonians, allowed_windings = None, epsilon = 0.01, csv_dir = None, csv_name = None):
     """
     Generates a dataframe from .dat hamiltonians
     
@@ -127,10 +140,8 @@ def make_dataframe(raw_data, list_of_hamiltonians, allowed_windings = None, epsi
     ### reseting index
     dataframe.reset_index(drop=True, inplace=True)
     ### writing to csv
-    if to_csv: 
-        if not "csv" in os.listdir(os.getcwd()):
-            os.mkdir("./csv")
-        path_to_save = os.path.join("./csv",csv_name)
+    if csv_dir is not None: 
+        path_to_save = os.path.join(csv_dir,csv_name)
         dataframe.to_csv(path_or_buf=path_to_save)
     return dataframe
 

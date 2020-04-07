@@ -5,20 +5,63 @@ import os
 from itertools import chain
 from tqdm import tqdm
 import json
+import papermill as pm
 
 ### Grids dir
 GRIDS_DIR = "/home/rio/ssh_grids"
-SSH1_GRIDS_DIR = "/home/rio/ssh_grids/ssh1"
-SSH2_GRIDS_DIR = "/home/rio/ssh_grids/ssh2"
+# ssh1 grids 
+SSH1_GRIDS_DIR = os.path.join(GRIDS_DIR,"ssh1")
+SSH1_PERIODIC_100_6561_GRID_DIR = os.path.join(SSH1_GRIDS_DIR,"periodic_100_6561")
+SSH1_PERIODIC_140_6561_GRID_DIR = os.path.join(SSH1_GRIDS_DIR,"periodic_140_6561")
+SSH1_PERIODIC_180_6561_GRID_DIR = os.path.join(SSH1_GRIDS_DIR,"periodic_180_6561")
+SSH1_PERIODIC_220_6561_GRID_DIR = os.path.join(SSH1_GRIDS_DIR,"periodic_220_6561")
+# ssh2 grids 
+SSH2_GRIDS_DIR = os.path.join(GRIDS_DIR,"ssh2")
+SSH2_PERIODIC_100_6561_GRID_DIR = os.path.join(SSH2_GRIDS_DIR,"periodic_100_6561")
+SSH2_PERIODIC_140_6561_GRID_DIR = os.path.join(SSH2_GRIDS_DIR,"periodic_140_6561")
+SSH2_PERIODIC_180_6561_GRID_DIR = os.path.join(SSH2_GRIDS_DIR,"periodic_180_6561")
+SSH2_PERIODIC_220_6561_GRID_DIR = os.path.join(SSH2_GRIDS_DIR,"periodic_220_6561")
+
 ### CSVS dir
 CSVS_DIR = "/home/rio/ssh_csvs" 
-SSH1_CSVS_DIR = "/home/rio/ssh_csvs/ssh1" 
-SSH2_CSVS_DIR = "/home/rio/ssh_csvs/ssh2"
+SSH1_CSVS_DIR = os.path.join(CSVS_DIR,"ssh1")
+SSH2_CSVS_DIR = os.path.join(CSVS_DIR,"ssh2")
+
 ### Generating directories
 generate_dirs = [CSVS_DIR, SSH1_CSVS_DIR, SSH2_CSVS_DIR]
 for d in generate_dirs:
     if not os.path.isdir(d):
-        os.mkdir(d)       
+        os.mkdir(d)   
+
+### CSV names
+# ssh1 
+SSH1_PERIODIC_100_6561_CSV = os.path.join(SSH1_CSVS_DIR,"periodic_100_6561.csv")
+SSH1_PERIODIC_140_6561_CSV = os.path.join(SSH1_CSVS_DIR,"periodic_140_6561.csv")
+SSH1_PERIODIC_180_6561_CSV = os.path.join(SSH1_CSVS_DIR,"periodic_180_6561.csv")
+SSH1_PERIODIC_220_6561_CSV = os.path.join(SSH1_CSVS_DIR,"periodic_220_6561.csv")
+# ssh2 
+SSH2_PERIODIC_100_6561_CSV = os.path.join(SSH2_CSVS_DIR,"periodic_100_6561.csv")
+SSH2_PERIODIC_140_6561_CSV = os.path.join(SSH2_CSVS_DIR,"periodic_140_6561.csv")
+SSH2_PERIODIC_180_6561_CSV = os.path.join(SSH2_CSVS_DIR,"periodic_180_6561.csv")
+SSH2_PERIODIC_220_6561_CSV = os.path.join(SSH2_CSVS_DIR,"periodic_220_6561.csv")
+
+### Output files
+# ssh1
+SSH1_PERIODIC_100_6561_OUTPUT_FILE = "preprocessing_output_ssh1_periodic_100_6561.ipynb"
+SSH1_PERIODIC_140_6561_OUTPUT_FILE = "preprocessing_output_ssh1_periodic_140_6561.ipynb"
+SSH1_PERIODIC_180_6561_OUTPUT_FILE = "preprocessing_output_ssh1_periodic_180_6561.ipynb"
+SSH1_PERIODIC_220_6561_OUTPUT_FILE = "preprocessing_output_ssh1_periodic_220_6561.ipynb"
+# ssh2
+SSH2_PERIODIC_100_6561_OUTPUT_FILE = "preprocessing_output_ssh2_periodic_100_6561.ipynb"
+SSH2_PERIODIC_140_6561_OUTPUT_FILE = "preprocessing_output_ssh2_periodic_140_6561.ipynb"
+SSH2_PERIODIC_180_6561_OUTPUT_FILE = "preprocessing_output_ssh2_periodic_180_6561.ipynb"
+SSH2_PERIODIC_220_6561_OUTPUT_FILE = "preprocessing_output_ssh2_periodic_220_6561.ipynb"
+
+### Template notebook
+TEMPLATE_NOTEBOOK = "0_preprocessing_template.ipynb"
+
+### Kernel name
+KERNEL_NAME = "ml_top_phases"
 
 def load_hamiltonians(grid_folder):
     """"

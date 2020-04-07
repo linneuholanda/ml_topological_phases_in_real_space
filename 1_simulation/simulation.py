@@ -13,15 +13,80 @@ from sklearn.metrics import accuracy_score
 from sklearn.base import clone
 from tqdm import tqdm
 from joblib import dump
-#import json
 import csv
-   
+import papermill as pm
+
+### Simulation directories
+SIMULATIONS_DIR = "/home/rio/ssh_simulations"
+# ssh1 simulations
+SSH1_SIMULATIONS_DIR = os.path.join(SIMULATIONS_DIR,"ssh1")
+SSH1_PERIODIC_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_100_6561")
+SSH1_PERIODIC_140_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_140_6561")
+SSH1_PERIODIC_180_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_180_6561")
+SSH1_PERIODIC_220_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_220_6561")
+# ssh2 simulations
+SSH2_SIMULATIONS_DIR = os.path.join(SIMULATIONS_DIR,"ssh2")
+SSH2_PERIODIC_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_100_6561")
+SSH2_PERIODIC_140_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_140_6561")
+SSH2_PERIODIC_180_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_180_6561")
+SSH2_PERIODIC_220_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_220_6561")
+
+### Generating simulation directories
+generate_dirs = [SIMULATIONS_DIR,
+                 SSH1_SIMULATIONS_DIR,
+                 SSH1_PERIODIC_100_6561_SIMULATION_DIR,
+                 SSH1_PERIODIC_140_6561_SIMULATION_DIR,
+                 SSH1_PERIODIC_180_6561_SIMULATION_DIR,
+                 SSH1_PERIODIC_220_6561_SIMULATION_DIR,
+                 SSH2_SIMULATIONS_DIR,
+                 SSH2_PERIODIC_100_6561_SIMULATION_DIR,
+                 SSH2_PERIODIC_140_6561_SIMULATION_DIR,
+                 SSH2_PERIODIC_180_6561_SIMULATION_DIR,
+                 SSH2_PERIODIC_220_6561_SIMULATION_DIR,
+                ]
+for d in generate_dirs:
+    if not os.path.isdir(d):
+        os.mkdir(d) 
+
+### CSVS dirs
+CSVS_DIR = "/home/rio/ssh_csvs" 
+# ssh1 paths
+SSH1_CSVS_DIR = os.path.join(CSVS_DIR,"ssh1")
+SSH1_PERIODIC_100_6561_CSV = os.path.join(SSH1_CSVS_DIR,"periodic_100_6561.csv")
+SSH1_PERIODIC_140_6561_CSV = os.path.join(SSH1_CSVS_DIR,"periodic_140_6561.csv")
+SSH1_PERIODIC_180_6561_CSV = os.path.join(SSH1_CSVS_DIR,"periodic_180_6561.csv")
+SSH1_PERIODIC_220_6561_CSV = os.path.join(SSH1_CSVS_DIR,"periodic_220_6561.csv")
+# ssh2 paths
+SSH2_CSVS_DIR = os.path.join(CSVS_DIR,"ssh2")
+SSH2_PERIODIC_100_6561_CSV = os.path.join(SSH2_CSVS_DIR,"periodic_100_6561.csv")
+SSH2_PERIODIC_140_6561_CSV = os.path.join(SSH2_CSVS_DIR,"periodic_140_6561.csv")
+SSH2_PERIODIC_180_6561_CSV = os.path.join(SSH2_CSVS_DIR,"periodic_180_6561.csv")
+SSH2_PERIODIC_220_6561_CSV = os.path.join(SSH2_CSVS_DIR,"periodic_220_6561.csv")
+
+### Output files
+# ssh1
+SSH1_PERIODIC_100_6561_OUTPUT_FILE = "preprocessing_output_ssh1_periodic_100_6561.ipynb"
+SSH1_PERIODIC_140_6561_OUTPUT_FILE = "preprocessing_output_ssh1_periodic_140_6561.ipynb"
+SSH1_PERIODIC_180_6561_OUTPUT_FILE = "preprocessing_output_ssh1_periodic_180_6561.ipynb"
+SSH1_PERIODIC_220_6561_OUTPUT_FILE = "preprocessing_output_ssh1_periodic_220_6561.ipynb"
+# ssh2
+SSH2_PERIODIC_100_6561_OUTPUT_FILE = "preprocessing_output_ssh2_periodic_100_6561.ipynb"
+SSH2_PERIODIC_140_6561_OUTPUT_FILE = "preprocessing_output_ssh2_periodic_140_6561.ipynb"
+SSH2_PERIODIC_180_6561_OUTPUT_FILE = "preprocessing_output_ssh2_periodic_180_6561.ipynb"
+SSH2_PERIODIC_220_6561_OUTPUT_FILE = "preprocessing_output_ssh2_periodic_220_6561.ipynb"
+
+### Template notebook
+TEMPLATE_NOTEBOOK = "0_simulation_template.ipynb"
+
+### Kernel name
+KERNEL_NAME = "ml_top_phases"
+
 class Simulation(object):
     """
     Implements a machine learning simulation 
     """    
     _models_dict = {"DecisionTreeClassifier": DecisionTreeClassifier, "RandomForestClassifier": RandomForestClassifier}
-    def __init__(self, csv_path, model_name, model_kw, allowed_windings, simulation_dir = "./simulation", val_split = 0, features_to_use = None, shuffle_features = False, random_state = None):            
+    def __init__(self, csv_path, model_name, model_kw, allowed_windings, simulation_dir = None, val_split = 0, features_to_use = None, shuffle_features = False, random_state = None):            
         """
         Simulation class constructor.
 

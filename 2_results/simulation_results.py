@@ -19,6 +19,53 @@ from collections import defaultdict
 #import json
 import csv
 
+### Simulation directories
+SIMULATIONS_DIR = "/home/rio/ssh_simulations"
+# ssh1 simulations
+SSH1_SIMULATIONS_DIR = os.path.join(SIMULATIONS_DIR,"ssh1")
+SSH1_PERIODIC_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_100_6561")
+SSH1_PERIODIC_140_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_140_6561")
+SSH1_PERIODIC_180_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_180_6561")
+SSH1_PERIODIC_220_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_220_6561")
+# ssh2 simulations
+SSH2_SIMULATIONS_DIR = os.path.join(SIMULATIONS_DIR,"ssh2")
+SSH2_PERIODIC_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_100_6561")
+SSH2_PERIODIC_140_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_140_6561")
+SSH2_PERIODIC_180_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_180_6561")
+SSH2_PERIODIC_220_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_220_6561")
+
+### Paper directory
+FIGURES_DIR = "/home/rio/ml_topological_phases_in_real_space/paper"
+# ssh1 figures
+SSH1_FIGURES_DIR = os.path.join(FIGURES_DIR,"ssh1")
+SSH1_PERIODIC_100_6561_FIGURES_DIR = os.path.join(SSH1_FIGURES_DIR,"periodic_100_6561")
+SSH1_PERIODIC_140_6561_FIGURES_DIR = os.path.join(SSH1_FIGURES_DIR,"periodic_140_6561")
+SSH1_PERIODIC_180_6561_FIGURES_DIR = os.path.join(SSH1_FIGURES_DIR,"periodic_180_6561")
+SSH1_PERIODIC_220_6561_FIGURES_DIR = os.path.join(SSH1_FIGURES_DIR,"periodic_220_6561")
+# ssh2 figures
+SSH2_FIGURES_DIR = os.path.join(FIGURES_DIR,"ssh2")
+SSH2_PERIODIC_100_6561_FIGURES_DIR = os.path.join(SSH2_FIGURES_DIR,"periodic_100_6561")
+SSH2_PERIODIC_140_6561_FIGURES_DIR = os.path.join(SSH2_FIGURES_DIR,"periodic_140_6561")
+SSH2_PERIODIC_180_6561_FIGURES_DIR = os.path.join(SSH2_FIGURES_DIR,"periodic_180_6561")
+SSH2_PERIODIC_220_6561_FIGURES_DIR = os.path.join(SSH2_FIGURES_DIR,"periodic_220_6561")
+
+### Generating figure directories
+generate_dirs = [FIGURES_DIR,
+                 SSH1_FIGURES_DIR,
+                 SSH1_PERIODIC_100_6561_FIGURES_DIR,
+                 SSH1_PERIODIC_140_6561_FIGURES_DIR,
+                 SSH1_PERIODIC_180_6561_FIGURES_DIR,
+                 SSH1_PERIODIC_220_6561_FIGURES_DIR,
+                 SSH2_FIGURES_DIR,
+                 SSH2_PERIODIC_100_6561_FIGURES_DIR,
+                 SSH2_PERIODIC_140_6561_FIGURES_DIR,
+                 SSH2_PERIODIC_180_6561_FIGURES_DIR,
+                 SSH2_PERIODIC_220_6561_FIGURES_DIR,
+                ]
+for d in generate_dirs:
+    if not os.path.isdir(d):
+        os.mkdir(d) 
+
 
 ############### Defining ListedColorMaps
 ssh1_colormap = ListedColormap(["hotpink", "lightskyblue"], name="ssh1")
@@ -95,7 +142,7 @@ class Experiment(object):
             #self.accuracy = {row[0]: float(row[1]) for row in f}
         self.model = load(os.path.join(self.simulation_dir, "model", experiment_name + ".joblib"))
         ### grid arrays
-        self.allowed_windings = [int(w) for w in self.hamiltonian_summary.columns[self.hamiltonian_summary.columns.get_loc("type_of")+1: self.hamiltonian_summary.columns.get_loc("phase")] ]
+        self.allowed_windings = [int(w) for w in self.hamiltonian_summary.columns[self.hamiltonian_summary.columns.get_loc("type_of")+1: self.hamiltonian_summary.columns.get_loc("phase")] ] ### int(w)
         self.t1 = np.unique(self.hamiltonian_summary.t1.values)
         self.t2 = np.unique(self.hamiltonian_summary.t2.values)
         self.xx, self.yy = np.meshgrid(self.t2, self.t1)

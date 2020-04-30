@@ -79,6 +79,7 @@ def get_parameters_ssh1(ssh_type, chain_length, n_hamiltonians, experiment_name=
      },
     
     ### Plotting Winding Heatmaps with imshow_winding_grid
+    "winding_cmap_dict":{0: "Reds", 1:"Blues"},
     "imshow_winding_grid_params": {
     "winding": 1,
     "imshow_params": {"cmap": "bwr_r", "aspect": "equal", "alpha": None, "origin": "lower", "extent": [-2,2,-2,2],\
@@ -169,8 +170,8 @@ def get_parameters_ssh1(ssh_type, chain_length, n_hamiltonians, experiment_name=
     parameters["load_hamiltonian_summary"] = load_hamiltonian_summary
     return parameters
 
-def get_parameters_ssh1(ssh_type, chain_length, n_hamiltonians, experiment_name="0", n_experiments=None, load_hamiltonian_summary=False, base_simulations_dir="/home/rio/ssh_simulations/ssh1",
-                        base_figs_dir="/home/rio/ml_topological_phases_in_real_space/paper/ssh1"):
+def get_parameters_ssh2(ssh_type, chain_length, n_hamiltonians, experiment_name="0", n_experiments=None, load_hamiltonian_summary=False, base_simulations_dir="/home/rio/ssh_simulations/ssh2",
+                        base_figs_dir="/home/rio/ml_topological_phases_in_real_space/paper/ssh2"):
     
     if not os.path.isdir(base_figs_dir):
         os.mkdir(base_figs_dir)
@@ -203,9 +204,10 @@ def get_parameters_ssh1(ssh_type, chain_length, n_hamiltonians, experiment_name=
     ### Plotting train winding labels with scatter_winding_train
     "scatter_winding_train_params": {
     "fig_params":{"figsize": [6,6]}, 
-    "winding_params": {0: {"marker": "o", "s": 10, "color": "red", "label": 0}, \
-                                     1: {"marker": "o", "s": 10, "color": "blue", "label": 1}, \
-                                    },
+    "winding_params": {-1: {"marker": "o", "s": 10, "color": "red", "label": -1}, 
+                  0: {"marker": "o", "s": 10, "color": "darkorange", "label": 0}, \
+                  1: {"marker": "o", "s": 10, "color": "green", "label": 1}, \
+                  2: {"marker": "o", "s": 10, "color": "blue", "label": 2}},
     "legend_params": {"framealpha": 0.8, "loc": "upper right", "fontsize": 16},
     "xlabel_params": {"xlabel": "$t_2$", "fontsize": 24},
     "ylabel_params": {"ylabel": "$t_1$", "fontsize": 24},
@@ -222,10 +224,12 @@ def get_parameters_ssh1(ssh_type, chain_length, n_hamiltonians, experiment_name=
     ### Plotting prediction grid with pcolormesh_prediction_grid
     "pcolormesh_prediction_grid_params": {
     "fig_params": {"figsize": [6,6]},
-    "winding_params": {0: {"marker": "o", "s": 10, "color": "red", "label": 0}, 
-                                      1: {"marker": "o", "s": 10, "color": "blue", "label": 1}},
+    winding_params = {-1: {"marker": "o", "s": 10, "color": "red", "label": -1}, 
+                  0: {"marker": "o", "s": 10, "color": "darkorange", "label": 0}, \
+                  1: {"marker": "o", "s": 10, "color": "green", "label": 1}, \
+                  2: {"marker": "o", "s": 10, "color": "blue", "label": 2}}
     #"prediction_grid_pcolormesh_params": {"cmap": ListedColormap(["hotpink", "lightskyblue"]), "alpha": 0.5},
-    "pcolormesh_params": {"cmap": "ssh1", "alpha": 0.5},
+    "pcolormesh_params": {"cmap": "ssh2", "alpha": 0.5},
     "legend_params": {"framealpha": 0.8, "loc": "upper right", "fontsize": 16},
     "xlabel_params": {"xlabel": "$t_2$", "fontsize": 24},
     "ylabel_params": {"ylabel": "$t_1$", "fontsize": 24},

@@ -18,9 +18,11 @@ def get_parameters_ssh1(ssh_type, chain_length, n_hamiltonians, experiment_name=
     if not os.path.isdir(figs_dir):
         os.mkdir(figs_dir)    
     simulation_dir = os.path.join(base_simulations_dir,"{}_{}_{}".format(ssh_type,chain_length,n_hamiltonians)) 
+    
     #########################################################################
     ################### Results from a single experiment ####################
     #########################################################################
+    
     parameters = { 
     ### Visualizing train/val/test splits with scatter_train_val_test
     "scatter_train_val_test_params": {
@@ -96,7 +98,7 @@ def get_parameters_ssh1(ssh_type, chain_length, n_hamiltonians, experiment_name=
     "xticks_params": {"fontsize": 24},
     "yticks_params": {"fontsize": 24},
     "tight_params": {},
-    "savefig_params": {"fname": os.path.join(figs_dir,"imshow_winding_grid_experiment_{}.png".format(experiment_name))},
+    "savefig_params": {"fname": os.path.join(figs_dir,"imshow_winding_grid_winding_{}_{}.png")}, #.format something
     }, 
         
     ##################################################################################
@@ -123,7 +125,7 @@ def get_parameters_ssh1(ssh_type, chain_length, n_hamiltonians, experiment_name=
     "yticks_params": {"fontsize": 24},
     "tight_params": {},
     #"sim_winding_heatmap_path_to_save": "/home/linneu/ml_topological_phases_in_real_space/paper/ssh1/{}_{}_{}/simulation_merged_winding_grid.png".format(ssh_type,chain_length,n_hamiltonians),
-    "savefig_params": {"fname": os.path.join(figs_dir,"merge_imshow_winding_grids.png")},
+    "savefig_params": {"fname": os.path.join(figs_dir,"merge_imshow_winding_grids_{}.png")},
      },
         
     ### Plotting feature importances with plot_feature_importances
@@ -224,10 +226,10 @@ def get_parameters_ssh2(ssh_type, chain_length, n_hamiltonians, experiment_name=
     ### Plotting prediction grid with pcolormesh_prediction_grid
     "pcolormesh_prediction_grid_params": {
     "fig_params": {"figsize": [6,6]},
-    winding_params = {-1: {"marker": "o", "s": 10, "color": "red", "label": -1}, 
-                  0: {"marker": "o", "s": 10, "color": "darkorange", "label": 0}, \
-                  1: {"marker": "o", "s": 10, "color": "green", "label": 1}, \
-                  2: {"marker": "o", "s": 10, "color": "blue", "label": 2}}
+    "winding_params": {-1: {"marker": "o", "s": 10, "color": "red", "label": -1}, 
+                        0: {"marker": "o", "s": 10, "color": "darkorange", "label": 0}, \
+                        1: {"marker": "o", "s": 10, "color": "green", "label": 1}, \
+                        2: {"marker": "o", "s": 10, "color": "blue", "label": 2}},
     #"prediction_grid_pcolormesh_params": {"cmap": ListedColormap(["hotpink", "lightskyblue"]), "alpha": 0.5},
     "pcolormesh_params": {"cmap": "ssh2", "alpha": 0.5},
     "legend_params": {"framealpha": 0.8, "loc": "upper right", "fontsize": 16},

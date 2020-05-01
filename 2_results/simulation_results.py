@@ -374,11 +374,38 @@ class Experiment(object):
             cbar = plt.colorbar(**colorbar_params)
             if labelsize is not None:
                 cbar.ax.tick_params(labelsize=labelsize)
+                colorbar_params["labelsize"] = labelsize
         if tight_params is not None:
             plt.tight_layout(**tight_params)
         if len(savefig_params) > 0:
             plt.savefig(**savefig_params)
   
+    #def merge_imshow_winding_grids(self, winding_params, colorbar_params, fig_params={}, xlabel_params={}, ylabel_params={}, title_params={}, xlim_params={}, ylim_params={}, xticks_params ={}, yticks_params={}, tight_params=None, savefig_params={}):
+#        """
+#        Produces a merged heatmap of windings with imshow.#
+
+#        input
+#        winding_params: a dict of dicts. Each dict contains parameters for the imshow heatmap of a single winding.
+#        colorbar_params: a dict with parameters for plt.colorbar.
+#        fig_params: a dict with parameters for plt.fig.
+#        xlabel_params: a dict with parameters for plt.xlabel.
+#        ylabel_params: a dict with parameters for plt.ylabel.
+#        title_params: a dict with parameters for plt.title.
+#        savefig_params: a dict with parameters for plt.savefig. If empty, the plot is not saved.       
+#        """    
+#        figure = self.create_plot(fig_params, xlabel_params, ylabel_params, title_params, xlim_params, ylim_params, #xticks_params, yticks_params)
+#        for winding in self.allowed_windings:
+#            imshow_params = winding_params[winding]
+#            self.imshow_winding_grid(winding, imshow_params, colorbar_params = {})
+#        #    winding_grid = self.winding_grid[winding]
+#        #    imshow_params = winding_params[winding]
+#        #    imshow_params["X"] = winding_grid
+#        #    plt.imshow(**imshow_params)
+#        if tight_params is not None:
+#            plt.tight_layout(**tight_params)
+#        if len(savefig_params) > 0:
+#            plt.savefig(**savefig_params)  
+
     def merge_imshow_winding_grids(self, winding_params, colorbar_params, fig_params={}, xlabel_params={}, ylabel_params={}, title_params={}, xlim_params={}, ylim_params={}, xticks_params ={}, yticks_params={}, tight_params=None, savefig_params={}):
         """
         Produces a merged heatmap of windings with imshow.
@@ -394,12 +421,42 @@ class Experiment(object):
         """    
         figure = self.create_plot(fig_params, xlabel_params, ylabel_params, title_params, xlim_params, ylim_params, xticks_params, yticks_params)
         for winding in self.allowed_windings:
+            if not winding in winding_params.keys():
+                print("Skipping winding {}".format(str(winding)))
+                continue
+            print("Plotting winding {}".format(str(winding)))
             imshow_params = winding_params[winding]
-            self.imshow_winding_grid(winding, imshow_params, colorbar_params = {})
-        #    winding_grid = self.winding_grid[winding]
-        #    imshow_params = winding_params[winding]
-        #    imshow_params["X"] = winding_grid
-        #    plt.imshow(**imshow_params)
+            cb_params={}
+            if winding in colorbar_params:
+                cb_params = colorbar_params[winding]
+            #print("cb_params: ", cb_params)
+
+            ##############################################
+            winding_grid = self.winding_grid[winding]
+            imshow_params["X"] = winding_grid
+            #print("unique values: ", np.unique(winding_grid))
+            #print("max value: ", np.max(winding_grid))
+            plt.imshow(**imshow_params)
+            if len(cb_params) > 0:
+                labelsize = None
+                if "labelsize" in cb_params:
+                    labelsize = cb_params.pop("labelsize")
+                cbar = plt.colorbar(**cb_params)
+                if "ticks" in cb_params:
+                    cbar.set_ticks(cb_params["ticks"])
+                if labelsize is not None:
+                    cbar.ax.tick_params(labelsize=labelsize)
+                    cb_params["labelsize"] = labelsize
+            ##############################################
+            #plt.tight_layout()
+            #self.imshow_winding_grid(winding, imshow_params, colorbar_params = cb_params)
+        #if len(colorbar_params) > 0:
+        #    labelsize = None
+        #    if "labelsize" in colorbar_params:
+        #        labelsize = colorbar_params.pop("labelsize")
+        #    cbar = plt.colorbar(**colorbar_params)
+        #    if labelsize is not None:
+        #        cbar.ax.tick_params(labelsize=labelsize)
         if tight_params is not None:
             plt.tight_layout(**tight_params)
         if len(savefig_params) > 0:
@@ -650,14 +707,15 @@ class ExperimentEnsemble(object):
         winding_grid = self.winding_grid[winding]
         imshow_params["X"] = winding_grid
         plt.imshow(**imshow_params)
+        #if len(colorbar_params) > 0:
         if len(colorbar_params) > 0:
-            if len(colorbar_params) > 0:
-                labelsize = None
-                if "labelsize" in colorbar_params:
-                    labelsize = colorbar_params.pop("labelsize")
-                cbar = plt.colorbar(**colorbar_params)
-                if labelsize is not None:
-                    cbar.ax.tick_params(labelsize=labelsize)
+            labelsize = None
+            if "labelsize" in colorbar_params:
+                labelsize = colorbar_params.pop("labelsize")
+            cbar = plt.colorbar(**colorbar_params)
+            if labelsize is not None:
+                cbar.ax.tick_params(labelsize=labelsize)
+                colorbar_params["labelsize"] = labelsize
         if tight_params is not None:
             plt.tight_layout(**tight_params)
         if len(savefig_params) > 0:
@@ -703,6 +761,7 @@ class ExperimentEnsemble(object):
                     cbar.set_ticks(cb_params["ticks"])
                 if labelsize is not None:
                     cbar.ax.tick_params(labelsize=labelsize)
+                    cb_params["labelsize"] = labelsize
             ##############################################
             #plt.tight_layout()
             #self.imshow_winding_grid(winding, imshow_params, colorbar_params = cb_params)

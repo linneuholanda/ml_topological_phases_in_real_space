@@ -47,15 +47,15 @@ SSH2_PERIODIC_220_6561_CSV = os.path.join(SSH2_CSVS_DIR,"periodic_220_6561.csv")
 
 ### Output files
 # ssh1
-SSH1_PERIODIC_100_6561_OUTPUT_FILE = "preprocessing_output_ssh1_periodic_100_6561.ipynb"
-SSH1_PERIODIC_140_6561_OUTPUT_FILE = "preprocessing_output_ssh1_periodic_140_6561.ipynb"
-SSH1_PERIODIC_180_6561_OUTPUT_FILE = "preprocessing_output_ssh1_periodic_180_6561.ipynb"
-SSH1_PERIODIC_220_6561_OUTPUT_FILE = "preprocessing_output_ssh1_periodic_220_6561.ipynb"
+SSH1_PERIODIC_100_6561_OUTPUT_FILE = "zzz_preprocessing_output_ssh1_periodic_100_6561.ipynb"
+SSH1_PERIODIC_140_6561_OUTPUT_FILE = "zzz_preprocessing_output_ssh1_periodic_140_6561.ipynb"
+SSH1_PERIODIC_180_6561_OUTPUT_FILE = "zzz_preprocessing_output_ssh1_periodic_180_6561.ipynb"
+SSH1_PERIODIC_220_6561_OUTPUT_FILE = "zzz_preprocessing_output_ssh1_periodic_220_6561.ipynb"
 # ssh2
-SSH2_PERIODIC_100_6561_OUTPUT_FILE = "preprocessing_output_ssh2_periodic_100_6561.ipynb"
-SSH2_PERIODIC_140_6561_OUTPUT_FILE = "preprocessing_output_ssh2_periodic_140_6561.ipynb"
-SSH2_PERIODIC_180_6561_OUTPUT_FILE = "preprocessing_output_ssh2_periodic_180_6561.ipynb"
-SSH2_PERIODIC_220_6561_OUTPUT_FILE = "preprocessing_output_ssh2_periodic_220_6561.ipynb"
+SSH2_PERIODIC_100_6561_OUTPUT_FILE = "zzz_preprocessing_output_ssh2_periodic_100_6561.ipynb"
+SSH2_PERIODIC_140_6561_OUTPUT_FILE = "zzz_preprocessing_output_ssh2_periodic_140_6561.ipynb"
+SSH2_PERIODIC_180_6561_OUTPUT_FILE = "zzz_preprocessing_output_ssh2_periodic_180_6561.ipynb"
+SSH2_PERIODIC_220_6561_OUTPUT_FILE = "zzz_preprocessing_output_ssh2_periodic_220_6561.ipynb"
 
 ### Template notebook
 TEMPLATE_NOTEBOOK = "0_preprocessing_template.ipynb"

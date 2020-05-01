@@ -107,14 +107,15 @@ def get_parameters_ssh1(ssh_type, chain_length, n_hamiltonians, experiment_name=
     
     ### Plotting simulation winding heatmaps with merge_imshow_winding_grids
     "merge_imshow_winding_grids_params": {
-    "winding_params": {1: {"cmap": "bwr_r", "aspect": "equal", "alpha": None, "origin": "lower", "extent": [-2,2,-2,2], \
-                                           "vmin": 0, "vmax": 1}},
-    #"winding_params": {0: {"cmap": "Reds_alpha", "aspect": "equal", "alpha": None, "origin": "lower", "extent": [-2,2,-2,2], \
-    #                                       "vmin": 0, "vmax": 1},
-    #                   1: {"cmap": "Blues_alpha", "aspect": "equal", "alpha": None, "origin": "lower", "extent": [-2,2,-2,2], \
+    #"winding_params": {1: {"cmap": "bwr_r", "aspect": "equal", "alpha": None, "origin": "lower", "extent": [-2,2,-2,2], \
     #                                       "vmin": 0, "vmax": 1}},
-    "colorbar_params": {1: {"mappable": None, "labelsize": 24, "ticks": [0, 0.2, 0.4, 0.6, 0.8, 1.0], "pad": 0.1, "shrink": 0.8, \
-                                           "extend": "neither"}},
+    "winding_params": {0: {"cmap": "Reds_alpha", "aspect": "equal", "alpha": None, "origin": "lower", "extent": [-2,2,-2,2], \
+                                           "vmin": 0, "vmax": 1},
+                       1: {"cmap": "Blues_alpha", "aspect": "equal", "alpha": None, "origin": "lower", "extent": [-2,2,-2,2], \
+                                           "vmin": 0, "vmax": 1}},
+    #"colorbar_params": {1: {"mappable": None, "labelsize": 24, "ticks": [0, 0.2, 0.4, 0.6, 0.8, 1.0], "pad": 0.1, "shrink": 0.8, \
+    #                                       "extend": "neither"}},
+    "colorbar_params": {},
     "fig_params": {"figsize": [12,12]},
     "xlabel_params": {"xlabel": "$t_2$", "fontsize": 48},
     "ylabel_params": {"ylabel": "$t_1$", "fontsize": 48},
@@ -125,7 +126,8 @@ def get_parameters_ssh1(ssh_type, chain_length, n_hamiltonians, experiment_name=
     "yticks_params": {"fontsize": 24},
     "tight_params": {},
     #"sim_winding_heatmap_path_to_save": "/home/linneu/ml_topological_phases_in_real_space/paper/ssh1/{}_{}_{}/simulation_merged_winding_grid.png".format(ssh_type,chain_length,n_hamiltonians),
-    "savefig_params": {"fname": os.path.join(figs_dir,"merge_imshow_winding_grids_{}.png")},
+    #"savefig_params": {"fname": os.path.join(figs_dir,"merge_imshow_winding_grids_{}.png")},
+    "savefig_params": {"fname": os.path.join(figs_dir,"merge_imshow_winding_grids_second_{}.png")},
      },
         
     ### Plotting feature importances with plot_feature_importances
@@ -300,12 +302,12 @@ def get_parameters_ssh2(ssh_type, chain_length, n_hamiltonians, experiment_name=
     "plot_feature_importances_params": {
     "n_features": None,
     "plot": "bar",
-    "plot_params": {"color": "indianred", "width": 0.7},
+    "plot_params": {"color": "cadetblue", "width": 0.7},
     "hist_precision": 1000,
     "fig_params": {"figsize": [12,12]}, 
     "xlabel_params": {"xlabel": "lattice site", "fontsize": 24},
     "ylabel_params": {"ylabel": "reduction in information entropy (%)", "fontsize": 24},
-    "title_params": {"label": "Information entropy signature - SSH 1", "fontsize": 24},
+    "title_params": {"label": "Information entropy signature - SSH 2", "fontsize": 24},
     "xlim_params": {},
     "ylim_params": {},
     "xticks_params": {"ticks": [int(i) for i in np.linspace(0,int(chain_length)-1,10).astype(int)], "fontsize": 24},
@@ -320,11 +322,11 @@ def get_parameters_ssh2(ssh_type, chain_length, n_hamiltonians, experiment_name=
     "n_features": None,
     "plot": "bar",
     "hist_precision": 1000,
-    "plot_params": {"color":"indianred", "width": 0.7},
+    "plot_params": {"color":"cadetblue", "width": 0.7},
     "fig_params": {"figsize": [12,12]},
     "xlabel_params": {"xlabel": "lattice site", "fontsize": 24},
     "ylabel_params": {"ylabel": "cumulative reduction in information entropy (%)", "fontsize": 24},
-    "title_params": {"label": "Cumulative information entropy signature - SSH 1", "fontsize": 24},
+    "title_params": {"label": "Cumulative information entropy signature - SSH 2", "fontsize": 24},
     "xlim_params": {},
     "ylim_params": {},
     "xticks_params": {"ticks": [int(i) for i in np.linspace(0,int(chain_length)-1,10).astype(int)], "fontsize": 24},

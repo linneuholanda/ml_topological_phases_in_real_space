@@ -64,8 +64,19 @@ generate_dirs = [FIGURES_DIR,
                 ]
 for d in generate_dirs:
     if not os.path.isdir(d):
-        os.mkdir(d) 
+        os.mkdir(d)
 
+### Output notebooks
+# ssh1
+SSH1_PERIODIC_100_6561_OUTPUT_NOTEBOOK = "zzz_results_output_ssh1_periodic_100_6561.ipynb"
+SSH1_PERIODIC_140_6561_OUTPUT_NOTEBOOK = "zzz_results_output_ssh1_periodic_140_6561.ipynb"
+SSH1_PERIODIC_180_6561_OUTPUT_NOTEBOOK = "zzz_results_output_ssh1_periodic_180_6561.ipynb"
+SSH1_PERIODIC_220_6561_OUTPUT_NOTEBOOK = "zzz_results_output_ssh1_periodic_220_6561.ipynb"
+# ssh2
+SSH2_PERIODIC_100_6561_OUTPUT_NOTEBOOK = "zzz_results_output_ssh2_periodic_100_6561.ipynb"
+SSH2_PERIODIC_140_6561_OUTPUT_NOTEBOOK = "zzz_results_output_ssh2_periodic_140_6561.ipynb"
+SSH2_PERIODIC_180_6561_OUTPUT_NOTEBOOK = "zzz_results_output_ssh2_periodic_180_6561.ipynb"
+SSH2_PERIODIC_220_6561_OUTPUT_NOTEBOOK = "zzz_results_output_ssh2_periodic_220_6561.ipynb"
 
 ############### Defining ListedColorMaps
 ssh1_colormap = ListedColormap(["hotpink", "lightskyblue"], name="ssh1")

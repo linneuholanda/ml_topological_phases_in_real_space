@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.2.21)  6 MAR 2020 13:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.5.2)  4 MAY 2020 20:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1049,231 +1049,330 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<ssh1.png, id=63, 867.24pt x 867.24pt>
-File: ssh1.png Graphic file (type png)
-<use ssh1.png>
-Package pdftex.def Info: ssh1.png  used on input line 60.
+<./phase_diagrams/ssh1.png, id=63, 867.24pt x 867.24pt>
+File: ./phase_diagrams/ssh1.png Graphic file (type png)
+<use ./phase_diagrams/ssh1.png>
+Package pdftex.def Info: ./phase_diagrams/ssh1.png  used on input line 60.
 (pdftex.def)             Requested size: 225.21626pt x 225.21242pt.
-<ssh2.png, id=65, 867.24pt x 867.24pt>
-File: ssh2.png Graphic file (type png)
-<use ssh2.png>
-Package pdftex.def Info: ssh2.png  used on input line 61.
+<./phase_diagrams/ssh2.png, id=65, 867.24pt x 867.24pt>
+File: ./phase_diagrams/ssh2.png Graphic file (type png)
+<use ./phase_diagrams/ssh2.png>
+Package pdftex.def Info: ./phase_diagrams/ssh2.png  used on input line 61.
 (pdftex.def)             Requested size: 225.21626pt x 225.21242pt.
- [2 <./ssh1.png> <./ssh2.png>]
-<fig1a-6561-100-train_val_test_0.png, id=87, 433.62pt x 433.62pt>
-File: fig1a-6561-100-train_val_test_0.png Graphic file (type png)
-<use fig1a-6561-100-train_val_test_0.png>
-Package pdftex.def Info: fig1a-6561-100-train_val_test_0.png  used on input lin
-e 87.
+ [2 <./phase_diagrams/ssh1.png> <./phase_diagrams/ssh2.png>]
+<./ssh1/periodic_100_6561/scatter_train_val_test_experiment_0.png, id=87, 433.6
+2pt x 433.62pt>
+File: ./ssh1/periodic_100_6561/scatter_train_val_test_experiment_0.png Graphic 
+file (type png)
+<use ./ssh1/periodic_100_6561/scatter_train_val_test_experiment_0.png>
+Package pdftex.def Info: ./ssh1/periodic_100_6561/scatter_train_val_test_experi
+ment_0.png  used on input line 87.
 (pdftex.def)             Requested size: 160.15854pt x 160.159pt.
-<fig1a-6561-100-train_winding_labels_0.png, id=88, 433.62pt x 433.62pt>
-File: fig1a-6561-100-train_winding_labels_0.png Graphic file (type png)
-<use fig1a-6561-100-train_winding_labels_0.png>
-Package pdftex.def Info: fig1a-6561-100-train_winding_labels_0.png  used on inp
-ut line 88.
+<./ssh1/periodic_100_6561/scatter_winding_train_experiment_0.png, id=88, 433.62
+pt x 433.62pt>
+File: ./ssh1/periodic_100_6561/scatter_winding_train_experiment_0.png Graphic f
+ile (type png)
+<use ./ssh1/periodic_100_6561/scatter_winding_train_experiment_0.png>
+Package pdftex.def Info: ./ssh1/periodic_100_6561/scatter_winding_train_experim
+ent_0.png  used on input line 88.
 (pdftex.def)             Requested size: 160.15854pt x 160.159pt.
-<fig1a-6561-100-prediction_grid_0.png, id=89, 433.62pt x 433.62pt>
-File: fig1a-6561-100-prediction_grid_0.png Graphic file (type png)
-<use fig1a-6561-100-prediction_grid_0.png>
-Package pdftex.def Info: fig1a-6561-100-prediction_grid_0.png  used on input li
-ne 89.
+<./ssh1/periodic_100_6561/pcolormesh_prediction_grid_experiment_0.png, id=89, 4
+33.62pt x 433.62pt>
+File: ./ssh1/periodic_100_6561/pcolormesh_prediction_grid_experiment_0.png Grap
+hic file (type png)
+<use ./ssh1/periodic_100_6561/pcolormesh_prediction_grid_experiment_0.png>
+Package pdftex.def Info: ./ssh1/periodic_100_6561/pcolormesh_prediction_grid_ex
+periment_0.png  used on input line 89.
 (pdftex.def)             Requested size: 160.15854pt x 160.159pt.
- [3 <./fig1a-6561-100-train_val_test_0.png> <./fig1a-6561-100-train_winding_lab
-els_0.png> <./fig1a-6561-100-prediction_grid_0.png>]
-<fig1b-6561-100-train_val_test_0.png, id=108, 433.62pt x 433.62pt>
-File: fig1b-6561-100-train_val_test_0.png Graphic file (type png)
-<use fig1b-6561-100-train_val_test_0.png>
-Package pdftex.def Info: fig1b-6561-100-train_val_test_0.png  used on input lin
-e 103.
+ [3 <./ssh1/periodic_100_6561/scatter_train_val_test_experiment_0.png> <./ssh1/
+periodic_100_6561/scatter_winding_train_experiment_0.png> <./ssh1/periodic_100_
+6561/pcolormesh_prediction_grid_experiment_0.png>]
+<./ssh2/periodic_100_6561/scatter_train_val_test_experiment_0.png, id=109, 433.
+62pt x 433.62pt>
+File: ./ssh2/periodic_100_6561/scatter_train_val_test_experiment_0.png Graphic 
+file (type png)
+<use ./ssh2/periodic_100_6561/scatter_train_val_test_experiment_0.png>
+Package pdftex.def Info: ./ssh2/periodic_100_6561/scatter_train_val_test_experi
+ment_0.png  used on input line 103.
 (pdftex.def)             Requested size: 160.15854pt x 160.159pt.
-<fig1b-6561-100-train_winding_labels_0.png, id=109, 433.62pt x 433.62pt>
-File: fig1b-6561-100-train_winding_labels_0.png Graphic file (type png)
-<use fig1b-6561-100-train_winding_labels_0.png>
-Package pdftex.def Info: fig1b-6561-100-train_winding_labels_0.png  used on inp
-ut line 104.
+<./ssh2/periodic_100_6561/scatter_winding_train_experiment_0.png, id=110, 433.6
+2pt x 433.62pt>
+File: ./ssh2/periodic_100_6561/scatter_winding_train_experiment_0.png Graphic f
+ile (type png)
+<use ./ssh2/periodic_100_6561/scatter_winding_train_experiment_0.png>
+Package pdftex.def Info: ./ssh2/periodic_100_6561/scatter_winding_train_experim
+ent_0.png  used on input line 104.
 (pdftex.def)             Requested size: 160.15854pt x 160.159pt.
-<fig1b-6561-100-prediction_grid_0.png, id=110, 433.62pt x 433.62pt>
-File: fig1b-6561-100-prediction_grid_0.png Graphic file (type png)
-<use fig1b-6561-100-prediction_grid_0.png>
-Package pdftex.def Info: fig1b-6561-100-prediction_grid_0.png  used on input li
-ne 105.
+<./ssh2/periodic_100_6561/pcolormesh_prediction_grid_experiment_0.png, id=111, 
+433.62pt x 433.62pt>
+File: ./ssh2/periodic_100_6561/pcolormesh_prediction_grid_experiment_0.png Grap
+hic file (type png)
+<use ./ssh2/periodic_100_6561/pcolormesh_prediction_grid_experiment_0.png>
+Package pdftex.def Info: ./ssh2/periodic_100_6561/pcolormesh_prediction_grid_ex
+periment_0.png  used on input line 105.
 (pdftex.def)             Requested size: 160.15854pt x 160.159pt.
- [4 <./fig1b-6561-100-train_val_test_0.png> <./fig1b-6561-100-train_winding_lab
-els_0.png> <./fig1b-6561-100-prediction_grid_0.png>]
-<fig1a-6561-100-simulation_merged_winding_grid.png, id=130, 867.24pt x 867.24pt
->
-File: fig1a-6561-100-simulation_merged_winding_grid.png Graphic file (type png)
-
-<use fig1a-6561-100-simulation_merged_winding_grid.png>
-Package pdftex.def Info: fig1a-6561-100-simulation_merged_winding_grid.png  use
-d on input line 128.
-(pdftex.def)             Requested size: 250.24199pt x 250.23602pt.
-<fig1b-6561-100-simulation_merged_winding_grid.png, id=131, 867.24pt x 867.24pt
->
-File: fig1b-6561-100-simulation_merged_winding_grid.png Graphic file (type png)
-
-<use fig1b-6561-100-simulation_merged_winding_grid.png>
-Package pdftex.def Info: fig1b-6561-100-simulation_merged_winding_grid.png  use
-d on input line 129.
+ [4 <./ssh2/periodic_100_6561/scatter_train_val_test_experiment_0.png> <./ssh2/
+periodic_100_6561/scatter_winding_train_experiment_0.png> <./ssh2/periodic_100_
+6561/pcolormesh_prediction_grid_experiment_0.png>]
+<./ssh1/periodic_100_6561/imshow_winding_grid_winding_0_sim.png, id=131, 867.24
+pt x 867.24pt>
+File: ./ssh1/periodic_100_6561/imshow_winding_grid_winding_0_sim.png Graphic fi
+le (type png)
+<use ./ssh1/periodic_100_6561/imshow_winding_grid_winding_0_sim.png>
+Package pdftex.def Info: ./ssh1/periodic_100_6561/imshow_winding_grid_winding_0
+_sim.png  used on input line 128.
+(pdftex.def)             Requested size: 160.15854pt x 160.159pt.
+<./ssh1/periodic_100_6561/imshow_winding_grid_winding_1_sim.png, id=132, 867.24
+pt x 867.24pt>
+File: ./ssh1/periodic_100_6561/imshow_winding_grid_winding_1_sim.png Graphic fi
+le (type png)
+<use ./ssh1/periodic_100_6561/imshow_winding_grid_winding_1_sim.png>
+Package pdftex.def Info: ./ssh1/periodic_100_6561/imshow_winding_grid_winding_1
+_sim.png  used on input line 129.
+(pdftex.def)             Requested size: 160.15854pt x 160.159pt.
+<./ssh1/periodic_100_6561/merge_imshow_winding_grids_second_sim.png, id=133, 86
+7.24pt x 867.24pt>
+File: ./ssh1/periodic_100_6561/merge_imshow_winding_grids_second_sim.png Graphi
+c file (type png)
+<use ./ssh1/periodic_100_6561/merge_imshow_winding_grids_second_sim.png>
+Package pdftex.def Info: ./ssh1/periodic_100_6561/merge_imshow_winding_grids_se
+cond_sim.png  used on input line 130.
+(pdftex.def)             Requested size: 160.15854pt x 160.159pt.
+<./ssh2/periodic_100_6561/imshow_winding_grid_winding_-1_sim.png, id=134, 867.2
+4pt x 867.24pt>
+File: ./ssh2/periodic_100_6561/imshow_winding_grid_winding_-1_sim.png Graphic f
+ile (type png)
+<use ./ssh2/periodic_100_6561/imshow_winding_grid_winding_-1_sim.png>
+Package pdftex.def Info: ./ssh2/periodic_100_6561/imshow_winding_grid_winding_-
+1_sim.png  used on input line 137.
+(pdftex.def)             Requested size: 160.15854pt x 160.159pt.
+<./ssh2/periodic_100_6561/imshow_winding_grid_winding_0_sim.png, id=135, 867.24
+pt x 867.24pt>
+File: ./ssh2/periodic_100_6561/imshow_winding_grid_winding_0_sim.png Graphic fi
+le (type png)
+<use ./ssh2/periodic_100_6561/imshow_winding_grid_winding_0_sim.png>
+Package pdftex.def Info: ./ssh2/periodic_100_6561/imshow_winding_grid_winding_0
+_sim.png  used on input line 138.
+(pdftex.def)             Requested size: 160.15854pt x 160.159pt.
+<./ssh2/periodic_100_6561/imshow_winding_grid_winding_1_sim.png, id=136, 867.24
+pt x 867.24pt>
+File: ./ssh2/periodic_100_6561/imshow_winding_grid_winding_1_sim.png Graphic fi
+le (type png)
+<use ./ssh2/periodic_100_6561/imshow_winding_grid_winding_1_sim.png>
+Package pdftex.def Info: ./ssh2/periodic_100_6561/imshow_winding_grid_winding_1
+_sim.png  used on input line 139.
+(pdftex.def)             Requested size: 160.15854pt x 160.159pt.
+<./ssh2/periodic_100_6561/imshow_winding_grid_winding_2_sim.png, id=137, 867.24
+pt x 867.24pt>
+File: ./ssh2/periodic_100_6561/imshow_winding_grid_winding_2_sim.png Graphic fi
+le (type png)
+<use ./ssh2/periodic_100_6561/imshow_winding_grid_winding_2_sim.png>
+Package pdftex.def Info: ./ssh2/periodic_100_6561/imshow_winding_grid_winding_2
+_sim.png  used on input line 140.
+(pdftex.def)             Requested size: 160.15854pt x 160.159pt.
+<./ssh2/periodic_100_6561/merge_imshow_winding_grids_sim.png, id=138, 867.24pt 
+x 867.24pt>
+File: ./ssh2/periodic_100_6561/merge_imshow_winding_grids_sim.png Graphic file 
+(type png)
+<use ./ssh2/periodic_100_6561/merge_imshow_winding_grids_sim.png>
+Package pdftex.def Info: ./ssh2/periodic_100_6561/merge_imshow_winding_grids_si
+m.png  used on input line 141.
+(pdftex.def)             Requested size: 160.15854pt x 160.159pt.
+ [5 <./ssh1/periodic_100_6561/imshow_winding_grid_winding_0_sim.png> <./ssh1/pe
+riodic_100_6561/imshow_winding_grid_winding_1_sim.png> <./ssh1/periodic_100_656
+1/merge_imshow_winding_grids_second_sim.png>] [6 <./ssh2/periodic_100_6561/imsh
+ow_winding_grid_winding_-1_sim.png> <./ssh2/periodic_100_6561/imshow_winding_gr
+id_winding_0_sim.png> <./ssh2/periodic_100_6561/imshow_winding_grid_winding_1_s
+im.png> <./ssh2/periodic_100_6561/imshow_winding_grid_winding_2_sim.png> <./ssh
+2/periodic_100_6561/merge_imshow_winding_grids_sim.png>]
+<./ssh1/periodic_100_6561/plot_feature_importances.png, id=173, 867.24pt x 867.
+24pt>
+File: ./ssh1/periodic_100_6561/plot_feature_importances.png Graphic file (type 
+png)
+<use ./ssh1/periodic_100_6561/plot_feature_importances.png>
+Package pdftex.def Info: ./ssh1/periodic_100_6561/plot_feature_importances.png 
+ used on input line 166.
 (pdftex.def)             Requested size: 245.2399pt x 245.23395pt.
- [5 <./fig1a-6561-100-simulation_merged_winding_grid.png> <./fig1b-6561-100-sim
-ulation_merged_winding_grid.png>]
-<fig1a-6561-100-feature_importances.png, id=149, 867.24pt x 867.24pt>
-File: fig1a-6561-100-feature_importances.png Graphic file (type png)
-<use fig1a-6561-100-feature_importances.png>
-Package pdftex.def Info: fig1a-6561-100-feature_importances.png  used on input 
-line 154.
+<./ssh2/periodic_100_6561/plot_feature_importances.png, id=174, 867.24pt x 867.
+24pt>
+File: ./ssh2/periodic_100_6561/plot_feature_importances.png Graphic file (type 
+png)
+<use ./ssh2/periodic_100_6561/plot_feature_importances.png>
+Package pdftex.def Info: ./ssh2/periodic_100_6561/plot_feature_importances.png 
+ used on input line 167.
 (pdftex.def)             Requested size: 245.2399pt x 245.23395pt.
-<fig1b-6561-100-feature_importances.png, id=150, 867.24pt x 867.24pt>
-File: fig1b-6561-100-feature_importances.png Graphic file (type png)
-<use fig1b-6561-100-feature_importances.png>
-Package pdftex.def Info: fig1b-6561-100-feature_importances.png  used on input 
-line 155.
-(pdftex.def)             Requested size: 245.2399pt x 245.23395pt.
- [6] [7 <./fig1a-6561-100-feature_importances.png> <./fig1b-6561-100-feature_im
-portances.png>] [8] [9]
-<model.pdf, id=205, 234.41824pt x 97.3522pt>
-File: model.pdf Graphic file (type pdf)
-<use model.pdf>
-Package pdftex.def Info: model.pdf  used on input line 578.
+ [7 <./ssh1/periodic_100_6561/plot_feature_importances.png> <./ssh2/periodic_10
+0_6561/plot_feature_importances.png>] [8] [9]
+<./phase_diagrams/ssh_model.pdf, id=224, 234.41824pt x 97.3522pt>
+File: ./phase_diagrams/ssh_model.pdf Graphic file (type pdf)
+<use ./phase_diagrams/ssh_model.pdf>
+Package pdftex.def Info: ./phase_diagrams/ssh_model.pdf  used on input line 590
+.
 (pdftex.def)             Requested size: 185.17662pt x 76.90588pt.
-<winding.png, id=206, 439.6425pt x 348.30125pt>
-File: winding.png Graphic file (type png)
-<use winding.png>
-Package pdftex.def Info: winding.png  used on input line 585.
+<./phase_diagrams/winding.png, id=225, 439.6425pt x 348.30125pt>
+File: ./phase_diagrams/winding.png Graphic file (type png)
+<use ./phase_diagrams/winding.png>
+Package pdftex.def Info: ./phase_diagrams/winding.png  used on input line 597.
 (pdftex.def)             Requested size: 185.17662pt x 146.70006pt.
 
 Underfull \vbox (badness 1033) has occurred while \output is active []
 
- [10 <./model.pdf> <./winding.png>]
-<fig1a-6561-less-simulation_merged_winding_grid.png, id=341, 867.24pt x 867.24p
-t>
-File: fig1a-6561-less-simulation_merged_winding_grid.png Graphic file (type png
-)
-<use fig1a-6561-less-simulation_merged_winding_grid.png>
-Package pdftex.def Info: fig1a-6561-less-simulation_merged_winding_grid.png  us
-ed on input line 640.
-(pdftex.def)             Requested size: 245.2399pt x 245.23395pt.
-<fig1b-6561-less-simulation_merged_winding_grid.png, id=342, 867.24pt x 867.24p
-t>
-File: fig1b-6561-less-simulation_merged_winding_grid.png Graphic file (type png
-)
-<use fig1b-6561-less-simulation_merged_winding_grid.png>
-Package pdftex.def Info: fig1b-6561-less-simulation_merged_winding_grid.png  us
-ed on input line 641.
-(pdftex.def)             Requested size: 245.2399pt x 245.23395pt.
- [11] [12 <./fig1a-6561-less-simulation_merged_winding_grid.png> <./fig1b-6561-
-less-simulation_merged_winding_grid.png>] [13]
-<fig1a-6561-140-feature_importances.png, id=401, 1084.05pt x 1084.05pt>
-File: fig1a-6561-140-feature_importances.png Graphic file (type png)
-<use fig1a-6561-140-feature_importances.png>
-Package pdftex.def Info: fig1a-6561-140-feature_importances.png  used on input 
-line 714.
-(pdftex.def)             Requested size: 160.15854pt x 160.15237pt.
-<fig1a-6561-180-feature_importances.png, id=402, 1084.05pt x 1084.05pt>
-File: fig1a-6561-180-feature_importances.png Graphic file (type png)
-<use fig1a-6561-180-feature_importances.png>
-Package pdftex.def Info: fig1a-6561-180-feature_importances.png  used on input 
-line 715.
-(pdftex.def)             Requested size: 160.15854pt x 160.15237pt.
-<fig1a-6561-220-feature_importances.png, id=403, 1084.05pt x 1084.05pt>
-File: fig1a-6561-220-feature_importances.png Graphic file (type png)
-<use fig1a-6561-220-feature_importances.png>
-Package pdftex.def Info: fig1a-6561-220-feature_importances.png  used on input 
-line 716.
-(pdftex.def)             Requested size: 160.15854pt x 160.15237pt.
-<fig1b-6561-140-feature_importances.png, id=404, 1084.05pt x 1084.05pt>
-File: fig1b-6561-140-feature_importances.png Graphic file (type png)
-<use fig1b-6561-140-feature_importances.png>
-Package pdftex.def Info: fig1b-6561-140-feature_importances.png  used on input 
-line 722.
-(pdftex.def)             Requested size: 160.15854pt x 160.15237pt.
-<fig1b-6561-180-feature_importances.png, id=405, 1084.05pt x 1084.05pt>
-File: fig1b-6561-180-feature_importances.png Graphic file (type png)
-<use fig1b-6561-180-feature_importances.png>
-Package pdftex.def Info: fig1b-6561-180-feature_importances.png  used on input 
-line 723.
-(pdftex.def)             Requested size: 160.15854pt x 160.15237pt.
-<fig1b-6561-220-feature_importances.png, id=406, 1084.05pt x 1084.05pt>
-File: fig1b-6561-220-feature_importances.png Graphic file (type png)
-<use fig1b-6561-220-feature_importances.png>
-Package pdftex.def Info: fig1b-6561-220-feature_importances.png  used on input 
-line 724.
-(pdftex.def)             Requested size: 160.15854pt x 160.15237pt.
-<fig1a-6561-140-cumulative_feature_importances-newer.png, id=407, 1084.05pt x 1
-084.05pt>
-File: fig1a-6561-140-cumulative_feature_importances-newer.png Graphic file (typ
-e png)
-<use fig1a-6561-140-cumulative_feature_importances-newer.png>
-Package pdftex.def Info: fig1a-6561-140-cumulative_feature_importances-newer.pn
-g  used on input line 731.
-(pdftex.def)             Requested size: 160.15854pt x 160.15237pt.
-<fig1a-6561-180-cumulative_feature_importances-newer.png, id=408, 1084.05pt x 1
-084.05pt>
-File: fig1a-6561-180-cumulative_feature_importances-newer.png Graphic file (typ
-e png)
-<use fig1a-6561-180-cumulative_feature_importances-newer.png>
-Package pdftex.def Info: fig1a-6561-180-cumulative_feature_importances-newer.pn
-g  used on input line 732.
-(pdftex.def)             Requested size: 160.15854pt x 160.15237pt.
-<fig1a-6561-220-cumulative_feature_importances-newer.png, id=409, 1084.05pt x 1
-084.05pt>
-File: fig1a-6561-220-cumulative_feature_importances-newer.png Graphic file (typ
-e png)
-<use fig1a-6561-220-cumulative_feature_importances-newer.png>
-Package pdftex.def Info: fig1a-6561-220-cumulative_feature_importances-newer.pn
-g  used on input line 733.
-(pdftex.def)             Requested size: 160.15854pt x 160.15237pt.
-<fig1b-6561-140-cumulative_feature_importances-newer.png, id=410, 1084.05pt x 1
-084.05pt>
-File: fig1b-6561-140-cumulative_feature_importances-newer.png Graphic file (typ
-e png)
-<use fig1b-6561-140-cumulative_feature_importances-newer.png>
-Package pdftex.def Info: fig1b-6561-140-cumulative_feature_importances-newer.pn
-g  used on input line 740.
-(pdftex.def)             Requested size: 160.15854pt x 160.15237pt.
-<fig1b-6561-180-cumulative_feature_importances-newer.png, id=411, 1084.05pt x 1
-084.05pt>
-File: fig1b-6561-180-cumulative_feature_importances-newer.png Graphic file (typ
-e png)
-<use fig1b-6561-180-cumulative_feature_importances-newer.png>
-Package pdftex.def Info: fig1b-6561-180-cumulative_feature_importances-newer.pn
-g  used on input line 741.
-(pdftex.def)             Requested size: 160.15854pt x 160.15237pt.
-<fig1b-6561-220-cumulative_feature_importances-newer.png, id=412, 1084.05pt x 1
-084.05pt>
-File: fig1b-6561-220-cumulative_feature_importances-newer.png Graphic file (typ
-e png)
-<use fig1b-6561-220-cumulative_feature_importances-newer.png>
-Package pdftex.def Info: fig1b-6561-220-cumulative_feature_importances-newer.pn
-g  used on input line 742.
-(pdftex.def)             Requested size: 160.15854pt x 160.15237pt.
- [14 <./fig1a-6561-140-feature_importances.png> <./fig1a-6561-180-feature_impor
-tances.png> <./fig1a-6561-220-feature_importances.png> <./fig1b-6561-140-featur
-e_importances.png> <./fig1b-6561-180-feature_importances.png> <./fig1b-6561-220
--feature_importances.png>] [15 <./fig1a-6561-140-cumulative_feature_importances
--newer.png> <./fig1a-6561-180-cumulative_feature_importances-newer.png> <./fig1
-a-6561-220-cumulative_feature_importances-newer.png> <./fig1b-6561-140-cumulati
-ve_feature_importances-newer.png> <./fig1b-6561-180-cumulative_feature_importan
-ces-newer.png> <./fig1b-6561-220-cumulative_feature_importances-newer.png>]
+ [10 <./phase_diagrams/ssh_model.pdf> <./phase_diagrams/winding.png>] [11]
 
+LaTeX Warning: Reference `less_feat' on page 12 undefined on input line 684.
+
+[12]
+
+LaTeX Warning: Reference `newtopsig1' on page 13 undefined on input line 710.
+
+
+LaTeX Warning: Reference `newtopsig2' on page 13 undefined on input line 710.
+
+
+LaTeX Warning: Reference `newtopsig1' on page 13 undefined on input line 712.
+
+
+LaTeX Warning: Reference `newtopsig2' on page 13 undefined on input line 712.
+
+
+LaTeX Warning: Reference `newtopsig1' on page 13 undefined on input line 714.
+
+
+LaTeX Warning: Reference `newtopsig2' on page 13 undefined on input line 714.
+
+
+LaTeX Warning: Reference `newtopsig1' on page 13 undefined on input line 720.
+
+
+LaTeX Warning: Reference `newtopsig2' on page 13 undefined on input line 720.
+
+<./ssh1/periodic_140_6561/plot_feature_importances.png, id=395, 867.24pt x 867.
+24pt>
+File: ./ssh1/periodic_140_6561/plot_feature_importances.png Graphic file (type 
+png)
+<use ./ssh1/periodic_140_6561/plot_feature_importances.png>
+Package pdftex.def Info: ./ssh1/periodic_140_6561/plot_feature_importances.png 
+ used on input line 726.
+(pdftex.def)             Requested size: 160.15854pt x 160.159pt.
+<./ssh1/periodic_180_6561/plot_feature_importances.png, id=396, 867.24pt x 867.
+24pt>
+File: ./ssh1/periodic_180_6561/plot_feature_importances.png Graphic file (type 
+png)
+<use ./ssh1/periodic_180_6561/plot_feature_importances.png>
+Package pdftex.def Info: ./ssh1/periodic_180_6561/plot_feature_importances.png 
+ used on input line 727.
+(pdftex.def)             Requested size: 160.15854pt x 160.159pt.
+<./ssh1/periodic_220_6561/plot_feature_importances.png, id=397, 867.24pt x 867.
+24pt>
+File: ./ssh1/periodic_220_6561/plot_feature_importances.png Graphic file (type 
+png)
+<use ./ssh1/periodic_220_6561/plot_feature_importances.png>
+Package pdftex.def Info: ./ssh1/periodic_220_6561/plot_feature_importances.png 
+ used on input line 728.
+(pdftex.def)             Requested size: 160.15854pt x 160.159pt.
+<./ssh2/periodic_140_6561/plot_feature_importances.png, id=398, 867.24pt x 867.
+24pt>
+File: ./ssh2/periodic_140_6561/plot_feature_importances.png Graphic file (type 
+png)
+<use ./ssh2/periodic_140_6561/plot_feature_importances.png>
+Package pdftex.def Info: ./ssh2/periodic_140_6561/plot_feature_importances.png 
+ used on input line 734.
+(pdftex.def)             Requested size: 160.15854pt x 160.159pt.
+<./ssh2/periodic_180_6561/plot_feature_importances.png, id=399, 867.24pt x 867.
+24pt>
+File: ./ssh2/periodic_180_6561/plot_feature_importances.png Graphic file (type 
+png)
+<use ./ssh2/periodic_180_6561/plot_feature_importances.png>
+Package pdftex.def Info: ./ssh2/periodic_180_6561/plot_feature_importances.png 
+ used on input line 735.
+(pdftex.def)             Requested size: 160.15854pt x 160.159pt.
+<./ssh2/periodic_220_6561/plot_feature_importances.png, id=400, 867.24pt x 867.
+24pt>
+File: ./ssh2/periodic_220_6561/plot_feature_importances.png Graphic file (type 
+png)
+<use ./ssh2/periodic_220_6561/plot_feature_importances.png>
+Package pdftex.def Info: ./ssh2/periodic_220_6561/plot_feature_importances.png 
+ used on input line 736.
+(pdftex.def)             Requested size: 160.15854pt x 160.159pt.
+<./ssh1/periodic_140_6561/plot_cumulative_feature_importances.png, id=401, 867.
+24pt x 867.24pt>
+File: ./ssh1/periodic_140_6561/plot_cumulative_feature_importances.png Graphic 
+file (type png)
+<use ./ssh1/periodic_140_6561/plot_cumulative_feature_importances.png>
+Package pdftex.def Info: ./ssh1/periodic_140_6561/plot_cumulative_feature_impor
+tances.png  used on input line 743.
+(pdftex.def)             Requested size: 160.15854pt x 160.159pt.
+<./ssh1/periodic_180_6561/plot_cumulative_feature_importances.png, id=402, 867.
+24pt x 867.24pt>
+File: ./ssh1/periodic_180_6561/plot_cumulative_feature_importances.png Graphic 
+file (type png)
+<use ./ssh1/periodic_180_6561/plot_cumulative_feature_importances.png>
+Package pdftex.def Info: ./ssh1/periodic_180_6561/plot_cumulative_feature_impor
+tances.png  used on input line 744.
+(pdftex.def)             Requested size: 160.15854pt x 160.159pt.
+<./ssh1/periodic_220_6561/plot_cumulative_feature_importances.png, id=403, 867.
+24pt x 867.24pt>
+File: ./ssh1/periodic_220_6561/plot_cumulative_feature_importances.png Graphic 
+file (type png)
+<use ./ssh1/periodic_220_6561/plot_cumulative_feature_importances.png>
+Package pdftex.def Info: ./ssh1/periodic_220_6561/plot_cumulative_feature_impor
+tances.png  used on input line 745.
+(pdftex.def)             Requested size: 160.15854pt x 160.159pt.
+<./ssh2/periodic_140_6561/plot_cumulative_feature_importances.png, id=404, 867.
+24pt x 867.24pt>
+File: ./ssh2/periodic_140_6561/plot_cumulative_feature_importances.png Graphic 
+file (type png)
+<use ./ssh2/periodic_140_6561/plot_cumulative_feature_importances.png>
+Package pdftex.def Info: ./ssh2/periodic_140_6561/plot_cumulative_feature_impor
+tances.png  used on input line 752.
+(pdftex.def)             Requested size: 160.15854pt x 160.159pt.
+<./ssh2/periodic_180_6561/plot_cumulative_feature_importances.png, id=405, 867.
+24pt x 867.24pt>
+File: ./ssh2/periodic_180_6561/plot_cumulative_feature_importances.png Graphic 
+file (type png)
+<use ./ssh2/periodic_180_6561/plot_cumulative_feature_importances.png>
+Package pdftex.def Info: ./ssh2/periodic_180_6561/plot_cumulative_feature_impor
+tances.png  used on input line 753.
+(pdftex.def)             Requested size: 160.15854pt x 160.159pt.
+<./ssh2/periodic_220_6561/plot_cumulative_feature_importances.png, id=406, 867.
+24pt x 867.24pt>
+File: ./ssh2/periodic_220_6561/plot_cumulative_feature_importances.png Graphic 
+file (type png)
+<use ./ssh2/periodic_220_6561/plot_cumulative_feature_importances.png>
+Package pdftex.def Info: ./ssh2/periodic_220_6561/plot_cumulative_feature_impor
+tances.png  used on input line 754.
+(pdftex.def)             Requested size: 160.15854pt x 160.159pt.
+[13] [14 <./ssh1/periodic_140_6561/plot_feature_importances.png> <./ssh1/period
+ic_180_6561/plot_feature_importances.png> <./ssh1/periodic_220_6561/plot_featur
+e_importances.png> <./ssh2/periodic_140_6561/plot_feature_importances.png> <./s
+sh2/periodic_180_6561/plot_feature_importances.png> <./ssh2/periodic_220_6561/p
+lot_feature_importances.png>] [15 <./ssh1/periodic_140_6561/plot_cumulative_fea
+ture_importances.png> <./ssh1/periodic_180_6561/plot_cumulative_feature_importa
+nces.png> <./ssh1/periodic_220_6561/plot_cumulative_feature_importances.png> <.
+/ssh2/periodic_140_6561/plot_cumulative_feature_importances.png> <./ssh2/period
+ic_180_6561/plot_cumulative_feature_importances.png> <./ssh2/periodic_220_6561/
+plot_cumulative_feature_importances.png>] 
 AED: lastpage setting LastPage
 [16]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 798.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 798.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 810.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 810.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 798.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 798.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 810.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 810.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: D77D621C7FFCD0E6A46D1842855E8D41;105.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 798.
+(rerunfilecheck)             Checksum: 2FAFB65CE31284413B10283BA9800886;105.
+
+
+LaTeX Warning: There were undefined references.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 810.
  ) 
 Here is how much of TeX's memory you used:
- 19465 strings out of 492982
- 371442 string characters out of 6134896
- 519496 words of memory out of 5000000
- 22394 multiletter control sequences out of 15000+600000
- 82943 words of font info for 263 fonts, out of 8000000 for 9000
+ 19489 strings out of 492982
+ 374734 string characters out of 6134897
+ 520609 words of memory out of 5000000
+ 22421 multiletter control sequences out of 15000+600000
+ 82823 words of font info for 261 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,12n,92p,1461b,488s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
@@ -1287,10 +1386,10 @@ uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/font
 s/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (16 pages, 1270056 bytes).
+Output written on main.pdf (16 pages, 1223320 bytes).
 PDF statistics:
- 518 PDF objects out of 1000 (max. 8388607)
- 405 compressed objects within 5 object streams
- 118 named destinations out of 1000 (max. 500000)
- 49821 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 522 PDF objects out of 1000 (max. 8388607)
+ 401 compressed objects within 5 object streams
+ 122 named destinations out of 1000 (max. 500000)
+ 49841 words of extra memory for PDF output out of 51595 (max. 10000000)
 

@@ -15,7 +15,7 @@
 \usepackage{bm}
 \usepackage{hyperref}
 \usepackage[resetlabels, labeled]{multibib}
-\newcites{supp}{References}
+%\newcites{supp}{References}
 
 \renewcommand{\Re}{\operatorname{{\mathrm Re}}}
 \renewcommand{\Im}{\operatorname{{\mathrm Im}}}
@@ -197,8 +197,9 @@ One final comment should be made about the flourishing relationship between phys
 \label{feature_importances}
 \end{figure}
 
-\bibliography{bibliography}{}
-\bibliographystyle{plain}
+\bibliography{bibl}{}
+%\bibliographystyle{plain}
+\bibliographystyle{ieeetr}
 
 \section*{Acknowledgements}
 
@@ -241,7 +242,7 @@ Correspondence and requests for materials should be addressed to N. L. Holanda. 
 \subsection*{The SSH model}
 \label{sshapp}
 
-The SSH model \citesupp{asboth2016short} describes the movement of free electrons along a dimerized chain whose basic units consist of two distinct atoms. This movement, usually called ``hopping'' in the literature, can be made either between atoms in a unit cell or between unit cells, and the allowed hopping rules for a given system completely determine its Hamiltonian. This is because the kinetic energies of the electrons are parameterized by a vector of real numbers $\mathbf{t}$ that also encodes hopping terms, thus allowing for a compact mathematical description of a Hamiltonian in terms of creation/annihilation operators as
+The SSH model \cite{asboth2016short} describes the movement of free electrons along a dimerized chain whose basic units consist of two distinct atoms. This movement, usually called ``hopping'' in the literature, can be made either between atoms in a unit cell or between unit cells, and the allowed hopping rules for a given system completely determine its Hamiltonian. This is because the kinetic energies of the electrons are parameterized by a vector of real numbers $\mathbf{t}$ that also encodes hopping terms, thus allowing for a compact mathematical description of a Hamiltonian in terms of creation/annihilation operators as
 \begin{equation}
 \label{SSH}
 \hat{H}(\mathbf{t})=\mathbf{c}^{\dagger}H(\mathbf{t})\mathbf{c}
@@ -298,7 +299,7 @@ The main motivations for developing a data-driven approach based on real space a
 
 Our reasoning goes as follows. First, while the topological invariants that characterize distinct topological phases are usually computed in wavevector space, the topological properties of a Hamiltonian are the same regardless of the basis in Hilbert space used to represent it. Thus, information on the topological phase of a Hamiltonian should still be available when it is represented in real lattice space. Second, even though the topological properties of a Hamiltonian are global, meaning that in general they cannot be said to be localized at a particular lattice site, in parameter space topology is indeed a local property: knowing the vector $\mathbf{t}$ associated with a Hamiltonian completely determines its topological phase.
 
-In a data-driven approach, locality is often exploited by means of a local constancy hypothesis \citesupp{goodfellow2016deep}. Mathematically, this policy prescribes the value of a function $W(\mathbf{t}')$ at points where it is unknown in a vicinity of a data point $\mathbf{t}$ as approximately equal to its known value $W(\mathbf{t})$,
+In a data-driven approach, locality is often exploited by means of a local constancy hypothesis \cite{goodfellow2016deep}. Mathematically, this policy prescribes the value of a function $W(\mathbf{t}')$ at points where it is unknown in a vicinity of a data point $\mathbf{t}$ as approximately equal to its known value $W(\mathbf{t})$,
 \begin{equation}
 \label{localconstancy}
 W(\mathbf{t} + \boldsymbol{\delta}) \approx W(\mathbf{t}).
@@ -316,9 +317,9 @@ where $j$ $=$ $1$, ..., $N$ and $\mathbf{v}^{(j)}$$($$\mathbf{t}$$)$ is an eigen
 
 This fact is well illustrated by the numerical experiments discussed in the article. Although it may seem from figures \ref{figexp1_exp:b} and \ref{figexp2_exp:b} in 2D parameter space that we have used a large number of data points for this learning task, it is important to note that in the numerical experiments the decision trees have taken as inputs 100D eigenvectors in real lattice space. In such high-dimensional spaces, the data should be much sparser.
 
-The difficulty arising from machine learning problems in high-dimensional spaces is commonly referred to as the curse of dimensionality \citesupp{bishop2006pattern}. It essentially expresses the fact that the amount of data needed to ensure a machine learning algorithm will generalize well out of its training set grows exponentially with the dimensionality of feature space.
+The difficulty arising from machine learning problems in high-dimensional spaces is commonly referred to as the curse of dimensionality \cite{bishop2006pattern}. It essentially expresses the fact that the amount of data needed to ensure a machine learning algorithm will generalize well out of its training set grows exponentially with the dimensionality of feature space.
 
-These apparently conflicting facets of our learning problem are harmonized by the manifold hypothesis \citesupp{cayton2005algorithms,narayanan2010sample}: even though the eigenvectors exist in a high-dimensional space (100D in the numerical experiments), they are actually much lower-dimensional surfaces (2D in the numerical experiments) embedded in this space. Furthermore, the different classes in our problem correspond to different submanifolds as can easily be seen in parameter space (this is often referred to as the manifold hypothesis for classification \citesupp{rifai2011manifold}). As we have demonstrated in the article, only a small fraction of the 2D surfaces (i.e., eigenvector lattice coordinates $v^{(j,l)}(t_1,t_2)$) were needed to retrieve the 2D parameter space phase diagrams from the 100D real space data (see figure \ref{less_feat}). In this sense, key topological information can be said to be localized on few lattice sites.
+These apparently conflicting facets of our learning problem are harmonized by the manifold hypothesis \cite{cayton2005algorithms,narayanan2010sample}: even though the eigenvectors exist in a high-dimensional space (100D in the numerical experiments), they are actually much lower-dimensional surfaces (2D in the numerical experiments) embedded in this space. Furthermore, the different classes in our problem correspond to different submanifolds as can easily be seen in parameter space (this is often referred to as the manifold hypothesis for classification \cite{rifai2011manifold}). As we have demonstrated in the article, only a small fraction of the 2D surfaces (i.e., eigenvector lattice coordinates $v^{(j,l)}(t_1,t_2)$) were needed to retrieve the 2D parameter space phase diagrams from the 100D real space data (see figure \ref{less_feat}). In this sense, key topological information can be said to be localized on few lattice sites.
 
 \subsection*{The eigenvector ensembling algorithm}
 
@@ -393,6 +394,9 @@ The results presented in this article suggest that the macroscopic limit $\rho_S
 \label{cdf2}
 \end{figure}
 
+%\newpage
+%\bibliographystylesupp{ieeetr}
+%\bibliographysupp{supp}
 
 
 \end{document}

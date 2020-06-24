@@ -58,15 +58,15 @@
 %\refstepcounter{quote}
  
 \begin{document}
-\section{Reply to the first referee }
-\section{Reply to the second referee}
+\section*{Reply to the first referee }
+\section*{Reply to the second referee}
 Dear referee,
 
-we appreciate the valuable insigths on how to improve our article that you have provided us. Below we address each of the points you emphasized separately, as they were written in your reply. We quote the issues raised by you in purple, and highlight in boldface the points that we thought were particularly relevant. 
+we appreciate the valuable insights on how to improve our article that you have provided us with. Below we address each of the emphasized points separately, as they were written in the reply that was sent back to us. We quote the issues raised in italic, and highlight in boldface the points that we thought were particularly relevant. 
 
-\subsection{Major}
+\subsection*{Major}
 
-\textcolor{antiquefuchsia}{I am not sure about the novelty and generality of their method. For
+\emph{I am not sure about the novelty and generality of their method. For
 example, \textbf{their pipeline cannot work for complex experimental physical
 systems, where the Hamiltonian could be unknown}\genquote{pipeline_not_work}. Moreover, the authors
 state that it is sufficient to use the input data in real space to
@@ -87,10 +87,10 @@ be pointed carefully in the "Introduction" section.}
 
 \citequote{superior_comparable} Mention trends in model explainability as well as performance scores.  
 
-\citequote{motif_real_space}We agree that the motivation for using real space data to study topological phase transitions should be placed in the introduction. We have therefore moved the first paragraph of the section "Learning topological phases from real space data" to the introduction.  
+\citequote{motif_real_space} We have therefore moved the first paragraph of the section "Learning topological phases from real space data" to the introduction.  
 
 \vspace{0.5cm}
-\textcolor{antiquefuchsia}{I am not sure which crucial problems their algorithm can solve that
+\emph{I am not sure which crucial problems their algorithm can solve that
 was not possible before with machine learning. Furthermore, along with
 the emerging research of unsupervised learning methods in realizing
 the topological phases, \textbf{why should the supervised learning method be
@@ -108,7 +108,7 @@ developments and a better understanding of physic systems.}
 \citequote{unsupervised_approaches} Mention Hamiltonian compression, of unsupervised learning through dimensional reduction.
 
 \vspace{0.5cm}
-\textcolor{antiquefuchsia}{The details of \textbf{the eigenvector ensembling algorithm should be
+\emph{The details of \textbf{the eigenvector ensembling algorithm should be
 addressed in the main text}\genquote{eigenvector_ensembling_alg} instead of supplemental material. What is
 the specific algorithm used in the paper to train on eigenvectors? I
 think it is important even if the readers are not familiar with some
@@ -126,7 +126,7 @@ see the contribution of the method in physics.}
 \citequote{eigenvector_physics} One of the strongest points of the paper is to introduce model explainability tools from machine learning in physics. The need to use eigenvectors is that they encode all the physical information from a system. The paper paves the way for new theoretical investigation on the relations between the shannon entropy of eigenvectors and topological phase transitions. 
 
 \vspace{0.5cm}
-\textcolor{antiquefuchsia}{The authors made efforts to analyze how the algorithm was able to
+\emph{The authors made efforts to analyze how the algorithm was able to
 recover the Hamiltonians' global property in the "Information Entropy
 Signatures" section. The authors state that learning topological
 phases from local real-space data in bulk is still possible even for
@@ -145,5 +145,39 @@ the simple SSH form.}
 
 \citequote{more_complex_model} Add FFT of entropy signatures? Mention entropic uncertainty? Talk about information gain? Mention that interpretability in ML is often challenging and a fast evolving field. Furthermore, eigenvector ensembling can always be used as a preprocessing step to other ML models, such as in semi supervised learning tasks. 
 
-\subsection{Minor}
+\subsection*{Minor}
+
+\emph{The authors state in the abstract that "model explainability in
+machine learning can advance the research of exotic quantum materials
+with properties that may power future technological applications such
+as qubit engineering for quantum computing." \textbf{Could you explain a bit
+more about properties that may power future quantum computing?}\genquote{quantum_comp}}
+
+\vspace{0.25cm}
+\citequote{quantum_comp} Insert comments about topological qubits?
+
+\vspace{0.5cm}
+\emph{On page 4, the authors state that "Figures 2 and 3 illustrate single
+iterations of experiments 1 and 2 as seen from parameter space". \textbf{What
+are the experiments 1 and 2?}\genquote{experiments_1_2}}
+
+\vspace{0.25cm}
+\citequote{experiments_1_2} Experiments 1 and 2 were mentioned as subtitles to the sections. 
+
+\vspace{0.5cm}
+\emph{\textbf{The authors should explain the evaluation metric in the main text}\genquote{evaluation_metrics},
+such as "the accuracy" and "the probability heatmap," "eigenvector
+accuracy," and "Hamiltonian accuracy."}
+
+\vspace{0.25cm}
+\citequote{evaluation_metrics}
+
+\vspace{0.5cm}
+\emph{I prefer to \textbf{put the definition of information entropy signatures in
+the main}\genquote{inf_entropy_sig} text to help the readers understand what the method tries to do.}
+
+\vspace{0.25cm}
+\citequote{inf_entropy_sig}
+
+
 \end{document}

@@ -66,9 +66,9 @@ we appreciate the valuable insights on how to improve our article that you have 
 
 \subsection*{Major}
 
-\emph{I am not sure about the novelty and generality of their method. For
-example, \textbf{their pipeline cannot work for complex experimental physical
-systems, where the Hamiltonian could be unknown}\genquote{pipeline_not_work}. Moreover, the authors
+\emph{\textbf{I am not sure about the novelty and generality of their method.}\genquote{pipeline_not_work} For
+example, their pipeline cannot work for complex experimental physical
+systems, where the Hamiltonian could be unknown. Moreover, the authors
 state that it is sufficient to use the input data in real space to
 predict the topological phase with high accuracy. \textbf{It is not clear to
 me what "sufficient" and "high accuracy" mean}\genquote{sufficient_accuracy}, and the advantages of
@@ -81,7 +81,8 @@ phases from real space data" section. However, these arguments should
 be pointed carefully in the "Introduction" section.}
 
 \vspace{0.25cm}
-\citequote{pipeline_not_work} Mention the possibility of using incomplete information with eigenvector ensembling.
+\textcolor{blue}{\citequote{pipeline_not_work} We can think of several use cases for the eigenvector ensembling procedure outlined in the paper. Among these, we emphasize its applicability in tackling the so-called "curse of dimensionality" that plagues many problems in condensed matter and statistical physics. In the paper, we have demonstrated an application in which the dimensionality of an SSH lattice can be greatly reduced in so far as its topological properties are concerned, simply by extracting the most relevant lattice sites in its information entropy signature. Similar feature extraction and dimensionality reduction procedures are often employed in machine learning applications and are surely to become the norm in data-driven physics. The eigenvector ensembling algorithm can thus be viewed as a general framework in this direction. Similarly, by thoughtfully attaching a probability distribution to the eigenvectors, we end up with a powerful sampling technique that may ultimately lead to great reduction in the dimensionality of a Monte Carlo simulation, while still capturing essentially all the relevant physics pertaining to the problem. We have added a paragraph to the \textbf{Discussion} section outlining these possibilities. As for the novelty of the method, the eigenvector ensembling algorithm together with the explainability powers of decision trees allowed us to rigorously investigate the information entropy of topological phase transitions. To our knowledge, our work pioneers the discovery of new concepts in physics through model explainability in machine learning.  
+}  
 
 \citequote{sufficient_accuracy} ...
 
@@ -103,7 +104,7 @@ the dynamics of the system will lead to significant future
 developments and a better understanding of physic systems.}
 
 \vspace{0.25cm}
-\textcolor{blue}{\citequote{unsupervised_learning}, \citequote{unsupervised_approaches} Our main goal in the article is to investigate the localizability of topological information along lattices of SSH systems via model explainability tools in machine learning. The most straightforward way to do this is by performing supervised learning with decision tree-based algorithms, since their use of Shannon entropy as loss function provides a clear way to measure feature importance. This is compounded by the fact that Shannon entropy plays a very important role in information theory and physics, as is evidenced by the entropic uncertainty relations included in this new version of the article. It should be noted, however, that the eigenvector ensembling algorithm can equally be combined with unsupervised learning algorithms as well. This point is now explicitly mentioned in this new version of the paper, in the last paragraph of the section "THE EIGENVECTOR ENSEMBLING ALGORITHM" which was moved to the main body of the paper.} 
+\textcolor{blue}{\citequote{unsupervised_learning}, \citequote{unsupervised_approaches} Our main goal in the article is to investigate the localizability of topological information along lattices of SSH systems via model explainability tools in machine learning. We developed a pipeline that accomplishes this task in a very straightforward way by performing supervised learning with decision tree-based algorithms, since their use of Shannon entropy as loss function provides a clear way to measure feature importance. This is compounded by the fact that Shannon entropy plays a very important role in information theory and physics, as is evidenced by the entropic uncertainty relations included in this new version of the article. It should be noted, however, that the eigenvector ensembling algorithm can equally be combined with unsupervised learning algorithms as well. This point is now explicitly mentioned in this new version of the paper, in the last paragraph of the section "The eigenvector ensembling algorithm" which was moved from the Supplementary Material to the main paper. Finally, as we mentioned in our reply to \citequote{pipeline_not_work}, our procedure can be used for example as a powerful dimensionality reduction tool, and therefore many current } 
 
 \citequote{unsupervised_approaches} Mention Hamiltonian compression, of unsupervised learning through dimensional reduction.
 
@@ -121,9 +122,9 @@ physical interpretability is not mentioned, it is very difficult to
 see the contribution of the method in physics.}
 
 \vspace{0.25cm}
-\textcolor{blue}{\citequote{eigenvector_ensembling_alg} We have moved the section "The eigenvector ensembling algorithm" to the main paper. The issue of specifying the particular learning algorithms used was also addressed in the same section.}
+\textcolor{blue}{\citequote{eigenvector_ensembling_alg} We have moved the section "The eigenvector ensembling algorithm" to the main paper. The issue of specifying the particular learning algorithms used to train on eigenvectors was also addressed in the same section.}
 
-\citequote{eigenvector_physics} One of the strongest points of the paper is to introduce model explainability tools from machine learning in physics. The need to use eigenvectors is that they encode all the physical information from a system. The paper paves the way for new theoretical investigation on the relations between the shannon entropy of eigenvectors and topological phase transitions. 
+\citequote{eigenvector_physics} One of the main themes of the paper is to use model explainability tools from machine learning in to arrive at new concepts in physics. The need to use eigenvectors is that they encode all the physical information from a system. The paper paves the way for new theoretical investigation on the relations between the shannon entropy of eigenvectors and topological phase transitions. 
 
 \vspace{0.5cm}
 \emph{The authors made efforts to analyze how the algorithm was able to
@@ -141,7 +142,7 @@ their method or verify the method with a more complex model}\genquote{more_compl
 the simple SSH form.}
 
 \vspace{0.25cm}
-\citequote{key_top} Move this sentence to main paper.
+\textcolor{blue}{\citequote{key_top} We agree that this sentence greatly synthesizes the results presented in the paper about the possibility of localizing topological information in SSH lattices. We have therefore moved it to the final patragraph of the section "Information entropy signatures" in the main text.}
 
 \citequote{more_complex_model} Add FFT of entropy signatures? Mention entropic uncertainty? Talk about information gain? Mention that interpretability in ML is often challenging and a fast evolving field. Furthermore, eigenvector ensembling can always be used as a preprocessing step to other ML models, such as in semi supervised learning tasks. 
 
@@ -316,7 +317,7 @@ To see if learning the topological phases can be achieved efficiently by employi
 
 Mean accuracies for our rerun of experiment 2 using only lattice sites $S'_2$ = (0, 1, 3, 48, 50, 51, 96, 98, 99) (which contributed approximately 20 \% of total reduction in Shannon information entropy in experiment 2) were 99.9\% for training eigenvectors, 87.7\% for validation eigenvectors and 47.3\% for test eigenvectors. Eigenvector ensembling yields mean accuracies of 100\% for training Hamiltonians, 99.5\% for validation Hamiltonians and 74.5\% for test Hamiltonians.  
 
-These results demonstrate that learning topological phases from local real space data in the bulk is still possible even for small subsets of lattice sites. We refer the reader to the section \textbf{Learning topological phases from real space data} in the Supplementary Material for a discussion of how this is possible.
+These results demonstrate that learning topological phases from local real space data in the bulk is still possible even for small subsets of lattice sites. \textcolor{blue}{In this sense, key topological information can be said to be localized on few sites in the lattice.}\citequote{key_top} We refer the reader to the section \textbf{Learning topological phases from real space data} in the Supplementary Material for a discussion of how this is possible.
 
 \begin{figure}
 \centering
@@ -352,7 +353,9 @@ We performed several tests on the information entropy signatures. By rerunning e
 
 Recent works have demonstrated the existence of local topological markers in real space that carry important information on the topological state of a system \cite{PhysRevB.84.241106,caio2019topological}.  Given that topological signals such as the ones shown in figures \ref{feature_importances_ssh1} and \ref{feature_importances_ssh2} are measured in terms of quantities that have actual physical meaning such as Shannon information entropy or Gini impurity, the results presented here suggest a new road for theoretical investigation. Whether there is any relationship between local topological markers and the information entropy of the ensemble of eigenvectors is left for speculation.
 
-The eigenvector ensembling algorithm employed in this work is likely to have further applications in data-driven physics. This is because most of physics is based on eigenvector decomposition, and statistical physics itself can be seen as an application of similar ensembling principles. It is therefore expected that a much broader class of data-driven physics problems could benefit from the techniques described in this paper.
+The eigenvector ensembling algorithm employed in this work is likely to have further applications in data-driven physics. This is because most of physics is based on eigenvector decomposition, and statistical physics itself can be seen as an application of similar ensembling principles. 
+
+\textcolor{blue}{As a concrete example, the study of several many-body systems of current interest in condensed matter physics is hindered by their large dimensionality. This problem, known as \emph{the curse of dimensionality} in the scientific computing community, arises from the necessity of collecting or processing exponentially larger amounts of data as the feature space dimensionality of a problem grows. An approach based on eigenvector ensembling can be of use in such situations both as a dimensionality reduction tool and as a sampling strategy. The first case was illustrated in this work, where it was shown that relevant topological information of SSH systems can be retrieved from few sites in a lattice, which can be exploited as a dimensionality reduction strategy. The latter case, which was not explored here, also poses interesting possibilities, such as sampling eigenstates according to a desired distribution in Monte Carlo simulations of condensed matter systems. Indeed, sampling eigenvectors from a carefully designed probability distribution can ultimately lead to a great reduction in the dimensionality of a problem while still capturing all the relevant physics of a system.}\citequote{pipeline_not_work}  We therefore expect that a much broader class of data-driven physics problems could benefit from the techniques described in this paper.
 
 One final comment should be made about the flourishing relationship between physics and machine learning. In this work we have demonstrated how a machine learning approach can provide new insights into complex physical phenomena of current interest. The other direction of this relationship (physics enhancing understanding in machine learning) is equally important. As the need for ever more powerful machine learning algorithms continues to grow, the development of mathematical frameworks for understanding general data spaces (i.e., a physics of data) will be of crucial relevance. This pursuit is seen in many theoretical works investigating the intriguing connections between geometry, topology and data \cite{carlsson2009topology}$^-$\cite{belkin2003problems}. The detailed study of data generated by physical models with non-trivial geometrical and topological properties such as the SSH model may provide invaluable insights into the structure and shape of real world high-dimensional data, since these models usually underscore well known mathematical frameworks behind the data generating process, a feature that is often absent from machine learning applications. Thus, far from being restricted to applications in physics, the study of the topological and geometrical properties of data sets generated by physical models will also be of great value to the machine learning and artificial intelligence communities.  
 

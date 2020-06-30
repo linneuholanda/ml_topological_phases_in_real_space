@@ -1,4 +1,5 @@
 import numpy as np
+from scipy.fft import fft, rfft, fftfreq
 import pandas as pd
 import os
 import matplotlib.pyplot as plt
@@ -542,6 +543,7 @@ class ExperimentEnsemble(object):
         ### feature importances
         self.feature_importance = None
         self.cumulative_feature_importance = None
+        self.fourier_feature_importance = None
           
     def reset_current_experiment(self):
         """
@@ -663,6 +665,28 @@ class ExperimentEnsemble(object):
             with open(os.path.join(self.simulation_dir, "cumulative_feature_importance.csv"), 'w') as f:  
                 w = csv.writer(f)
                 w.writerows(self.cumulative_feature_importance.items())
+                
+    def compute_fourier_feature_importance(self, fft="real", save_to_disk=False):
+        lattice_sites, feature_importance = zip(*self.feature_importance.items()) 
+        lattice_sites = np.array(lattice_sites)
+        feature_importance = np.array(feature_importance)
+        arg_sort = np.argsort(lattice_sites)
+        #lattice_sites = lattice_sites[arg_sort]
+        print("arg_sort: ", arg_sort)
+        print("lattice_sites: ", lattice_sites)
+        print("feature_importance: ", feature_importance)
+        feature_importance = feature_importance[arg_sort]
+        if fft == "real":
+            fourier_feature_importance = rfft(feature_importance)
+        self.fourier_feature_importance = dict(zip(lattice_sites,fourier_feature_importance))
+        self.cumulative_fourier_feature_importance = dict(zip(lattice_sites, np.cumsum(fourier_feature_importance)))
+        if save_to_disk:
+            with open(os.path.join(self.simulation_dir, "fourier_feature_importance.csv"), 'w') as f:  
+                w = csv.writer(f)
+                w.writerows(self.fourier_feature_importance.items())
+            with open(os.path.join(self.simulation_dir, "cumulative_feature_importance.csv"), 'w') as f:  
+                w = csv.writer(f)
+                w.writerows(self.cumulative_fourier_feature_importance.items())
 
     def create_plot(self, fig_params, xlabel_params, ylabel_params, title_params, xlim_params={}, ylim_params={}, xticks_params ={}, yticks_params={}):
         """
@@ -788,7 +812,7 @@ class ExperimentEnsemble(object):
         if len(savefig_params) > 0:
             plt.savefig(**savefig_params)  
 
-    def plot_feature_importances(self, n_features=None, plot = "bar", hist_precision = 1000, plot_params = {}, fig_params={}, xlabel_params={}, ylabel_params={}, title_params={}, xlim_params={}, ylim_params={}, xticks_params ={}, yticks_params={}, tight_params = None, savefig_params={}):
+    def plot_feature_importances(self, n_features=None, fourier=False, plot = "bar", hist_precision = 1000, plot_params = {}, fig_params={}, xlabel_params={}, ylabel_params={}, title_params={}, xlim_params={}, ylim_params={}, xticks_params ={}, yticks_params={}, tight_params = None, savefig_params={}):
         """
         Plots feature importances
         
@@ -797,9 +821,13 @@ class ExperimentEnsemble(object):
         """
         if n_features is None:
             n_features = len(self.feature_importance)
+        if fourier:
+            feature_importance = self.fourier_feature_importance
+        else:
+            feature_importance = self.feature_importance
         figure = self.create_plot(fig_params, xlabel_params, ylabel_params, title_params, xlim_params, ylim_params, xticks_params, yticks_params)
-        sorted_args = list(self.feature_importance.keys())[:n_features]
-        importances = list(self.feature_importance.values())[:n_features]
+        sorted_args = list(feature_importance.keys())[:n_features]
+        importances = list(feature_importance.values())[:n_features]
         #print("sorted_args: ", sorted_args)
         #print("importances: ", importances)
         if plot == "bar":

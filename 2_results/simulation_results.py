@@ -544,6 +544,7 @@ class ExperimentEnsemble(object):
         self.feature_importance = None
         self.cumulative_feature_importance = None
         self.fourier_feature_importance = None
+        self.cumulative_fourier_feature_importance = None
           
     def reset_current_experiment(self):
         """
@@ -666,7 +667,7 @@ class ExperimentEnsemble(object):
                 w = csv.writer(f)
                 w.writerows(self.cumulative_feature_importance.items())
                 
-    def compute_fourier_feature_importance(self, fft="real", save_to_disk=False):
+    def compute_fourier_feature_importance(self, save_to_disk=False):
         lattice_sites, feature_importance = zip(*self.feature_importance.items()) 
         lattice_sites = np.array(lattice_sites)
         feature_importance = np.array(feature_importance)
@@ -675,16 +676,17 @@ class ExperimentEnsemble(object):
         print("arg_sort: ", arg_sort)
         print("lattice_sites: ", lattice_sites)
         print("feature_importance: ", feature_importance)
-        feature_importance = feature_importance[arg_sort]
-        if fft == "real":
-            fourier_feature_importance = rfft(feature_importance)
+        #feature_importance = feature_importance[arg_sort]
+        #sqrt_feature_importance = np.sqrt(feature_importance)
+        #fourier_sqrt_feature_importance = fft(sqrt_feature_importance)
+        fourier_feature_importance = 1/(len(feature_importance))*np.power(np.absolute( fft(np.sqrt(feature_importance)) ),2)
         self.fourier_feature_importance = dict(zip(lattice_sites,fourier_feature_importance))
         self.cumulative_fourier_feature_importance = dict(zip(lattice_sites, np.cumsum(fourier_feature_importance)))
         if save_to_disk:
             with open(os.path.join(self.simulation_dir, "fourier_feature_importance.csv"), 'w') as f:  
                 w = csv.writer(f)
                 w.writerows(self.fourier_feature_importance.items())
-            with open(os.path.join(self.simulation_dir, "cumulative_feature_importance.csv"), 'w') as f:  
+            with open(os.path.join(self.simulation_dir, "cumulative_fourier_feature_importance.csv"), 'w') as f:  
                 w = csv.writer(f)
                 w.writerows(self.cumulative_fourier_feature_importance.items())
 
@@ -851,13 +853,17 @@ class ExperimentEnsemble(object):
             plt.savefig(**savefig_params)
         #plt.bar(importances)
 
-    def plot_cumulative_feature_importances(self, n_features=None, plot = "bar", hist_precision = 1000, plot_params = {}, fig_params={}, xlabel_params={}, ylabel_params={}, title_params={}, xlim_params={}, ylim_params={}, xticks_params ={}, yticks_params={}, tight_params=None, savefig_params={}):
+    def plot_cumulative_feature_importances(self, n_features=None, fourier=False, plot = "bar", hist_precision = 1000, plot_params = {}, fig_params={}, xlabel_params={}, ylabel_params={}, title_params={}, xlim_params={}, ylim_params={}, xticks_params ={}, yticks_params={}, tight_params=None, savefig_params={}):
         if n_features is None:
             n_features = len(self.feature_importance)
+        if fourier:
+            cumulative_feature_importance = self.cumulative_fourier_feature_importance
+        else:
+            cumulative_feature_importance = self.cumulative_feature_importance
         figure = self.create_plot(fig_params, xlabel_params, ylabel_params, title_params, xlim_params, ylim_params, xticks_params, yticks_params)
         #sorted_args = [str(ix) for ix in list(self.cumulative_feature_importance.keys())[:n_features]]
-        sorted_args = list(self.cumulative_feature_importance.keys())[:n_features]
-        importances = list(self.cumulative_feature_importance.values())[:n_features]
+        sorted_args = list(cumulative_feature_importance.keys())[:n_features]
+        importances = list(cumulative_feature_importance.values())[:n_features]
         #args = np.array(list(self.cumulative_feature_importance.keys())[:n_features])
         #sorted_ix = np.argsort(args)
         #sorted_args = args[sorted_ix]

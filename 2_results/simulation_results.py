@@ -673,9 +673,9 @@ class ExperimentEnsemble(object):
         feature_importance = np.array(feature_importance)
         arg_sort = np.argsort(lattice_sites)
         #lattice_sites = lattice_sites[arg_sort]
-        print("arg_sort: ", arg_sort)
-        print("lattice_sites: ", lattice_sites)
-        print("feature_importance: ", feature_importance)
+        #print("arg_sort: ", arg_sort)
+        #print("lattice_sites: ", lattice_sites)
+        #print("feature_importance: ", feature_importance)
         #feature_importance = feature_importance[arg_sort]
         #sqrt_feature_importance = np.sqrt(feature_importance)
         #fourier_sqrt_feature_importance = fft(sqrt_feature_importance)

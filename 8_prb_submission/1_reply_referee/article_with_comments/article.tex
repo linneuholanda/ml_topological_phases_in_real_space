@@ -142,7 +142,7 @@ their method or verify the method with a more complex model instead of
 the simple SSH form.}
 
 \vspace{0.25cm}
-\textcolor{blue}{\citequote{key_top} We agree that this sentence greatly synthesizes the results presented in the paper about the possibility of localizing topological information in SSH lattices. We have therefore moved it to the final patragraph of the section "Information entropy signatures" in the main text.}
+\textcolor{blue}{\citequote{key_top} We agree that this sentence greatly synthesizes the results presented in the paper about the possibility of localizing topological information in SSH lattices. We have therefore moved it to the final patragraph of the section \textbf{Information entropy signatures} in the main text.}
 
 \citequote{physical_insights} Add FFT of entropy signatures? Mention entropic uncertainty? Talk about information gain? Mention that interpretability in ML is often challenging and a fast evolving field. Furthermore, eigenvector ensembling can always be used as a preprocessing step to other ML models, such as in semi supervised learning tasks. 
 
@@ -355,6 +355,55 @@ These results demonstrate that learning topological phases from local real space
 \caption{Probability heatmaps learned by a combination of random forests with eigenvector ensembling from bulk real space eigenvector data in experiment 2. Heatmaps were averaged across all 100 iterations of the experiment. (a) Probability heatmap showing the probability that a Hamiltonian in the grid has winding number equal to -1.  (b) Probability heatmap showing the probability that a Hamiltonian in the grid has winding number equal to 0. (c) Probability heatmap showing the probability that a Hamiltonian in the grid has winding number equal to 1. (d) Probability heatmap showing the probability that a Hamiltonian in the grid has winding number equal to 2. (e) The phase diagram resulting from heatmaps (a)-(d).}
 \label{ssh2_heatmaps}
 \end{figure}
+
+\section*{Uncertainty relations}
+In this section we explore some theoretical possibilities that arise from the information entropy signatures presented in the previous section. The discussion presented here is complemented by the section \textbf{Information entropy signatures in the macroscopic limit} in the Supplementary Material. 
+
+We can think of the Shannon information entropy signatures in figures \ref{feature_importances_ssh1} and \ref{feature_importances_ssh2} as discrete information entropy mass functions that, in the continuum (i.e. macroscopic) limit of an infinite chain, lead to local entropy density functions along the lattices. By mapping the lattice to a Riemann partition of the closed interval $[0,1]$, the cumulative distribution of topological information along a lattice will be given by 
+
+\begin{equation}
+\label{entropy_density}
+F_S(x) = \int_{0}^x\rho_S(x')dx'
+\end{equation}
+
+where $x \in [0,1]$ is a spatial coordinate along the lattice and $\rho_S(x)$ is the local Shannon information entropy density function in the continuum limit. 
+
+Given the quantum nature of the phase transitions being discussed, the information entropy density function $\rho_S(x)$ can be naturally interpreted as the squared magnitude of a spatial Shannon information entropy wave function,
+
+\begin{equation}
+\label{shannon_wave_function}
+\rho_S(x) = |\psi_S(x)|^2,
+\end{equation}
+the amount of topological information available from a single lattice site then being computed by Born's rule,  
+
+\begin{equation}
+\label{born_rule_spatial}
+\rho_S(x_i) = |\braket{x_i|\psi_S}|^2, \qquad i=0,\dots,N-1.
+\end{equation}
+
+The interpretation of the information entropy signatures of the previous section in terms of information entropy wave functions opens several avenues for investigation. Here we explore its most forthright corollary, which is the establishment of uncertainty relations for topological phase transitions. The counterpart of the spatial information entropy wave function $\psi_S(x)$ in wavevector space is its Fourier transform 
+\begin{equation}
+\label{fourier_shannon_wave_function}
+\hat{\psi}_S(k) = \int_{0}^{1}\psi_S(x)e^{-2\pi ikx}dx
+\end{equation}
+from which the Shannon information entropy density function can be computed in wavevector space,
+\begin{equation}
+\label{shannon_wave_function_wavevector_space}
+\hat{\rho}_S(k) = |\hat{\psi}_S(k)|^2.
+\end{equation}
+In possession of this quantum formalism, we may write two canonical uncertainty relations binding together the real space and wavevector space information entropy density functions \ref{shannon_wave_function} and \ref{shannon_wave_function_wavevector_space} for topological phase transitions:
+\begin{enumerate}
+\item[i)] \emph{The Heisenberg uncertainty principle}
+\begin{equation}
+\Delta\rho_S \cdot \Delta\hat{\rho}_S \geq \frac{1}{4\pi} \quad
+\end{equation}
+and 
+\item[ii)] \emph{The Hirschman entropic uncertainty}
+\begin{equation}
+H[\rho_S] + H[\hat{\rho}_S] \geq \log\Big(\frac{e}{2}\Big). \quad
+\end{equation}
+\end{enumerate}
+
 
 \section*{Discussion}
 

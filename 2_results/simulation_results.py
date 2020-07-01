@@ -545,6 +545,8 @@ class ExperimentEnsemble(object):
         self.cumulative_feature_importance = None
         self.fourier_feature_importance = None
         self.cumulative_fourier_feature_importance = None
+        self.feature_importance_statistics = {}
+        self.fourier_feature_importance_statistics = {}
           
     def reset_current_experiment(self):
         """
@@ -689,6 +691,35 @@ class ExperimentEnsemble(object):
             with open(os.path.join(self.simulation_dir, "cumulative_fourier_feature_importance.csv"), 'w') as f:  
                 w = csv.writer(f)
                 w.writerows(self.cumulative_fourier_feature_importance.items())
+         
+    def compute_feature_importance_statistics(self,save_to_disk=False):
+        ### statistics in real space
+        x, rho_x = zip(*self.feature_importance.items())
+        arg_sort = np.argsort(x)
+        N = len(x)
+        x, rho_x = (1/N*np.array(x))[arg_sort], (np.array(rho_x))[arg_sort]
+        x_mean = np.dot(x,rho_x)
+        x_var = np.dot(np.power(x-x_mean,2),rho_x)
+        x_std = np.sqrt(x_var)
+        x_shannon= -np.dot(rho_x, np.log(rho_x))
+        self.feature_importance_statistics = {"mean": x_mean, "var": x_var, "std": x_std, "shannon": x_shannon}
+        ### statistics in wavevector space
+        p, rho_p = zip(*self.fourier_feature_importance.items())
+        arg_sort = np.argsort(p)
+        N = len(p)
+        p, rho_p = (1/N*np.array(p))[arg_sort], (np.array(rho_p))[arg_sort]
+        p_mean = np.dot(p,rho_p)
+        p_var = np.dot(np.power(p-p_mean,2),rho_p)
+        p_std = np.sqrt(p_var)
+        p_shannon = -np.dot(rho_p, np.log(rho_p))
+        self.fourier_feature_importance_statistics = {"mean": p_mean, "var": p_var, "std": p_std, "shannon": p_shannon}
+        if save_to_disk:
+            with open(os.path.join(self.simulation_dir, "feature_importance_statistics.csv"), 'w') as f:  
+                w = csv.writer(f)
+                w.writerows(self.feature_importance_statistics.items())
+            with open(os.path.join(self.simulation_dir, "fourier_feature_importance_statistics.csv"), 'w') as f:  
+                w = csv.writer(f)
+                w.writerows(self.fourier_feature_importance_statistics.items())
 
     def create_plot(self, fig_params, xlabel_params, ylabel_params, title_params, xlim_params={}, ylim_params={}, xticks_params ={}, yticks_params={}):
         """

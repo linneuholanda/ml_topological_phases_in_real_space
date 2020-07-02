@@ -356,8 +356,8 @@ These results demonstrate that learning topological phases from local real space
 \label{ssh2_heatmaps}
 \end{figure}
 
-\section*{Uncertainty relations}
-In this section we explore some theoretical possibilities that arise from the information entropy signatures presented in the previous section. The discussion presented here is complemented by the section \textbf{Information entropy signatures in the macroscopic limit} in the Supplementary Material. 
+\section*{Information entropy signatures in the macroscopic limit}
+In this final section we explore theoretical possibilities that arise from the information entropy signatures presented in the previous section. The discussion presented here is complemented by the section \textbf{Numerical explorations on longer lattices} in the Supplementary Material. 
 
 We can think of the Shannon information entropy signatures in figures \ref{feature_importances_ssh1} and \ref{feature_importances_ssh2} as discrete information entropy mass functions that, in the continuum (i.e. macroscopic) limit of an infinite chain, lead to local entropy density functions along the lattices. By mapping the lattice to a Riemann partition of the closed interval $[0,1]$, the cumulative distribution of topological information along a lattice will be given by 
 
@@ -391,19 +391,43 @@ from which the Shannon information entropy density function can be computed in w
 \label{shannon_wave_function_wavevector_space}
 \hat{\rho}_S(k) = |\hat{\psi}_S(k)|^2.
 \end{equation}
-In possession of this quantum formalism, we may write two canonical uncertainty relations binding together the real space and wavevector space information entropy density functions \ref{shannon_wave_function} and \ref{shannon_wave_function_wavevector_space} for topological phase transitions:
-\begin{enumerate}
-\item[i)] \emph{The Heisenberg uncertainty principle}
+ 
+Let us further denote the mean, the variance and the entropy of $\rho_S$ by $\bar{\rho}_S$, $\Delta \rho_S^2 $ and $H[\rho_S]$ respectively. Explicitly, we have 
+\begin{subequations}
+\label{statistics}
 \begin{equation}
-\Delta\rho_S \cdot \Delta\hat{\rho}_S \geq \frac{1}{4\pi} \quad
+\label{mean}
+\bar{\rho}_S = \int_0^1x\rho_S(x)dx,
+\end{equation}
+\begin{equation}
+\label{variance}
+\Delta\rho_S^2 = \int_0^1(x-\bar{\rho}_S)^2\rho_S(x)dx,\quad \text{and}
+\end{equation}
+\begin{equation}
+\label{entropy}
+H[\rho_S] = \int_0^1\rho_S(x)\ln\big(\rho_S(x)\big) dx
+\end{equation}
+\end{subequations}
+
+In possession of this quantum formalism, we may write two canonical uncertainty relations binding together the real space and wavevector space information entropy density functions \eqref{shannon_wave_function} and \eqref{shannon_wave_function_wavevector_space} for topological phase transitions: 
+
+\begin{enumerate}
+\item[i)] \emph{the Heisenberg uncertainty principle}
+\begin{equation}
+\label{heisenberg}
+\Delta\rho_S \cdot \Delta\hat{\rho}_S \geq \frac{1}{4\pi}, \quad
 \end{equation}
 and 
-\item[ii)] \emph{The Hirschman entropic uncertainty}
+\item[ii)] \emph{the Hirschman entropic uncertainty}
 \begin{equation}
-H[\rho_S] + H[\hat{\rho}_S] \geq \log\Big(\frac{e}{2}\Big). \quad
+\label{hirschman}
+H[\rho_S] + H[\hat{\rho}_S] \geq \ln\Big(\frac{e}{2}\Big). \quad
 \end{equation}
 \end{enumerate}
 
+Equations \eqref{entropy_density}-\eqref{hirschman} provide a physics-grounded interpretation of the information entropy signatures discovered in the previous section from sheer data analysis of finite SSH systems in real space. In particular, the uncertainty relations \eqref{heisenberg} and \eqref{hirschman} provide rigorous measures of localizability of topological phase transitions in SSH systems based on information theory. 
+
+Given that our analysis has now come full circle back to theoretical physics, we leave the task of numerically exploring equations \eqref{entropy_density}-\eqref{hirschman} for the section \textbf{Numerical explorations on longer lattices} in the Supplementary Material.
 
 \section*{Discussion}
 
@@ -415,11 +439,13 @@ An advantage of using data from real space is that it enables us to investigate 
 
 \textcolor{blue}{The accuracy scores obtained in this paper were comparable to those reported in \cite{PhysRevLett.120.066401}, where dense and convolutional neural networks were trained on wavevector space data to predict the winding numbers of SSH Hamiltonians via supervised learning. This high accuracy level serves as a strong evidence that the entropy signatures presented here indeed express where topological information can most readily be recovered from in the SSH lattices investigated.}\citequote{superior_comparable}
 
-\textcolor{blue}{We should also compare our results to those obtained in \cite{ml_interpretability}, where the subject of investigation is the interpretability of neural network models trained to recognize topological phase transitions in some physical systems. In that paper, interesting visualizations are shown demonstrating that the patterns captured by a single-layer feedforward neural network indeed correspond to known physical quantities that are relevant to the problems at hand. This should indeed be called "model interpretability", as in that case the authors introspect into their models to make sure that they are learning patterns of physical pertinence to the systems at hand. In our paper we prefer the term "model explainability", as we are using similar model introspection tools to propose previously unknown concepts and properties of the physical systems being investigated. While the nuances in the meanings of these two terms are the subject of often heated philosophical debates in the artificial intelligence community, this choice of nomenclature suits the practical application of these model introspection techniques to physics well.}\citequote{superior_comparable}
+\textcolor{blue}{This paper should also contrasted with \cite{ml_interpretability}, where the subject of investigation is the interpretability of neural network models trained to recognize topological phase transitions in some physical systems. In that paper, interesting visualizations are shown demonstrating that the patterns captured by a single-layer feedforward neural network indeed correspond to known physical quantities that are relevant to the problems at hand. We agree that such tasks should indeed be called "model interpretability", as in that case the authors introspect into their models to make sure that they are learning patterns of physical pertinence to the systems being investigated. In our paper we prefer the term "model explainability", as we are using similar model introspection tools to propose previously unknown concepts and properties of the physical systems being investigated. While the nuances in the meanings of these two terms are the subject of often heated philosophical debates in the artificial intelligence community, this choice of nomenclature suits the practical application of these model introspection techniques to physics well.}\citequote{superior_comparable}
 
 We should remark on the subtleties of the information entropy signatures presented here. Although they give us a visualization of how important each lattice site was in determining the topological phases of Hamiltonians, these importances actually express a global property of the whole lattice. Therefore, a lattice site that appears unimportant in an information entropy signature plot may not be unimportant or void of topological information by itself. To give a concrete example, reduction in Shannon entropy tends to be distributed among highly correlated variables. This implies that if only a single lattice site in a highly correlated subset is used, it will likely inherit most of the reduction in Shannon entropy from the other correlated lattice sites in the subset. In this regard the information entropy signatures presented here express a summary of relations between lattice sites and are therefore intrinsically global. Furthermore, it should be emphasized that these signals were recovered from the analysis of data from several thousand SSH systems in each experiment and therefore they are not a property of a single SSH lattice. They are rather a pattern that emerges from correlating topological phase with lattice eigenvector data for several SSH systems.   
 
 We performed several tests on the information entropy signatures. By rerunning each experiment with longer lattices (i.e. increasing the number of unit cells) we have verified that the signals in figures \ref{feature_importances_ssh1} and \ref{feature_importances_ssh2} appear to converge to well defined continuous density functions in the macroscopic limit. The macroscopic limit of these information entropy signals may be an important signature of topological systems and thus merits further theoretical investigation. A detailed discussion of this point is presented in the section \textbf{Information entropy signatures in the macroscopic limit} in the Supplementary Material.
+
+\textcolor{blue}{By starting from eigenvector data generated from the simulation of SSH systems in real space, passing through proposing an approach based on eigenvector ensembling and decision trees and using model explainability to uncover the information entropy signatures presented in this article, and then exploring the theoretical possibilities posed by the information entropy signatures, our work exemplifies a full cycle of data-driven physics and illustrates how the interactions between the two disciplines can be enriching in both ways. }     
 
 Recent works have demonstrated the existence of local topological markers in real space that carry important information on the topological state of a system \cite{PhysRevB.84.241106,caio2019topological}.  Given that topological signals such as the ones shown in figures \ref{feature_importances_ssh1} and \ref{feature_importances_ssh2} are measured in terms of quantities that have actual physical meaning such as Shannon information entropy or Gini impurity, the results presented here suggest a new road for theoretical investigation. Whether there is any relationship between local topological markers and the information entropy of the ensemble of eigenvectors is left for speculation.
 

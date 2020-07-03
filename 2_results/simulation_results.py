@@ -36,7 +36,7 @@ SSH2_PERIODIC_180_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"perio
 SSH2_PERIODIC_220_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_220_6561")
 
 ### Paper directory
-FIGURES_DIR = "/home/rio/ml_topological_phases_in_real_space/paper"
+FIGURES_DIR = "/home/rio/ml_topological_phases_in_real_space/5_paper"
 # ssh1 figures
 SSH1_FIGURES_DIR = os.path.join(FIGURES_DIR,"ssh1")
 SSH1_PERIODIC_100_6561_FIGURES_DIR = os.path.join(SSH1_FIGURES_DIR,"periodic_100_6561")
@@ -543,8 +543,10 @@ class ExperimentEnsemble(object):
         ### feature importances
         self.feature_importance = None
         self.cumulative_feature_importance = None
+        self.real_psi = None
         self.fourier_feature_importance = None
         self.cumulative_fourier_feature_importance = None
+        self.fourier_psi = None
         self.feature_importance_statistics = {}
         self.fourier_feature_importance_statistics = {}
           
@@ -661,6 +663,7 @@ class ExperimentEnsemble(object):
             non_sorted_args = np.arange(len(mean_feature_importance))
             self.feature_importance = dict(zip(non_sorted_args, mean_feature_importance))
             self.cumulative_feature_importance = dict(zip(non_sorted_args, np.cumsum(mean_feature_importance) ) )
+        self.real_psi = {k:np.sqrt(v) for k,v in self.feature_importance.items()}
         if save_to_disk:
             with open(os.path.join(self.simulation_dir, "feature_importance.csv"), 'w') as f:  
                 w = csv.writer(f)
@@ -668,12 +671,17 @@ class ExperimentEnsemble(object):
             with open(os.path.join(self.simulation_dir, "cumulative_feature_importance.csv"), 'w') as f:  
                 w = csv.writer(f)
                 w.writerows(self.cumulative_feature_importance.items())
+            with open(os.path.join(self.simulation_dir, "real_psi.csv"), 'w') as f:  
+                w = csv.writer(f)
+                w.writerows(self.real_psi.items())
                 
     def compute_fourier_feature_importance(self, save_to_disk=False):
-        lattice_sites, feature_importance = zip(*self.feature_importance.items()) 
+        lattice_sites, feature_importance = zip(*self.feature_importance.items())
+        _, real_psi = zip(*self.real_psi.items())
         lattice_sites = np.array(lattice_sites)
         feature_importance = np.array(feature_importance)
-        arg_sort = np.argsort(lattice_sites)
+        real_psi = np.array(real_psi)
+        #arg_sort = np.argsort(lattice_sites)
         #lattice_sites = lattice_sites[arg_sort]
         #print("arg_sort: ", arg_sort)
         #print("lattice_sites: ", lattice_sites)
@@ -681,9 +689,11 @@ class ExperimentEnsemble(object):
         #feature_importance = feature_importance[arg_sort]
         #sqrt_feature_importance = np.sqrt(feature_importance)
         #fourier_sqrt_feature_importance = fft(sqrt_feature_importance)
-        fourier_feature_importance = 1/(len(feature_importance))*np.power(np.absolute( fft(np.sqrt(feature_importance)) ),2)
+        fourier_psi = 1/np.sqrt(len(feature_importance))*fft(real_psi)
+        fourier_feature_importance = np.power(np.absolute( fourier_psi ) ,2)
         self.fourier_feature_importance = dict(zip(lattice_sites,fourier_feature_importance))
         self.cumulative_fourier_feature_importance = dict(zip(lattice_sites, np.cumsum(fourier_feature_importance)))
+        self.fourier_psi = dict(zip(lattice_sites,fourier_psi))
         if save_to_disk:
             with open(os.path.join(self.simulation_dir, "fourier_feature_importance.csv"), 'w') as f:  
                 w = csv.writer(f)
@@ -691,6 +701,9 @@ class ExperimentEnsemble(object):
             with open(os.path.join(self.simulation_dir, "cumulative_fourier_feature_importance.csv"), 'w') as f:  
                 w = csv.writer(f)
                 w.writerows(self.cumulative_fourier_feature_importance.items())
+            with open(os.path.join(self.simulation_dir, "fourier_psi.csv"), 'w') as f:  
+                w = csv.writer(f)
+                w.writerows(self.fourier_psi.items())
          
     def compute_feature_importance_statistics(self,save_to_disk=False):
         ### statistics in real space

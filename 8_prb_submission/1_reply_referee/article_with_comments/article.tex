@@ -377,7 +377,7 @@ These results demonstrate that learning topological phases from local real space
 }
 \textcolor{blue}{
 The information entropy signatures that we have seen in the previous section pose an immediate theoretical angst: how can a signal that is locally defined (information entropy signature) arise from a global property (topological invariant) of the whole SSH lattice?    
-In this final section we venture into a theoretical exploration of the information entropy signatures in the hope of elucidating this issue. Our goal is to provide a theoretical framework to interpret the new concepts brought to light in the previous section.  The discussion presented here will be complemented by the numerical experiments in the section \textbf{Numerical explorations on longer lattices} in the Supplementary Material.} 
+In this section we venture into a theoretical exploration of the information entropy signatures in the hope of elucidating this issue. Our goal is to provide a theoretical framework to interpret the new concepts brought to light in the previous section.  The discussion presented here will be complemented by the numerical experiments in the section \textbf{Numerical explorations on longer lattices} in the Supplementary Material.} 
 
 \textcolor{blue}{
 We can think of the Shannon information entropy signatures in figures \ref{feature_importances_ssh1} and \ref{feature_importances_ssh2} as discrete information entropy mass functions that, in the continuum (i.e. macroscopic) limit of an infinite chain, lead to local entropy density functions along the lattices. By mapping the lattice to a Riemann partition of the closed interval $[0,1]$, the cumulative distribution of topological information along a lattice will be given by} 
@@ -403,10 +403,6 @@ the amount of topological information available from a single point in the strin
 \end{equation}
 
 \textcolor{blue}{
-The interpretation of the information entropy signatures of the previous section in terms of information entropy wave functions opens several avenues of investigation of possible connections between exotic states of matter and quantum information theory.  Here we explore its most forthright corollary, which is the establishment of uncertainty relations for topological phase transitions. 
-}
-
-\textcolor{blue}{
 The counterpart of the spatial information entropy wave function $\psi_S(x)$ in wavevector space is its Fourier transform }
 \begin{equation}
 \label{fourier_shannon_wave_function}
@@ -418,6 +414,11 @@ from which the Shannon information entropy density function in wavevector space 
 \label{shannon_wave_function_wavevector_space}
 \hat{\rho}_S(k) = |\hat{\psi}_S(k)|^2.
 \end{equation}
+
+\textcolor{blue}{
+The interpretation of the information entropy signatures of the previous section in terms of information entropy wave functions opens several avenues of investigation of possible connections between exotic states of matter and quantum information theory.  Here we explore its most forthright corollary, which is the establishment of uncertainty relations for topological phase transitions. 
+}
+
 \textcolor{blue}{
 Let us further denote the mean, the variance and the entropy of $\rho_S$ by $\bar{\rho}_S$, $\Delta \rho_S^2 $ and $H[\rho_S]$ respectively. Explicitly, we have }
 \begin{subequations}
@@ -466,6 +467,114 @@ Another interesting consequence of interpreting the information entropy density 
 Given that our analysis has now come full circle back to theoretical physics, the task of numerically exploring equations \eqref{entropy_density}-\eqref{hirschman} will be left for the section \textbf{Numerical explorations on longer lattices} in the Supplementary Material.
 }
 
+\section{Topological feature engineering}
+\label{topological_feature_engineering}
+
+In this last section, we show how the theoretical formalism sketched in section \ref{emergent_information_entropy_wave_functions} can be used to instigate yet another round of machine learning. As we have argued at the end of section \ref{information_entropy_signatures}, the information entropy signatures can be used as a powerful dimensionality reduction tool: by keeping only the most relevant lattice sites in an information entropy signature, the amount of data needed to characterize the topological phase of an SSH system can be largely decreased with little loss of information. Perhaps more interesting, nonetheless, are the possibilities that the information entropy signatures in real and wavevector space offer when used complementarily. Here we explore the engineering of new topological features in real space. 
+
+The information entropy signatures in wavevector space can be easily computed from their counterparts in real space (figures \ref{feature_importances_ssh1} and \ref{feature_importances_ssh2}) using equation \eqref{fourier_shannon_wave_function} and assuming that the real space information entropy wave functions are real. The discretized version of equation \eqref{fourier_shannon_wave_function},
+\begin{equation}
+\label{discrete_fourier_transform}
+\hat{\psi}_S[n] = \frac{1}{\sqrt{N}}\sum_{m=0}^{N-1}\psi_S[m]e^{-i\frac{2\pi}{N}nm}
+\end{equation}
+which is simply the Discrete Fourier Transform (DFT) formula for digital signals, will accomplish this. After computing the norm of each component of the resulting discrete information entropy wave function $\hat{\psi}_S[n]$, we recover the information entropy signatures in wavevector space shown in figures \ref{fourier_feature_importances_ssh1} and \ref{fourier_feature_importances_ssh2}. 
+
+Contrary to their real space counterparts, the wavevector space information entropy signatures are highly localized, which by itself does not come as a surprise. This gives us an opportunity to engineer new features in real space that carry more relevant topological information than the simpler strategy of selecting the most important lattice sites in a real space information entropy signature. We may write equation \ref{discrete_fourier_transform} in matrix form as 
+\begin{equation}
+\label{dft}
+\hat{\mathbf{\psi}}_S = \frac{1}{\sqrt{N}} \mathbf{\mathcal{F}}_{N}\mathbf{\psi}_S
+\end{equation}
+where we have used the Sylvester DFT matrix
+\begin{equation}
+\label{sylvester_dft}
+\mathbf{\mathcal{F}}_{N} = \begin{bmatrix}
+\omega_N^{0\cdot 0} & \omega_N^{0\cdot 1} & \omega_N^{0\cdot 2} &... & \omega_N^{0\cdot (N-1)}\\
+\omega_N^{1\cdot 0} & \omega_N^{1\cdot 1} & \omega_N^{1\cdot 2} &... & \omega_N^{1\cdot (N-1)}\\
+\omega_N^{2\cdot 0} & \omega_N^{2\cdot 1} & \omega_N^{2\cdot 2} &... & \omega_N^{2\cdot (N-1)}\\
+\vdots & \vdots & \vdots & \cdots & \vdots\\ 
+\omega_N^{(N-1)\cdot 0} & \omega_N^{(N-1)\cdot 1} & \omega_N^{(N-1)\cdot 2} &... & \omega_N^{(N-1)\cdot (N-1)}\\
+\end{bmatrix}, \quad \text{with} \quad \omega_N = e^{-i\frac{2\pi}{N}}.
+\end{equation}
+
+When trying to engineer informative global topological features in real space, the information entropy signatures in wavevector space provide good hints of where to start.  Figures \ref{fourier_feature_importances_ssh1} and \ref{fourier_feature_importances_ssh2} show us that in both numerical experiments the zeroth component in wave vector space is the most important  for learning the topological phases, contributing about 49\% of reduction in information entropy in experiment 1 (section \ref{experiment_1}) and 95\% in experiment 2 (section \ref{experiment_2}). Let $x[m]$ be an eigenvector in real space. We can use equation \eqref{dft} to compute its wavevector space representation $k[n]$ and in particular its zeroth component,
+\begin{equation}
+\label{k_0} 
+k[0] = \frac{1}{\sqrt{N}}\sum_{m=0}^{N-1}x[m].
+\end{equation}
+Equation \eqref{k_0} indicates that simply knowing the sum of components of the eigenvectors in real space may provide key information about the topological phases of SSH Hamiltonians. To visually examine this proposition, we can draw histograms  
+
+The next most relevant components in wavevector space in both numerical experiments are the symmetric pair (2,98), which together reduce approximately 10\% of information entropy in experiment 1 (section \ref{experiment_1}) and 2.5\% in experiment 2 (section \ref{experiment_2}). The pair (2,98) in wavevector space leads us to another real space engineered feature,
+\begin{equation}
+\label{k_2_98} 
+\frac{k[2]+k[98]}{\sqrt{2}} = \sqrt{\frac{2}{N}}\sum_{m=0}^{N-1}x[m]\cos(2m\omega_N).
+\end{equation}
+
+The two engineered features, $k[0]$ and $\frac{k[2]+k[98]}{\sqrt{2}}$  
+       
+\begin{equation}
+\label{matrix_discrete_fourier_transform}
+\begin{bmatrix}
+\hat{\psi}_S[0] \\
+\hat{\psi}_S[1] \\
+\vdots \\
+\hat{\psi}_S[N-1]
+\end{bmatrix} = \frac{1}{\sqrt{N}}\begin{bmatrix}
+1 & 1 & 1 &... & 1\\
+1 & W_N & W_N^2 &... &W_N^{N-1}\\
+1 & W_N^2 & W_N^4 &... & W_N^{2(N-1)}\\
+\vdots & \vdots & \vdots & \cdots & \vdots\\ 
+1 & W_N^{N-1} & W_N^{2(N-1)} & \cdots & W_N^{(N-1)^2}    
+\end{bmatrix}
+\begin{bmatrix}
+\psi_S[0] \\
+\psi_S[1] \\
+\vdots \\
+\psi_S[N-1]
+\end{bmatrix}
+\end{equation} 
+
+
+Let us define a discrete wavevector space unit pulse as
+ 
+\begin{equation}
+\label{wavevector_unit_impulse}
+\hat{\delta}^{(m)}_n = \hat{\delta}[n-m] =
+\begin{cases}
+    1, & \text{if } n=m\\
+    0,              & \text{otherwise}.
+\end{cases}
+\end{equation}
+
+Then equation \eqref{discrete_fourier_transform} yields
+
+\begin{equation}
+\label{fourier_wavevector_unit_impulse}
+\hat{\delta}^{(m)}_n = \hat{\delta}[n-m] =
+\begin{cases}
+ \frac{1}{\sqrt{N}}\sum_{l=0}^{N-1}x[l]e^{-\frac{2\pi i}{N} nl}, & \text{if } n=m\\
+    0,              & \text{otherwise}
+\end{cases}
+\end{equation}
+Let us consider the Inverse Discrete Fourier Transform (IDFT) formula, which allows us to invert equation
+
+
+
+ \eqref{discrete_fourier_transform}
+
+\begin{equation}
+\label{inverse_discrete_fourier_transform}
+\psi_S[n] = \frac{1}{\sqrt{N}}\sum_{m=0}^{N-1}\hat{\psi}_S[m]e^{\frac{2\pi i}{N} mn}.
+\end{equation}
+
+In both figures \ref{fourier_feature_importances_ssh1} and \ref{fourier_feature_importances_ssh2}, the main mode in wavevector space 
+
+
+
+
+ main mode of the wavevector space information entropy signatures, which is  
+
+
+
 \section{Discussion}
 \label{discussion}
 
@@ -500,6 +609,14 @@ One final comment should be made about the flourishing relationship between phys
 \subfigure[]{\label{feature_importances_ssh2}\includegraphics[width=0.49\textwidth]{./ssh2/periodic_100_6561/plot_feature_importances.png}}\quad
 \caption{Information entropy signatures of the topological phase transitions obtained from the numerical experiments described in section \ref{numerical_experiments}. (a) In experiment 1 (section \ref{experiment_1}), the two sharp peaks in the Shannon entropy signal account for approximately 70\% of reduction in information entropy. These two peaks correspond to the lattice sites $S_1$. (b) In experiment 2 (section \ref{experiment_2}), the three visible peaks account for approximately 30\% of reduction in information entropy. These three peaks are located along lattice sites $S_2$.}
 \label{feature_importances}
+\end{figure}
+
+\begin{figure}
+\centering
+\subfigure[]{\label{fourier_feature_importances_ssh1}\includegraphics[width=0.49\textwidth]{./ssh1/periodic_100_6561/plot_fourier_feature_importances.png}}\quad
+\subfigure[]{\label{fourier_feature_importances_ssh2}\includegraphics[width=0.49\textwidth]{./ssh2/periodic_100_6561/plot_fourier_feature_importances.png}}\quad
+\caption{Information entropy signatures of the topological phase transitions obtained from the numerical experiments described in section \ref{numerical_experiments}. (a) In experiment 1 (section \ref{experiment_1}), the two sharp peaks in the Shannon entropy signal account for approximately 70\% of reduction in information entropy. These two peaks correspond to the lattice sites $S_1$. (b) In experiment 2 (section \ref{experiment_2}), the three visible peaks account for approximately 30\% of reduction in information entropy. These three peaks are located along lattice sites $S_2$.}
+\label{fourier_feature_importances}
 \end{figure}
 
 \citequote{motif_real_space}

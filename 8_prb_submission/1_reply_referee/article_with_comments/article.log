@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.5.2)  5 JUL 2020 02:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.5.2)  5 JUL 2020 03:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**article.tex ]
+**article.tex
 (./article.tex
 LaTeX2e <2017-04-15>
 Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
@@ -1048,11 +1048,11 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  9891 strings out of 492982
  141636 string characters out of 6134897
- 255304 words of memory out of 5000000
+ 256304 words of memory out of 5000000
  13121 multiletter control sequences out of 15000+600000
  25268 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 34i,9n,35p,1828b,616s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 34i,9n,35p,1826b,616s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist
@@ -1075,7 +1075,7 @@ b></usr/share/texmf/fonts/type1/public/cm-super/sfrm0900.pfb></usr/share/texmf/
 fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/c
 m-super/sfti0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb
 >
-Output written on article.pdf (18 pages, 1115568 bytes).
+Output written on article.pdf (18 pages, 1115681 bytes).
 PDF statistics:
  629 PDF objects out of 1000 (max. 8388607)
  529 compressed objects within 6 object streams

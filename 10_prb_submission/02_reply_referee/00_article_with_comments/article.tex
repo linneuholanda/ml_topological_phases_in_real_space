@@ -467,10 +467,10 @@ Another interesting consequence of interpreting the information entropy density 
 Given that our analysis has now come full circle back to theoretical physics, the task of numerically exploring equations \eqref{entropy_density}-\eqref{hirschman} will be left for the section \textbf{Numerical explorations on longer lattices} in the Supplementary Material.
 }
 
-\section{Topological feature engineering}
+\section{Topological feature engineering and data compression}
 \label{topological_feature_engineering}
 
-In this last section, we show how the theoretical formalism sketched in section \ref{emergent_information_entropy_wave_functions} can be used to instigate yet another round of machine learning. As we have argued at the end of section \ref{information_entropy_signatures}, the information entropy signatures can be used as a powerful dimensionality reduction tool: by keeping only the most relevant lattice sites in an information entropy signature, the amount of data needed to characterize the topological phase of an SSH system can be largely decreased with little loss of information. Perhaps more interesting, nonetheless, are the possibilities that the information entropy signatures in real and wavevector space offer when used complementarily. Here we explore the engineering of new topological features in real space. 
+In this last section, we show how the theoretical formalism sketched in section \ref{emergent_information_entropy_wave_functions} can be used to instigate yet another round of machine learning, with a flavor of data compression. As we have argued at the end of section \ref{information_entropy_signatures}, the information entropy signatures can be used as a powerful dimensionality reduction tool: by keeping only the most relevant lattice sites in an information entropy signature, the amount of data needed to characterize the topological phase of an SSH system can be largely decreased with little loss of information. Nevertheless, given that the topological phase of a SSH lattice is a global property and not a local one, it is expected that simply extracting local coordinates of real space eigenvectors may not be the most effective way to condense a lattice's topological information. Here we explore the engineering of new global topological features in real space, and how these global features lead to an effective compression of topological information. 
 
 The information entropy signatures in wavevector space can be easily computed from their counterparts in real space (figures \ref{feature_importances_ssh1} and \ref{feature_importances_ssh2}) using equation \eqref{fourier_shannon_wave_function} and assuming that the real space information entropy wave functions are real. The discretized version of equation \eqref{fourier_shannon_wave_function},
 \begin{equation}
@@ -479,7 +479,25 @@ The information entropy signatures in wavevector space can be easily computed fr
 \end{equation}
 which is simply the Discrete Fourier Transform (DFT) formula for digital signals, will accomplish this. After computing the norm of each component of the resulting discrete information entropy wave function $\hat{\psi}_S[n]$, we recover the information entropy signatures in wavevector space shown in figures \ref{fourier_feature_importances_ssh1} and \ref{fourier_feature_importances_ssh2}. 
 
-Contrary to their real space counterparts, the wavevector space information entropy signatures are highly localized, which by itself does not come as a surprise. This gives us an opportunity to engineer new features in real space that carry more relevant topological information than the simpler strategy of selecting the most important lattice sites in a real space information entropy signature. We may write equation \ref{discrete_fourier_transform} in matrix form as 
+Contrary to their real space counterparts, the wavevector space information entropy signatures are highly localized, which indicates that most of the topological information can be traced to a subset of wavevector modes. In fact, in figures \ref{fourier_feature_importances_ssh1} and \ref{fourier_feature_importances_ssh2} the reduction in information entropy is concentraded mostly on even wavevector modes. Furthermore, the wavevector space information entropy signatures are approximately even-symmetric with respect to the wavevector modes at 0 and $\frac{N}{2}$, a consequence of the fact that they are obtained as the DFT of a real signal with periodic boundary conditions. 
+
+These (appproximate) symmetries of the topological signatures can guide us through engineering of new topological features from real space coordinates. Indeed, it is easy to verify that the DFT of a real signal $x[m]$ that is even-symmetric around 0 and $\frac{N}{2}$ is given by the Discrete Cosine Transform (DCT),
+\begin{equation}
+\label{DCT}
+\hat{x}[n] = x[0] + (-1)^n x[M-1] + \sum_{m=1}^{M-2} 2x[m]\cos\Big(\frac{\pi}{M-1}nm\Big), \quad n=0,\dots,M-1, 
+\end{equation}
+where $M = \frac{N}{2}+1$. 
+
+The DCT is often employed in several applications of Digital Signal Processing such as audio and image processing and, most importantly here, data compression. As equation \eqref{DCT} shows, the DCT profits from redundance of information in a real, even-symmetric signal, allowing us to write a signal of length $N$ in terms of $M = \frac{N}{2}+1$ features. 
+
+We further reduce the number of engineered topological features by taking only even values of $n$ in the left-hand side of equation \eqref{DCT}. This is done in agreement with the observation that the information entropy signatures in figure \ref{fourier_feature_importances} are strongly localized on even wavevector modes. This leads us to our desired topological features,
+\begin{equation}
+\hat{x}[n] = x[0] + x[M-1] + \sum_{m=1}^{M-2} 2x[m]\cos\Big(\frac{2\pi}{M-1}nm\Big), \quad n=0,\dots,\frac{M-1}{2}.
+\end{equation}  
+
+
+
+ %the DFT of a real eigenvector $x[m]$\eqref{discrete_fourier_transform} o \eqref{in figures \ref{fourier_feature_importances_ssh1} and %\ref{fourier_feature_importances_ssh2}.  This gives us an opportunity to engineer new features in real space that carry more relevant %topological information than the simpler strategy of selecting the most important lattice sites in a real space information entropy %signature. We may write equation \eqref{discrete_fourier_transform} in matrix form as 
 \begin{equation}
 \label{dft}
 \hat{\mathbf{\psi}}_S = \frac{1}{\sqrt{N}} \mathbf{\mathcal{F}}_{N}\mathbf{\psi}_S
@@ -496,17 +514,31 @@ where we have used the Sylvester DFT matrix
 \end{bmatrix}, \quad \text{with} \quad \omega_N = e^{-i\frac{2\pi}{N}}.
 \end{equation}
 
-When trying to engineer informative global topological features in real space, the information entropy signatures in wavevector space provide good hints of where to start.  Figures \ref{fourier_feature_importances_ssh1} and \ref{fourier_feature_importances_ssh2} show us that in both numerical experiments the zeroth component in wave vector space is the most important  for learning the topological phases, contributing about 49\% of reduction in information entropy in experiment 1 (section \ref{experiment_1}) and 95\% in experiment 2 (section \ref{experiment_2}). Let $x[m]$ be an eigenvector in real space. We can use equation \eqref{dft} to compute its wavevector space representation $k[n]$ and in particular its zeroth component,
+When trying to engineer informative global topological features in real space, the information entropy signatures in wavevector space provide good hints of where to start.  Figures \ref{fourier_feature_importances_ssh1} and \ref{fourier_feature_importances_ssh2} show us that in both numerical experiments the zeroth component in wave vector space is the most important  for learning the topological phases, contributing about 49\% of reduction in information entropy in experiment 1 (section \ref{experiment_1}) and 95\% in experiment 2 (section \ref{experiment_2}). Let $x[m]$ be an eigenvector in real space. We can use equation \eqref{dft} to compute its wavevector space representation $\hat{k}[n]$ and in particular its zeroth component,
 \begin{equation}
-\label{k_0} 
-k[0] = \frac{1}{\sqrt{N}}\sum_{m=0}^{N-1}x[m].
+\label{x_hat_0} 
+\hat{x}[0] = \hat{k}[0] = \frac{1}{\sqrt{N}}\sum_{m=0}^{N-1}x[m].
 \end{equation}
-Equation \eqref{k_0} indicates that simply knowing the sum of components of the eigenvectors in real space may provide key information about the topological phases of SSH Hamiltonians. To visually examine this proposition, we can draw histograms -----  
+Equation \eqref{x_hat_0} amounts to taking the sum of components of the eigenvectors in real space as a first engineered topological feature. 
+%may provide key information about the topological phases of SSH Hamiltonians. To visually examine this proposition, we can draw histograms %-----  
 
-The next most relevant components in wavevector space in both numerical experiments are the symmetric pair (2,98), which together reduce approximately 10\% of information entropy in experiment 1 (section \ref{experiment_1}) and 2.5\% in experiment 2 (section \ref{experiment_2}). The pair (2,98) in wavevector space leads us to another real space engineered feature,
+Now let us consider the symmetric pairs $(m,N-m)$, with $m$ even. As figures \ref{fourier_feature_importances_ssh1} and \ref{fourier_feature_importances_ssh2} indicate, these pairs concentrate the remaining relevant topological information from the SSH systems investigated here. We can therefore engineer the topological features  
+
 \begin{equation}
-\label{k_2_98} 
-\frac{k[2]+k[98]}{\sqrt{2}} = \sqrt{\frac{2}{N}}\sum_{m=0}^{N-1}x[m]\cos(2m\omega_N).
+\label{x_hat_m} 
+\hat{x}[n] = \frac{k[2n]+k[N-2n]}{2} = \sqrt{\frac{1}{N}}\sum_{m=1}^{\frac{N}{2}-1}x[2m]\cos(2mn\omega_N), \quad n = 1, 2, \cdots, \frac{N}{2}-1.
+\end{equation}
+
+Putting the engineered topological features from equations \eqref{x_hat_0} and \eqref{x_hat_m} together, we obtain a compressed version of the real space eigenvectors,
+
+
+
+
+
+These  which together reduce approximately 10\% of information entropy in experiment 1 (section \ref{experiment_1}) and 2.5\% in experiment 2 (section \ref{experiment_2}). The pair (2,98) in wavevector space leads us to another real space engineered feature,
+\begin{equation}
+\label{k_m} 
+\frac{k[m]+k[N-m]}{\sqrt{2}} = \sqrt{\frac{2}{N}}\sum_{m=0}^{N-1}x[m]\cos(2m\omega_N).
 \end{equation}
 
 The two engineered features, $k[0]$ and $\frac{k[2]+k[98]}{\sqrt{2}}$  

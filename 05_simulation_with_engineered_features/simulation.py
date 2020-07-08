@@ -18,31 +18,43 @@ import papermill as pm
 
 ### Simulation directories
 SIMULATIONS_DIR = "/home/rio/ssh_simulations"
+
 # ssh1 simulations with fourier engineered features
 SSH1_SIMULATIONS_DIR = os.path.join(SIMULATIONS_DIR,"ssh1")
-SSH1_PERIODIC_ENGINEERED_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_engineered_100_6561")
-SSH1_PERIODIC_ENGINEERED_140_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_engineered_140_6561")
-SSH1_PERIODIC_ENGINEERED_180_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_engineered_180_6561")
-SSH1_PERIODIC_ENGINEERED_220_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_engineered_220_6561")
+# N = 100
+SSH1_PERIODIC_1ST_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_1st_scenario_100_6561")
+SSH1_PERIODIC_2ND_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_2nd_scenario_100_6561")
+SSH1_PERIODIC_3RD_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_3rd_scenario_100_6561")
+SSH1_PERIODIC_4TH_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_4th_scenario_100_6561")
+SSH1_PERIODIC_5TH_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_5th_scenario_100_6561")
+
 # ssh2 simulations
 SSH2_SIMULATIONS_DIR = os.path.join(SIMULATIONS_DIR,"ssh2")
-SSH2_PERIODIC_ENGINEERED_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_engineered_100_6561")
-SSH2_PERIODIC_ENGINEERED_140_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_engineered_140_6561")
-SSH2_PERIODIC_ENGINEERED_180_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_engineered_180_6561")
-SSH2_PERIODIC_ENGINEERED_220_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_engineered_220_6561")
+# N = 100
+SSH2_PERIODIC_1ST_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_1st_scenario_100_6561")
+SSH2_PERIODIC_2ND_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_2nd_scenario_100_6561")
+SSH2_PERIODIC_3RD_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_3rd_scenario_100_6561")
+SSH2_PERIODIC_4TH_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_4th_scenario_100_6561")
+SSH2_PERIODIC_5TH_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_5th_scenario_100_6561")
+
+#SSH2_PERIODIC_ENGINEERED_140_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_engineered_140_6561")
+#SSH2_PERIODIC_ENGINEERED_180_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_engineered_180_6561")
+#SSH2_PERIODIC_ENGINEERED_220_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_engineered_220_6561")
 
 ### Generating simulation directories
 generate_dirs = [SIMULATIONS_DIR,
                  SSH1_SIMULATIONS_DIR,
-                 SSH1_PERIODIC_ENGINEERED_100_6561_SIMULATION_DIR,
-                 SSH1_PERIODIC_ENGINEERED_140_6561_SIMULATION_DIR,
-                 SSH1_PERIODIC_ENGINEERED_180_6561_SIMULATION_DIR,
-                 SSH1_PERIODIC_ENGINEERED_220_6561_SIMULATION_DIR,
+                 SSH1_PERIODIC_1ST_SCENARIO_100_6561_SIMULATION_DIR,
+                 SSH1_PERIODIC_2ND_SCENARIO_100_6561_SIMULATION_DIR,
+                 SSH1_PERIODIC_3RD_SCENARIO_100_6561_SIMULATION_DIR,
+                 SSH1_PERIODIC_4TH_SCENARIO_100_6561_SIMULATION_DIR,
+                 SSH1_PERIODIC_5TH_SCENARIO_100_6561_SIMULATION_DIR,
                  SSH2_SIMULATIONS_DIR,
-                 SSH2_PERIODIC_ENGINEERED_100_6561_SIMULATION_DIR,
-                 SSH2_PERIODIC_ENGINEERED_140_6561_SIMULATION_DIR,
-                 SSH2_PERIODIC_ENGINEERED_180_6561_SIMULATION_DIR,
-                 SSH2_PERIODIC_ENGINEERED_220_6561_SIMULATION_DIR,
+                 SSH2_PERIODIC_1ST_SCENARIO_100_6561_SIMULATION_DIR,
+                 SSH2_PERIODIC_2ND_SCENARIO_100_6561_SIMULATION_DIR,
+                 SSH2_PERIODIC_3RD_SCENARIO_100_6561_SIMULATION_DIR,
+                 SSH2_PERIODIC_4TH_SCENARIO_100_6561_SIMULATION_DIR,
+                 SSH2_PERIODIC_5TH_SCENARIO_100_6561_SIMULATION_DIR,
                 ]
 for d in generate_dirs:
     if not os.path.isdir(d):
@@ -65,15 +77,17 @@ SSH2_PERIODIC_220_6561_CSV = os.path.join(SSH2_CSVS_DIR,"periodic_220_6561.csv")
 
 ### Output files
 # ssh1
-SSH1_PERIODIC_ENGINEERED_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh1_periodic_engineered_100_6561.ipynb"
-SSH1_PERIODIC_ENGINEERED_140_6561_OUTPUT_FILE = "zzz_simulation_output_ssh1_periodic_engineered_140_6561.ipynb"
-SSH1_PERIODIC_ENGINEERED_180_6561_OUTPUT_FILE = "zzz_simulation_output_ssh1_periodic_engineered_180_6561.ipynb"
-SSH1_PERIODIC_ENGINEERED_220_6561_OUTPUT_FILE = "zzz_simulation_output_ssh1_periodic_engineered_220_6561.ipynb"
+SSH1_1ST_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh1_1st_scenario_100_6561.ipynb"
+SSH1_2ND_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh1_2nd_scenario_100_6561.ipynb"
+SSH1_3RD_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh1_3rd_scenario_100_6561.ipynb"
+SSH1_4TH_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh1_4th_scenario_100_6561.ipynb"
+SSH1_5TH_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh1_5th_scenario_100_6561.ipynb"
 # ssh2
-SSH2_PERIODIC_ENGINEERED_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh2_periodic_engineered_100_6561.ipynb"
-SSH2_PERIODIC_ENGINEERED_140_6561_OUTPUT_FILE = "zzz_simulation_output_ssh2_periodic_engineered_140_6561.ipynb"
-SSH2_PERIODIC_ENGINEERED_180_6561_OUTPUT_FILE = "zzz_simulation_output_ssh2_periodic_engineered_180_6561.ipynb"
-SSH2_PERIODIC_ENGINEERED_220_6561_OUTPUT_FILE = "zzz_simulation_output_ssh2_periodic_engineered_220_6561.ipynb"
+SSH2_1ST_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh2_1st_scenario_100_6561.ipynb"
+SSH2_2ND_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh2_2nd_scenario_100_6561.ipynb"
+SSH2_3RD_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh2_3rd_scenario_100_6561.ipynb"
+SSH2_4TH_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh2_4th_scenario_100_6561.ipynb"
+SSH2_5TH_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh2_5th_scenario_100_6561.ipynb"
 
 ### Template notebook
 TEMPLATE_NOTEBOOK = "0_simulation_template.ipynb"
@@ -130,7 +144,7 @@ class Simulation(object):
         self.val_ids = []
         ##### Attributes Building dataset with engineered Fourier features #####
         self.fourier_features = None
-        self.dft_matrix = None
+        self.fourier_matrix = None
         self.fourier_engineered_dataframe = None
         ##### Simulation results #####
         self.eigenvector_columns = ["id", "phase", "pred_phase", "type_of"]
@@ -141,12 +155,22 @@ class Simulation(object):
         self.hamiltonian_summary_list = []
         self.accuracy_list = {"eigenvector_train": [], "eigenvector_val": [], "eigenvector_test": [], "hamiltonian_train": [], "hamiltonian_val": [], "hamiltonian_test": []}
       
-    def engineer_fourier_features(self,fourier_features, real=True, normalize = True):
+    def engineer_fourier_features(self,fourier_features, mode="dft", real=True, normalize = True, fillna=False):
         self.fourier_features = list(fourier_features)
-        self.omega = np.exp(-1j*2*np.pi/self.n_features)
-        self.dft_matrix = np.array([[self.omega**(m*n) for n in self.fourier_features] for m in                                                                                                                   range(self.n_features)])
+        if mode == "dft":
+            N = self.n_features
+            self.omega = np.exp(-1j*2*np.pi/N)
+            self.fourier_matrix = np.array([[self.omega**(m*n) for n in self.fourier_features] for m in                                                                                                                   range(N)])
+            fourier_engineered_array = np.dot(self.dataframe.loc[:,self.features].values, self.fourier_matrix)
+            feature_name = "dft_feat"
+        elif mode == "dct":
+            M = self.n_features//2+1
+            self.omega = np.pi/(M-1)
+            self.fourier_matrix =  np.array([[2*np.cos(self.omega*(m*n)) for n in self.fourier_features] for m in                                                                                                                   range(M)])
+            self.fourier_matrix[:,[0,-1]] = 1/2*self.fourier_matrix[:,[0,-1]]
+            fourier_engineered_array = np.dot(self.dataframe.loc[:,self.features].values[:,0:M], self.fourier_matrix)
+            feature_name = "dct_feat"
         
-        fourier_engineered_array = np.dot(self.dataframe.loc[:,self.features].values, self.dft_matrix)
         if real:
             fourier_engineered_array = np.real(fourier_engineered_array)
         if normalize:
@@ -154,13 +178,15 @@ class Simulation(object):
             norms=np.reshape(norms,(-1,1))
             fourier_engineered_array = 1/norms*fourier_engineered_array
         fourier_engineered_dataframe = pd.DataFrame(fourier_engineered_array,index=self.dataframe.index,
-                                                         columns = ["fourier_feat"+str(f) 
+                                                         columns = [feature_name+str(f) 
                                                                     for f in self.fourier_features])
+        if fillna:
+            fourier_engineered_dataframe.fillna(0,inplace=True)    
         usecols = [c for c in self.dataframe if c not  in self.features]
         self.fourier_engineered_dataframe = pd.concat([self.dataframe.loc[:,usecols],fourier_engineered_dataframe],axis=1)
-         
-
-    def make_val(self, fourier_engineered_dataframe=False):
+                   
+   
+    def make_val(self, mode=None):
         """
         Creates validation set from training data
         """
@@ -177,7 +203,7 @@ class Simulation(object):
         self.dataframe.loc[is_train,"type_of"] = "train"
         is_val = np.in1d(self.dataframe.id.values, new_val_ids) 
         self.dataframe.loc[is_val,"type_of"] = "val"
-        if fourier_engineered_dataframe:
+        if mode is not None:
             self.fourier_engineered_dataframe.loc[is_train,"type_of"] = "train"
             self.fourier_engineered_dataframe.loc[is_val,"type_of"] = "val"
         ### updating train and val ids
@@ -195,7 +221,7 @@ class Simulation(object):
         """
         self.features_to_use = features
 
-    def fit(self, fit_params = None, shuffle_rows=True, fourier_engineered_dataframe=False):
+    def fit(self, fit_params = None, shuffle_rows=True, mode=None):
         """
         Fits model to eigenvectors with fit_params parameters
 
@@ -204,8 +230,12 @@ class Simulation(object):
         shuffle_rows: a bool. Whether to shuffle rows before fitting.
         """
         train_rows = self.dataframe.type_of == "train"
-        if fourier_engineered_dataframe:
-            feat_columns = self.fourier_engineered_dataframe.columns[self.fourier_engineered_dataframe.columns.get_loc("fourier_feat0"):]
+        if mode is not None:
+            if mode == "dft":
+                first_feat_name = "dft_feat0" 
+            elif mode == "dct":
+                first_feat_name = "dct_feat0" 
+            feat_columns = self.fourier_engineered_dataframe.columns[self.fourier_engineered_dataframe.columns.get_loc(first_feat_name):]
             X, y = self.fourier_engineered_dataframe.loc[train_rows,feat_columns].values, self.fourier_engineered_dataframe[train_rows].phase.values
         else:    
             feat_columns = self.dataframe.columns[self.dataframe.columns.get_loc("feat0"):]
@@ -221,6 +251,8 @@ class Simulation(object):
                     column_ix = self.features_to_use
                 X = X[:,column_ix]
             #c = np.argwhere(np.in1d(b, np.array([6,3,5,4,9]))).reshape(-1,)
+       
+        
         ### shuffling training data
         if shuffle_rows:
             shuffle = np.random.permutation(len(X)) 
@@ -234,7 +266,7 @@ class Simulation(object):
         #print("X: ", X)
         #print("shape of X: ", X.shape)
 
-    def predict(self, predict_params = None, fourier_engineered_dataframe=False):
+    def predict(self, predict_params = None, mode=None):
         """
         Uses fitted model to predict on eigenvectorswith pred_params
     
@@ -244,8 +276,12 @@ class Simulation(object):
         """ 
         #print("THIS IS  predict_params: ", predict_params)
         #print("THIS IS  the type of predict_params: ", type(predict_params))
-        if fourier_engineered_dataframe:
-            feat_columns = self.fourier_engineered_dataframe.columns[self.fourier_engineered_dataframe.columns.get_loc("fourier_feat0"):]
+        if mode is not None:
+            if mode == "dft":
+                first_feat_name = "dft_feat0" 
+            elif mode == "dct":
+                first_feat_name = "dct_feat0" 
+            feat_columns = self.fourier_engineered_dataframe.columns[self.fourier_engineered_dataframe.columns.get_loc(first_feat_name):]
             X = self.fourier_engineered_dataframe.loc[:,feat_columns].values
         else:    
             feat_columns = self.dataframe.columns[self.dataframe.columns.get_loc("feat0"):]
@@ -265,17 +301,17 @@ class Simulation(object):
         else:
             predict_params["X"] = X
         y_pred = self.model.predict(**predict_params)
-        if fourier_engineered_dataframe:
+        if mode is not None:
             self.fourier_engineered_dataframe.loc[:,"pred_phase"] = y_pred
         else:
             self.dataframe.loc[:,"pred_phase"] = y_pred
 
-    def predict_hamiltonians(self, fourier_engineered_dataframe=False):
+    def predict_hamiltonians(self, mode=None):
         """
         Predicts Hamiltonians' phases through majority voting of eigenvectors (has to be fitted and predicted first!)
         """
         
-        if fourier_engineered_dataframe:
+        if mode is not None:
             dataframe = self.fourier_engineered_dataframe 
         else:
             dataframe = self.dataframe
@@ -354,7 +390,7 @@ class Simulation(object):
         y_pred = self.hamiltonian_summary.pred_phase[boolean_mask].values
         self.accuracy["hamiltonian_test"] = accuracy_score(y_true,y_pred)
                  
-    def run_simulation(self, n_experiments=1, start_n=0, fit_params=None,fourier_engineered_dataframe = False, shuffle_rows = True, predict_params=None, random_features = False, store_in_lists=False, save_eigenvector=False, save_hamiltonian=True, save_accuracy=True, save_models=False):
+    def run_simulation(self, n_experiments=1, start_n=0, fit_params=None,mode = None, shuffle_rows = True, predict_params=None, random_features = False, store_in_lists=False, save_eigenvector=False, save_hamiltonian=True, save_accuracy=True, save_models=False):
         """
         Fits a machine learning algorithm to training data and writes result of simulation to disk
         
@@ -397,16 +433,16 @@ class Simulation(object):
                 self.features_to_use = np.random.randint(0,self.n_features,size=random_features)
                 #print("random_features: ", self.features_to_use)
             ### making validation sets
-            self.make_val(fourier_engineered_dataframe=fourier_engineered_dataframe)
+            self.make_val(mode=mode)
             ### fitting and predicting
-            self.fit(fit_params=fit_params, shuffle_rows=shuffle_rows,                                                                                fourier_engineered_dataframe=fourier_engineered_dataframe)
-            self.predict(predict_params=predict_params, fourier_engineered_dataframe=fourier_engineered_dataframe)
+            self.fit(fit_params=fit_params, shuffle_rows=shuffle_rows,                                                                                mode=mode)
+            self.predict(predict_params=predict_params, mode=mode)
             ### generating simulation summaries
-            if fourier_engineered_dataframe:
+            if mode is not None:
                 self.eigenvector_summary = self.fourier_engineered_dataframe[self.eigenvector_columns]    
             else:
                 self.eigenvector_summary = self.dataframe[self.eigenvector_columns]  
-            self.hamiltonian_summary = self.predict_hamiltonians(fourier_engineered_dataframe=fourier_engineered_dataframe)   
+            self.hamiltonian_summary = self.predict_hamiltonians(mode=mode)   
             self.compute_accuracy()
             ### storing results
             if store_in_lists:

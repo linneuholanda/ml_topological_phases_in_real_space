@@ -371,113 +371,91 @@ These results demonstrate that learning topological phases from local real space
 \label{ssh2_heatmaps}
 \end{figure}
 
-\textcolor{blue}{
-\section{Emergent information entropy wave functions}
-\label{emergent_information_entropy_wave_functions}
-}
-\textcolor{blue}{
-The information entropy signatures that we have seen in the previous section pose an immediate theoretical angst: how can a signal that is locally defined (information entropy signature) arise from a global property (topological invariant) of the whole SSH lattice?    
-In this section we venture into a theoretical exploration of the information entropy signatures in the hope of elucidating this issue. Our goal is to provide a theoretical framework to interpret the new concepts brought to light in the previous section.  The discussion presented here will be complemented by the numerical experiments in the section \textbf{Numerical explorations on longer lattices} in the Supplementary Material.} 
-
-\textcolor{blue}{
-We can think of the Shannon information entropy signatures in figures \ref{feature_importances_ssh1} and \ref{feature_importances_ssh2} as discrete information entropy mass functions that, in the continuum (i.e. macroscopic) limit of an infinite chain, lead to local entropy density functions along the lattices. By mapping the lattice to a Riemann partition of the closed interval $[0,1]$, the cumulative distribution of topological information along a lattice will be given by} 
-
-\begin{equation}
-\label{entropy_density}
-F_S(x) = \int_{0}^x\rho_S(x')dx'
-\end{equation}
-where $x \in [0,1]$ is a spatial coordinate along the continuous lattice (which we shall call from now on string, to emphasize its continuity as opposed to a discrete lattice) and $\rho_S(x)$ is the local Shannon information entropy density function in the continuum limit. 
-
-\textcolor{blue}{
-Given the quantum nature of the phase transitions being discussed, the information entropy density function $\rho_S(x)$ can be naturally interpreted as the squared magnitude of a spatial Shannon information entropy wave function,
-}
-\begin{equation}
-\label{shannon_wave_function}
-\rho_S(x) = |\psi_S(x)|^2,
-\end{equation}
-the amount of topological information available from a single point in the string then being expressed in bra-ket notation by Born's rule,  
-
-\begin{equation}
-\label{born_rule_spatial}
-\rho_S(x) = |\braket{x|\psi_S}|^2.
-\end{equation}
-
-\textcolor{blue}{
-The counterpart of the spatial information entropy wave function $\psi_S(x)$ in wavevector space is its Fourier transform }
-\begin{equation}
-\label{fourier_shannon_wave_function}
-\hat{\psi}_S(k) = \int_{0}^{1}\psi_S(x)e^{-2\pi ikx}dx
-\end{equation}
-\textcolor{blue}{
-from which the Shannon information entropy density function in wavevector space can be computed,}
-\begin{equation}
-\label{shannon_wave_function_wavevector_space}
-\hat{\rho}_S(k) = |\hat{\psi}_S(k)|^2.
-\end{equation}
-
-\textcolor{blue}{
-The interpretation of the information entropy signatures of the previous section in terms of information entropy wave functions opens several avenues of investigation of possible connections between exotic states of matter and quantum information theory.  Here we explore its most forthright corollary, which is the establishment of uncertainty relations for topological phase transitions. 
-}
-
-\textcolor{blue}{
-Let us further denote the mean, the variance and the entropy of $\rho_S$ by $\bar{\rho}_S$, $\Delta \rho_S^2 $ and $H[\rho_S]$ respectively. Explicitly, we have }
-\begin{subequations}
-\label{statistics}
-\begin{equation}
-\label{mean}
-\bar{\rho}_S = \int_0^1x\rho_S(x)dx,
-\end{equation}
-\begin{equation}
-\label{variance}
-\Delta\rho_S^2 = \int_0^1(x-\bar{\rho}_S)^2\rho_S(x)dx,\quad \text{and}
-\end{equation}
-\begin{equation}
-\label{entropy}
-H[\rho_S] = \int_0^1\rho_S(x)\ln\big(\rho_S(x)\big) dx,
-\end{equation}
-\end{subequations}
-\textcolor{blue}{
-with analogous equations for the wavevector space counterparts $\bar{\hat{\rho}}_S$, $\Delta \hat{\rho}_S^2 $ and $H[\hat{\rho_S}]$ in terms of $k$ and $\hat{\rho}$.}
-
-\textcolor{blue}{
-In possession of this quantum formalism, we may write topological versions of two canonical uncertainty relations that bind together the real space and wavevector space information entropy density functions \eqref{shannon_wave_function} and \eqref{shannon_wave_function_wavevector_space}: }
-
-\begin{enumerate}
-\item[i)] \emph{the Heisenberg uncertainty principle}
-\begin{equation}
-\label{heisenberg}
-\Delta\rho_S \cdot \Delta\hat{\rho}_S \geq \frac{1}{4\pi}, \quad \text{and }
-\end{equation}
-\item[ii)] \emph{the Hirschman entropic uncertainty}
-\begin{equation}
-\label{hirschman}
-H[\rho_S] + H[\hat{\rho}_S] \geq \ln\Big(\frac{e}{2}\Big). \quad
-\end{equation}
-\end{enumerate}
-
-\textcolor{blue}{
-The information entropy density function $\rho_S$ devised in this section furnishes a physics-grounded interpretation of the information entropy signatures discovered in the previous section from sheer data analysis of finite SSH systems in real space. In particular, the uncertainty relations \eqref{heisenberg} and \eqref{hirschman} express concisely the trade-off between the localizability of information in topological phase transitions in real space and wavevector space. 
-}
-
-\textcolor{blue}{
-Another interesting consequence of interpreting the information entropy density function $\rho_S(x)$ as the probability distribution arising from an information entropy wave function $\psi_S(x)$ defined on a 1D continuous string is that is reconciles the apparently conflicting notions of a local topological signal arising from a global property of the whole SSH system. Indeed, while $\psi_S(x)$ is defined locally at every point of the 1D manifold, it is a single, global wave function encoding the distribution of topological information of a many-particle system. Therefore, the information entropy wave function $\psi_S(x)$ can be seen as an emergent property of a quantum many-body system.    
-}
-
-\textcolor{blue}{
-Given that our analysis has now come full circle back to theoretical physics, the task of numerically exploring equations \eqref{entropy_density}-\eqref{hirschman} will be left for the section \textbf{Numerical explorations on longer lattices} in the Supplementary Material.
-}
 
 \section{Topological feature engineering and data compression}
 \label{topological_feature_engineering}
 
-In this last section, we show how the theoretical formalism sketched in section \ref{emergent_information_entropy_wave_functions} can be used to instigate yet another round of machine learning, with a flavor of data compression. As we have argued at the end of section \ref{information_entropy_signatures}, the information entropy signatures can be used as a powerful dimensionality reduction tool: by keeping only the most relevant lattice sites in an information entropy signature, the amount of data needed to characterize the topological phase of an SSH system can be largely decreased with little loss of information. Nevertheless, given that the topological phase of a SSH lattice is a global property and not a local one, it is expected that simply extracting local coordinates of real space eigenvectors may not be the most effective way to condense a lattice's topological information. Here we explore the engineering of new global topological features in real space, and how these global features lead to an effective compression of topological information. 
+In this section, we explore the information entropy signatures obtained in section \ref{information_entropy_signatures} from an information-theoretic perspective, in particular as related to data compression. As we have argued at the end of section \ref{information_entropy_signatures}, the information entropy signatures can be used as a powerful dimensionality reduction tool: by keeping only the most relevant lattice sites in an information entropy signature, the amount of data needed to characterize the topological phase of a SSH system can be largely decreased with little loss of information. Nevertheless, given that the topological phase of a SSH system is a global property of the whole lattice, it is natural to expect that it should be possible to engineer global features from real space coordinates. Here we show how the symmetries in the real space information entropy signatures in figure \ref{feature_importances} can be exploited to engineer new global topological features, leading to an effective compression of topological information.
 
-The information entropy signatures in wavevector space can be easily computed from their counterparts in real space (figures \ref{feature_importances_ssh1} and \ref{feature_importances_ssh2}) using equation \eqref{fourier_shannon_wave_function} and assuming that the real space information entropy wave functions are real. The discretized version of equation \eqref{fourier_shannon_wave_function},
+%simply extracting local coordinates of real space eigenvectors may not be the most effective way to condense a lattice's topological %information. Here we explore the engineering of new global topological features in real space, and how these global features lead to an %effective compression of topological information. 
+
+%The information entropy signatures in wavevector space can be easily computed from their counterparts in real space (figures %\ref{feature_importances_ssh1} and \ref{feature_importances_ssh2}) using equation \eqref{fourier_shannon_wave_function} and assuming that the %real space information entropy wave functions are real. 
+
+Given a real space eigenvector $x[m]$, we can compute its coordinates in wavevector space using the Discrete Fourier Transform (DFT),  
 \begin{equation}
 \label{discrete_fourier_transform}
-\hat{\psi}_S[n] = \frac{1}{\sqrt{N}}\sum_{m=0}^{N-1}\psi_S[m]e^{-i\frac{2\pi}{N}nm}
+\hat{x}[n] = \frac{1}{\sqrt{N}}\sum_{m=0}^{N-1}x[m]e^{-i\frac{2\pi}{N}nm}, \quad n=0,\dots,N-1.
 \end{equation}
-which is simply the Discrete Fourier Transform (DFT) formula for digital signals, will accomplish this. After computing the norm of each component of the resulting discrete information entropy wave function $\hat{\psi}_S[n]$, we recover the information entropy signatures in wavevector space shown in figures \ref{fourier_feature_importances_ssh1} and \ref{fourier_feature_importances_ssh2}. 
+Since the choice of phase of the real space eigenvectors was such that they were all in $\mathbb{R}^{N}$, the eigenvectors in wavevector space computed from equation \eqref{discrete_fourier_transform} will be Hermitian vectors in $\mathbb{C}^N$. The Hermitian symmetry of the wavevector space eigenvectors manifests itself mathematically in closed lattices with periodic boundary conditions as 
+\begin{equation}
+\label{hermitian_symmetry}
+\hat{x}[\overline{k}] = \hat{x}^*[\overline{N-k}], \quad k = 0,\dots, N-1,
+\end{equation}
+where  we have used the notation $\overline{k} = k \mod N$. 
+
+Equation \eqref{hermitian_symmetry} forks into two natural paths to topological feature engineering. In the first path, we exploit the fact that the real part of $\hat{x}[m]$ is even-symmetric around the reciprocal lattice sites $0$ and $\frac{N}{2}$. This leads us to the Discrete Cosine Transform (DCT) topological features,
+\begin{equation}
+\label{DCT}
+\hat{x}_{c}[n] = x[0] + (-1)^n x[M-1] + \sum_{m=1}^{M-2} 2x[m]\cos\bigg(\frac{\pi}{M-1}nm\bigg), \quad n=0,\dots,M-1, 
+\end{equation}
+where $M = \frac{N}{2}+1$. The second path capitalizes on the fact that de imaginary part of $\hat{x}[m]$ is odd-symetric around the reciprocal lattice sites $0$ and $\frac{N}{2}$, thus yielding the Discrete Sine Transform (DST) topological features,
+\begin{equation}
+\label{DST}
+\hat{x}_{s}[n+1] = \sum_{m=0}^{M-1} 2x[m+1]\sin\bigg(\frac{\pi}{M+1}(n+1)(m+1)\bigg), \quad n=0,\dots,M-1,
+\end{equation} 
+where $M = \frac{N}{2}-1$. 
+
+We ran several numerical experiments to evaluate how the DCT and DST topological features defined in equations \eqref{DCT} and \eqref{DST} perform. The results obtained in each experiment are listed in table \ref{numerical_results}. These numerical experiments differed both on which topological features were used (whether DCT or DST topological features), as well as which features in real space were used to compute the engineered topological features. The results obtained in the numerical experiments of section \ref{numerical_experiments} are also listed in table \ref{numerical_results} for the sake of reference.  
+
+\begin{table}
+ \begin{tabular}{||c c c c c||} 
+ \hline
+ SSH system & Real space feat. & Wavevector space feat. & Val. Hamiltonian acc. & Test Hamiltonian acc. \\ % [0.5ex] 
+ \hline\hline
+ 1 & All & None & 1 & 0.991 \\ 
+ \hline
+ 1 & $\mathcal{S}_1$ & None & 0.985 & 0.985\\
+ \hline
+ 1 & $\mathcal{S}'_1$ & None & 0.985 & 0.986\\
+ \hline
+ 1 & DCT & DCT & 0.997 & 0.989 \\
+ \hline
+ 1 & DST & DST & --- & --- \\
+ \hline
+ 1 & $\mathcal{S}_1$ & $\mathcal{E}_1$ & --- & --- \\ 
+ \hline
+ 1 & $\mathcal{S'}_1$ & $\mathcal{E}'_1$ & --- & --- \\ 
+ \hline
+ 1 & $\mathcal{S}_1$ & $\mathcal{O}_1$ & --- & --- \\ 
+ \hline
+ 1 & $\mathcal{S'}_1$ & $\mathcal{O}'_1$ & --- & --- \\ 
+ \hline
+ 2 & All & None & --- & --- \\ 
+ \hline
+ 2 & $\mathcal{S}_2$ & --- & --- & ---\\
+ \hline
+ 2 & $\mathcal{S}'_2$ & --- & --- & ---\\
+ \hline
+ 2 & DCT & DCT & --- & --- \\
+ \hline
+ 2 & DST & DST & --- & --- \\
+ \hline
+ 2 & $\mathcal{S}_2$ & $\mathcal{E}_2$ & --- & --- \\ 
+ \hline
+ 2 & $\mathcal{S'}_2$ & $\mathcal{E}'_2$ & --- & --- \\ 
+ \hline
+ 2 & $\mathcal{S}_2$ & $\mathcal{O}_2$ & --- & --- \\ 
+ \hline
+ 2 & $\mathcal{S'}_2$ & $\mathcal{O}'_2$ & --- & --- \\ 
+ \hline
+ 
+ \end{tabular}
+\caption{\label{numerical_results}Your caption.}
+\end{table}
+
+
+Guaranteed to have Hermitian symmetry with respect to the lattice site at $\frac{N}{2}$. Furthermore, given that the lattices were closed with periodic boundary conditions, the   
+%After computing the norm of each component of the resulting discrete information entropy wave function $\hat{\psi}_S[n]$, we recover the %information entropy signatures in wavevector space shown in figures \ref{fourier_feature_importances_ssh1} and %%\ref{fourier_feature_importances_ssh2}. 
 
 Contrary to their real space counterparts, the wavevector space information entropy signatures are highly localized, which indicates that most of the topological information can be traced to a subset of wavevector modes. In fact, in figures \ref{fourier_feature_importances_ssh1} and \ref{fourier_feature_importances_ssh2} the reduction in information entropy is concentraded mostly on even wavevector modes. Furthermore, the wavevector space information entropy signatures are approximately even-symmetric with respect to the wavevector modes at 0 and $\frac{N}{2}$, a consequence of the fact that they are obtained as the DFT of a real signal with periodic boundary conditions. 
 
@@ -604,6 +582,105 @@ In both figures \ref{fourier_feature_importances_ssh1} and \ref{fourier_feature_
 
 
  main mode of the wavevector space information entropy signatures, which is  
+
+
+
+\textcolor{blue}{
+\section{Emergent information entropy wave functions}
+\label{emergent_information_entropy_wave_functions}
+}
+\textcolor{blue}{
+The information entropy signatures that we have seen in the previous section pose an immediate theoretical angst: how can a signal that is locally defined (information entropy signature) arise from a global property (topological invariant) of the whole SSH lattice?    
+In this section we venture into a theoretical exploration of the information entropy signatures in the hope of elucidating this issue. Our goal is to provide a theoretical framework to interpret the new concepts brought to light in the previous section.  The discussion presented here will be complemented by the numerical experiments in the section \textbf{Numerical explorations on longer lattices} in the Supplementary Material.} 
+
+\textcolor{blue}{
+We can think of the Shannon information entropy signatures in figures \ref{feature_importances_ssh1} and \ref{feature_importances_ssh2} as discrete information entropy mass functions that, in the continuum (i.e. macroscopic) limit of an infinite chain, lead to local entropy density functions along the lattices. By mapping the lattice to a Riemann partition of the closed interval $[0,1]$, the cumulative distribution of topological information along a lattice will be given by} 
+
+\begin{equation}
+\label{entropy_density}
+F_S(x) = \int_{0}^x\rho_S(x')dx'
+\end{equation}
+where $x \in [0,1]$ is a spatial coordinate along the continuous lattice (which we shall call from now on string, to emphasize its continuity as opposed to a discrete lattice) and $\rho_S(x)$ is the local Shannon information entropy density function in the continuum limit. 
+
+\textcolor{blue}{
+Given the quantum nature of the phase transitions being discussed, the information entropy density function $\rho_S(x)$ can be naturally interpreted as the squared magnitude of a spatial Shannon information entropy wave function,
+}
+\begin{equation}
+\label{shannon_wave_function}
+\rho_S(x) = |\psi_S(x)|^2,
+\end{equation}
+the amount of topological information available from a single point in the string then being expressed in bra-ket notation by Born's rule,  
+
+\begin{equation}
+\label{born_rule_spatial}
+\rho_S(x) = |\braket{x|\psi_S}|^2.
+\end{equation}
+
+\textcolor{blue}{
+The counterpart of the spatial information entropy wave function $\psi_S(x)$ in wavevector space is its Fourier transform }
+\begin{equation}
+\label{fourier_shannon_wave_function}
+\hat{\psi}_S(k) = \int_{0}^{1}\psi_S(x)e^{-2\pi ikx}dx
+\end{equation}
+\textcolor{blue}{
+from which the Shannon information entropy density function in wavevector space can be computed,}
+\begin{equation}
+\label{shannon_wave_function_wavevector_space}
+\hat{\rho}_S(k) = |\hat{\psi}_S(k)|^2.
+\end{equation}
+
+\textcolor{blue}{
+The interpretation of the information entropy signatures of the previous section in terms of information entropy wave functions opens several avenues of investigation of possible connections between exotic states of matter and quantum information theory.  Here we explore its most forthright corollary, which is the establishment of uncertainty relations for topological phase transitions. 
+}
+
+\textcolor{blue}{
+Let us further denote the mean, the variance and the entropy of $\rho_S$ by $\bar{\rho}_S$, $\Delta \rho_S^2 $ and $H[\rho_S]$ respectively. Explicitly, we have }
+\begin{subequations}
+\label{statistics}
+\begin{equation}
+\label{mean}
+\bar{\rho}_S = \int_0^1x\rho_S(x)dx,
+\end{equation}
+\begin{equation}
+\label{variance}
+\Delta\rho_S^2 = \int_0^1(x-\bar{\rho}_S)^2\rho_S(x)dx,\quad \text{and}
+\end{equation}
+\begin{equation}
+\label{entropy}
+H[\rho_S] = \int_0^1\rho_S(x)\ln\big(\rho_S(x)\big) dx,
+\end{equation}
+\end{subequations}
+\textcolor{blue}{
+with analogous equations for the wavevector space counterparts $\bar{\hat{\rho}}_S$, $\Delta \hat{\rho}_S^2 $ and $H[\hat{\rho_S}]$ in terms of $k$ and $\hat{\rho}$.}
+
+\textcolor{blue}{
+In possession of this quantum formalism, we may write topological versions of two canonical uncertainty relations that bind together the real space and wavevector space information entropy density functions \eqref{shannon_wave_function} and \eqref{shannon_wave_function_wavevector_space}: }
+
+\begin{enumerate}
+\item[i)] \emph{the Heisenberg uncertainty principle}
+\begin{equation}
+\label{heisenberg}
+\Delta\rho_S \cdot \Delta\hat{\rho}_S \geq \frac{1}{4\pi}, \quad \text{and }
+\end{equation}
+\item[ii)] \emph{the Hirschman entropic uncertainty}
+\begin{equation}
+\label{hirschman}
+H[\rho_S] + H[\hat{\rho}_S] \geq \ln\Big(\frac{e}{2}\Big). \quad
+\end{equation}
+\end{enumerate}
+
+\textcolor{blue}{
+The information entropy density function $\rho_S$ devised in this section furnishes a physics-grounded interpretation of the information entropy signatures discovered in the previous section from sheer data analysis of finite SSH systems in real space. In particular, the uncertainty relations \eqref{heisenberg} and \eqref{hirschman} express concisely the trade-off between the localizability of information in topological phase transitions in real space and wavevector space. 
+}
+
+\textcolor{blue}{
+Another interesting consequence of interpreting the information entropy density function $\rho_S(x)$ as the probability distribution arising from an information entropy wave function $\psi_S(x)$ defined on a 1D continuous string is that is reconciles the apparently conflicting notions of a local topological signal arising from a global property of the whole SSH system. Indeed, while $\psi_S(x)$ is defined locally at every point of the 1D manifold, it is a single, global wave function encoding the distribution of topological information of a many-particle system. Therefore, the information entropy wave function $\psi_S(x)$ can be seen as an emergent property of a quantum many-body system.    
+}
+
+\textcolor{blue}{
+Given that our analysis has now come full circle back to theoretical physics, the task of numerically exploring equations \eqref{entropy_density}-\eqref{hirschman} will be left for the section \textbf{Numerical explorations on longer lattices} in the Supplementary Material.
+}
+
 
 
 

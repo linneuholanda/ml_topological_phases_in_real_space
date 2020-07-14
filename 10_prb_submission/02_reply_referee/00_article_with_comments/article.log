@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.5.2)  7 JUL 2020 02:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.5.2)  13 JUL 2020 23:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -741,7 +741,11 @@ Class revtex4-1 Info: cite was not loaded (OK!) on input line 57.
 Class revtex4-1 Info: mcite was not loaded (OK!) on input line 57.
 Class revtex4-1 Info: multicol was not loaded (OK!) on input line 57.
 
-(./article.aux)
+(./article.aux
+
+LaTeX Warning: Label `DCT' multiply defined.
+
+)
 \openout1 = `article.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 57.
@@ -758,8 +762,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 57.
 LaTeX Font Info:    ... okay on input line 57.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 57.
 LaTeX Font Info:    ... okay on input line 57.
-
-(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+ (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count125
 \scratchdimen=\dimen127
@@ -978,81 +981,84 @@ sh1/periodic_100_6561/imshow_winding_grid_winding_1_sim.png> <./ssh1/periodic_1
 eriodic_100_6561/imshow_winding_grid_winding_0_sim.png> <./ssh2/periodic_100_65
 61/imshow_winding_grid_winding_1_sim.png> <./ssh2/periodic_100_6561/imshow_wind
 ing_grid_winding_2_sim.png> <./ssh2/periodic_100_6561/merge_imshow_winding_grid
-s_sim.png>] [13] [14]
+s_sim.png>] [13] [14] [15]
 
-Package natbib Warning: Citation `ml_interpretability' on page 15 undefined on 
-input line 624.
+Package natbib Warning: Citation `ml_interpretability' on page 16 undefined on 
+input line 701.
 
 
-Package natbib Warning: Citation `ml_interpretability' on page 15 undefined on 
-input line 624.
+Package natbib Warning: Citation `ml_interpretability' on page 16 undefined on 
+input line 701.
 
-[15]
-<./ssh1/periodic_100_6561/plot_feature_importances.png, id=461, 867.24pt x 867.
+[16]
+<./ssh1/periodic_100_6561/plot_feature_importances.png, id=472, 867.24pt x 867.
 24pt>
 File: ./ssh1/periodic_100_6561/plot_feature_importances.png Graphic file (type 
 png)
 <use ./ssh1/periodic_100_6561/plot_feature_importances.png>
 Package pdftex.def Info: ./ssh1/periodic_100_6561/plot_feature_importances.png 
- used on input line 640.
+ used on input line 717.
 (pdftex.def)             Requested size: 249.9028pt x 249.89197pt.
-<./ssh2/periodic_100_6561/plot_feature_importances.png, id=462, 867.24pt x 867.
+<./ssh2/periodic_100_6561/plot_feature_importances.png, id=473, 867.24pt x 867.
 24pt>
 File: ./ssh2/periodic_100_6561/plot_feature_importances.png Graphic file (type 
 png)
 <use ./ssh2/periodic_100_6561/plot_feature_importances.png>
 Package pdftex.def Info: ./ssh2/periodic_100_6561/plot_feature_importances.png 
- used on input line 641.
+ used on input line 718.
 (pdftex.def)             Requested size: 249.9028pt x 249.89197pt.
-<./ssh1/periodic_100_6561/plot_fourier_feature_importances.png, id=469, 867.24p
+<./ssh1/periodic_100_6561/plot_fourier_feature_importances.png, id=480, 867.24p
 t x 867.24pt>
 File: ./ssh1/periodic_100_6561/plot_fourier_feature_importances.png Graphic fil
 e (type png)
 <use ./ssh1/periodic_100_6561/plot_fourier_feature_importances.png>
 Package pdftex.def Info: ./ssh1/periodic_100_6561/plot_fourier_feature_importan
-ces.png  used on input line 648.
+ces.png  used on input line 725.
 (pdftex.def)             Requested size: 249.9028pt x 249.89197pt.
-<./ssh2/periodic_100_6561/plot_fourier_feature_importances.png, id=470, 867.24p
+<./ssh2/periodic_100_6561/plot_fourier_feature_importances.png, id=481, 867.24p
 t x 867.24pt>
 File: ./ssh2/periodic_100_6561/plot_fourier_feature_importances.png Graphic fil
 e (type png)
 <use ./ssh2/periodic_100_6561/plot_fourier_feature_importances.png>
 Package pdftex.def Info: ./ssh2/periodic_100_6561/plot_fourier_feature_importan
-ces.png  used on input line 649.
+ces.png  used on input line 726.
 (pdftex.def)             Requested size: 249.9028pt x 249.89197pt.
 
 
-LaTeX Warning: Reference `LastBibItem' on page 16 undefined on input line 664.
+LaTeX Warning: Reference `LastBibItem' on page 17 undefined on input line 741.
 
-[16] [17 <./ssh1/periodic_100_6561/plot_feature_importances.png> <./ssh2/period
-ic_100_6561/plot_feature_importances.png>] [18 <./ssh1/periodic_100_6561/plot_f
-ourier_feature_importances.png> <./ssh2/periodic_100_6561/plot_fourier_feature_
-importances.png>]
+[17 <./ssh1/periodic_100_6561/plot_feature_importances.png> <./ssh2/periodic_10
+0_6561/plot_feature_importances.png>] [18 <./ssh1/periodic_100_6561/plot_fourie
+r_feature_importances.png> <./ssh2/periodic_100_6561/plot_fourier_feature_impor
+tances.png>]
 No file article.bbl.
 
 Package natbib Warning: There were undefined citations.
 
-[19]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1289.
+[19] [20]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1366.
  (./article.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1289.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1289.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1366.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1366.
 
 Package rerunfilecheck Info: File `article.out' has not changed.
-(rerunfilecheck)             Checksum: 2C589D817C876B39022726648DC982F0;1501.
+(rerunfilecheck)             Checksum: CBF95DAB9DAC6CCEA0E11EB47C86C41E;1501.
 
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 9897 strings out of 492982
- 141696 string characters out of 6134897
- 259415 words of memory out of 5000000
- 13123 multiletter control sequences out of 15000+600000
+ 9906 strings out of 492982
+ 141801 string characters out of 6134897
+ 256710 words of memory out of 5000000
+ 13127 multiletter control sequences out of 15000+600000
  25268 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 34i,9n,35p,1826b,612s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 34i,10n,35p,1826b,555s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist
@@ -1066,19 +1072,19 @@ r5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texmf/fonts/type1/public
-/cm-super/sfbi1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx0900.p
-fb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf
-/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/
-cm-super/sfrm0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0800.pf
-b></usr/share/texmf/fonts/type1/public/cm-super/sfrm0900.pfb></usr/share/texmf/
-fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/c
-m-super/sfti0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb
->
-Output written on article.pdf (19 pages, 1119234 bytes).
+t/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/
+cm-super/sfbi1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx0900.pf
+b></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/
+fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/c
+m-super/sfrm0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0800.pfb
+></usr/share/texmf/fonts/type1/public/cm-super/sfrm0900.pfb></usr/share/texmf/f
+onts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm
+-super/sfti0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb>
+Output written on article.pdf (20 pages, 1127647 bytes).
 PDF statistics:
- 646 PDF objects out of 1000 (max. 8388607)
- 545 compressed objects within 6 object streams
- 164 named destinations out of 1000 (max. 500000)
+ 661 PDF objects out of 1000 (max. 8388607)
+ 558 compressed objects within 6 object streams
+ 169 named destinations out of 1000 (max. 500000)
  261 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -170,6 +170,7 @@ class Simulation(object):
         self.fourier_mode = fourier_mode
         self.fourier_features_to_use = fourier_features_to_use
         self.fourier_real = fourier_real
+        #print("This is fourier_ real: ", fourier_real)
         self.fourier_normalize = fourier_normalize
         self.fourier_fillna = fourier_fillna
         self.omega = None
@@ -214,12 +215,24 @@ class Simulation(object):
             self.fourier_operator[:,[0,-1]] = 1/2*self.fourier_operator[:,[0,-1]]
             fourier_features_array = np.dot(self.dataframe.loc[:,self.features].values[:,real_space_features_to_use], self.fourier_operator)
             feature_name = "dct_feat"
-        
+        elif self.fourier_mode == "dst":
+            if self.features_to_use is None:
+                real_space_features_to_use = range(0,self.n_features//2-1)
+            else:
+                real_space_features_to_use = [f for f in range(self.n_features//2-1) if f in self.features_to_use]
+            if self.fourier_features_to_use is None:
+                self.fourier_features_to_use = range(0,self.n_features//2-1)
+            #M = self.n_features//2+1
+            self.omega = np.pi/(self.n_features//2)
+            self.fourier_operator =  np.array([[2*1j*np.sin(self.omega*((m+1)*(n+1))) for n in self.fourier_features_to_use] for m in                                                                                                       real_space_features_to_use])
+            #self.fourier_operator[:,[0,-1]] = 1/2*self.fourier_operator[:,[0,-1]]
+            fourier_features_array = np.dot(self.dataframe.loc[:,self.features].values[:,real_space_features_to_use], self.fourier_operator)
+            feature_name = "dst_feat"
         if self.fourier_real == "real":
             fourier_features_array = np.real(fourier_features_array)
         elif self.fourier_real == "imag":
+            #print("Making comeplex!")
             fourier_features_array = np.imag(fourier_features_array)
-        
         if self.fourier_normalize:
             norms = np.linalg.norm(fourier_features_array,axis=1)
             norms=np.reshape(norms,(-1,1))
@@ -281,7 +294,9 @@ class Simulation(object):
             if self.fourier_mode == "dft":
                 first_feat_name = "dft_feat0" 
             elif self.fourier_mode == "dct":
-                first_feat_name = "dct_feat0" 
+                first_feat_name = "dct_feat0"
+            elif self.fourier_mode == "dst":
+                first_feat_name = "dst_feat0" 
             feat_columns = self.fourier_dataframe.columns[self.fourier_dataframe.columns.get_loc(first_feat_name):]
             X, y = self.fourier_dataframe.loc[train_rows,feat_columns].values, self.fourier_dataframe[train_rows].phase.values
         else:    
@@ -327,7 +342,9 @@ class Simulation(object):
             if self.fourier_mode == "dft":
                 first_feat_name = "dft_feat0" 
             elif self.fourier_mode == "dct":
-                first_feat_name = "dct_feat0" 
+                first_feat_name = "dct_feat0"
+            elif self.fourier_mode == "dst":
+                first_feat_name = "dst_feat0" 
             feat_columns = self.fourier_dataframe.columns[self.fourier_dataframe.columns.get_loc(first_feat_name):]
             X = self.fourier_dataframe.loc[:,feat_columns].values
         else:    

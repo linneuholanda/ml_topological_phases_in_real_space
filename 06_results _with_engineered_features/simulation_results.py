@@ -19,11 +19,13 @@ from matplotlib.colors import LinearSegmentedColormap
 from collections import defaultdict
 #import json
 import csv
+import json
 
 ### Simulation directories
 SIMULATIONS_DIR = "/home/rio/ssh_simulations"
 # ssh1 simulations with engineered features
 SSH1_SIMULATIONS_DIR = os.path.join(SIMULATIONS_DIR,"ssh1")
+SSH1_PERIODIC_0TH_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_0th_scenario_100_6561")
 SSH1_PERIODIC_1ST_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_1st_scenario_100_6561")
 SSH1_PERIODIC_2ND_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_2nd_scenario_100_6561")
 SSH1_PERIODIC_3RD_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_3rd_scenario_100_6561")
@@ -36,6 +38,7 @@ SSH1_PERIODIC_9TH_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIO
 
 # ssh2 simulations with engineered features
 SSH2_SIMULATIONS_DIR = os.path.join(SIMULATIONS_DIR,"ssh2")
+SSH2_PERIODIC_0TH_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_0th_scenario_100_6561")
 SSH2_PERIODIC_1ST_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_1st_scenario_100_6561")
 SSH2_PERIODIC_2ND_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_2nd_scenario_100_6561")
 SSH2_PERIODIC_3RD_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_3rd_scenario_100_6561")
@@ -50,6 +53,7 @@ SSH2_PERIODIC_9TH_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIO
 FIGURES_DIR = "/home/rio/ml_topological_phases_in_real_space/5_paper"
 # ssh1 figures
 SSH1_FIGURES_DIR = os.path.join(FIGURES_DIR,"ssh1")
+SSH1_PERIODIC_0TH_SCENARIO_100_6561_FIGURES_DIR = os.path.join(SSH1_FIGURES_DIR,"periodic_0th_scenario_100_6561")
 SSH1_PERIODIC_1ST_SCENARIO_100_6561_FIGURES_DIR = os.path.join(SSH1_FIGURES_DIR,"periodic_1st_scenario_100_6561")
 SSH1_PERIODIC_2ND_SCENARIO_100_6561_FIGURES_DIR = os.path.join(SSH1_FIGURES_DIR,"periodic_2nd_scenario_100_6561")
 SSH1_PERIODIC_3RD_SCENARIO_100_6561_FIGURES_DIR = os.path.join(SSH1_FIGURES_DIR,"periodic_3rd_scenario_100_6561")
@@ -62,6 +66,7 @@ SSH1_PERIODIC_9TH_SCENARIO_100_6561_FIGURES_DIR = os.path.join(SSH1_FIGURES_DIR,
 
 # ssh2 figures
 SSH2_FIGURES_DIR = os.path.join(FIGURES_DIR,"ssh2")
+SSH2_PERIODIC_0TH_SCENARIO_100_6561_FIGURES_DIR = os.path.join(SSH2_FIGURES_DIR,"periodic_0th_scenario_100_6561")
 SSH2_PERIODIC_1ST_SCENARIO_100_6561_FIGURES_DIR = os.path.join(SSH2_FIGURES_DIR,"periodic_1st_scenario_100_6561")
 SSH2_PERIODIC_2ND_SCENARIO_100_6561_FIGURES_DIR = os.path.join(SSH2_FIGURES_DIR,"periodic_2nd_scenario_100_6561")
 SSH2_PERIODIC_3RD_SCENARIO_100_6561_FIGURES_DIR = os.path.join(SSH2_FIGURES_DIR,"periodic_3rd_scenario_100_6561")
@@ -75,6 +80,7 @@ SSH2_PERIODIC_9TH_SCENARIO_100_6561_FIGURES_DIR = os.path.join(SSH2_FIGURES_DIR,
 ### Generating figure directories
 generate_dirs = [FIGURES_DIR,
                  SSH1_FIGURES_DIR,
+                 SSH1_PERIODIC_0TH_SCENARIO_100_6561_FIGURES_DIR,
                  SSH1_PERIODIC_1ST_SCENARIO_100_6561_FIGURES_DIR,
                  SSH1_PERIODIC_2ND_SCENARIO_100_6561_FIGURES_DIR,
                  SSH1_PERIODIC_3RD_SCENARIO_100_6561_FIGURES_DIR,
@@ -85,6 +91,7 @@ generate_dirs = [FIGURES_DIR,
                  SSH1_PERIODIC_8TH_SCENARIO_100_6561_FIGURES_DIR,
                  SSH1_PERIODIC_9TH_SCENARIO_100_6561_FIGURES_DIR,
                  SSH2_FIGURES_DIR,
+                 SSH2_PERIODIC_0TH_SCENARIO_100_6561_FIGURES_DIR,
                  SSH2_PERIODIC_1ST_SCENARIO_100_6561_FIGURES_DIR,
                  SSH2_PERIODIC_2ND_SCENARIO_100_6561_FIGURES_DIR,
                  SSH2_PERIODIC_3RD_SCENARIO_100_6561_FIGURES_DIR,
@@ -101,6 +108,7 @@ for d in generate_dirs:
 
 ### Output notebooks
 # ssh1
+SSH1_PERIODIC_0TH_SCENARIO_100_6561_OUTPUT_NOTEBOOK = "zzz_results_output_ssh1_periodic_0th_scenario_100_6561.ipynb"
 SSH1_PERIODIC_1ST_SCENARIO_100_6561_OUTPUT_NOTEBOOK = "zzz_results_output_ssh1_periodic_1st_scenario_100_6561.ipynb"
 SSH1_PERIODIC_2ND_SCENARIO_100_6561_OUTPUT_NOTEBOOK = "zzz_results_output_ssh1_periodic_2nd_scenario_100_6561.ipynb"
 SSH1_PERIODIC_3RD_SCENARIO_100_6561_OUTPUT_NOTEBOOK = "zzz_results_output_ssh1_periodic_3rd_scenario_100_6561.ipynb"
@@ -111,6 +119,7 @@ SSH1_PERIODIC_7TH_SCENARIO_100_6561_OUTPUT_NOTEBOOK = "zzz_results_output_ssh1_p
 SSH1_PERIODIC_8TH_SCENARIO_100_6561_OUTPUT_NOTEBOOK = "zzz_results_output_ssh1_periodic_8th_scenario_100_6561.ipynb"
 SSH1_PERIODIC_9TH_SCENARIO_100_6561_OUTPUT_NOTEBOOK = "zzz_results_output_ssh1_periodic_9th_scenario_100_6561.ipynb"
 # ssh2
+SSH2_PERIODIC_0TH_SCENARIO_100_6561_OUTPUT_NOTEBOOK = "zzz_results_output_ssh2_periodic_0th_scenario_100_6561.ipynb"
 SSH2_PERIODIC_1ST_SCENARIO_100_6561_OUTPUT_NOTEBOOK = "zzz_results_output_ssh2_periodic_1st_scenario_100_6561.ipynb"
 SSH2_PERIODIC_2ND_SCENARIO_100_6561_OUTPUT_NOTEBOOK = "zzz_results_output_ssh2_periodic_2nd_scenario_100_6561.ipynb"
 SSH2_PERIODIC_3RD_SCENARIO_100_6561_OUTPUT_NOTEBOOK = "zzz_results_output_ssh2_periodic_3rd_scenario_100_6561.ipynb"
@@ -585,6 +594,7 @@ class ExperimentEnsemble(object):
         ### feature importances
         self.feature_importance = None
         self.cumulative_feature_importance = None
+        self.sorted_feature_importance = None
         self.real_psi = None
         self.fourier_feature_importance = None
         self.cumulative_fourier_feature_importance = None
@@ -687,7 +697,7 @@ class ExperimentEnsemble(object):
                 w = csv.writer(f)
                 w.writerows(self.bootstrap_accuracy.items())
 
-    def compute_mean_feature_importance(self, sort_importances= False, save_to_disk = False):
+    def compute_mean_feature_importance(self, save_to_disk = False):
         """
         Computes feature importances using averages from all experiments
         """
@@ -696,28 +706,46 @@ class ExperimentEnsemble(object):
             current_model = load(os.path.join(self.simulation_dir, "model", str(exp) + ".joblib"))
             feature_importances.append(current_model.feature_importances_)
         mean_feature_importance = np.mean(feature_importances, axis = 0)
-        if sort_importances:
-            sorted_args = np.argsort(mean_feature_importance)[::-1] 
-            sorted_feature_importance = mean_feature_importance[sorted_args]
-            self.feature_importance = dict(zip(sorted_args, sorted_feature_importance))  ##Adding 1 so that features start at 1
-            self.cumulative_feature_importance = dict(zip(sorted_args, np.cumsum(sorted_feature_importance)))
-        else:
-            non_sorted_args = np.arange(len(mean_feature_importance))
-            self.feature_importance = dict(zip(non_sorted_args, mean_feature_importance))
-            self.cumulative_feature_importance = dict(zip(non_sorted_args, np.cumsum(mean_feature_importance) ) )
+        #if sort_importances:
+        #    sorted_args = np.argsort(mean_feature_importance)[::-1] 
+        #    sorted_feature_importance = mean_feature_importance[sorted_args]
+        #    self.feature_importance = dict(zip(sorted_args, sorted_feature_importance))  ##Adding 1 so that features start at
+        #    self.cumulative_feature_importance = dict(zip(sorted_args, np.cumsum(sorted_feature_importance)))
+        ### collecting feature importances
+        non_sorted_args = np.arange(len(mean_feature_importance))
+        self.feature_importance = dict(zip(non_sorted_args, mean_feature_importance))
+        self.cumulative_feature_importance = dict(zip(non_sorted_args, np.cumsum(mean_feature_importance) ) )
         self.real_psi = {k:np.sqrt(v) for k,v in self.feature_importance.items()}
+        ### collecting ordered feature importances
+        sorted_args = np.argsort(mean_feature_importance)[::-1] 
+        sorted_feature_importance = mean_feature_importance[sorted_args]
+        self.sorted_feature_importance = dict(zip(sorted_args, sorted_feature_importance)) 
+        
         if save_to_disk:
-            with open(os.path.join(self.simulation_dir, "feature_importance.csv"), 'w') as f:  
-                w = csv.writer(f)
-                w.writerows(self.feature_importance.items())
-            with open(os.path.join(self.simulation_dir, "cumulative_feature_importance.csv"), 'w') as f:  
-                w = csv.writer(f)
-                w.writerows(self.cumulative_feature_importance.items())
-            with open(os.path.join(self.simulation_dir, "real_psi.csv"), 'w') as f:  
-                w = csv.writer(f)
-                w.writerows(self.real_psi.items())
+            feature_importances_dir = os.path.join(self.simulation_dir, "feature_importances")
+            if not os.path.isdir(feature_importances_dir):
+                os.mkdir(feature_importances_dir)
+            with open(os.path.join(feature_importances_dir, "feature_importance.json"), 'w') as f:  
+                dump_dict = {str(k):v for k,v in self.feature_importance.items()}
+                json.dump(dump_dict, f)
+                #w = csv.writer(f)
+                #w.writerows(self.feature_importance.items())
+            with open(os.path.join(feature_importances_dir, "cumulative_feature_importance.json"), 'w') as f:  
+                dump_dict = {str(k):v for k,v in self.cumulative_feature_importance.items()}
+                json.dump(dump_dict, f)
+                #w = csv.writer(f)
+                #w.writerows(self.cumulative_feature_importance.items())
+            with open(os.path.join(feature_importances_dir, "sorted_feature_importance.json"), 'w') as f:  
+                dump_dict = {str(k):v for k,v in self.sorted_feature_importance.items()}
+                json.dump(dump_dict, f)
+                #w = csv.writer(f)
+                #w.writerows(self.sorted_feature_importance.items())
+            #with open(os.path.join(self.simulation_dir, "real_psi.csv"), 'w') as f:  
+            #    w = csv.writer(f)
+            #    w.writerows(self.real_psi.items())
                 
     def compute_fourier_feature_importance(self, save_to_disk=False):
+        """THIS IS NOT FINISHED! DO NOT USE IT"""
         lattice_sites, feature_importance = zip(*self.feature_importance.items())
         _, real_psi = zip(*self.real_psi.items())
         lattice_sites = np.array(lattice_sites)
@@ -743,9 +771,12 @@ class ExperimentEnsemble(object):
             with open(os.path.join(self.simulation_dir, "cumulative_fourier_feature_importance.csv"), 'w') as f:  
                 w = csv.writer(f)
                 w.writerows(self.cumulative_fourier_feature_importance.items())
-            with open(os.path.join(self.simulation_dir, "fourier_psi.csv"), 'w') as f:  
-                w = csv.writer(f)
-                w.writerows(self.fourier_psi.items())
+            #with open(os.path.join(feature_importances_dir, "sorted_fourier_feature_importance.csv"), 'w') as f:  
+            #    w = csv.writer(f)
+            #    w.writerows(self.sorted_fourier_feature_importance.items())
+            #with open(os.path.join(self.simulation_dir, "fourier_psi.csv"), 'w') as f:  
+            #    w = csv.writer(f)
+            #    w.writerows(self.fourier_psi.items())
          
     def compute_feature_importance_statistics(self,save_to_disk=False):
         ### statistics in real space

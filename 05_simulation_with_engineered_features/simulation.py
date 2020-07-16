@@ -15,6 +15,7 @@ from tqdm import tqdm
 from joblib import dump
 import csv
 import papermill as pm
+import json
 
 ### Simulation directories
 SIMULATIONS_DIR = "/home/rio/ssh_simulations"
@@ -22,6 +23,7 @@ SIMULATIONS_DIR = "/home/rio/ssh_simulations"
 # ssh1 simulations with fourier engineered features
 SSH1_SIMULATIONS_DIR = os.path.join(SIMULATIONS_DIR,"ssh1")
 # N = 100
+SSH1_PERIODIC_0TH_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_0th_scenario_100_6561")
 SSH1_PERIODIC_1ST_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_1st_scenario_100_6561")
 SSH1_PERIODIC_2ND_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_2nd_scenario_100_6561")
 SSH1_PERIODIC_3RD_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_3rd_scenario_100_6561")
@@ -35,6 +37,7 @@ SSH1_PERIODIC_9TH_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIO
 # ssh2 simulations
 SSH2_SIMULATIONS_DIR = os.path.join(SIMULATIONS_DIR,"ssh2")
 # N = 100
+SSH2_PERIODIC_0TH_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_0th_scenario_100_6561")
 SSH2_PERIODIC_1ST_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_1st_scenario_100_6561")
 SSH2_PERIODIC_2ND_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_2nd_scenario_100_6561")
 SSH2_PERIODIC_3RD_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_3rd_scenario_100_6561")
@@ -52,6 +55,7 @@ SSH2_PERIODIC_9TH_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIO
 ### Generating simulation directories
 generate_dirs = [SIMULATIONS_DIR,
                  SSH1_SIMULATIONS_DIR,
+                 SSH1_PERIODIC_0TH_SCENARIO_100_6561_SIMULATION_DIR,
                  SSH1_PERIODIC_1ST_SCENARIO_100_6561_SIMULATION_DIR,
                  SSH1_PERIODIC_2ND_SCENARIO_100_6561_SIMULATION_DIR,
                  SSH1_PERIODIC_3RD_SCENARIO_100_6561_SIMULATION_DIR,
@@ -62,6 +66,7 @@ generate_dirs = [SIMULATIONS_DIR,
                  SSH1_PERIODIC_8TH_SCENARIO_100_6561_SIMULATION_DIR,
                  SSH1_PERIODIC_9TH_SCENARIO_100_6561_SIMULATION_DIR,
                  SSH2_SIMULATIONS_DIR,
+                 SSH2_PERIODIC_0TH_SCENARIO_100_6561_SIMULATION_DIR,
                  SSH2_PERIODIC_1ST_SCENARIO_100_6561_SIMULATION_DIR,
                  SSH2_PERIODIC_2ND_SCENARIO_100_6561_SIMULATION_DIR,
                  SSH2_PERIODIC_3RD_SCENARIO_100_6561_SIMULATION_DIR,
@@ -93,6 +98,7 @@ SSH2_PERIODIC_220_6561_CSV = os.path.join(SSH2_CSVS_DIR,"periodic_220_6561.csv")
 
 ### Output files
 # ssh1
+SSH1_0TH_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh1_0th_scenario_100_6561.ipynb"
 SSH1_1ST_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh1_1st_scenario_100_6561.ipynb"
 SSH1_2ND_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh1_2nd_scenario_100_6561.ipynb"
 SSH1_3RD_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh1_3rd_scenario_100_6561.ipynb"
@@ -103,6 +109,7 @@ SSH1_7TH_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh1_7th_scenari
 SSH1_8TH_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh1_8th_scenario_100_6561.ipynb"
 SSH1_9TH_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh1_9th_scenario_100_6561.ipynb"
 # ssh2
+SSH2_0TH_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh2_0th_scenario_100_6561.ipynb"
 SSH2_1ST_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh2_1st_scenario_100_6561.ipynb"
 SSH2_2ND_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh2_2nd_scenario_100_6561.ipynb"
 SSH2_3RD_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh2_3rd_scenario_100_6561.ipynb"
@@ -292,11 +299,11 @@ class Simulation(object):
         train_rows = self.dataframe.type_of == "train"
         if self.fourier_mode is not None:
             if self.fourier_mode == "dft":
-                first_feat_name = "dft_feat0" 
+                first_feat_name = self.fourier_features[0] 
             elif self.fourier_mode == "dct":
-                first_feat_name = "dct_feat0"
+                first_feat_name = self.fourier_features[0]
             elif self.fourier_mode == "dst":
-                first_feat_name = "dst_feat0" 
+                first_feat_name = self.fourier_features[0]
             feat_columns = self.fourier_dataframe.columns[self.fourier_dataframe.columns.get_loc(first_feat_name):]
             X, y = self.fourier_dataframe.loc[train_rows,feat_columns].values, self.fourier_dataframe[train_rows].phase.values
         else:    
@@ -340,11 +347,11 @@ class Simulation(object):
         #print("THIS IS  the type of predict_params: ", type(predict_params))
         if self.fourier_mode is not None:
             if self.fourier_mode == "dft":
-                first_feat_name = "dft_feat0" 
+                first_feat_name = self.fourier_features[0]
             elif self.fourier_mode == "dct":
-                first_feat_name = "dct_feat0"
+                first_feat_name = self.fourier_features[0]
             elif self.fourier_mode == "dst":
-                first_feat_name = "dst_feat0" 
+                first_feat_name = self.fourier_features[0]
             feat_columns = self.fourier_dataframe.columns[self.fourier_dataframe.columns.get_loc(first_feat_name):]
             X = self.fourier_dataframe.loc[:,feat_columns].values
         else:    
@@ -471,6 +478,7 @@ class Simulation(object):
         save_accuracy: a bool. Whether to save accuracy summaries in disk.
         save_models: a bool. Whether to save models in disk.
         """
+        print("Simulation mode: ", self.fourier_mode)
         if save_eigenvector or save_hamiltonian or save_accuracy or save_models:
             eigenvector_path = os.path.join(self.simulation_dir, "eigenvector")
             hamiltonian_path = os.path.join(self.simulation_dir, "hamiltonian")

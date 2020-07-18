@@ -14,10 +14,14 @@ def get_parameters_ssh1(ssh_type, chain_length, n_hamiltonians, experiment_name=
     
     if not os.path.isdir(base_figs_dir):
         os.mkdir(base_figs_dir)
-    figs_dir = os.path.join(base_figs_dir,"{}_{}_{}".format(ssh_type,chain_length,n_hamiltonians))
+    #figs_dir = os.path.join(base_figs_dir,"{}_{}_{}".format(ssh_type,chain_length,n_hamiltonians))
+    figs_dir = os.path.join(base_figs_dir,ssh_type)
     if not os.path.isdir(figs_dir):
         os.mkdir(figs_dir)    
-    simulation_dir = os.path.join(base_simulations_dir,"{}_{}_{}".format(ssh_type,chain_length,n_hamiltonians)) 
+    #simulation_dir = os.path.join(base_simulations_dir,"{}_{}_{}".format(ssh_type,chain_length,n_hamiltonians)) 
+    simulation_dir = os.path.join(base_simulations_dir,ssh_type) 
+    print("figs_dir: ", figs_dir)
+    print("simulation_dir: ", simulation_dir)
     
     #figures_dir = os.path.join(base_figs_dir,"{}_{}_{}".format(ssh_type,chain_length,n_hamiltonians)) 
     
@@ -221,11 +225,12 @@ def get_parameters_ssh2(ssh_type, chain_length, n_hamiltonians, experiment_name=
     
     if not os.path.isdir(base_figs_dir):
         os.mkdir(base_figs_dir)
-    figs_dir = os.path.join(base_figs_dir,"{}_{}_{}".format(ssh_type,chain_length,n_hamiltonians))
+    #figs_dir = os.path.join(base_figs_dir,"{}_{}_{}".format(ssh_type,chain_length,n_hamiltonians))
+    figs_dir = os.path.join(base_figs_dir,ssh_type)
     if not os.path.isdir(figs_dir):
         os.mkdir(figs_dir)    
-    simulation_dir = os.path.join(base_simulations_dir,"{}_{}_{}".format(ssh_type,chain_length,n_hamiltonians)) 
-    
+    #simulation_dir = os.path.join(base_simulations_dir,"{}_{}_{}".format(ssh_type,chain_length,n_hamiltonians)) 
+    simulation_dir = os.path.join(base_simulations_dir,ssh_type) 
     #########################################################################
     ################### Results from a single experiment ####################
     #########################################################################

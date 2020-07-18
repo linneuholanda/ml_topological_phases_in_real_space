@@ -17,65 +17,76 @@ import csv
 import papermill as pm
 import json
 
-### Simulation directories
+######## Simulation directories
 SIMULATIONS_DIR = "/home/rio/ssh_simulations"
 
-# ssh1 simulations with fourier engineered features
+#### ssh1 simulations 
 SSH1_SIMULATIONS_DIR = os.path.join(SIMULATIONS_DIR,"ssh1")
-# N = 100
-SSH1_PERIODIC_0TH_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_0th_scenario_100_6561")
-SSH1_PERIODIC_1ST_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_1st_scenario_100_6561")
-SSH1_PERIODIC_2ND_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_2nd_scenario_100_6561")
-SSH1_PERIODIC_3RD_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_3rd_scenario_100_6561")
-SSH1_PERIODIC_4TH_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_4th_scenario_100_6561")
-SSH1_PERIODIC_5TH_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_5th_scenario_100_6561")
-SSH1_PERIODIC_6TH_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_6th_scenario_100_6561")
-SSH1_PERIODIC_7TH_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_7th_scenario_100_6561")
-SSH1_PERIODIC_8TH_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_8th_scenario_100_6561")
-SSH1_PERIODIC_9TH_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_9th_scenario_100_6561")
+## N = 100 simulation directories
+SSH1_PERIODIC_100_6561_SIMULATION_DIR = os.path.join(SSH1_SIMULATIONS_DIR,"periodic_100_6561")
+# Real space simulation directories
+SSH1_REAL_SPACE_ALL_SITES = os.path.join(SSH1_PERIODIC_100_6561_SIMULATION_DIR,"real_space_all_sites")
+SSH1_REAL_SPACE_BEST_04_SITES = os.path.join(SSH1_PERIODIC_100_6561_SIMULATION_DIR,"real_space_best_04_sites")
+# DFT space 
+SSH1_DFT_ALL_WAVEVECTOR_SITES = os.path.join(SSH1_PERIODIC_100_6561_SIMULATION_DIR,"dft_all_wavevector_sites")
+SSH1_DFT_BEST_04_WAVEVECTOR_SITES = os.path.join(SSH1_PERIODIC_100_6561_SIMULATION_DIR,"dft_best_04_wavevector_sites")
+SSH1_DFT_BEST_04_WAVEVECTOR_SITES_FROM_BEST_04_REAL_SPACE_SITES = os.path.join(SSH1_PERIODIC_100_6561_SIMULATION_DIR,"dft_best_04_wavevector_sites_from_best_04_real_space_sites")
+# DCT space 
+SSH1_DCT_ALL_WAVEVECTOR_SITES = os.path.join(SSH1_PERIODIC_100_6561_SIMULATION_DIR,"dct_all_wavevector_sites")
+SSH1_DCT_BEST_04_WAVEVECTOR_SITES = os.path.join(SSH1_PERIODIC_100_6561_SIMULATION_DIR,"dct_best_04_wavevector_sites")
+SSH1_DCT_BEST_04_WAVEVECTOR_SITES_FROM_BEST_04_REAL_SPACE_SITES = os.path.join(SSH1_PERIODIC_100_6561_SIMULATION_DIR,"dct_best_04_wavevector_sites_from_best_04_real_space_sites")
+# DST space 
+SSH1_DST_ALL_WAVEVECTOR_SITES = os.path.join(SSH1_PERIODIC_100_6561_SIMULATION_DIR,"dst_all_wavevector_sites")
+SSH1_DST_BEST_04_WAVEVECTOR_SITES = os.path.join(SSH1_PERIODIC_100_6561_SIMULATION_DIR,"dst_best_04_wavevector_sites")
+SSH1_DST_BEST_04_WAVEVECTOR_SITES_FROM_BEST_04_REAL_SPACE_SITES = os.path.join(SSH1_PERIODIC_100_6561_SIMULATION_DIR,"dst_best_04_wavevector_sites_from_best_04_real_space_sites")
 
-# ssh2 simulations
+#### ssh2 simulations 
 SSH2_SIMULATIONS_DIR = os.path.join(SIMULATIONS_DIR,"ssh2")
-# N = 100
-SSH2_PERIODIC_0TH_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_0th_scenario_100_6561")
-SSH2_PERIODIC_1ST_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_1st_scenario_100_6561")
-SSH2_PERIODIC_2ND_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_2nd_scenario_100_6561")
-SSH2_PERIODIC_3RD_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_3rd_scenario_100_6561")
-SSH2_PERIODIC_4TH_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_4th_scenario_100_6561")
-SSH2_PERIODIC_5TH_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_5th_scenario_100_6561")
-SSH2_PERIODIC_6TH_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_6th_scenario_100_6561")
-SSH2_PERIODIC_7TH_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_7th_scenario_100_6561")
-SSH2_PERIODIC_8TH_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_8th_scenario_100_6561")
-SSH2_PERIODIC_9TH_SCENARIO_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_9th_scenario_100_6561")
-
-#SSH2_PERIODIC_ENGINEERED_140_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_engineered_140_6561")
-#SSH2_PERIODIC_ENGINEERED_180_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_engineered_180_6561")
-#SSH2_PERIODIC_ENGINEERED_220_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_engineered_220_6561")
-
+## N = 100 simulation directories
+SSH2_PERIODIC_100_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_100_6561")
+# Real space simulation directories
+SSH2_REAL_SPACE_ALL_SITES = os.path.join(SSH2_PERIODIC_100_6561_SIMULATION_DIR,"real_space_all_sites")
+SSH2_REAL_SPACE_BEST_12_SITES = os.path.join(SSH2_PERIODIC_100_6561_SIMULATION_DIR,"real_space_best_12_sites")
+# DFT space 
+SSH2_DFT_ALL_WAVEVECTOR_SITES = os.path.join(SSH2_PERIODIC_100_6561_SIMULATION_DIR,"dft_all_wavevector_sites")
+SSH2_DFT_BEST_12_WAVEVECTOR_SITES = os.path.join(SSH2_PERIODIC_100_6561_SIMULATION_DIR,"dft_best_12_wavevector_sites")
+SSH2_DFT_BEST_12_WAVEVECTOR_SITES_FROM_BEST_12_REAL_SPACE_SITES = os.path.join(SSH2_PERIODIC_100_6561_SIMULATION_DIR,"dft_best_12_wavevector_sites_from_best_12_real_space_sites")
+# DCT space 
+SSH2_DCT_ALL_WAVEVECTOR_SITES = os.path.join(SSH2_PERIODIC_100_6561_SIMULATION_DIR,"dct_all_wavevector_sites")
+SSH2_DCT_BEST_12_WAVEVECTOR_SITES = os.path.join(SSH2_PERIODIC_100_6561_SIMULATION_DIR,"dct_best_12_wavevector_sites")
+SSH2_DCT_BEST_12_WAVEVECTOR_SITES_FROM_BEST_12_REAL_SPACE_SITES = os.path.join(SSH2_PERIODIC_100_6561_SIMULATION_DIR,"dct_best_12_wavevector_sites_from_best_12_real_space_sites")
+# DST space 
+SSH2_DST_ALL_WAVEVECTOR_SITES = os.path.join(SSH2_PERIODIC_100_6561_SIMULATION_DIR,"dst_all_wavevector_sites")
+SSH2_DST_BEST_12_WAVEVECTOR_SITES = os.path.join(SSH2_PERIODIC_100_6561_SIMULATION_DIR,"dst_best_12_wavevector_sites")
+SSH2_DST_BEST_12_WAVEVECTOR_SITES_FROM_BEST_12_REAL_SPACE_SITES = os.path.join(SSH2_PERIODIC_100_6561_SIMULATION_DIR,"dst_best_12_wavevector_sites_from_best_12_real_space_sites")
 ### Generating simulation directories
 generate_dirs = [SIMULATIONS_DIR,
                  SSH1_SIMULATIONS_DIR,
-                 SSH1_PERIODIC_0TH_SCENARIO_100_6561_SIMULATION_DIR,
-                 SSH1_PERIODIC_1ST_SCENARIO_100_6561_SIMULATION_DIR,
-                 SSH1_PERIODIC_2ND_SCENARIO_100_6561_SIMULATION_DIR,
-                 SSH1_PERIODIC_3RD_SCENARIO_100_6561_SIMULATION_DIR,
-                 SSH1_PERIODIC_4TH_SCENARIO_100_6561_SIMULATION_DIR,
-                 SSH1_PERIODIC_5TH_SCENARIO_100_6561_SIMULATION_DIR,
-                 SSH1_PERIODIC_6TH_SCENARIO_100_6561_SIMULATION_DIR,
-                 SSH1_PERIODIC_7TH_SCENARIO_100_6561_SIMULATION_DIR,
-                 SSH1_PERIODIC_8TH_SCENARIO_100_6561_SIMULATION_DIR,
-                 SSH1_PERIODIC_9TH_SCENARIO_100_6561_SIMULATION_DIR,
+                 SSH1_PERIODIC_100_6561_SIMULATION_DIR,
+                 SSH1_REAL_SPACE_ALL_SITES,
+                 SSH1_REAL_SPACE_BEST_04_SITES,
+                 SSH1_DFT_ALL_WAVEVECTOR_SITES,
+                 SSH1_DFT_BEST_04_WAVEVECTOR_SITES,
+                 SSH1_DFT_BEST_04_WAVEVECTOR_SITES_FROM_BEST_04_REAL_SPACE_SITES,
+                 SSH1_DCT_ALL_WAVEVECTOR_SITES,
+                 SSH1_DCT_BEST_04_WAVEVECTOR_SITES,
+                 SSH1_DCT_BEST_04_WAVEVECTOR_SITES_FROM_BEST_04_REAL_SPACE_SITES,
+                 SSH1_DST_ALL_WAVEVECTOR_SITES,
+                 SSH1_DST_BEST_04_WAVEVECTOR_SITES,
+                 SSH1_DST_BEST_04_WAVEVECTOR_SITES_FROM_BEST_04_REAL_SPACE_SITES,
                  SSH2_SIMULATIONS_DIR,
-                 SSH2_PERIODIC_0TH_SCENARIO_100_6561_SIMULATION_DIR,
-                 SSH2_PERIODIC_1ST_SCENARIO_100_6561_SIMULATION_DIR,
-                 SSH2_PERIODIC_2ND_SCENARIO_100_6561_SIMULATION_DIR,
-                 SSH2_PERIODIC_3RD_SCENARIO_100_6561_SIMULATION_DIR,
-                 SSH2_PERIODIC_4TH_SCENARIO_100_6561_SIMULATION_DIR,
-                 SSH2_PERIODIC_5TH_SCENARIO_100_6561_SIMULATION_DIR,
-                 SSH2_PERIODIC_6TH_SCENARIO_100_6561_SIMULATION_DIR,
-                 SSH2_PERIODIC_7TH_SCENARIO_100_6561_SIMULATION_DIR,
-                 SSH2_PERIODIC_8TH_SCENARIO_100_6561_SIMULATION_DIR,
-                 SSH2_PERIODIC_9TH_SCENARIO_100_6561_SIMULATION_DIR,
+                 SSH2_PERIODIC_100_6561_SIMULATION_DIR,
+                 SSH2_REAL_SPACE_ALL_SITES,
+                 SSH2_REAL_SPACE_BEST_12_SITES,
+                 SSH2_DFT_ALL_WAVEVECTOR_SITES,
+                 SSH2_DFT_BEST_12_WAVEVECTOR_SITES,
+                 SSH2_DFT_BEST_12_WAVEVECTOR_SITES_FROM_BEST_12_REAL_SPACE_SITES,
+                 SSH2_DCT_ALL_WAVEVECTOR_SITES,
+                 SSH2_DCT_BEST_12_WAVEVECTOR_SITES,
+                 SSH2_DCT_BEST_12_WAVEVECTOR_SITES_FROM_BEST_12_REAL_SPACE_SITES,
+                 SSH2_DST_ALL_WAVEVECTOR_SITES,
+                 SSH2_DST_BEST_12_WAVEVECTOR_SITES,
+                 SSH2_DST_BEST_12_WAVEVECTOR_SITES_FROM_BEST_12_REAL_SPACE_SITES,
                 ]
 for d in generate_dirs:
     if not os.path.isdir(d):
@@ -96,29 +107,40 @@ SSH2_PERIODIC_140_6561_CSV = os.path.join(SSH2_CSVS_DIR,"periodic_140_6561.csv")
 SSH2_PERIODIC_180_6561_CSV = os.path.join(SSH2_CSVS_DIR,"periodic_180_6561.csv")
 SSH2_PERIODIC_220_6561_CSV = os.path.join(SSH2_CSVS_DIR,"periodic_220_6561.csv")
 
-### Output files
-# ssh1
-SSH1_0TH_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh1_0th_scenario_100_6561.ipynb"
-SSH1_1ST_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh1_1st_scenario_100_6561.ipynb"
-SSH1_2ND_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh1_2nd_scenario_100_6561.ipynb"
-SSH1_3RD_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh1_3rd_scenario_100_6561.ipynb"
-SSH1_4TH_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh1_4th_scenario_100_6561.ipynb"
-SSH1_5TH_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh1_5th_scenario_100_6561.ipynb"
-SSH1_6TH_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh1_6th_scenario_100_6561.ipynb"
-SSH1_7TH_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh1_7th_scenario_100_6561.ipynb"
-SSH1_8TH_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh1_8th_scenario_100_6561.ipynb"
-SSH1_9TH_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh1_9th_scenario_100_6561.ipynb"
-# ssh2
-SSH2_0TH_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh2_0th_scenario_100_6561.ipynb"
-SSH2_1ST_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh2_1st_scenario_100_6561.ipynb"
-SSH2_2ND_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh2_2nd_scenario_100_6561.ipynb"
-SSH2_3RD_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh2_3rd_scenario_100_6561.ipynb"
-SSH2_4TH_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh2_4th_scenario_100_6561.ipynb"
-SSH2_5TH_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh2_5th_scenario_100_6561.ipynb"
-SSH2_6TH_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh2_6th_scenario_100_6561.ipynb"
-SSH2_7TH_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh2_7th_scenario_100_6561.ipynb"
-SSH2_8TH_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh2_8th_scenario_100_6561.ipynb"
-SSH2_9TH_SCENARIO_100_6561_OUTPUT_FILE = "zzz_simulation_output_ssh2_9th_scenario_100_6561.ipynb"
+######## Output Notebooks
+#### ssh1
+## Real space
+SSH1_REAL_SPACE_ALL_SITES_SIMULATION_NOTEBOOK = "zzz_ssh1_real_space_all_sites_simulation_notebook.ipynb"
+SSH1_REAL_SPACE_BEST_04_SITES_SIMULATION_NOTEBOOK = "zzz_ssh1_real_space_best_04_sites_simulation_notebook.ipynb"
+## DFT
+SSH1_DFT_ALL_WAVEVECTOR_SITES_SIMULATION_NOTEBOOK = "zzz_ssh1_dft_all_wavevector_sites_simulation_notebook.ipynb"
+SSH1_DFT_BEST_04_WAVEVECTOR_SITES_SIMULATION_NOTEBOOK = "zzz_ssh1_dft_best_04_wavevector_sites_simulation_notebook.ipynb"
+SSH1_DFT_BEST_04_WAVEVECTOR_SITES_FROM_BEST_04_REAL_SPACE_SITES_SIMULATION_NOTEBOOK = "zzz_ssh1_dft_best_04_wavevector_sites_from_best_04_real_space_sites_simulation_notebook.ipynb"
+## DCT
+SSH1_DCT_ALL_WAVEVECTOR_SITES_SIMULATION_NOTEBOOK = "zzz_ssh1_dct_all_wavevector_sites_simulation_notebook.ipynb"
+SSH1_DCT_BEST_04_WAVEVECTOR_SITES_SIMULATION_NOTEBOOK = "zzz_ssh1_dct_best_04_wavevector_sites_simulation_notebook.ipynb"
+SSH1_DCT_BEST_04_WAVEVECTOR_SITES_FROM_BEST_04_REAL_SPACE_SITES_SIMULATION_NOTEBOOK = "zzz_ssh1_dct_best_04_wavevector_sites_from_best_04_real_space_sites_simulation_notebook.ipynb"
+## DST
+SSH1_DST_ALL_WAVEVECTOR_SITES_SIMULATION_NOTEBOOK = "zzz_ssh1_dst_all_wavevector_sites_simulation_notebook.ipynb"
+SSH1_DST_BEST_04_WAVEVECTOR_SITES_SIMULATION_NOTEBOOK = "zzz_ssh1_dst_best_04_wavevector_sites_simulation_notebook.ipynb"
+SSH1_DST_BEST_04_WAVEVECTOR_SITES_FROM_BEST_04_REAL_SPACE_SITES_SIMULATION_NOTEBOOK = "zzz_ssh1_dst_best_04_wavevector_sites_from_best_04_real_space_sites_simulation_notebook.ipynb"
+
+#### ssh2
+## Real space
+SSH2_REAL_SPACE_ALL_SITES_SIMULATION_NOTEBOOK= "zzz_ssh2_real_space_all_sites_simulation_notebook.ipynb"
+SSH2_REAL_SPACE_BEST_12_SITES_SIMULATION_NOTEBOOK = "zzz_ssh2_real_space_best_12_sites_simulation_notebook.ipynb"
+## DFT
+SSH2_DFT_ALL_WAVEVECTOR_SITES_SIMULATION_NOTEBOOK = "zzz_ssh2_dft_all_wavevector_sites_simulation_notebook.ipynb"
+SSH2_DFT_BEST_12_WAVEVECTOR_SITES_SIMULATION_NOTEBOOK = "zzz_ssh2_dft_best_12_wavevector_sites_simulation_notebook.ipynb"
+SSH2_DFT_BEST_12_WAVEVECTOR_SITES_FROM_BEST_12_REAL_SPACE_SITES_SIMULATION_NOTEBOOK = "zzz_ssh2_dft_best_12_wavevector_sites_from_best_12_real_space_sites_simulation_notebook.ipynb"
+## DCT
+SSH2_DCT_ALL_WAVEVECTOR_SITES_SIMULATION_NOTEBOOK = "zzz_ssh2_dct_all_wavevector_sites_simulation_notebook.ipynb"
+SSH2_DCT_BEST_12_WAVEVECTOR_SITES_SIMULATION_NOTEBOOK = "zzz_ssh2_dct_best_12_wavevector_sites_simulation_notebook.ipynb"
+SSH2_DCT_BEST_12_WAVEVECTOR_SITES_FROM_BEST_12_REAL_SPACE_SITES_SIMULATION_NOTEBOOK = "zzz_ssh2_dct_best_12_wavevector_sites_from_best_12_real_space_sites_simulation_notebook.ipynb"
+## DST
+SSH2_DST_ALL_WAVEVECTOR_SITES_SIMULATION_NOTEBOOK = "zzz_ssh2_dst_all_wavevector_sites_simulation_notebook.ipynb"
+SSH2_DST_BEST_12_WAVEVECTOR_SITES_SIMULATION_NOTEBOOK = "zzz_ssh2_dst_best_12_wavevector_sites_simulation_notebook.ipynb"
+SSH2_DST_BEST_12_WAVEVECTOR_SITES_FROM_BEST_12_REAL_SPACE_SITES_SIMULATION_NOTEBOOK = "zzz_ssh2_dst_best_12_wavevector_sites_from_best_12_real_space_sites_simulation_notebook.ipynb"
 
 ### Template notebook
 TEMPLATE_NOTEBOOK = "0_simulation_template.ipynb"
@@ -231,7 +253,7 @@ class Simulation(object):
                 self.fourier_features_to_use = range(0,self.n_features//2-1)
             #M = self.n_features//2+1
             self.omega = np.pi/(self.n_features//2)
-            self.fourier_operator =  np.array([[2*1j*np.sin(self.omega*((m+1)*(n+1))) for n in self.fourier_features_to_use] for m in                                                                                                       real_space_features_to_use])
+            self.fourier_operator =  np.array([[2*np.sin(self.omega*((m+1)*(n+1))) for n in self.fourier_features_to_use] for m in                                                                                                       real_space_features_to_use])
             #self.fourier_operator[:,[0,-1]] = 1/2*self.fourier_operator[:,[0,-1]]
             fourier_features_array = np.dot(self.dataframe.loc[:,self.features].values[:,real_space_features_to_use], self.fourier_operator)
             feature_name = "dst_feat"

@@ -1,0 +1,83 @@
+SSH     Real space feat                          Wave feat       Eigen val      Eigen test        Ham val      Ham test               \\
+1       & All                                    & None          & 0.964        & 0.790           & 1          & 0.992                \\  
+1       & 0<=x_i<=50 Best 04                     & None          & 0.944        & 0.776           & 0.985      & 0.990                \\
+1       & 0<=x_i<=50                             & DCT           & 0.952        & 0.737           & 0.998      & 0.992                \\
+1       & 0<=x_i<=50                             & DCT Best 04   & 0.828        & 0.607           & 0.998      & 0.919                \\
+1       & 0<=x_i<=50 Best 04                     & DCT Best 04   & 0.944        & 0.818           & 0.985      & 0.993                \\
+1       & 1<=x_i<=49                             & DST           & 0.953        & 0.731           & 0.991      & 0.986                \\
+1       & 1<=x_i<=49                             & DST Best 04   & 0.694        & 0.542           & 0.709      & 0.480                \\
+1       & 1<=x_i<=49 Best 04                     & DST Best 04   & 0.946        & 0.782           & 0.985      & 0.940                \\
+
+
+#### ssh1_real_space_all_sites 
+{'eigenvector_train': 0.981438129496403,
+ 'eigenvector_val': 0.96392276,
+ 'eigenvector_test': 0.78966836492891,
+ 'hamiltonian_train': 1.0,
+ 'hamiltonian_val': 1.0,
+ 'hamiltonian_test': 0.9918720379146919}
+
+#### ssh1_real_space_best_04_sites 
+{'eigenvector_train': 0.9699771582733813,
+ 'eigenvector_val': 0.9444134200000001,
+ 'eigenvector_test': 0.7763444312796207,
+ 'hamiltonian_train': 0.9880395683453237,
+ 'hamiltonian_val': 0.9853300000000002,
+ 'hamiltonian_test': 0.9904502369668248}
+
+#### ssh1_dct_all_wavevector_sites_results_notebook
+{'eigenvector_train': 0.9753276978417266,
+ 'eigenvector_val': 0.9521145999999999,
+ 'eigenvector_test': 0.7373592417061612,
+ 'hamiltonian_train': 0.9982553956834532,
+ 'hamiltonian_val': 0.9975820000000002,
+ 'hamiltonian_test': 0.9916232227488153}
+
+#### ssh1_dct_best_04_wavevector_sites_results_notebook
+{'eigenvector_train': 0.9755357913669066,
+ 'eigenvector_val': 0.8280291200000001,
+ 'eigenvector_test': 0.6066537914691943,
+ 'hamiltonian_train': 0.998525179856115,
+ 'hamiltonian_val': 0.997906,
+ 'hamiltonian_test': 0.9190876777251185}
+
+#### ssh1_dct_best_04_wavevector_sites_from_best_04_real_space_sites_results_notebook
+{'eigenvector_train': 0.9701161870503597,
+ 'eigenvector_val': 0.9444223399999998,
+ 'eigenvector_test': 0.8176174170616113,
+ 'hamiltonian_train': 0.9882014388489206,
+ 'hamiltonian_val': 0.9853120000000001,
+ 'hamiltonian_test': 0.9933530805687205}
+
+#### ssh1_dst_all_wavevector_sites_results_notebook
+{'eigenvector_train': 0.9751985611510792,
+ 'eigenvector_val': 0.9533083600000001,
+ 'eigenvector_test': 0.7313738151658769,
+ 'hamiltonian_train': 0.9930935251798562,
+ 'hamiltonian_val': 0.9905759999999999,
+ 'hamiltonian_test': 0.9855568720379146}
+
+#### ssh1_dst_best_04_wavevector_sites_results_notebook
+{'eigenvector_train': 0.807853597122302,
+ 'eigenvector_val': 0.6941595600000001,
+ 'eigenvector_test': 0.5419954976303317,
+ 'hamiltonian_train': 0.9919424460431654,
+ 'hamiltonian_val': 0.7088179999999998,
+ 'hamiltonian_test': 0.4797630331753555}
+
+#### ssh1_dst_best_04_wavevector_sites_from_best_04_real_space_sites_results_notebook
+{'eigenvector_train': 0.96949190647482,
+ 'eigenvector_val': 0.9456364800000001,
+ 'eigenvector_test': 0.7818372037914694,
+ 'hamiltonian_train': 0.9875539568345324,
+ 'hamiltonian_val': 0.9853839999999998,
+ 'hamiltonian_test': 0.9398933649289098}
+
+
+
+
+
+
+
+
+

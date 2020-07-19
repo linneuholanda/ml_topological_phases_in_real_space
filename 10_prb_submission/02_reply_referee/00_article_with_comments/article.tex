@@ -18,6 +18,7 @@
 \usepackage{hyperref}
 \usepackage[resetlabels, labeled]{multibib}
 \usepackage{xcolor}
+\usepackage{bbm}
 %\newcites{supp}{References}
 
 \renewcommand{\Re}{\operatorname{{\mathrm Re}}}
@@ -372,7 +373,7 @@ These results demonstrate that learning topological phases from local real space
 \end{figure}
 
 
-\section{Topological feature engineering and data compression}
+\section{Topological feature engineering and lattice compression}
 \label{topological_feature_engineering}
 
 In this section, we explore the information entropy signatures obtained in section \ref{information_entropy_signatures} from an information-theoretic perspective, in particular as related to data compression. As we have argued at the end of section \ref{information_entropy_signatures}, the information entropy signatures can be used as a powerful dimensionality reduction tool: by keeping only the most relevant lattice sites in an information entropy signature, the amount of data needed to characterize the topological phase of a SSH system can be largely decreased with little loss of information. Nevertheless, given that the topological phase of a SSH system is a global property of the whole lattice, it is natural to expect that it should be possible to engineer global features from real space coordinates. Here we show how the symmetries in the real space information entropy signatures in figure \ref{feature_importances} can be exploited to engineer new global topological features, leading to an effective compression of topological information.
@@ -396,192 +397,103 @@ where  we have used the notation $\overline{k} = k \mod N$.
 Equation \eqref{hermitian_symmetry} forks into two natural paths to topological feature engineering. In the first path, we exploit the fact that the real part of $\hat{x}[m]$ is even-symmetric around the reciprocal lattice sites $0$ and $\frac{N}{2}$. This leads us to the Discrete Cosine Transform (DCT) topological features,
 \begin{equation}
 \label{DCT}
-\hat{x}_{c}[n] = x[0] + (-1)^n x[M-1] + \sum_{m=1}^{M-2} 2x[m]\cos\bigg(\frac{\pi}{M-1}nm\bigg), \quad n=0,\dots,M-1, 
+\hat{x}^{c}[n] = x[0] + (-1)^n x[M-1] + \sum_{m=1}^{M-2} 2x[m]\cos\bigg(\frac{\pi}{M-1}nm\bigg), \quad n=0,\dots,M-1, 
 \end{equation}
 where $M = \frac{N}{2}+1$. The second path capitalizes on the fact that de imaginary part of $\hat{x}[m]$ is odd-symetric around the reciprocal lattice sites $0$ and $\frac{N}{2}$, thus yielding the Discrete Sine Transform (DST) topological features,
 \begin{equation}
 \label{DST}
-\hat{x}_{s}[n+1] = \sum_{m=0}^{M-1} 2x[m+1]\sin\bigg(\frac{\pi}{M+1}(n+1)(m+1)\bigg), \quad n=0,\dots,M-1,
+\hat{x}^{s}[n] = \sum_{m=0}^{M-1} 2x[m+1]\sin\bigg(\frac{\pi}{M+1}(n+1)(m+1)\bigg), \quad n=0,\dots,M-1,
 \end{equation} 
 where $M = \frac{N}{2}-1$. 
 
-We ran several numerical experiments to evaluate how the DCT and DST topological features defined in equations \eqref{DCT} and \eqref{DST} perform. The results obtained in each experiment are listed in table \ref{numerical_results}. These numerical experiments differed both on which topological features were used (whether DCT or DST topological features), as well as which features in real space were used to compute the engineered topological features. The results obtained in the numerical experiments of section \ref{numerical_experiments} are also listed in table \ref{numerical_results} for the sake of reference.  
+The topological features in both equations \eqref{DCT} and \eqref{DST} are generated from only half of the real space lattice, i.e. the sites $0 \leq j \leq \frac{N}{2}$. This is due to the fact that each equation assumes that the real space eigenvectors are even-symmetric (DCT topological features) or odd-symmetric (DST topological features) around the lattice sites $0$ and $\frac{N}{2}$ in real space as well. While these assumptions are strictly true for the eigenvector representations in wavevector space, this is not generally true for the real space representations. Therefore, equations \eqref{DCT} and \eqref{DST} achieve lattice compression by keeping only half of the real space eigenvector coordinates and imposing the corresponding boundary conditions (even symmetry or odd symmetry) on the lattice sites $0$ and $\frac{N}{2}$ to extrapolate the information from half of the lattice in real space. 
+
+The topological feature engineering strategies described above are commonly employed in several applications of Digital Signal Processing like audio and image processing and, most importantly here, data compression. As equations \eqref{DCT} and \eqref{DST} show, signal transforms such as the DCT and DST profit from the redundance of information arising from certain symmetries in signals, allowing us to write a signal of length $N$ in terms of at most $M = \frac{N}{2}+1$ features. 
+   
+We ran several numerical experiments to evaluate if the DCT and DST topological features defined in equations \eqref{DCT} and \eqref{DST}  are able to efficiently encode the topological information existing in SSH lattices. The accuracy scores obtained in each experiment are listed in table \ref{numerical_results}, where we also report the accuracy scores of the numerical experiments of section \ref{numerical_experiments}.
+
+The lattice compression strategies tested in this work were: i) learning topological phases from only a subset of the real space lattice sites; ii) learning topological phases from the DCT or DST engineered features of equations; iii) learning topologcal phases from a fraction of the DCT or DST topological features and iv) learning topological phases from a fraction of the DCT or DST features, computed from only a fraction of real space lattice sites. 
+
+In strategy \emph{i)} the lattice sites used in the SSH1 and SSH2 systems were
+\begin{equation}
+\label{lattice_subsets}
+\mathcal{S}_1 = (0, 1, 3, 50 ) \quad \text{and} \quad  \mathcal{S}_2 =(0, 1, 2, 3, 4, 5, 6, 7, 46, 48, 49, 50).   
+\end{equation}
+Note that for the nearest-neighbor SSH system $\mathcal{S}_1$ correspond to the four most informative sites such that $0\leq j \leq 50$ as indicated by the information entropy signature in figure \ref{feature_importances_ssh1}. Similarly, for the first- and second- nearest neighbors SSH system $\mathcal{S}_2$ correspond to the twelve most informative sites such that $0\leq j \leq 50$ in the corresponding information entropy signature in figure \ref{feature_importances_ssh2}. In table \ref{numerical results}, the features used in strategy \emph{i)} are referred to as $X_{\mathcal{S}_1}$ and $X_{\mathcal{S}_2}$, according to the SSH system they relate to.  
+
+In strategy \emph{ii)}, the full set of DCT or DST topological features written in equations \eqref{DCT} and \eqref{DST} were used. These features are denoted in table \ref{numerical_results} by $\hat{X}^c_1$, $\hat{X}^s_1$, $\hat{X}^c_2$, $\hat{X}^s_2$ according to which set of topological features and SSH systems they refer to. 
+
+Similarly to strategy \emph{i)}, in strategy \emph{iii)} we selected the DCT topological features used in the SSH1 and SSH2 systems,
+\begin{equation}
+\label{DCT_subsets}
+\mathcal{E}_1 = (1, 2, 36, 49) \quad \text{and} \quad  \mathcal{E}_2 =(0, 1, 2, 3, 4, 5, 6, 7, 47, 48, 49, 50) \qquad \text{(DCT)}  
+\end{equation}
+and the DST topological features,
+\begin{equation}
+\label{DCT_subsets}
+\mathcal{O}_1 =  (0, 18, 28, 30) \quad \text{and} \quad  \mathcal{O}_2 = (0, 1, 2, 3, 4, 5, 43, 44, 45, 46, 47, 48) \qquad \text{(DST)}.  
+\end{equation}
+The features in strategy \emph{iii)} are denoted in table \ref{numerical_results} by $\hat{X}^c_{\mathcal{E}_1}$, $\hat{X}^s_{\mathcal{O}_1}$, $\hat{X}^c_{\mathcal{E}_2}$, $\hat{X}^s_{\mathcal{O}_2}$ according to the topological features and wavevector sites used with each SSH system. 
+
+The most aggressive lattice compression strategy tested in this work was strategy \emph{iv)}. It consists of using the DCT (DST) topological features of equation \eqref{DCT_subsets} (equation \eqref{DST_subsets}), but having computed these topological features using only the real space lattice sites given in equation \eqref{lattice_subsets}. Thus in strategy \emph{iv)} a lossy compression is performed both on real space features and the engineered DCT (DST) topological features. Mathematically, we can expess the topological features used in strategy \emph{iv)} as follows:
+\begin{equation}
+\label{DCT_very_compressed}
+\hat{x}_{\mathcal{S}, \mathcal{E}}^c[n] = \mathbbm{1}_{\mathcal{S}}[0]x[0] + (-1)^n\mathbbm{1}_{\mathcal{S}}[M-1] x[M-1] + \sum_{m \in \mathcal{S}} 2x[m]\cos\bigg(\frac{\pi}{M-1}nm\bigg), \quad n \in \mathcal{E} \qquad \text{(DCT)} 
+\end{equation}
+\begin{equation}
+\label{DST_very_compressed}
+\hat{x}_{\mathcal{S}, \mathcal{O}}^s[n] = \sum_{m \in \mathcal{S}}2x[m+1]\sin\bigg(\frac{\pi}{M+1}(n+1)(m+1)\bigg), \quad n \in \mathcal{O} \qquad \text{(DST)}.
+\end{equation}
+where in equation \eqref{DCT_very_compressed} the notation $\mathbbm{1}_{\mathcal{S}}[j]$ stands for the indicator function of the lattice subset $\mathcal{S}$, i.e. $\mathbbm{1}_{\mathcal{S}}[j] = 1$ if $j \in \mathcal{S}$ and $\mathbbm{1}_{\mathcal{S}}[j] = 0$ otherwise. The features engineered in strategy \emph{iv)} are denoted in table \ref{numerical_results} by $\hat{X}^c_{\mathcal{S}_1,\mathcal{E}_1}$, $\hat{X}^s_{\mathcal{S}_1,\mathcal{O}_1}$, $\hat{X}^c_{\mathcal{S}_2,\mathcal{E}_2}$, $\hat{X}^s_{\mathcal{S}_2,\mathcal{O}_2}$, again referencing the appropriate SSH systems, type of topological features used as well as which features in real and wavevector space were used to compute them. 
+
+The lattice compression strategies  These numerical experiments differed both on which topological features were used (whether DCT or DST topological features), as well as which features in real space were used to compute the engineered topological features. The results obtained in the numerical experiments of section \ref{numerical_experiments} are also listed in table \ref{numerical_results} for the sake of reference.  
+
+
 
 \begin{table}
- \begin{tabular}{||c c c c c||} 
+ \begin{tabular}{||c c c c c c||} 
  \hline
- SSH system & Real space feat. & Wavevector space feat. & Val. Hamiltonian acc. & Test Hamiltonian acc. \\ % [0.5ex] 
+SSH     &Features                                      & Eigenvector val.    & Eigenvector test      & Hamiltonian val.    & Hamiltonian test \\ % [0.5ex] 
  \hline\hline
- 1 & All & None & 1 & 0.991 \\ 
- \hline
- 1 & $\mathcal{S}_1$ & None & 0.985 & 0.985\\
- \hline
- 1 & $\mathcal{S}'_1$ & None & 0.985 & 0.986\\
- \hline
- 1 & DCT & DCT & 0.997 & 0.989 \\
- \hline
- 1 & DST & DST & --- & --- \\
- \hline
- 1 & $\mathcal{S}_1$ & $\mathcal{E}_1$ & --- & --- \\ 
- \hline
- 1 & $\mathcal{S'}_1$ & $\mathcal{E}'_1$ & --- & --- \\ 
- \hline
- 1 & $\mathcal{S}_1$ & $\mathcal{O}_1$ & --- & --- \\ 
- \hline
- 1 & $\mathcal{S'}_1$ & $\mathcal{O}'_1$ & --- & --- \\ 
- \hline
- 2 & All & None & --- & --- \\ 
- \hline
- 2 & $\mathcal{S}_2$ & --- & --- & ---\\
- \hline
- 2 & $\mathcal{S}'_2$ & --- & --- & ---\\
- \hline
- 2 & DCT & DCT & --- & --- \\
- \hline
- 2 & DST & DST & --- & --- \\
- \hline
- 2 & $\mathcal{S}_2$ & $\mathcal{E}_2$ & --- & --- \\ 
- \hline
- 2 & $\mathcal{S'}_2$ & $\mathcal{E}'_2$ & --- & --- \\ 
- \hline
- 2 & $\mathcal{S}_2$ & $\mathcal{O}_2$ & --- & --- \\ 
- \hline
- 2 & $\mathcal{S'}_2$ & $\mathcal{O}'_2$ & --- & --- \\ 
- \hline
- 
+        &                                              &                    &                 &                    &                      \\
+1       & $X_1$                                        & 0.964              & 0.790           & 1                  & 0.992                \\  
+\hline
+1       & $X_{\mathcal{S}_1}$                          & 0.944              & 0.776           & 0.985              & 0.990                \\
+\hline
+1       & $\hat{X}^c_1$                                & 0.952              & 0.737           & 0.998              & 0.992                \\
+\hline
+1       & $\hat{X}^c_{\mathcal{E}_1}$                  & 0.828              & 0.607           & 0.998              & 0.919                \\
+\hline
+1       & $\hat{X}^c_{\mathcal{S}_1,\mathcal{E}_1}$    & 0.944              & 0.818           & 0.985              & 0.993                \\
+\hline
+1       & $\hat{X}^s_1$                                & 0.953              & 0.731           & 0.991              & 0.986                \\
+\hline
+1       & $\hat{X}^s_{\mathcal{O}_1}$                  & 0.694              & 0.542           & 0.709              & 0.480                \\
+\hline
+1       & $\hat{X}^s_{\mathcal{S}_1,\mathcal{O}_1}$    & 0.946              & 0.782           & 0.985              & 0.940                \\
+\hline
+2       & $X_2$                                        & 0.971              & 0.663           & 0.997              & 0.880                \\  
+\hline
+2       & $X_{\mathcal{S}_2}$                          & 0.959              & 0.617           & 0.996              & 0.863                \\
+\hline
+2       & $\hat{X}^c_2$                                & 0.974              & 0.690           & 0.998              & 0.886                \\
+\hline
+2       & $\hat{X}^c_{\mathcal{E}_2}$                  & 0.899              & 0.536           & 0.995              & 0.790                \\
+\hline
+2       & $\hat{X}^c_{\mathcal{S}_2,\mathcal{E}_2}$    & 0.900              & 0.503           & 0.996              & 0.767                \\
+\hline
+2       & $\hat{X}^s_2$                                & 0.974              & 0.688           & 0.997              & 0.890                \\
+\hline
+2       & $\hat{X}^s_{\mathcal{O}_2}$                  & 0.904              & 0.553           & 0.992              & 0.743                \\
+\hline
+2       & $\hat{X}^s_{\mathcal{S}_2,\mathcal{O}_2}$    & 0.820              & 0.413           & 0.994              & 0.590                \\
+        &                                              &                    &                 &                    &                      \\
+\hline\hline
  \end{tabular}
 \caption{\label{numerical_results}Your caption.}
 \end{table}
 
 
-Guaranteed to have Hermitian symmetry with respect to the lattice site at $\frac{N}{2}$. Furthermore, given that the lattices were closed with periodic boundary conditions, the   
-%After computing the norm of each component of the resulting discrete information entropy wave function $\hat{\psi}_S[n]$, we recover the %information entropy signatures in wavevector space shown in figures \ref{fourier_feature_importances_ssh1} and %%\ref{fourier_feature_importances_ssh2}. 
-
-Contrary to their real space counterparts, the wavevector space information entropy signatures are highly localized, which indicates that most of the topological information can be traced to a subset of wavevector modes. In fact, in figures \ref{fourier_feature_importances_ssh1} and \ref{fourier_feature_importances_ssh2} the reduction in information entropy is concentraded mostly on even wavevector modes. Furthermore, the wavevector space information entropy signatures are approximately even-symmetric with respect to the wavevector modes at 0 and $\frac{N}{2}$, a consequence of the fact that they are obtained as the DFT of a real signal with periodic boundary conditions. 
-
-These (appproximate) symmetries of the topological signatures can guide us through engineering of new topological features from real space coordinates. Indeed, it is easy to verify that the DFT of a real signal $x[m]$ that is even-symmetric around 0 and $\frac{N}{2}$ is given by the Discrete Cosine Transform (DCT),
-\begin{equation}
-\label{DCT}
-\hat{x}[n] = x[0] + (-1)^n x[M-1] + \sum_{m=1}^{M-2} 2x[m]\cos\Big(\frac{\pi}{M-1}nm\Big), \quad n=0,\dots,M-1, 
-\end{equation}
-where $M = \frac{N}{2}+1$. 
-
-The DCT is often employed in several applications of Digital Signal Processing such as audio and image processing and, most importantly here, data compression. As equation \eqref{DCT} shows, the DCT profits from redundance of information in a real, even-symmetric signal, allowing us to write a signal of length $N$ in terms of $M = \frac{N}{2}+1$ features. 
-
-We further reduce the number of engineered topological features by taking only even values of $n$ in the left-hand side of equation \eqref{DCT}. This is done in agreement with the observation that the information entropy signatures in figure \ref{fourier_feature_importances} are strongly localized on even wavevector modes. This leads us to our desired topological features,
-\begin{equation}
-\hat{x}[n] = x[0] + x[M-1] + \sum_{m=1}^{M-2} 2x[m]\cos\Big(\frac{2\pi}{M-1}nm\Big), \quad n=0,\dots,\frac{M-1}{2}.
-\end{equation}  
-
-
-
- %the DFT of a real eigenvector $x[m]$\eqref{discrete_fourier_transform} o \eqref{in figures \ref{fourier_feature_importances_ssh1} and %\ref{fourier_feature_importances_ssh2}.  This gives us an opportunity to engineer new features in real space that carry more relevant %topological information than the simpler strategy of selecting the most important lattice sites in a real space information entropy %signature. We may write equation \eqref{discrete_fourier_transform} in matrix form as 
-\begin{equation}
-\label{dft}
-\hat{\mathbf{\psi}}_S = \frac{1}{\sqrt{N}} \mathbf{\mathcal{F}}_{N}\mathbf{\psi}_S
-\end{equation}
-where we have used the Sylvester DFT matrix
-\begin{equation}
-\label{sylvester_dft}
-\mathbf{\mathcal{F}}_{N} = \begin{bmatrix}
-\omega_N^{0\cdot 0} & \omega_N^{0\cdot 1} & \omega_N^{0\cdot 2} &... & \omega_N^{0\cdot (N-1)}\\
-\omega_N^{1\cdot 0} & \omega_N^{1\cdot 1} & \omega_N^{1\cdot 2} &... & \omega_N^{1\cdot (N-1)}\\
-\omega_N^{2\cdot 0} & \omega_N^{2\cdot 1} & \omega_N^{2\cdot 2} &... & \omega_N^{2\cdot (N-1)}\\
-\vdots & \vdots & \vdots & \cdots & \vdots\\ 
-\omega_N^{(N-1)\cdot 0} & \omega_N^{(N-1)\cdot 1} & \omega_N^{(N-1)\cdot 2} &... & \omega_N^{(N-1)\cdot (N-1)}\\
-\end{bmatrix}, \quad \text{with} \quad \omega_N = e^{-i\frac{2\pi}{N}}.
-\end{equation}
-
-When trying to engineer informative global topological features in real space, the information entropy signatures in wavevector space provide good hints of where to start.  Figures \ref{fourier_feature_importances_ssh1} and \ref{fourier_feature_importances_ssh2} show us that in both numerical experiments the zeroth component in wave vector space is the most important  for learning the topological phases, contributing about 49\% of reduction in information entropy in experiment 1 (section \ref{experiment_1}) and 95\% in experiment 2 (section \ref{experiment_2}). Let $x[m]$ be an eigenvector in real space. We can use equation \eqref{dft} to compute its wavevector space representation $\hat{k}[n]$ and in particular its zeroth component,
-\begin{equation}
-\label{x_hat_0} 
-\hat{x}[0] = \hat{k}[0] = \frac{1}{\sqrt{N}}\sum_{m=0}^{N-1}x[m].
-\end{equation}
-Equation \eqref{x_hat_0} amounts to taking the sum of components of the eigenvectors in real space as a first engineered topological feature. 
-%may provide key information about the topological phases of SSH Hamiltonians. To visually examine this proposition, we can draw histograms %-----  
-
-Now let us consider the symmetric pairs $(m,N-m)$, with $m$ even. As figures \ref{fourier_feature_importances_ssh1} and \ref{fourier_feature_importances_ssh2} indicate, these pairs concentrate the remaining relevant topological information from the SSH systems investigated here. We can therefore engineer the topological features  
-
-\begin{equation}
-\label{x_hat_m} 
-\hat{x}[n] = \frac{k[2n]+k[N-2n]}{2} = \sqrt{\frac{1}{N}}\sum_{m=1}^{\frac{N}{2}-1}x[2m]\cos(2mn\omega_N), \quad n = 1, 2, \cdots, \frac{N}{2}-1.
-\end{equation}
-
-Putting the engineered topological features from equations \eqref{x_hat_0} and \eqref{x_hat_m} together, we obtain a compressed version of the real space eigenvectors,
-
-
-
-
-
-These  which together reduce approximately 10\% of information entropy in experiment 1 (section \ref{experiment_1}) and 2.5\% in experiment 2 (section \ref{experiment_2}). The pair (2,98) in wavevector space leads us to another real space engineered feature,
-\begin{equation}
-\label{k_m} 
-\frac{k[m]+k[N-m]}{\sqrt{2}} = \sqrt{\frac{2}{N}}\sum_{m=0}^{N-1}x[m]\cos(2m\omega_N).
-\end{equation}
-
-The two engineered features, $k[0]$ and $\frac{k[2]+k[98]}{\sqrt{2}}$  
-       
-\begin{equation}
-\label{matrix_discrete_fourier_transform}
-\begin{bmatrix}
-\hat{\psi}_S[0] \\
-\hat{\psi}_S[1] \\
-\vdots \\
-\hat{\psi}_S[N-1]
-\end{bmatrix} = \frac{1}{\sqrt{N}}\begin{bmatrix}
-1 & 1 & 1 &... & 1\\
-1 & W_N & W_N^2 &... &W_N^{N-1}\\
-1 & W_N^2 & W_N^4 &... & W_N^{2(N-1)}\\
-\vdots & \vdots & \vdots & \cdots & \vdots\\ 
-1 & W_N^{N-1} & W_N^{2(N-1)} & \cdots & W_N^{(N-1)^2}    
-\end{bmatrix}
-\begin{bmatrix}
-\psi_S[0] \\
-\psi_S[1] \\
-\vdots \\
-\psi_S[N-1]
-\end{bmatrix}
-\end{equation} 
-
-
-Let us define a discrete wavevector space unit pulse as
- 
-\begin{equation}
-\label{wavevector_unit_impulse}
-\hat{\delta}^{(m)}_n = \hat{\delta}[n-m] =
-\begin{cases}
-    1, & \text{if } n=m\\
-    0,              & \text{otherwise}.
-\end{cases}
-\end{equation}
-
-Then equation \eqref{discrete_fourier_transform} yields
-
-\begin{equation}
-\label{fourier_wavevector_unit_impulse}
-\hat{\delta}^{(m)}_n = \hat{\delta}[n-m] =
-\begin{cases}
- \frac{1}{\sqrt{N}}\sum_{l=0}^{N-1}x[l]e^{-\frac{2\pi i}{N} nl}, & \text{if } n=m\\
-    0,              & \text{otherwise}
-\end{cases}
-\end{equation}
-Let us consider the Inverse Discrete Fourier Transform (IDFT) formula, which allows us to invert equation
-
-
-
- \eqref{discrete_fourier_transform}
-
-\begin{equation}
-\label{inverse_discrete_fourier_transform}
-\psi_S[n] = \frac{1}{\sqrt{N}}\sum_{m=0}^{N-1}\hat{\psi}_S[m]e^{\frac{2\pi i}{N} mn}.
-\end{equation}
-
-In both figures \ref{fourier_feature_importances_ssh1} and \ref{fourier_feature_importances_ssh2}, the main mode in wavevector space 
-
-
-
-
- main mode of the wavevector space information entropy signatures, which is  
 
 
 
@@ -720,13 +632,13 @@ One final comment should be made about the flourishing relationship between phys
 \label{feature_importances}
 \end{figure}
 
-\begin{figure}
-\centering
-\subfigure[]{\label{fourier_feature_importances_ssh1}\includegraphics[width=0.49\textwidth]{./ssh1/periodic_100_6561/plot_fourier_feature_importances.png}}\quad
-\subfigure[]{\label{fourier_feature_importances_ssh2}\includegraphics[width=0.49\textwidth]{./ssh2/periodic_100_6561/plot_fourier_feature_importances.png}}\quad
-\caption{Information entropy signatures of the topological phase transitions obtained from the numerical experiments described in section \ref{numerical_experiments}. (a) In experiment 1 (section \ref{experiment_1}), the two sharp peaks in the Shannon entropy signal account for approximately 70\% of reduction in information entropy. These two peaks correspond to the lattice sites $S_1$. (b) In experiment 2 (section \ref{experiment_2}), the three visible peaks account for approximately 30\% of reduction in information entropy. These three peaks are located along lattice sites $S_2$.}
-\label{fourier_feature_importances}
-\end{figure}
+%\begin{figure}
+%\centering
+%\subfigure[]{\label{fourier_feature_importances_ssh1}\includegraphics[width=0.49\textwidth]{./ssh1/periodic_100_6561/%plot_fourier_feature_importances.png}}\quad
+%\subfigure[]{\label{fourier_feature_importances_ssh2}\includegraphics[width=0.49\textwidth]{./ssh2/periodic_100_6561/%plot_fourier_feature_importances.png}}\quad
+%\caption{Information entropy signatures of the topological phase transitions obtained from the numerical experiments described in section %%\ref{numerical_experiments}. (a) In experiment 1 (section \ref{experiment_1}), the two sharp peaks in the Shannon entropy signal account for %approximately 70\% of reduction in information entropy. These two peaks correspond to the lattice sites $S_1$. (b) In experiment 2 (section \ref{experiment_2}), the three visible peaks account for approximately 30\% of reduction in information entropy. These three peaks are located %along lattice sites $S_2$.}
+%\label{fourier_feature_importances}
+%\end{figure}
 
 \citequote{motif_real_space}
 

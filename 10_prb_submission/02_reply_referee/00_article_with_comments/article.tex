@@ -20,6 +20,15 @@
 \usepackage{xcolor}
 \usepackage{bbm}
 \usepackage{xfp}
+\usepackage[labelfont=bf,textfont=md,justification=raggedright,font=footnotesize]{caption}
+\usepackage{booktabs}
+\renewcommand{\figurename}{Figure}
+\renewcommand{\tablename}{Table}
+\renewcommand{\thetable}{\arabic{table}}
+%\captionsetup{justification=raggedright, singlelinecheck = false}
+%\usepackage{makecell}
+%\usepackage{cellspace}
+
 %\newcites{supp}{References}
 
 %\def\basiceval#1{\the\numexpr#1\relax}
@@ -64,6 +73,25 @@
 \newcommand\nHam{6561}  % total number of hamiltonians
 \newcommand\epsilonValue{0.01}  % epsilon criterium for test set
 \newcommand\nExp{100}   % number of experiments
+%%%table commands
+%\newcommand{\tableRow}[1]{\\[#1 cm]\hline} %deprecated table row, but might be useful
+\newcommand{\tableRow}[1]{\\[#1 cm]}
+\newcommand{\tableRowHeader}[1]{\\[#1 cm]\hline}
+\newcommand\tableRowHeaderEnd{\tableRowHeader{0.3}}
+\newcommand\tableRowEnd{\tableRow{0.15}}
+%\newcommand\SSHSys{\thead{SSH systems}}         deprecated, might be useful
+%\newcommand\Feat{\thead{Features}}              deprecated, might be useful
+%\newcommand\ValEig{\thead{Val. eigenvectors}}   deprecated, might be useful
+%\newcommand\TestEig{\thead{Test eigenvectors}}  deprecated, might be useful
+%\newcommand\ValHam{\thead{Val. Hamiltonians}}   deprecated, might be useful
+%\newcommand\TestHam{\thead{Test Hamiltonians}}  deprecated, might be useful
+\newcommand\SSHSys{SSH systems}         
+\newcommand\Feat{Features}              
+\newcommand\ValEig{Val. eigenvectors}   
+\newcommand\TestEig{Test eigenvectors}  
+\newcommand\ValHam{Val. Hamiltonians}   
+\newcommand\TestHam{Test Hamiltonians}  
+
 %%%%%%%%%%%%%%% ssh1 experiments
 \newcommand\sshOneTrainNHam{556}
 \newcommand\sshOneValNHam{5000}
@@ -144,17 +172,6 @@
 \newcommand\xsSOOneHamVal{\fpeval{round(0.9853839999999998,\accPrec)}}
 \newcommand\xsSOOneHamTest{\fpeval{round(0.9398933649289098,\accPrec)}}
 
-
-
-
-% real space best 04 accuracies
-%\newcommand\sshOneEigenTrainAcc{0.981438129496403}       
-%\newcommand\sshOneEigenValAcc{0.96392276}         
-%\newcommand\sshOneEigenTestAcc{0.78966836492891}       
-%\newcommand\sshOneHamTrainAcc{1.0}             
-%\newcommand\sshOneHamValAcc{1.0}               
-%\newcommand\sshOneHamTestAcc{0.9918720379146919}          
-
 %ssh2
 \newcommand\sshTwoTrainNHam{2761}
 \newcommand\sshTwoValNHam{2760}
@@ -176,6 +193,72 @@
 \newcommand\sshTwoHamTrainAcc{1.0}             % Hamiltonian training accuracy
 \newcommand\sshTwoHamValAcc{0.9972499999999997}               % Hamiltonian val accuracy
 \newcommand\sshTwoHamTestAcc{0.879697322467986}          % Hamiltonian test accuracy
+
+%%% x2 features table entries 
+\newcommand\xTwo{$X_2$}
+\newcommand\xTwoEigTrain{\fpeval{round(0.999655849329953,\accPrec)}}
+\newcommand\xTwoEigVal{\fpeval{round(0.9708922101449275,\accPrec)}}
+\newcommand\xTwoEigTest{\fpeval{round(0.6634109429569267,\accPrec)}}
+\newcommand\xTwoHamTrain{\fpeval{round(1.0,\accPrec)}}
+\newcommand\xTwoHamVal{\fpeval{round(0.9972499999999997,\accPrec)}}
+\newcommand\xTwoHamTest{\fpeval{round(0.879697322467986,\accPrec)}}
+%%% x_S2 features table entries  
+\newcommand\xSTwo{$X_{\mathcal{S}_2}$}
+\newcommand\xSTwoEigTrain{\fpeval{round(0.9996107207533504,\accPrec)}}
+\newcommand\xSTwoEigVal{\fpeval{round(0.9589830072463768,\accPrec)}}
+\newcommand\xSTwoEigTest{\fpeval{round(0.6168351571594877,\accPrec)}}
+\newcommand\xSTwoHamTrain{\fpeval{round(1.0,\accPrec)}}
+\newcommand\xSTwoHamVal{\fpeval{round(0.9961050724637681,\accPrec)}}
+\newcommand\xSTwoHamTest{\fpeval{round(0.8625611175785797,\accPrec)}}
+%%% x^c_2 features table entries  
+\newcommand\xcTwo{$\hat{X}^c_2$}
+\newcommand\xcTwoEigTrain{\fpeval{round(0.9996471930459978,\accPrec)}}
+\newcommand\xcTwoEigVal{\fpeval{round(0.9740357971014493,\accPrec)}}
+\newcommand\xcTwoEigTest{\fpeval{round(0.6895051222351573,\accPrec)}}
+\newcommand\xcTwoHamTrain{\fpeval{round(1.0,\accPrec)}}
+\newcommand\xcTwoHamVal{\fpeval{round(0.9976050724637681,\accPrec)}}
+\newcommand\xcTwoHamTest{\fpeval{round(0.8862281722933641,\accPrec)}}
+%%% x^cO_2 features table entries  
+\newcommand\xcOTwo{$\hat{X}^c_{\mathcal{O}_2}$}
+\newcommand\xcOTwoEigTrain{\fpeval{round(0.99943379210431,\accPrec)}}
+\newcommand\xcOTwoEigVal{\fpeval{round(0.8989626449275362,\accPrec)}}
+\newcommand\xcOTwoEigTest{\fpeval{round(0.5356883585564609,\accPrec)}}
+\newcommand\xcOTwoHamTrain{\fpeval{round(1.0,\accPrec)}}
+\newcommand\xcOTwoHamVal{\fpeval{round(0.9954927536231883,\accPrec)}}
+\newcommand\xcOTwoHamTest{\fpeval{round(0.7896856810244468,\accPrec)}}
+
+%%% x^cSO_2 features table entries  
+\newcommand\xcSOTwo{$\hat{X}^c_{\mathcal{S}_2,\mathcal{O}_2}$}
+\newcommand\xcSOTwoEigTrain{\fpeval{round(0.9994432452010141,\accPrec)}}
+\newcommand\xcSOTwoEigVal{\fpeval{round(0.8998827173913044,\accPrec)}}
+\newcommand\xcSOTwoEigTest{\fpeval{round(0.5029968568102445,\accPrec)}}
+\newcommand\xcSOTwoHamTrain{\fpeval{round(1.0,\accPrec)}}
+\newcommand\xcSOTwoHamVal{\fpeval{round(0.9956086956521739,\accPrec)}}
+\newcommand\xcSOTwoHamTest{\fpeval{round(0.7670896391152502,\accPrec)}}
+%%% x^s_2 features table entries  
+\newcommand\xsTwo{$\hat{X}^s_2$}
+\newcommand\xsTwoEigTrain{\fpeval{round(0.9996523723288662,\accPrec)}}
+\newcommand\xsTwoEigVal{\fpeval{round(0.9735059057971014,\accPrec)}}
+\newcommand\xsTwoEigTest{\fpeval{round(0.6878407450523867,\accPrec)}}
+\newcommand\xsTwoHamTrain{\fpeval{round(1.0,\accPrec)}}
+\newcommand\xsTwoHamVal{\fpeval{round(0.9970652173913043,\accPrec)}}
+\newcommand\xsTwoHamTest{\fpeval{round(0.8898835855646101,\accPrec)}}
+%%% x^SO_2 features table entries  
+\newcommand\xsOTwo{$\hat{X}^s_{\mathcal{O}_2}$}
+\newcommand\xsOTwoEigTrain{\fpeval{round(0.9994471206084752,\accPrec)}}
+\newcommand\xsOTwoEigVal{\fpeval{round(0.9042001086956524,\accPrec)}}
+\newcommand\xsOTwoEigTest{\fpeval{round(0.552662980209546,\accPrec)}}
+\newcommand\xsOTwoHamTrain{\fpeval{round(1.0,\accPrec)}}
+\newcommand\xsOTwoHamVal{\fpeval{round(0.9917789855072465,\accPrec)}}
+\newcommand\xsOTwoHamTest{\fpeval{round(0.7427124563445866,\accPrec)}}
+%%% x^SSO_2 features table entries  
+\newcommand\xsSOTwo{$\hat{X}^s_{\mathcal{S}_2,\mathcal{O}_2}$}
+\newcommand\xsSOTwoEigTrain{\fpeval{round(0.9992071713147413,\accPrec)}}
+\newcommand\xsSOTwoEigVal{\fpeval{round(0.8203919927536232,\accPrec)}}
+\newcommand\xsSOTwoEigTest{\fpeval{round(0.41268987194412105,\accPrec)}}
+\newcommand\xsSOTwoHamTrain{\fpeval{round(1.0,\accPrec)}}
+\newcommand\xsSOTwoHamVal{\fpeval{round(0.9941884057971013,\accPrec)}}
+\newcommand\xsSOTwoHamTest{\fpeval{round(0.5903026775320139,\accPrec)}}
 
 \newcommand\nEst{25}   % number of estimators in random forest
 
@@ -203,129 +286,91 @@
 \section*{Reply to the second referee}
 Dear referee,
 
-we appreciate the valuable insights on how to improve our article that you have provided us with. Below we address each of the emphasized points separately, as they were written in the reply that was sent back to us. We quote the issues raised in italic, and highlight in boldface the points that we thought were particularly relevant. 
+we appreciate the valuable insights on how to improve our article that you have provided us. These insights forced us into more careful theoretical reasoning about the results we had obtained and led us to expand our manuscript with new theoretical and numerical results. 
+
+These new results have been added to the paper in the form of two new sections: \textbf{V. Topological feature engineering and lattice compression} and \textbf{VI. Emergent information entropy wave functions}. We have also moved the description of the eigenvector ensembling algorithm from the \textbf{Supplementary material} to the main text, in which it became the section \textbf{II. The eigenvector ensembling algorithm}. The section \textbf{VII. Discussion} has been extended to include comments on some of the issues that were raised. The sections are now numbered for clarity.    
+
+Below we address each of the raised issues separately, as they were written in the reply that was sent back to us. We quote the raised issues in italic, and highlight in bold the points that we thought were particularly relevant and guided us in the improvement of the manuscript. The answers to each of the major points are written in blue.   
 
 \subsection*{Major}
 
 \emph{\textbf{I am not sure about the novelty and generality of their method.}\genquote{pipeline_not_work} For
-example, their pipeline cannot work for complex experimental physical
-systems, where the Hamiltonian could be unknown. Moreover, the authors
-state that it is sufficient to use the input data in real space to
-predict the topological phase with high accuracy. \textbf{It is not clear to
-me what "sufficient" and "high accuracy" mean}\genquote{sufficient_accuracy}, and the advantages of
-using the input data in real space instead of the Hamiltonian in
-wavevector space. \textbf{I expect the evidence to indicate that their method
-is superior or comparable to any other method}\genquote{superior_comparable}. It is worth mentioning
-that the author already discussed \textbf{the motivations for developing a
-data-driven approach based on real space}\genquote{motif_real_space} in the "Learning topological
-phases from real space data" section. However, these arguments should
-be pointed carefully in the "Introduction" section.}
+example, their pipeline cannot work for complex experimental physical systems, where the Hamiltonian could be unknown. Moreover, the authors
+state that it is sufficient to use the input data in real space to predict the topological phase with high accuracy. \textbf{It is not clear to
+me what "sufficient" and "high accuracy" mean}\genquote{sufficient_accuracy}, and the advantages of using the input data in real space instead of the Hamiltonian in wavevector space. \textbf{I expect the evidence to indicate that their method is superior or comparable to any other method}\genquote{superior_comparable}. It is worth mentioning that the author already discussed \textbf{the motivations for developing a
+data-driven approach based on real space}\genquote{motif_real_space} in the "Learning topological phases from real space data" section. However, these arguments should be pointed carefully in the "Introduction" section.}
 
 \vspace{0.25cm}
-\textcolor{blue}{\citequote{pipeline_not_work} We can think of several use cases for the eigenvector ensembling procedure outlined in the paper. Among these, we emphasize its applicability in dealing with the so-called "curse of dimensionality" that plagues many problems in condensed matter and statistical physics. In the paper, we have demonstrated an application in which the dimensionality of an SSH lattice can be greatly reduced in so far as its topological properties are concerned, simply by extracting the most relevant lattice sites in its information entropy signature. Similar feature extraction and dimensionality reduction procedures are often employed in machine learning applications and are surely to become the norm in data-driven physics. The eigenvector ensembling algorithm can thus be viewed as a general framework in this direction. Similarly, by thoughtfully attaching a probability distribution to the eigenvectors, we end up with a powerful sampling technique that may ultimately lead to great reduction in the dimensionality of a Monte Carlo simulation, while still capturing essentially all the relevant physics pertaining to the problem. We have added a paragraph to the section \textbf{Discussion} outlining these possibilities. As for the novelty of the method, the article binds together contemporary concepts in physics (topological states of matter and information theory) to a leading research theme in machine learning (model explainability). Our work pioneers the use of model explainability in the discovery of new concepts in physics, namely, the Shannon entropy signature and the information entropy uncertainty relations for topological phase transitions presented here for the first time. We have added a paragraph to the \textbf{Introduction} emphasizing this point.  
+\textcolor{blue}{\citequote{pipeline_not_work} We can think of several use cases for the eigenvector ensembling procedure outlined in the paper. Among these, we emphasize its applicability in dealing with the so-called "curse of dimensionality" that plagues many problems in condensed matter and statistical physics. In the paper, we have demonstrated an application in which the dimensionality of an SSH lattice can be greatly reduced in so far as its topological properties are concerned, simply by extracting the most relevant lattice sites in its information entropy signature. Similar feature extraction and dimensionality reduction procedures are often employed in machine learning applications and are surely to become the norm in data-driven physics. The eigenvector ensembling algorithm can thus be viewed as a general framework in this direction. Similarly, by thoughtfully attaching a probability distribution to the eigenvectors, we end up with a powerful sampling technique that may ultimately lead to great reduction in the dimensionality of a Monte Carlo simulation, while still capturing essentially all the relevant physics pertaining to the problem. We have added a paragraph to the section \textbf{VII. Discussion} outlining these possibilities. As for the novelty of the method, the article binds together contemporary concepts in physics (topological states of matter and information theory) to a leading research theme in machine learning (model explainability). Our work pioneers the use of model explainability in the discovery of new concepts in physics, namely, the engineering of new topological features from real space data and the Shannon information entropy signature and uncertainty relations for topological phase transitions presented here for the first time in the new sections \textbf{V. Topological feature engineering and lattice compression} and \textbf{VI. Emergent information entropy wave functions}. We have added a paragraph to the section \textbf{I. Introduction} emphasizing these new results.  
 }  
 
-\textcolor{blue}{\citequote{sufficient_accuracy}, \citequote{superior_comparable} We use the term "sufficient accuracy" to denote a system that performs considerably better at predicting the phases of Hamiltonians than the baseline system that simply guesses the most frequently occurring class for all Hamiltonians. This gauge is needed because it ensures that the resulting entropy signatures are meaningful in the sense that they encode a summary of where useful information about the topological phase of a system can be found. We have added a paragraph to the section \textbf{Numerical experiments} to emphasize the use of this baseline. As to "high accuracy", we note that the accuracy scores obtained by us are comparable to the highest scores reported in Phys. Rev. Lett. 120, 066401, where neural networks were trained on wavevector space data in a similar supervised learning task. This second gauge further reinforces that the entropy signatures presented in the article indeed express a realistic summary of the availability of topological information from each lattice site. A small paragraph was added to the section \textbf{Discussion} to explicitly note this point.} 
+\textcolor{blue}{\citequote{sufficient_accuracy} We use the term "sufficient accuracy" to denote a system that performs considerably better at predicting the phases of Hamiltonians than the baseline system that simply guesses the most frequently occurring class for all Hamiltonians. This gauge is needed because it ensures that the resulting entropy signatures are meaningful in the sense that they encode a summary of where useful information about the topological phase of a system can be found. We have added a paragraph to the section \textbf{III. Numerical experiments} to emphasize the use of this baseline.}  
 
-\textcolor{blue}{\citequote{superior_comparable}In another paragraph added to the section \textbf{Discussion}, we further draw comparisons between our paper and the just recently published article Phys. Rev. Research 2, 023283,  whose theme is model interpretability of single-layer feedforward neural networks trained to recognize phase transitions of some topological condensed matter systems. When contrasting our paper to the latter, we emphasize the important distinction between "model interpretability" and "model explainability". While both techniques rely on model introspection, the first is aimed at interpreting the model itself vis-à-vis previously known concepts and properties related to the physics underlying the data set, while in the latter the goal is to use these model introspection tools to arrive at new concepts and ideas about the physical phenomena underlying the data set, which is the main purpose of our work.   }   
+\textcolor{blue}{\citequote{superior_comparable} As to "high accuracy", we note that the accuracy scores obtained by us are comparable to the highest scores reported in Phys. Rev. Lett. 120, 066401, where neural networks were trained on wavevector space data in a similar supervised learning task. This second gauge further reinforces that the entropy signatures presented in the article indeed express a realistic summary of the availability of topological information from each lattice site. A small paragraph was added to the section \textbf{Discussion} to explicitly note this point. In another paragraph added to the section \textbf{Discussion}, we further draw comparisons between our paper and the just recently published article Phys. Rev. Research 2, 023283,  whose theme is model interpretability of single-layer feedforward neural networks trained to recognize phase transitions of some topological condensed matter systems. When contrasting our paper to the latter, we emphasize the important distinction between "model interpretability" and "model explainability". While both techniques rely on model introspection, the first is aimed at interpreting the model itself vis-à-vis previously known concepts and properties related to the physics underlying the data set, while in the latter the goal is to use these model introspection tools to arrive at new concepts and ideas about the physical phenomena underlying the data set, which is the main purpose of our work.}   
 
-\textcolor{blue}{\citequote{motif_real_space} We agree that the motivations for a data-driven approach based on real space should be in the Introduction.  We have therefore moved the first paragraph of the section \textbf{Learning topological phases from real space data} in the \textbf{Supplementary Material} that addresses this issue to the \textbf{Introduction}.}  
-
-\vspace{0.5cm}
-\emph{I am not sure which crucial problems their algorithm can solve that
-was not possible before with machine learning. Furthermore, along with
-the emerging research of unsupervised learning methods in realizing
-the topological phases, \textbf{why should the supervised learning method be
-focused in this context?}\genquote{unsupervised_learning} In the present stage of this manuscript,
-where I do not see the proposal's advantages, I would prefer the
-\textbf{unsupervised approaches that could grasp information from a given
-system without knowing their phases}\genquote{unsupervised_approaches}. In my opinion, a proper intrinsic
-route for understanding physical systems without much information on
-the dynamics of the system will lead to significant future
-developments and a better understanding of physic systems.}
-
-\vspace{0.25cm}
-\textcolor{blue}{\citequote{unsupervised_learning} Our main goal in the article is to investigate the localizability of topological information along lattices of SSH systems via model explainability tools in machine learning. We developed a pipeline that accomplishes this task in a very straightforward way by performing supervised learning with decision tree-based algorithms, since their use of Shannon entropy as loss function provides a clear way to measure feature importance. This is compounded by the fact that Shannon entropy plays a very important role in information theory and physics, as is evidenced by the new section \textbf{Emergent information entropy wave functions} added to this new version of the article.}
-
-\textcolor{blue}{\citequote{unsupervised_approaches} Furthermore, it should be noted that the eigenvector ensembling algorithm can equally be combined with unsupervised learning algorithms as well. This point is now explicitly mentioned in this new version of the paper, in a new paragraph added to the section \textbf{Discussion}. Finally, as we mentioned in our reply to \citequote{pipeline_not_work}, our procedure can be used for example as a powerful dimensionality reduction tool in data-driven physics, which by itself is an unsupervised learning task and can serve as a preprocessing step to further applications of machine learning to physics.} 
+\textcolor{blue}{\citequote{motif_real_space} We agree that the motivations for a data-driven approach based on real space should be in the Introduction.  We have therefore moved the first paragraph of the section \textbf{Learning topological phases from real space data} in the \textbf{Supplementary Material} that addresses this issue to the section \textbf{I. Introduction} in the main paper.}  
 
 \vspace{0.5cm}
-\emph{The details of \textbf{the eigenvector ensembling algorithm should be
-addressed in the main text}\genquote{eigenvector_ensembling_alg} instead of supplemental material. What is
-the specific algorithm used in the paper to train on eigenvectors? I
-think it is important even if the readers are not familiar with some
-ML techniques. Some readers in physics may find it difficult to
-understand some ML technical terms such as bootstrapping, training and
-validation, test sets, etc. In addition, \textbf{I expect proof of what
-"physics" their method captures and why the eigenvector can play an
-important role in characterizing the topological phase}\genquote{eigenvector_physics}. If this
-physical interpretability is not mentioned, it is very difficult to
-see the contribution of the method in physics.}
+\emph{I am not sure which crucial problems their algorithm can solve that was not possible before with machine learning. Furthermore, along with the emerging research of unsupervised learning methods in realizing the topological phases, \textbf{why should the supervised learning method be focused in this context?}\genquote{unsupervised_learning} In the present stage of this manuscript, where I do not see the proposal's advantages, I would prefer the \textbf{unsupervised approaches that could grasp information from a given system without knowing their phases}\genquote{unsupervised_approaches}. In my opinion, a proper intrinsic route for understanding physical systems without much information on
+the dynamics of the system will lead to significant future developments and a better understanding of physic systems.}
 
 \vspace{0.25cm}
-\textcolor{blue}{\citequote{eigenvector_ensembling_alg}  We have moved the section \textbf{The eigenvector ensembling algorithm} from the Supplementary Material to the main paper. The issue of specifying the particular learning algorithms used to train on eigenvectors is addressed in the subsections for each SSH experiment (see subsections \textbf{Experiment 1: Learning a first-neighbor hopping SSH model with decision trees} and \textbf{Experiment 2: Learning a first- and second-neighbor hoppings SSH model with random forests}). In these subsections, we explicitly cite the papers by Breiman \emph{et al.} that were relevant to the implementation of decision trees and random forests in the Python scikit-learn module.}
+\textcolor{blue}{\citequote{unsupervised_learning} Our main goal in the article is to investigate the distribution of topological information along lattices of SSH systems via model explainability tools in machine learning. We developed a pipeline that accomplishes this task in a very straightforward way by performing supervised learning with decision tree-based algorithms, since their use of information entropy as loss function provides a clear way to measure feature importance. This is compounded by the fact that information entropy plays a very important role in information theory and physics, as is evidenced in the new section \textbf{VI. Emergent information entropy wave functions} added to this new version of the article.}
 
-\textcolor{blue}{\citequote{eigenvector_physics} As we argue in a paragraph added to the new section \textbf{The eigenvector ensembling algorithm},  all information from a Hamiltonian can be recovered from its eigendecomposition. Therefore, by expressing a data set of eigenvectors on a suitable choice of basis (which in this paper is the real space basis), we are able to investigate properties of a family of Hamiltonians using the coordinates of eigenvectors in the chosen basis as features. Thus the use of eigenvectors greatly facilitates the exploration of model explainability techniques in data-driven physics applications while at the same time not leading to a loss of information from the systems being investigated. As to the physics being captured by our procedure, see the answer to the issue \citequote{physical_insights}.} 
+\textcolor{blue}{\citequote{unsupervised_approaches} The new section \textbf{V. Topological feature engineering and lattice compression} shows how unsupervised learning can be performed with eigenvector ensembling using tree based methods as learning algorithms. In fact, two of the main tasks under the broad umbrella of unsupervised learning are exactly those: dimensionality reduction and feature engineering. Furthermore, it should be noted that the eigenvector ensembling algorithm can equally be combined with unsupervised learning algorithms as well. This point is now explicitly mentioned in this new version of the paper, in a new paragraph added to the section \textbf{VII. Discussion}. Finally, as we mentioned in our reply to \citequote{pipeline_not_work}, our procedure can be used as a powerful dimensionality reduction tool in other, unrelated data-driven or numerical physics tasks, which by itself is another example of unsupervised learning and can serve as a preprocessing step to further applications of machine learning to physics.} 
+
+\vspace{0.5cm}
+\emph{The details of \textbf{the eigenvector ensembling algorithm should be addressed in the main text}\genquote{eigenvector_ensembling_alg} instead of supplemental material. What is the specific algorithm used in the paper to train on eigenvectors? I think it is important even if the readers are not familiar with some ML techniques. Some readers in physics may find it difficult to understand some ML technical terms such as bootstrapping, training and validation, test sets, etc. In addition, \textbf{I expect proof of what "physics" their method captures and why the eigenvector can play an important role in characterizing the topological phase}\genquote{eigenvector_physics}. If this physical interpretability is not mentioned, it is very difficult to see the contribution of the method in physics.}
+
+\vspace{0.25cm}
+\textcolor{blue}{\citequote{eigenvector_ensembling_alg}  The section \textbf{II. The eigenvector ensembling algorithm} has been moved from the Supplementary Material to the main paper. The issue of specifying the particular learning algorithms used to train on eigenvectors is addressed in the subsections for each SSH experiment (see subsections \textbf{Experiment 1: Learning a first-neighbor hopping SSH model with decision trees} and \textbf{Experiment 2: Learning a first- and second-neighbor hoppings SSH model with random forests}). In these subsections, we explicitly cite the papers by Breiman \emph{et al.} that were relevant to the implementation of decision trees and random forests in the Python scikit-learn module used to run the numerical experiments in the paper.}
+
+\textcolor{blue}{\citequote{eigenvector_physics} As we argue in a paragraph added to the new section \textbf{II. The eigenvector ensembling algorithm},  all information from a Hamiltonian can be recovered from its eigendecomposition. Therefore, by expressing a data set of eigenvectors on a suitable choice of basis (which in this paper is the real space basis), we are able to investigate properties of a family of Hamiltonians using the coordinates of eigenvectors in the chosen basis as features. Thus the use of eigenvectors greatly facilitates the exploration of model explainability techniques in data-driven physics applications while at the same time not leading to a loss of information from the systems being investigated. As to the physics being captured by our procedure, see the answer to the issue \citequote{physical_insights}.} 
 
 %While there may surely be other ways to achieve a similar result, using eigenvectors as input data is fairly straightforward and, as we have %demonstrated, as we have demonstrated tage of using eigenvectors in real space is that the set of eigenvectors of a particular Hamiltonian %encode all the physical information of the particular system in terms of local components in real space. In fact, the use of eigenvectors %play an essential role in this paper and is one of the main features that distinguishes it from the existing literature. In the majority of %the published papers investigating phase transitions in condensed matter physics, neural networks are employed on a data structure that loses %track of local information ADD THIS TO  EIGENVECTOR ENSEMBLING ALG SECTION  IN PAPER!!!   The paper paves the way for new theoretical %investigation on the relations between the shannon entropy of eigenvectors and topological phase transitions. 
 %In our paper, we use model explainability tools from decision trees and random forests to arrive at a previously unknown spatial entropy %signature and its corresponding entropic uncertainty relation for topological phase transitions in SSH systems. }
 
 
 \vspace{0.5cm}
-\emph{The authors made efforts to analyze how the algorithm was able to
-recover the Hamiltonians' global property in the "Information Entropy
-Signatures" section. The authors state that learning topological
-phases from local real-space data in bulk is still possible even for
-small subsets of lattice sites, then refer us to the section "Learning
-topological phases from real space data" in the Supplementary
-Material. The authors mention on page 4 of the Supplementary Material
-that \textbf{"key topological information can be said to be localized on a few
-lattice sites," which is a particularly interesting statement to me}\genquote{key_top}.
-However, \textbf{I fail to understand the physical insights behind it}\genquote{physical_insights}. Without
-the proper explanation, it is difficult to see the effectiveness of
-their method or verify the method with a more complex model instead of
-the simple SSH form.}
+\emph{The authors made efforts to analyze how the algorithm was able to recover the Hamiltonians' global property in the "Information Entropy
+Signatures" section. The authors state that learning topological phases from local real-space data in bulk is still possible even for
+small subsets of lattice sites, then refer us to the section "Learning topological phases from real space data" in the Supplementary
+Material. The authors mention on page 4 of the Supplementary Material that \textbf{"key topological information can be said to be localized on a few lattice sites," which is a particularly interesting statement to me}\genquote{key_top}. However, \textbf{I fail to understand the physical insights behind it}\genquote{physical_insights}. Without the proper explanation, it is difficult to see the effectiveness of
+their method or verify the method with a more complex model instead of the simple SSH form.}
 
 \vspace{0.25cm}
-\textcolor{blue}{\citequote{key_top} We agree that this sentence greatly synthesizes the results presented in the paper about the possibility of localizing topological information in SSH lattices. We have therefore moved it to the final patragraph of the section \textbf{Information entropy signatures} in the main text.}
+\textcolor{blue}{\citequote{key_top} We agree that this sentence greatly synthesizes the results presented in the paper about the possibility of localizing topological information in SSH lattices. We have therefore moved it to the final patragraph of the section \textbf{V. Topological feature engineering and lattice compression} in the main text.}
 
-\textcolor{blue}{\citequote{physical_insights} We have added the new section \textbf{Emergent information entropy wave functions} in which we interpret the information entropy signature as a probability distribution arising from an emergent information entropy wave function in the continuum limit of an infinit lattice. Therefore, the paper now performs a full cycle of data-driven physics, as we i) propose a method to investigate topological phase transitions using real space eigenvector data from simulations of SSH systems (the eigenvector ensembling algorithm), ii) use model explainability to extract new, previously unknown properties of the finite SSH systems (the information entropy signatures) and finally iii) interpret these new properties in the light of theoretical physics.}
+\textcolor{blue}{\citequote{physical_insights} The upgraded version of the paper now performs a full cycle of data-driven physics, as we i) propose a method to investigate topological phase transitions using real space eigenvector data from simulations of SSH systems (the eigenvector ensembling algorithm), ii) use model explainability to extract new, previously unknown properties of the finite SSH systems (the information entropy signatures), iii) generate new topological features from real space data using the insights gained from the information entropy signatures in the added section \textbf{V. Topological feature engineering and lattice compression},  and finally iv) interpret these new properties in the light of theoretical physics in the added section \textbf{VI. Emergent information entropy wave functions}, in which we interpret the information entropy signature as a probability distribution arising from an emergent information entropy wave function in the continuum limit of an infinite lattice.}
 
-\textcolor{blue}{We find it noteworthy that the majority of physics papers published to date on the use of machine learning in the investigation of condensed matter systems have been proofs of concept aimed at showing that the machine learning algorithms that have become ubiquitously famous during the last decade indeed are able to recognize the relevant patterns associated with previously known physical phenomena. Our paper goes beyond this task as we use machine learning and model explainability to discover new properties from the analysis of data from the physical systems under consideration and (with the addition of the new section \textbf{Emergent information entropy wave functions}) map these previously unknown properties into new theoretical  constructs.}
+\textcolor{blue}{It is noteworthy that the majority of physics papers published to date on the use of machine learning in the investigation of condensed matter systems have been proofs of concept aimed at showing that the machine learning algorithms that have become ubiquitously famous during the last decade indeed are able to recognize the relevant patterns associated with previously known physical phenomena. Our paper goes beyond this task as we use machine learning and model explainability to discover new properties from the analysis of data from the physical systems under consideration and (with the addition of the new section \textbf{VI. Emergent information entropy wave functions}) map these previously unknown properties into new theoretical  constructs.}
 
 \subsection*{Minor}
 
-\emph{The authors state in the abstract that "model explainability in
-machine learning can advance the research of exotic quantum materials
-with properties that may power future technological applications such
-as qubit engineering for quantum computing." \textbf{Could you explain a bit
-more about properties that may power future quantum computing?}\genquote{quantum_comp}}
+\emph{The authors state in the abstract that "model explainability in machine learning can advance the research of exotic quantum materials
+with properties that may power future technological applications such as qubit engineering for quantum computing." \textbf{Could you explain a bit more about properties that may power future quantum computing?}\genquote{quantum_comp}}
 
 \vspace{0.25cm}
-\citequote{quantum_comp} Insert comments about topological qubits?
+\textcolor{blue}{\citequote{quantum_comp} We have added a paragraph to the section \textbf{Discussion} where we comment on the importance of information-theoretic methods to the design of prospective quantum technologies like topological qubits and quantum communication.} 
 
 \vspace{0.5cm}
-\emph{On page 4, the authors state that "Figures 2 and 3 illustrate single
-iterations of experiments 1 and 2 as seen from parameter space". \textbf{What
-are the experiments 1 and 2?}\genquote{experiments_1_2}}
+\emph{On page 4, the authors state that "Figures 2 and 3 illustrate single iterations of experiments 1 and 2 as seen from parameter space". \textbf{What are the experiments 1 and 2?}\genquote{experiments_1_2}}
 
 \vspace{0.25cm}
-\textcolor{blue}{\citequote{experiments_1_2} We have added references to the relevant subsections whenever each numerical experiment is mentioned outside of its subsection throughout the text. The designation "experiment 1" is used to abbreviate the subsection \textbf{Experiment 1: Learning a first-neighbor hopping SSH model with decision trees}. Similarly, the designation "experiment 2" is used to abbreviate the subsection \textbf{Experiment 2: Learning a first- and second-neighbor hoppings SSH model with random forests}.} 
+\textcolor{blue}{\citequote{experiments_1_2} We have added references to the relevant subsections whenever each numerical experiment is mentioned outside of its subsection throughout the text. The designation "experiment 1" is used to abbreviate the subsection \textbf{III.A Experiment 1: Learning a first-neighbor hopping SSH model with decision trees}. Similarly, the designation "experiment 2" is used to abbreviate the subsection \textbf{III.B Experiment 2: Learning a first- and second-neighbor hoppings SSH model with random forests}.} 
 
 \vspace{0.5cm}
 \emph{\textbf{The authors should explain the evaluation metric in the main text}\genquote{evaluation_metrics},
-such as "the accuracy" and "the probability heatmap," "eigenvector
-accuracy," and "Hamiltonian accuracy."}
+such as "the accuracy" and "the probability heatmap," "eigenvector accuracy," and "Hamiltonian accuracy."}
 
 \vspace{0.25cm}
-\textcolor{blue}{\citequote{evaluation_metrics} We have added more detailed explanations about the evaluation metrics and probability heatmaps to the section \textbf{Numerical experiments}.}
+\textcolor{blue}{\citequote{evaluation_metrics} We have added more detailed explanations about the evaluation metrics and probability heatmaps to the section \textbf{III. Numerical experiments}. Furthermore, the new section \textbf{V. Topological feature engineering and lattice compression} contains a summary of accuracy scores obtained in all numerical experiments performed in the paper.}
 
 \vspace{0.5cm}
-\emph{I prefer to \textbf{put the definition of information entropy signatures in
-the main}\genquote{inf_entropy_sig} text to help the readers understand what the method tries to do.}
+\emph{I prefer to \textbf{put the definition of information entropy signatures in the main}\genquote{inf_entropy_sig} text to help the readers understand what the method tries to do.}
 
 \vspace{0.25cm}
-\textcolor{blue}{\citequote{inf_entropy_sig} The definition of information entropy signatures is included in the new section \textbf{Emergent information entropy wave functions}, where an extended theoretical interpretation of the results obtained with the eigenvector ensembling algorithm is also presented.}
+\textcolor{blue}{\citequote{inf_entropy_sig} The definition of information entropy signatures is included in the new section \textbf{VI. Emergent information entropy wave functions}, where an extended theoretical interpretation of the results obtained with the eigenvector ensembling algorithm is also presented.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -338,7 +383,7 @@ the main}\genquote{inf_entropy_sig} text to help the readers understand what the
 
 \author{N. L. Holanda}
 \email{linneuholanda@gmail.com, linneu@cbpf.br}
-\affiliation{Cavendish Laboratory, University of Cambridge, J. J. Thomson Avenue, Cambridge, CB3 0HE, United Kingdom}
+\affiliation{Integrated Quantum Materials, Cavendish Laboratory, University of Cambridge, J. J. Thomson Avenue, Cambridge, CB3 0HE, United Kingdom}
 \affiliation{Centro Brasileiro de Pesquisas F\'isicas, \\Rua Dr. Xavier Sigaud, 150 - Urca, 22290-180,  Rio de Janeiro, RJ, Brazil}
 
 \author{M. A. S. Griffith}
@@ -349,7 +394,7 @@ the main}\genquote{inf_entropy_sig} text to help the readers understand what the
 \date{\today }
 
 \begin{abstract}
-We develop a supervised machine learning algorithm that is able to learn topological phases for finite condensed matter systems from bulk data in real lattice space. The algorithm employs diagonalization in real space together with any supervised learning algorithm to learn topological phases through an eigenvector ensembling procedure. We combine our algorithm with decision trees and random forests to successfully recover topological phase diagrams of Su-Schrieffer-Heeger (SSH) models from bulk lattice data in real space and show how the Shannon information entropy of ensembles of lattice eigenvectors can be used to retrieve a signal detailing how topological information is distributed in the bulk. The discovery of Shannon information entropy signals associated with topological phase transitions from the analysis of data from several thousand SSH systems illustrates how model explainability in machine learning can advance the research of exotic quantum materials with properties that may power future technological applications such as qubit engineering for quantum computing. 
+We develop a supervised machine learning algorithm that is able to learn topological phases of finite condensed matter systems from bulk data in real lattice space. The algorithm employs diagonalization in real space together with any supervised learning algorithm to learn topological phases through an eigenvector ensembling procedure. We combine our algorithm with decision trees and random forests to successfully recover topological phase diagrams of Su-Schrieffer-Heeger (SSH) models from bulk lattice data in real space and show how the Shannon information entropy of ensembles of lattice eigenvectors can be used to retrieve a signal detailing how topological information is distributed in the bulk. We further use insights obtained from these information entropy signatures to engineer global topological features from real space lattice data that still carry most of the topological information in the lattice, while greatly diminishing the size of feature space, thus effectively amounting to a topological lattice compression. Finally, we explore the theoretical possibility of interpreting the information entropy topological signatures in terms of emergent information entropy wave functions, which allows us to establish Heisenberg and Hirschman uncertainty relations for topological phase transitions. The discovery of Shannon information entropy signals associated with topological phase transitions from the analysis of data from several thousand SSH systems illustrates how model explainability in machine learning can advance the research of exotic quantum materials with properties that may power future technological applications such as qubit engineering for quantum computing. 
 \end{abstract}
 
 \maketitle
@@ -396,7 +441,7 @@ The Shannon information entropy signals and the corresponding entropic uncertain
 \section{The eigenvector ensembling algorithm}\citequote{eigenvector_ensembling_alg}
 \label{the_eigenvector_ensembling_algorithm}
 \textcolor{blue}{
-The eigenvector ensembling algorithm consists of five steps: 1) Generating Hamiltonians in real space and their corresponding winding numbers; 2) Creating training, validation and test sets; 3) Training on real space eigenvectors of Hamiltonians in the training set; 4) Eigenvector ensembling and 5) Bootstrapping. We describe here in detail each of these steps as they were implemented in this work.
+The eigenvector ensembling algorithm consists of five steps: 1) Generating Hamiltonians in real space and their corresponding winding numbers; 2) Creating training, validation and test sets; 3) Training on real space eigenvectors of Hamiltonians in the training set; 4) Eigenvector ensembling and 5) Bootstrapping. We describe here in detail each of these steps as they were implemented in this work. For a comprehensive introduction to the concepts referenced in the steps below, we recommend the book \cite{friedman2001elements}.    
 \vspace{.3cm}
 \begin{enumerate}%[topsep=0pt, partopsep=0pt]
 \item[1)] \textbf{Generating Hamiltonians and winding numbers:} we start generating a number of paremeterized Hamiltonians $H(\mathbf{t})$ in real space and their corresponding winding numbers $W(\mathbf{t})$, where $\mathbf{t} = (t_1, t_2,...,t_h)$ is a vector of $h$ hopping parameters (in the simplest case of the SSH model $h$ = 2). These Hamiltonians are $N\times N$ matrices, where $N$ is twice the number of unit cells in the chain.
@@ -597,49 +642,46 @@ The accuracy scores obtained with the real space features $X_{\mathcal{S}_\alpha
 
 
 
+%\newcommand\SSHSys{\thead{SSH systems}}
+%\newcommand\Feat{\thead{Features}}
+%\newcommand\ValEig{\thead{Val. eigenvectors}}
+%\newcommand\TestEig{\thead{Test eigenvectors}}
+%\newcommand\ValHam{\thead{Val. Hamiltonians}}
+%\newcommand\TestHam{\thead{Test Hamiltonians}}
+
+
+
 \begin{table}
- \begin{tabular}{||c@{\hskip 0.3in} c@{\hskip 0.3in} c@{\hskip 0.3in} c@{\hskip 0.3in} c@{\hskip 0.3in} c||} 
- \hline
-SSH systems &Features                              &Val. eigenvectors  &Test eigenvectors  &Val. Hamiltonians          &Test Hamiltonians  \\  
- \hline\hline
-            &                                              &               &                    &                      &                   \\
-1           &\xOne                                         &\xOneEigVal    &\xOneEigTest        &\xOneHamVal           &\xOneHamTest       \\
-\hline
-1           &\xSOne                                        &\xSOneEigVal   &\xSOneEigTest       &\xSOneHamVal          &\xSOneHamVal       \\
-\hline
-1           &\xcOne                                        &\xcOneEigVal   &\xcOneEigTest       &\xcOneHamVal          &\xcOneHamTest      \\
-\hline
-1           &\xcEOne                                       &\xcEOneEigVal  &\xcEOneEigTest      &\xcEOneHamVal         &\xcEOneHamTest     \\
-\hline
-1           &\xcSEOne                                      &\xcSEOneEigVal &\xcSEOneEigTest     &\xcSEOneHamVal        &\xcSEOneHamTest    \\
-\hline
-1           &\xsOne                                        &\xsOneEigVal   &\xsOneEigTest       &\xsOneHamVal          &\xsOneHamTest      \\
-\hline
-1           &\xsOOne                                       &\xsOOneEigVal  &\xsOOneEigTest      &\xsOOneHamVal         &\xsOOneHamTest     \\
-\hline
-1           &\xsSOOne                                      &\xsSOOneEigVal &\xsSOOneEigTest      &\xsSOOneHamVal       &\xsSOOneHamTest    \\
-\hline
-2           & $X_2$                                        & 0.971              & 0.663           & 0.997                & 0.880             \\
-\hline
-2           & $X_{\mathcal{S}_2}$                          & 0.959              & 0.617           & 0.996                & 0.863             \\
-\hline
-2           & $\hat{X}^c_2$                                & 0.974              & 0.690           & 0.998                & 0.886             \\
-\hline
-2           & $\hat{X}^c_{\mathcal{E}_2}$                  & 0.899              & 0.536           & 0.995                & 0.790             \\
-\hline
-2           & $\hat{X}^c_{\mathcal{S}_2,\mathcal{E}_2}$    & 0.900              & 0.503           & 0.996                & 0.767             \\
-\hline
-2           & $\hat{X}^s_2$                                & 0.974              & 0.688           & 0.997                & 0.890             \\
-\hline
-2           & $\hat{X}^s_{\mathcal{O}_2}$                  & 0.904              & 0.553           & 0.992                & 0.743             \\
-\hline
-2           & $\hat{X}^s_{\mathcal{S}_2,\mathcal{O}_2}$    & 0.820              & 0.413           & 0.994                & 0.590             \\
-            &                                              &                    &                 &                                          \\
-\hline\hline
- \end{tabular}
-
-
-\caption{\label{numerical_results}ACCURACY SCORES OF NUMERICAL EXPERIMENTS. The features used to train the decision trees (SSH-1) or random forests (SSH-2) in the numerical experiments with SSH-$\alpha$ systems were as follows. Real space features: all real space lattice sites ($X_\alpha$) (sections \ref{experiment_1} and \ref{experiment_2}); real space lattice sites from subset $\mathcal{S}_{\alpha}$ ($X_{\mathcal{S}_{\alpha}}$) (equation \eqref{lattice_subsets}). DCT topological features: all DCT topological features $\hat{X}^c_\alpha$ (equation \eqref{DCT}); DCT topological features from subset $\hat{X}^c_{\mathcal{E}_\alpha}$ (equation \eqref{DCT_subsets}; DCT topological features from subset $\mathcal{E}_\alpha$ computed using only real space lattice sites $\mathcal{S}_{\alpha}$ ($\hat{X}^c_{\mathcal{S}_\alpha,\mathcal{E}_\alpha}$) (equation \eqref{DCT_very_compressed}). DST topological features: all DST topological features $\hat{X}^s_\alpha$ (equation \eqref{DST}); DST topological features from subset $\hat{X}^s_{\mathcal{O}_\alpha}$ (equation \eqref{DST_subsets}; DST topological features from subset $\mathcal{O}_\alpha$ computed using only real space lattice sites $\mathcal{S}_{\alpha}$ ($\hat{X}^s_{\mathcal{S}_\alpha,\mathcal{O}_\alpha}$) (equation \eqref{DST_very_compressed}). }
+\label{numerical_results}
+\begin{tabular}{||c@{\hskip 0.3in} c@{\hskip 0.3in} c@{\hskip 0.3in} c@{\hskip 0.3in} c@{\hskip 0.3in} c||} 
+%\caption{ACCURACY SCORES OF NUMERICAL EXPERIMENTS.} \label{numerical_results}
+%\begin{table}[th]
+%\caption{An Example of a Table}
+%\centering\label{table_example}
+%\begin{tabular}{|Sc*{9}{c|}}
+\toprule
+\SSHSys               &\Feat             &\ValEig            &\TestEig           &\ValHam              &\TestHam         \tableRowHeaderEnd 
+\midrule
+%                     &                  &                   &                   &                     &                   \tableRow{0.3}
+1                     &\xOne             &\xOneEigVal        &\xOneEigTest       &\xOneHamVal          &\xOneHamTest       \tableRowEnd
+1                     &\xSOne            &\xSOneEigVal       &\xSOneEigTest      &\xSOneHamVal         &\xSOneHamVal       \tableRowEnd
+1                     &\xcOne            &\xcOneEigVal       &\xcOneEigTest      &\xcOneHamVal         &\xcOneHamTest      \tableRowEnd
+1                     &\xcEOne           &\xcEOneEigVal      &\xcEOneEigTest     &\xcEOneHamVal        &\xcEOneHamTest     \tableRowEnd
+1                     &\xcSEOne          &\xcSEOneEigVal     &\xcSEOneEigTest    &\xcSEOneHamVal       &\xcSEOneHamTest    \tableRowEnd
+1                     &\xsOne            &\xsOneEigVal       &\xsOneEigTest      &\xsOneHamVal         &\xsOneHamTest      \tableRowEnd
+1                     &\xsOOne           &\xsOOneEigVal      &\xsOOneEigTest     &\xsOOneHamVal        &\xsOOneHamTest     \tableRowEnd
+1                     &\xsSOOne          &\xsSOOneEigVal     &\xsSOOneEigTest    &\xsSOOneHamVal       &\xsSOOneHamTest    \tableRowEnd
+2                     &\xTwo             &\xTwoEigVal        &\xTwoEigTest       &\xTwoHamVal          &\xTwoHamTest       \tableRowEnd
+2                     &\xSTwo            &\xSTwoEigVal       &\xSTwoEigTest      &\xSTwoHamVal         &\xSTwoHamVal       \tableRowEnd
+2                     &\xcTwo            &\xcTwoEigVal       &\xcTwoEigTest      &\xcTwoHamVal         &\xcTwoHamTest      \tableRowEnd
+2                     &\xcOTwo           &\xcOTwoEigVal      &\xcOTwoEigTest     &\xcOTwoHamVal        &\xcOTwoHamTest     \tableRowEnd
+2                     &\xcSOTwo          &\xcSOTwoEigVal     &\xcSOTwoEigTest    &\xcSOTwoHamVal       &\xcSOTwoHamTest    \tableRowEnd
+2                     &\xsTwo            &\xsTwoEigVal       &\xsTwoEigTest      &\xsTwoHamVal         &\xsTwoHamTest      \tableRowEnd
+2                     &\xsOTwo           &\xsOTwoEigVal      &\xsOTwoEigTest     &\xsOTwoHamVal        &\xsOTwoHamTest     \tableRowEnd
+2                     &\xsSOTwo          &\xsSOTwoEigVal     &\xsSOTwoEigTest    &\xsSOTwoHamVal       &\xsSOTwoHamTest    \tableRowEnd
+\bottomrule
+\end{tabular}
+\caption{ACCURACY SCORES OF NUMERICAL EXPERIMENTS. The features used to train the decision trees (SSH-1) or random forests (SSH-2) in the numerical experiments with SSH-$\alpha$ systems were as follows. Real space features: all real space lattice sites ($X_\alpha$) (sections \ref{experiment_1} and \ref{experiment_2}); real space lattice sites from subset $\mathcal{S}_{\alpha}$ ($X_{\mathcal{S}_{\alpha}}$) (equation \eqref{lattice_subsets}). DCT topological features: all DCT topological features $\hat{X}^c_\alpha$ (equation \eqref{DCT}); DCT topological features from subset $\hat{X}^c_{\mathcal{E}_\alpha}$ (equation \eqref{DCT_subsets}; DCT topological features from subset $\mathcal{E}_\alpha$ computed using only real space lattice sites $\mathcal{S}_{\alpha}$ ($\hat{X}^c_{\mathcal{S}_\alpha,\mathcal{E}_\alpha}$) (equation \eqref{DCT_very_compressed}). DST topological features: all DST topological features $\hat{X}^s_\alpha$ (equation \eqref{DST}); DST topological features from subset $\hat{X}^s_{\mathcal{O}_\alpha}$ (equation \eqref{DST_subsets}; DST topological features from subset $\mathcal{O}_\alpha$ computed using only real space lattice sites $\mathcal{S}_{\alpha}$ ($\hat{X}^s_{\mathcal{S}_\alpha,\mathcal{O}_\alpha}$) (equation \eqref{DST_very_compressed}). }
 \end{table}
 
 
@@ -752,8 +794,13 @@ Given the increasing complexity of systems studied in condensed matter physics a
 
 \textcolor{blue}{By starting from eigenvector data generated from the simulation of SSH systems in real space, proposing an approach based on eigenvector ensembling and decision trees and using model explainability to uncover the information entropy signatures presented in this article, and then exploring the numerical theoretical possibilities posed by the information entropy signatures, our work exemplifies a full cycle of data-driven physics and illustrates how the interactions between machine learning and physics can be enriching to both disciplines. }     
  
+\textcolor{blue}{
+The development of data-driven methods based on real space lattice data will be particularly relevant to the study of disordered systems in condensed matter. Such systems usually break translational symmetry and therefore are not amenable to canonical wavevector space methods. Thus, the discovery and engineering of topological features from real space data as demonstrated in this work carries great promise to the theoretical investigation of these systems.
+}
 
-The development of data-driven methods based on real space lattice data will be particularly relevant to the study of disordered systems in condensed matter. Such systems usually break translational symmetry and therefore are not amenable to wavevector space methods.
+\textcolor{blue}{
+Furthermore, as is generally the case in engineering, the evolution of quantum technologies such as quantum computing and quantum communication  will likely depend on a delicate balance between simplicity and robustness of components such as topological qubits. On the simplicity side, engineers try to build their systems with as little redundancy as possible to reduce design complexity, whilst for robustness redundancy of information is a necessary commodity to ensure error-correction within the system. We expect that information theoretic approaches to quantum materials such as the one advanced by this paper shall eventually become a staple of quantum engineering.  
+}
 
 As we have seen, the use of real space data enabled us to investigate how topological information is spatially distributed in SSH systems. This was demonstrated by the information entropy signatures of section \ref{information_entropy_signatures}, which were recovered from the Shannon entropy of ensembles of eigenvectors in each numerical experiment executed in section \ref{numerical_experiments} and led us to the new topological features of section \ref{topological_feature_engineering} and the emergent information entropy wave functions of section \ref{emergent_information_entropy_wave_functions}. The existence of such signals that can be recovered from data from many distinct physical systems but are hard to conceptualize from sheer theoretical reasoning provides a clear example of how machine learning and model explainability can be important tools in the investigation of quantum materials.
 

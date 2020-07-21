@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.5.2)  20 JUL 2020 02:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.5.2)  20 JUL 2020 22:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -912,45 +912,95 @@ Package: xfp 2018/02/21 L3 Floating point unit
 . Defining command \inteval with sig. 'm' on line 39.
 .................................................
 )
-\c@quoter=\count279
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 67.
+\captionmargin=\dimen158
+\captionmargin@=\dimen159
+\captionwidth=\dimen160
+\caption@tempdima=\dimen161
+\caption@indent=\dimen162
+\caption@parindent=\dimen163
+\caption@hangindent=\dimen164
+Package caption Info: Unknown document class (or package),
+(caption)             standard defaults will be used.
+)
+
+Package caption Warning: Unsupported document class (or package) detected,
+(caption)                usage of the caption package is not recommended.
+See the caption package documentation for explanation.
+
+Package caption Info: \@makecaption = \long macro:#1#2->\par \vskip \abovecapti
+onskip \begingroup \small \rmfamily \sbox \@tempboxa {\let \\\heading@cr \@make
+@capt@title {#1}{#2}}\@ifdim {\wd \@tempboxa >\hsize }{\begingroup \samepage \f
+lushing \let \footnote \@footnotemark@gobble \@make@capt@title {#1}{#2}\par \en
+dgroup }{\global \@minipagefalse \hb@xt@ \hsize {\hfil \unhbox \@tempboxa \hfil
+ }}\endgroup \vskip \belowcaptionskip .
+\c@ContinuedFloat=\count279
+Package caption Info: hyperref package is loaded.
+Package caption Info: subfigure package is loaded.
+) (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2016/04/27 v1.618033 publication quality tables
+\heavyrulewidth=\dimen165
+\lightrulewidth=\dimen166
+\cmidrulewidth=\dimen167
+\belowrulesep=\dimen168
+\belowbottomsep=\dimen169
+\aboverulesep=\dimen170
+\abovetopsep=\dimen171
+\cmidrulesep=\dimen172
+\cmidrulekern=\dimen173
+\defaultaddspace=\dimen174
+\@cmidla=\count280
+\@cmidlb=\count281
+\@aboverulesep=\dimen175
+\@belowrulesep=\dimen176
+\@thisruleclass=\count282
+\@lastruleclass=\count283
+\@thisrulewidth=\dimen177
+)
+\c@quoter=\count284
 Class revtex4-1 Info: Unrecognized array package. Please update this document c
-lass! (Proceeding with fingers crossed.) on input line 198.
-Class revtex4-1 Info: Robustifying \LaTeX's \boldmath command on input line 198
+lass! (Proceeding with fingers crossed.) on input line 281.
+Class revtex4-1 Info: Robustifying \LaTeX's \boldmath command on input line 281
 .
-Class revtex4-1 Info: cite was not loaded (OK!) on input line 198.
-Class revtex4-1 Info: mcite was not loaded (OK!) on input line 198.
-Class revtex4-1 Info: multicol was not loaded (OK!) on input line 198.
+Class revtex4-1 Info: cite was not loaded (OK!) on input line 281.
+Class revtex4-1 Info: mcite was not loaded (OK!) on input line 281.
+Class revtex4-1 Info: multicol was not loaded (OK!) on input line 281.
 
 (./article.aux)
 \openout1 = `article.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 198.
-LaTeX Font Info:    ... okay on input line 198.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 198.
-LaTeX Font Info:    ... okay on input line 198.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 198.
-LaTeX Font Info:    ... okay on input line 198.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 198.
-LaTeX Font Info:    ... okay on input line 198.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 198.
-LaTeX Font Info:    ... okay on input line 198.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 198.
-LaTeX Font Info:    ... okay on input line 198.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 198.
-LaTeX Font Info:    ... okay on input line 198.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 281.
+LaTeX Font Info:    ... okay on input line 281.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 281.
+LaTeX Font Info:    ... okay on input line 281.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 281.
+LaTeX Font Info:    ... okay on input line 281.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 281.
+LaTeX Font Info:    ... okay on input line 281.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 281.
+LaTeX Font Info:    ... okay on input line 281.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 281.
+LaTeX Font Info:    ... okay on input line 281.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 281.
+LaTeX Font Info:    ... okay on input line 281.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count280
-\scratchdimen=\dimen158
+\scratchcounter=\count285
+\scratchdimen=\dimen178
 \scratchbox=\box59
-\nofMPsegments=\count281
-\nofMParguments=\count282
+\nofMPsegments=\count286
+\nofMParguments=\count287
 \everyMPshowfont=\toks32
-\MPscratchCnt=\count283
-\MPscratchDim=\dimen159
-\MPnumerator=\count284
-\makeMPintoPDFobject=\count285
+\MPscratchCnt=\count288
+\MPscratchDim=\dimen179
+\MPnumerator=\count289
+\makeMPintoPDFobject=\count290
 \everyMPtoPDFconversion=\toks33
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -970,7 +1020,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box60
-Package hyperref Info: Link coloring OFF on input line 198.
+Package hyperref Info: Link coloring OFF on input line 281.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -978,250 +1028,294 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count286
+\c@section@level=\count291
 )
-LaTeX Info: Redefining \ref on input line 198.
-LaTeX Info: Redefining \pageref on input line 198.
-LaTeX Info: Redefining \nameref on input line 198.
+LaTeX Info: Redefining \ref on input line 281.
+LaTeX Info: Redefining \pageref on input line 281.
+LaTeX Info: Redefining \nameref on input line 281.
 
 (./article.out) (./article.out)
 \@outlinefile=\write4
 \openout4 = `article.out'.
 
-Class revtex4-1 Info: Taking \maketitle back from hyperref on input line 198.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+Class revtex4-1 Info: Taking \maketitle back from hyperref on input line 281.
 \openout3 = `articleNotes.bib'.
 
- [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
-LaTeX Font Info:    Try loading font information for U+msa on input line 355.
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4]
+LaTeX Font Info:    Try loading font information for U+msa on input line 400.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 355.
+LaTeX Font Info:    Try loading font information for U+msb on input line 400.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [4] [5]
+) [5] [6]
 
 Package natbib Warning: Citation `https://ieeexplore.ieee.org/abstract/document
 /8631448?casa_token=ENOe4-VIc7kAAAAA:Tp8Aatj9Rx-9UcbOXtLbqNhG33nAt7_LEb-pG4-NC6
-wnQacmyRn0NqF4rrs2JGIDjgUgCNDLJaY' on page 6 undefined on input line 387.
+wnQacmyRn0NqF4rrs2JGIDjgUgCNDLJaY' on page 7 undefined on input line 432.
 
 
 Package natbib Warning: Citation `https://ieeexplore.ieee.org/abstract/document
-/8400040' on page 6 undefined on input line 387.
+/8400040' on page 7 undefined on input line 432.
 
 
 Package natbib Warning: Citation `https://ieeexplore.ieee.org/abstract/document
-/9007737' on page 6 undefined on input line 387.
+/9007737' on page 7 undefined on input line 432.
 
 
-Package natbib Warning: Citation `https://arxiv.org/abs/1912.10057' on page 6 u
-ndefined on input line 387.
+Package natbib Warning: Citation `https://arxiv.org/abs/1912.10057' on page 7 u
+ndefined on input line 432.
 
-<./phase_diagrams/ssh1.png, id=216, 867.24pt x 867.24pt>
+<./phase_diagrams/ssh1.png, id=220, 867.24pt x 867.24pt>
 File: ./phase_diagrams/ssh1.png Graphic file (type png)
 <use ./phase_diagrams/ssh1.png>
-Package pdftex.def Info: ./phase_diagrams/ssh1.png  used on input line 390.
+Package pdftex.def Info: ./phase_diagrams/ssh1.png  used on input line 435.
 (pdftex.def)             Requested size: 229.49844pt x 229.48668pt.
-<./phase_diagrams/ssh2.png, id=218, 867.24pt x 867.24pt>
+<./phase_diagrams/ssh2.png, id=222, 867.24pt x 867.24pt>
 File: ./phase_diagrams/ssh2.png Graphic file (type png)
 <use ./phase_diagrams/ssh2.png>
-Package pdftex.def Info: ./phase_diagrams/ssh2.png  used on input line 391.
+Package pdftex.def Info: ./phase_diagrams/ssh2.png  used on input line 436.
 (pdftex.def)             Requested size: 229.49844pt x 229.48668pt.
-[6 <./phase_diagrams/ssh1.png> <./phase_diagrams/ssh2.png>] [7]
+[7 <./phase_diagrams/ssh1.png> <./phase_diagrams/ssh2.png>] [8]
 
-Package natbib Warning: Citation `scikit' on page 8 undefined on input line 433
+Package natbib Warning: Citation `scikit' on page 9 undefined on input line 478
 .
 
-<./ssh1/periodic_100_6561/scatter_train_val_test_experiment_0.png, id=263, 433.
+<./ssh1/periodic_100_6561/scatter_train_val_test_experiment_0.png, id=270, 433.
 62pt x 433.62pt>
 File: ./ssh1/periodic_100_6561/scatter_train_val_test_experiment_0.png Graphic 
 file (type png)
 <use ./ssh1/periodic_100_6561/scatter_train_val_test_experiment_0.png>
 Package pdftex.def Info: ./ssh1/periodic_100_6561/scatter_train_val_test_experi
-ment_0.png  used on input line 445.
+ment_0.png  used on input line 490.
 (pdftex.def)             Requested size: 163.20374pt x 163.20258pt.
-<./ssh1/periodic_100_6561/scatter_winding_train_experiment_0.png, id=264, 433.6
+<./ssh1/periodic_100_6561/scatter_winding_train_experiment_0.png, id=271, 433.6
 2pt x 433.62pt>
 File: ./ssh1/periodic_100_6561/scatter_winding_train_experiment_0.png Graphic f
 ile (type png)
 <use ./ssh1/periodic_100_6561/scatter_winding_train_experiment_0.png>
 Package pdftex.def Info: ./ssh1/periodic_100_6561/scatter_winding_train_experim
-ent_0.png  used on input line 446.
+ent_0.png  used on input line 491.
 (pdftex.def)             Requested size: 163.20374pt x 163.20258pt.
-<./ssh1/periodic_100_6561/pcolormesh_prediction_grid_experiment_0.png, id=265, 
+<./ssh1/periodic_100_6561/pcolormesh_prediction_grid_experiment_0.png, id=272, 
 433.62pt x 433.62pt>
 File: ./ssh1/periodic_100_6561/pcolormesh_prediction_grid_experiment_0.png Grap
 hic file (type png)
 <use ./ssh1/periodic_100_6561/pcolormesh_prediction_grid_experiment_0.png>
 Package pdftex.def Info: ./ssh1/periodic_100_6561/pcolormesh_prediction_grid_ex
-periment_0.png  used on input line 447.
+periment_0.png  used on input line 492.
 (pdftex.def)             Requested size: 163.20374pt x 163.20258pt.
-<./ssh2/periodic_100_6561/scatter_train_val_test_experiment_0.png, id=270, 433.
+[9]
+<./ssh2/periodic_100_6561/scatter_train_val_test_experiment_0.png, id=293, 433.
 62pt x 433.62pt>
 File: ./ssh2/periodic_100_6561/scatter_train_val_test_experiment_0.png Graphic 
 file (type png)
 <use ./ssh2/periodic_100_6561/scatter_train_val_test_experiment_0.png>
 Package pdftex.def Info: ./ssh2/periodic_100_6561/scatter_train_val_test_experi
-ment_0.png  used on input line 465.
+ment_0.png  used on input line 510.
 (pdftex.def)             Requested size: 163.20374pt x 163.20258pt.
-<./ssh2/periodic_100_6561/scatter_winding_train_experiment_0.png, id=271, 433.6
+<./ssh2/periodic_100_6561/scatter_winding_train_experiment_0.png, id=294, 433.6
 2pt x 433.62pt>
 File: ./ssh2/periodic_100_6561/scatter_winding_train_experiment_0.png Graphic f
 ile (type png)
 <use ./ssh2/periodic_100_6561/scatter_winding_train_experiment_0.png>
 Package pdftex.def Info: ./ssh2/periodic_100_6561/scatter_winding_train_experim
-ent_0.png  used on input line 466.
+ent_0.png  used on input line 511.
 (pdftex.def)             Requested size: 163.20374pt x 163.20258pt.
-<./ssh2/periodic_100_6561/pcolormesh_prediction_grid_experiment_0.png, id=272, 
+<./ssh2/periodic_100_6561/pcolormesh_prediction_grid_experiment_0.png, id=295, 
 433.62pt x 433.62pt>
 File: ./ssh2/periodic_100_6561/pcolormesh_prediction_grid_experiment_0.png Grap
 hic file (type png)
 <use ./ssh2/periodic_100_6561/pcolormesh_prediction_grid_experiment_0.png>
 Package pdftex.def Info: ./ssh2/periodic_100_6561/pcolormesh_prediction_grid_ex
-periment_0.png  used on input line 467.
+periment_0.png  used on input line 512.
 (pdftex.def)             Requested size: 163.20374pt x 163.20258pt.
-[8] [9 <./ssh1/periodic_100_6561/scatter_train_val_test_experiment_0.png> <./ss
-h1/periodic_100_6561/scatter_winding_train_experiment_0.png> <./ssh1/periodic_1
-00_6561/pcolormesh_prediction_grid_experiment_0.png> <./ssh2/periodic_100_6561/
-scatter_train_val_test_experiment_0.png> <./ssh2/periodic_100_6561/scatter_wind
-ing_train_experiment_0.png> <./ssh2/periodic_100_6561/pcolormesh_prediction_gri
-d_experiment_0.png>]
-<./ssh1/periodic_100_6561/imshow_winding_grid_winding_0_sim.png, id=320, 867.24
+ [10 <./ssh1/periodic_100_6561/scatter_train_val_test_experiment_0.png> <./ssh1
+/periodic_100_6561/scatter_winding_train_experiment_0.png> <./ssh1/periodic_100
+_6561/pcolormesh_prediction_grid_experiment_0.png> <./ssh2/periodic_100_6561/sc
+atter_train_val_test_experiment_0.png> <./ssh2/periodic_100_6561/scatter_windin
+g_train_experiment_0.png> <./ssh2/periodic_100_6561/pcolormesh_prediction_grid_
+experiment_0.png>]
+<./ssh1/periodic_100_6561/imshow_winding_grid_winding_0_sim.png, id=327, 867.24
 pt x 867.24pt>
 File: ./ssh1/periodic_100_6561/imshow_winding_grid_winding_0_sim.png Graphic fi
 le (type png)
 <use ./ssh1/periodic_100_6561/imshow_winding_grid_winding_0_sim.png>
 Package pdftex.def Info: ./ssh1/periodic_100_6561/imshow_winding_grid_winding_0
-_sim.png  used on input line 498.
+_sim.png  used on input line 543.
 (pdftex.def)             Requested size: 163.20374pt x 163.20259pt.
-<./ssh1/periodic_100_6561/imshow_winding_grid_winding_1_sim.png, id=321, 867.24
+<./ssh1/periodic_100_6561/imshow_winding_grid_winding_1_sim.png, id=328, 867.24
 pt x 867.24pt>
 File: ./ssh1/periodic_100_6561/imshow_winding_grid_winding_1_sim.png Graphic fi
 le (type png)
 <use ./ssh1/periodic_100_6561/imshow_winding_grid_winding_1_sim.png>
 Package pdftex.def Info: ./ssh1/periodic_100_6561/imshow_winding_grid_winding_1
-_sim.png  used on input line 499.
+_sim.png  used on input line 544.
 (pdftex.def)             Requested size: 163.20374pt x 163.20259pt.
-<./ssh1/periodic_100_6561/merge_imshow_winding_grids_second_sim.png, id=322, 86
+<./ssh1/periodic_100_6561/merge_imshow_winding_grids_second_sim.png, id=329, 86
 7.24pt x 867.24pt>
 File: ./ssh1/periodic_100_6561/merge_imshow_winding_grids_second_sim.png Graphi
 c file (type png)
 <use ./ssh1/periodic_100_6561/merge_imshow_winding_grids_second_sim.png>
 Package pdftex.def Info: ./ssh1/periodic_100_6561/merge_imshow_winding_grids_se
-cond_sim.png  used on input line 500.
+cond_sim.png  used on input line 545.
 (pdftex.def)             Requested size: 163.20374pt x 163.20259pt.
-<./ssh2/periodic_100_6561/imshow_winding_grid_winding_-1_sim.png, id=325, 867.2
+<./ssh2/periodic_100_6561/imshow_winding_grid_winding_-1_sim.png, id=332, 867.2
 4pt x 867.24pt>
 File: ./ssh2/periodic_100_6561/imshow_winding_grid_winding_-1_sim.png Graphic f
 ile (type png)
 <use ./ssh2/periodic_100_6561/imshow_winding_grid_winding_-1_sim.png>
 Package pdftex.def Info: ./ssh2/periodic_100_6561/imshow_winding_grid_winding_-
-1_sim.png  used on input line 507.
+1_sim.png  used on input line 552.
 (pdftex.def)             Requested size: 163.20374pt x 163.20259pt.
-<./ssh2/periodic_100_6561/imshow_winding_grid_winding_0_sim.png, id=326, 867.24
+<./ssh2/periodic_100_6561/imshow_winding_grid_winding_0_sim.png, id=333, 867.24
 pt x 867.24pt>
 File: ./ssh2/periodic_100_6561/imshow_winding_grid_winding_0_sim.png Graphic fi
 le (type png)
 <use ./ssh2/periodic_100_6561/imshow_winding_grid_winding_0_sim.png>
 Package pdftex.def Info: ./ssh2/periodic_100_6561/imshow_winding_grid_winding_0
-_sim.png  used on input line 508.
+_sim.png  used on input line 553.
 (pdftex.def)             Requested size: 163.20374pt x 163.20259pt.
-<./ssh2/periodic_100_6561/imshow_winding_grid_winding_1_sim.png, id=327, 867.24
+<./ssh2/periodic_100_6561/imshow_winding_grid_winding_1_sim.png, id=334, 867.24
 pt x 867.24pt>
 File: ./ssh2/periodic_100_6561/imshow_winding_grid_winding_1_sim.png Graphic fi
 le (type png)
 <use ./ssh2/periodic_100_6561/imshow_winding_grid_winding_1_sim.png>
 Package pdftex.def Info: ./ssh2/periodic_100_6561/imshow_winding_grid_winding_1
-_sim.png  used on input line 509.
+_sim.png  used on input line 554.
 (pdftex.def)             Requested size: 163.20374pt x 163.20259pt.
-<./ssh2/periodic_100_6561/imshow_winding_grid_winding_2_sim.png, id=328, 867.24
+<./ssh2/periodic_100_6561/imshow_winding_grid_winding_2_sim.png, id=335, 867.24
 pt x 867.24pt>
 File: ./ssh2/periodic_100_6561/imshow_winding_grid_winding_2_sim.png Graphic fi
 le (type png)
 <use ./ssh2/periodic_100_6561/imshow_winding_grid_winding_2_sim.png>
 Package pdftex.def Info: ./ssh2/periodic_100_6561/imshow_winding_grid_winding_2
-_sim.png  used on input line 510.
+_sim.png  used on input line 555.
 (pdftex.def)             Requested size: 163.20374pt x 163.20259pt.
-<./ssh2/periodic_100_6561/merge_imshow_winding_grids_sim.png, id=329, 867.24pt 
+<./ssh2/periodic_100_6561/merge_imshow_winding_grids_sim.png, id=336, 867.24pt 
 x 867.24pt>
 File: ./ssh2/periodic_100_6561/merge_imshow_winding_grids_sim.png Graphic file 
 (type png)
 <use ./ssh2/periodic_100_6561/merge_imshow_winding_grids_sim.png>
 Package pdftex.def Info: ./ssh2/periodic_100_6561/merge_imshow_winding_grids_si
-m.png  used on input line 511.
+m.png  used on input line 556.
 (pdftex.def)             Requested size: 163.20374pt x 163.20259pt.
- [10 <./ssh1/periodic_100_6561/imshow_winding_grid_winding_0_sim.png> <./ssh1/p
+ [11 <./ssh1/periodic_100_6561/imshow_winding_grid_winding_0_sim.png> <./ssh1/p
 eriodic_100_6561/imshow_winding_grid_winding_1_sim.png> <./ssh1/periodic_100_65
-61/merge_imshow_winding_grids_second_sim.png>] [11 <./ssh2/periodic_100_6561/im
+61/merge_imshow_winding_grids_second_sim.png>] [12 <./ssh2/periodic_100_6561/im
 show_winding_grid_winding_-1_sim.png> <./ssh2/periodic_100_6561/imshow_winding_
 grid_winding_0_sim.png> <./ssh2/periodic_100_6561/imshow_winding_grid_winding_1
 _sim.png> <./ssh2/periodic_100_6561/imshow_winding_grid_winding_2_sim.png> <./s
 sh2/periodic_100_6561/merge_imshow_winding_grids_sim.png>]
 
-LaTeX Warning: Reference `numerical results' on page 12 undefined on input line
- 563.
+Package caption Warning: \label without proper reference on input line 655.
+See the caption package documentation for explanation.
 
-LaTeX Font Info:    Try loading font information for U+bbm on input line 582.
+
+LaTeX Warning: Reference `numerical_results' on page 13 undefined on input line
+ 599.
+
+
+LaTeX Warning: Reference `numerical results' on page 13 undefined on input line
+ 608.
+
+
+Package caption Warning: \label without proper reference on input line 655.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `numerical_results' on page 13 undefined on input line
+ 610.
+
+
+Package caption Warning: \label without proper reference on input line 655.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `numerical_results' on page 13 undefined on input line
+ 622.
+
+LaTeX Font Info:    Try loading font information for U+bbm on input line 627.
 (/usr/share/texlive/texmf-dist/tex/latex/bbm-macros/ubbm.fd
 File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
-) [12] [13] [14]
+) [13]
 
-Package natbib Warning: Citation `ml_interpretability' on page 15 undefined on 
-input line 762.
+Package caption Warning: \label without proper reference on input line 655.
+See the caption package documentation for explanation.
 
 
-Package natbib Warning: Citation `ml_interpretability' on page 15 undefined on 
-input line 762.
+LaTeX Warning: Reference `numerical_results' on page 14 undefined on input line
+ 633.
 
-[15]
-<./ssh1/periodic_100_6561/plot_feature_importances.png, id=479, 867.24pt x 867.
+
+Package caption Warning: \label without proper reference on input line 655.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `numerical_results' on page 14 undefined on input line
+ 635.
+
+[14] [15] [16]
+
+Package natbib Warning: Citation `ml_interpretability' on page 17 undefined on 
+input line 809.
+
+
+Package natbib Warning: Citation `ml_interpretability' on page 17 undefined on 
+input line 809.
+
+[17]
+<./ssh1/periodic_100_6561/plot_feature_importances.png, id=493, 867.24pt x 867.
 24pt>
 File: ./ssh1/periodic_100_6561/plot_feature_importances.png Graphic file (type 
 png)
 <use ./ssh1/periodic_100_6561/plot_feature_importances.png>
 Package pdftex.def Info: ./ssh1/periodic_100_6561/plot_feature_importances.png 
- used on input line 776.
+ used on input line 823.
 (pdftex.def)             Requested size: 249.9028pt x 249.89197pt.
-<./ssh2/periodic_100_6561/plot_feature_importances.png, id=480, 867.24pt x 867.
+<./ssh2/periodic_100_6561/plot_feature_importances.png, id=494, 867.24pt x 867.
 24pt>
 File: ./ssh2/periodic_100_6561/plot_feature_importances.png Graphic file (type 
 png)
 <use ./ssh2/periodic_100_6561/plot_feature_importances.png>
 Package pdftex.def Info: ./ssh2/periodic_100_6561/plot_feature_importances.png 
- used on input line 777.
+ used on input line 824.
 (pdftex.def)             Requested size: 249.9028pt x 249.89197pt.
 
 
-LaTeX Warning: Reference `LastBibItem' on page 16 undefined on input line 800.
+LaTeX Warning: Reference `LastBibItem' on page 18 undefined on input line 847.
 
-[16] [17 <./ssh1/periodic_100_6561/plot_feature_importances.png> <./ssh2/period
-ic_100_6561/plot_feature_importances.png>]
+[18 <./ssh1/periodic_100_6561/plot_feature_importances.png> <./ssh2/periodic_10
+0_6561/plot_feature_importances.png>] [19]
 No file article.bbl.
 
 Package natbib Warning: There were undefined citations.
 
-[18] [19]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1425.
+[20]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1472.
  (./article.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1425.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1425.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1472.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1472.
 
 Package rerunfilecheck Info: File `article.out' has not changed.
-(rerunfilecheck)             Checksum: D729DE53933193CA805AD37E84B3B52A;1504.
+(rerunfilecheck)             Checksum: BE4E547B96AFC8B1F6B37BC2B56E978E;1507.
 
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 18273 strings out of 492982
- 316157 string characters out of 6134897
- 412322 words of memory out of 5000000
- 21471 multiletter control sequences out of 15000+600000
- 552560 words of font info for 84 fonts, out of 8000000 for 9000
+ 19416 strings out of 492982
+ 336453 string characters out of 6134897
+ 425084 words of memory out of 5000000
+ 22601 multiletter control sequences out of 15000+600000
+ 553468 words of font info for 86 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 34i,10n,56p,10358b,555s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,10n,56p,10448b,539s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/rio/.texlive2017/texmf-var/fonts/pk/ljfour/public/bbm/bbm10.600pk>{/u
 sr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texlive/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dis
@@ -1230,27 +1324,30 @@ s/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbi1000.pf
-b></usr/share/texmf/fonts/type1/public/cm-super/sfbx0900.pfb></usr/share/texmf/
-fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/c
-m-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0700.pfb
-></usr/share/texmf/fonts/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf/f
-onts/type1/public/cm-super/sfrm0900.pfb></usr/share/texmf/fonts/type1/public/cm
--super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti0900.pfb>
-</usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb>
-Output written on article.pdf (19 pages, 1077966 bytes).
+cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm
+10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbi1000.pfb></usr/share/t
+exmf/fonts/type1/public/cm-super/sfbx0800.pfb></usr/share/texmf/fonts/type1/pub
+lic/cm-super/sfbx0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx100
+0.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/te
+xmf/fonts/type1/public/cm-super/sfrm0700.pfb></usr/share/texmf/fonts/type1/publ
+ic/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0900
+.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/tex
+mf/fonts/type1/public/cm-super/sfti0900.pfb></usr/share/texmf/fonts/type1/publi
+c/cm-super/sfti1000.pfb>
+Output written on article.pdf (20 pages, 1124738 bytes).
 PDF statistics:
- 668 PDF objects out of 1000 (max. 8388607)
- 561 compressed objects within 6 object streams
- 159 named destinations out of 1000 (max. 500000)
+ 685 PDF objects out of 1000 (max. 8388607)
+ 574 compressed objects within 6 object streams
+ 160 named destinations out of 1000 (max. 500000)
  251 words of extra memory for PDF output out of 10000 (max. 10000000)
 

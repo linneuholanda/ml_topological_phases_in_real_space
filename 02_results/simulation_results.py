@@ -36,7 +36,7 @@ SSH2_PERIODIC_180_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"perio
 SSH2_PERIODIC_220_6561_SIMULATION_DIR = os.path.join(SSH2_SIMULATIONS_DIR,"periodic_220_6561")
 
 ### Paper directory
-FIGURES_DIR = "/home/rio/ml_topological_phases_in_real_space/5_paper"
+FIGURES_DIR = "/home/rio/ml_topological_phases_in_real_space/07_paper/supp"
 # ssh1 figures
 SSH1_FIGURES_DIR = os.path.join(FIGURES_DIR,"ssh1")
 SSH1_PERIODIC_100_6561_FIGURES_DIR = os.path.join(SSH1_FIGURES_DIR,"periodic_100_6561")

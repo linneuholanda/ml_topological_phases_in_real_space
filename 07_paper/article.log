@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.5.2)  22 JUL 2020 14:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.5.2)  23 JUL 2020 00:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1064,7 +1064,7 @@ File: ./phase_diagrams/ssh2.png Graphic file (type png)
 Package pdftex.def Info: ./phase_diagrams/ssh2.png  used on input line 382.
 (pdftex.def)             Requested size: 229.49844pt x 229.48668pt.
  [3 <./phase_diagrams/ssh1.png> <./phase_diagrams/ssh2.png>] [4]
-<./ssh1/real_space_all_sites/scatter_train_val_test_experiment_0.png, id=189, 4
+<./ssh1/real_space_all_sites/scatter_train_val_test_experiment_0.png, id=191, 4
 33.62pt x 433.62pt>
 File: ./ssh1/real_space_all_sites/scatter_train_val_test_experiment_0.png Graph
 ic file (type png)
@@ -1072,7 +1072,7 @@ ic file (type png)
 Package pdftex.def Info: ./ssh1/real_space_all_sites/scatter_train_val_test_exp
 eriment_0.png  used on input line 433.
 (pdftex.def)             Requested size: 163.20374pt x 163.20258pt.
-<./ssh1/real_space_all_sites/scatter_winding_train_experiment_0.png, id=190, 43
+<./ssh1/real_space_all_sites/scatter_winding_train_experiment_0.png, id=192, 43
 3.62pt x 433.62pt>
 File: ./ssh1/real_space_all_sites/scatter_winding_train_experiment_0.png Graphi
 c file (type png)
@@ -1081,7 +1081,7 @@ Package pdftex.def Info: ./ssh1/real_space_all_sites/scatter_winding_train_expe
 riment_0.png  used on input line 434.
 (pdftex.def)             Requested size: 163.20374pt x 163.20258pt.
 <./ssh1/real_space_all_sites/pcolormesh_prediction_grid_experiment_0.png, id=19
-1, 433.62pt x 433.62pt>
+3, 433.62pt x 433.62pt>
 File: ./ssh1/real_space_all_sites/pcolormesh_prediction_grid_experiment_0.png G
 raphic file (type png)
 <use ./ssh1/real_space_all_sites/pcolormesh_prediction_grid_experiment_0.png>
@@ -1089,7 +1089,7 @@ Package pdftex.def Info: ./ssh1/real_space_all_sites/pcolormesh_prediction_grid
 _experiment_0.png  used on input line 435.
 (pdftex.def)             Requested size: 163.20374pt x 163.20258pt.
  [5]
-<./ssh2/real_space_all_sites/scatter_train_val_test_experiment_0.png, id=213, 4
+<./ssh2/real_space_all_sites/scatter_train_val_test_experiment_0.png, id=217, 4
 33.62pt x 433.62pt>
 File: ./ssh2/real_space_all_sites/scatter_train_val_test_experiment_0.png Graph
 ic file (type png)
@@ -1097,7 +1097,7 @@ ic file (type png)
 Package pdftex.def Info: ./ssh2/real_space_all_sites/scatter_train_val_test_exp
 eriment_0.png  used on input line 453.
 (pdftex.def)             Requested size: 163.20374pt x 163.20258pt.
-<./ssh2/real_space_all_sites/scatter_winding_train_experiment_0.png, id=214, 43
+<./ssh2/real_space_all_sites/scatter_winding_train_experiment_0.png, id=218, 43
 3.62pt x 433.62pt>
 File: ./ssh2/real_space_all_sites/scatter_winding_train_experiment_0.png Graphi
 c file (type png)
@@ -1106,7 +1106,7 @@ Package pdftex.def Info: ./ssh2/real_space_all_sites/scatter_winding_train_expe
 riment_0.png  used on input line 454.
 (pdftex.def)             Requested size: 163.20374pt x 163.20258pt.
 <./ssh2/real_space_all_sites/pcolormesh_prediction_grid_experiment_0.png, id=21
-5, 433.62pt x 433.62pt>
+9, 433.62pt x 433.62pt>
 File: ./ssh2/real_space_all_sites/pcolormesh_prediction_grid_experiment_0.png G
 raphic file (type png)
 <use ./ssh2/real_space_all_sites/pcolormesh_prediction_grid_experiment_0.png>
@@ -1119,7 +1119,7 @@ ace_all_sites/pcolormesh_prediction_grid_experiment_0.png> <./ssh2/real_space_a
 ll_sites/scatter_train_val_test_experiment_0.png> <./ssh2/real_space_all_sites/
 scatter_winding_train_experiment_0.png> <./ssh2/real_space_all_sites/pcolormesh
 _prediction_grid_experiment_0.png>]
-<./ssh1/real_space_all_sites/imshow_winding_grid_winding_0_sim.png, id=247, 867
+<./ssh1/real_space_all_sites/imshow_winding_grid_winding_0_sim.png, id=252, 867
 .24pt x 867.24pt>
 File: ./ssh1/real_space_all_sites/imshow_winding_grid_winding_0_sim.png Graphic
  file (type png)
@@ -1127,7 +1127,7 @@ File: ./ssh1/real_space_all_sites/imshow_winding_grid_winding_0_sim.png Graphic
 Package pdftex.def Info: ./ssh1/real_space_all_sites/imshow_winding_grid_windin
 g_0_sim.png  used on input line 479.
 (pdftex.def)             Requested size: 163.20374pt x 163.20259pt.
-<./ssh1/real_space_all_sites/imshow_winding_grid_winding_1_sim.png, id=248, 867
+<./ssh1/real_space_all_sites/imshow_winding_grid_winding_1_sim.png, id=253, 867
 .24pt x 867.24pt>
 File: ./ssh1/real_space_all_sites/imshow_winding_grid_winding_1_sim.png Graphic
  file (type png)
@@ -1135,7 +1135,7 @@ File: ./ssh1/real_space_all_sites/imshow_winding_grid_winding_1_sim.png Graphic
 Package pdftex.def Info: ./ssh1/real_space_all_sites/imshow_winding_grid_windin
 g_1_sim.png  used on input line 480.
 (pdftex.def)             Requested size: 163.20374pt x 163.20259pt.
-<./ssh1/real_space_all_sites/merge_imshow_winding_grids_second_sim.png, id=249,
+<./ssh1/real_space_all_sites/merge_imshow_winding_grids_second_sim.png, id=254,
  867.24pt x 867.24pt>
 File: ./ssh1/real_space_all_sites/merge_imshow_winding_grids_second_sim.png Gra
 phic file (type png)
@@ -1143,7 +1143,7 @@ phic file (type png)
 Package pdftex.def Info: ./ssh1/real_space_all_sites/merge_imshow_winding_grids
 _second_sim.png  used on input line 481.
 (pdftex.def)             Requested size: 163.20374pt x 163.20259pt.
-<./ssh2/real_space_all_sites/imshow_winding_grid_winding_-1_sim.png, id=252, 86
+<./ssh2/real_space_all_sites/imshow_winding_grid_winding_-1_sim.png, id=257, 86
 7.24pt x 867.24pt>
 File: ./ssh2/real_space_all_sites/imshow_winding_grid_winding_-1_sim.png Graphi
 c file (type png)
@@ -1151,7 +1151,7 @@ c file (type png)
 Package pdftex.def Info: ./ssh2/real_space_all_sites/imshow_winding_grid_windin
 g_-1_sim.png  used on input line 488.
 (pdftex.def)             Requested size: 163.20374pt x 163.20259pt.
-<./ssh2/real_space_all_sites/imshow_winding_grid_winding_0_sim.png, id=253, 867
+<./ssh2/real_space_all_sites/imshow_winding_grid_winding_0_sim.png, id=258, 867
 .24pt x 867.24pt>
 File: ./ssh2/real_space_all_sites/imshow_winding_grid_winding_0_sim.png Graphic
  file (type png)
@@ -1159,7 +1159,7 @@ File: ./ssh2/real_space_all_sites/imshow_winding_grid_winding_0_sim.png Graphic
 Package pdftex.def Info: ./ssh2/real_space_all_sites/imshow_winding_grid_windin
 g_0_sim.png  used on input line 489.
 (pdftex.def)             Requested size: 163.20374pt x 163.20259pt.
-<./ssh2/real_space_all_sites/imshow_winding_grid_winding_1_sim.png, id=254, 867
+<./ssh2/real_space_all_sites/imshow_winding_grid_winding_1_sim.png, id=259, 867
 .24pt x 867.24pt>
 File: ./ssh2/real_space_all_sites/imshow_winding_grid_winding_1_sim.png Graphic
  file (type png)
@@ -1167,7 +1167,7 @@ File: ./ssh2/real_space_all_sites/imshow_winding_grid_winding_1_sim.png Graphic
 Package pdftex.def Info: ./ssh2/real_space_all_sites/imshow_winding_grid_windin
 g_1_sim.png  used on input line 490.
 (pdftex.def)             Requested size: 163.20374pt x 163.20259pt.
-<./ssh2/real_space_all_sites/imshow_winding_grid_winding_2_sim.png, id=255, 867
+<./ssh2/real_space_all_sites/imshow_winding_grid_winding_2_sim.png, id=260, 867
 .24pt x 867.24pt>
 File: ./ssh2/real_space_all_sites/imshow_winding_grid_winding_2_sim.png Graphic
  file (type png)
@@ -1175,7 +1175,7 @@ File: ./ssh2/real_space_all_sites/imshow_winding_grid_winding_2_sim.png Graphic
 Package pdftex.def Info: ./ssh2/real_space_all_sites/imshow_winding_grid_windin
 g_2_sim.png  used on input line 491.
 (pdftex.def)             Requested size: 163.20374pt x 163.20259pt.
-<./ssh2/real_space_all_sites/merge_imshow_winding_grids_sim.png, id=256, 867.24
+<./ssh2/real_space_all_sites/merge_imshow_winding_grids_sim.png, id=261, 867.24
 pt x 867.24pt>
 File: ./ssh2/real_space_all_sites/merge_imshow_winding_grids_sim.png Graphic fi
 le (type png)
@@ -1195,13 +1195,9 @@ LaTeX Font Info:    Try loading font information for U+bbm on input line 602.
 
 (/usr/share/texlive/texmf-dist/tex/latex/bbm-macros/ubbm.fd
 File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
-) [10] [11]
-
-LaTeX Warning: Reference `information_entropy_signature' on page 12 undefined o
-n input line 705.
-
-[12] [13]
-<./ssh1/real_space_all_sites/plot_feature_importances.png, id=414, 867.24pt x 8
+) [10] [11] [12]
+[13]
+<./ssh1/real_space_all_sites/plot_feature_importances.png, id=419, 867.24pt x 8
 67.24pt>
 File: ./ssh1/real_space_all_sites/plot_feature_importances.png Graphic file (ty
 pe png)
@@ -1209,7 +1205,7 @@ pe png)
 Package pdftex.def Info: ./ssh1/real_space_all_sites/plot_feature_importances.p
 ng  used on input line 738.
 (pdftex.def)             Requested size: 249.9028pt x 249.89197pt.
-<./ssh2/real_space_all_sites/plot_feature_importances.png, id=415, 867.24pt x 8
+<./ssh2/real_space_all_sites/plot_feature_importances.png, id=420, 867.24pt x 8
 67.24pt>
 File: ./ssh2/real_space_all_sites/plot_feature_importances.png Graphic file (ty
 pe png)
@@ -1221,8 +1217,8 @@ ng  used on input line 739.
 
 LaTeX Warning: Reference `LastBibItem' on page 14 undefined on input line 9.
 
-[14 <./ssh1/real_space_all_sites/plot_feature_importances.png> <./ssh2/real_spa
-ce_all_sites/plot_feature_importances.png>] [15]) [16]
+[14] [15 <./ssh1/real_space_all_sites/plot_feature_importances.png> <./ssh2/rea
+l_space_all_sites/plot_feature_importances.png>]) [16]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 766.
  (./article.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 766.
@@ -1235,13 +1231,13 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 19421 strings out of 492982
- 337107 string characters out of 6134897
- 440052 words of memory out of 5000000
- 22621 multiletter control sequences out of 15000+600000
- 552634 words of font info for 84 fonts, out of 8000000 for 9000
+ 19427 strings out of 492982
+ 337244 string characters out of 6134897
+ 437391 words of memory out of 5000000
+ 22627 multiletter control sequences out of 15000+600000
+ 552370 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,10n,56p,10444b,665s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,10n,56p,10444b,625s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/rio/.texlive2017/texmf-var/fonts/pk/ljfour/public/bbm/bbm10.600pk>{/u
 sr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texlive/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dis
@@ -1269,10 +1265,10 @@ xmf/fonts/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/publ
 ic/cm-super/sfrm0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000
 .pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti0900.pfb></usr/share/tex
 mf/fonts/type1/public/cm-super/sfti1000.pfb>
-Output written on article.pdf (16 pages, 1061311 bytes).
+Output written on article.pdf (16 pages, 1064111 bytes).
 PDF statistics:
- 599 PDF objects out of 1000 (max. 8388607)
- 494 compressed objects within 5 object streams
- 145 named destinations out of 1000 (max. 500000)
+ 604 PDF objects out of 1000 (max. 8388607)
+ 499 compressed objects within 5 object streams
+ 147 named destinations out of 1000 (max. 500000)
  219 words of extra memory for PDF output out of 10000 (max. 10000000)
 

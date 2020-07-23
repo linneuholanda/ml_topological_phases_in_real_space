@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.5.2)  22 JUL 2020 15:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.5.2)  23 JUL 2020 00:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -680,10 +680,10 @@ supp_figures/ssh1/periodic_180_6561/plot_feature_importances.png> <./supp_figur
 es/ssh1/periodic_220_6561/plot_feature_importances.png> <./supp_figures/ssh2/pe
 riodic_140_6561/plot_feature_importances.png> <./supp_figures/ssh2/periodic_180
 _6561/plot_feature_importances.png> <./supp_figures/ssh2/periodic_220_6561/plot
-_feature_importances.png>] [6 <./supp_figures/ssh1/periodic_140_6561/plot_cumul
-ative_feature_importances.png> <./supp_figures/ssh1/periodic_180_6561/plot_cumu
-lative_feature_importances.png> <./supp_figures/ssh1/periodic_220_6561/plot_cum
-ulative_feature_importances.png> <./supp_figures/ssh2/periodic_140_6561/plot_cu
+_feature_importances.png> <./supp_figures/ssh1/periodic_140_6561/plot_cumulativ
+e_feature_importances.png> <./supp_figures/ssh1/periodic_180_6561/plot_cumulati
+ve_feature_importances.png> <./supp_figures/ssh1/periodic_220_6561/plot_cumulat
+ive_feature_importances.png>] [6 <./supp_figures/ssh2/periodic_140_6561/plot_cu
 mulative_feature_importances.png> <./supp_figures/ssh2/periodic_180_6561/plot_c
 umulative_feature_importances.png> <./supp_figures/ssh2/periodic_220_6561/plot_
 cumulative_feature_importances.png>]
@@ -701,7 +701,7 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  8539 strings out of 492982
  126564 string characters out of 6134897
- 233641 words of memory out of 5000000
+ 231899 words of memory out of 5000000
  11920 multiletter control sequences out of 15000+600000
  14034 words of font info for 52 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -726,7 +726,7 @@ type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmti9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/symbols/msbm10.pfb>
-Output written on supplementary.pdf (6 pages, 915236 bytes).
+Output written on supplementary.pdf (6 pages, 914632 bytes).
 PDF statistics:
  360 PDF objects out of 1000 (max. 8388607)
  265 compressed objects within 3 object streams

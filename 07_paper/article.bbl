@@ -6,7 +6,7 @@
 %Control: page (0) single
 %Control: year (1) truncated
 %Control: production of eprint (0) enabled
-\begin{thebibliography}{61}%
+\begin{thebibliography}{63}%
 \makeatletter
 \providecommand \@ifxundefined [1]{%
  \@ifx{#1\undefined}
@@ -522,6 +522,58 @@
   }\href@noop {} {\emph {\bibinfo {title} {The elements of statistical
   learning}}}\ (\bibinfo  {publisher} {Springer New York, NY, USA},\ \bibinfo
   {year} {2001})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Pedregosa}\ \emph {et~al.}(2011)\citenamefont
+  {Pedregosa}, \citenamefont {Varoquaux}, \citenamefont {Gramfort},
+  \citenamefont {Michel}, \citenamefont {Thirion}, \citenamefont {Grisel},
+  \citenamefont {Blondel}, \citenamefont {Prettenhofer}, \citenamefont {Weiss},
+  \citenamefont {Dubourg}, \citenamefont {Vanderplas}, \citenamefont {Passos},
+  \citenamefont {Cournapeau}, \citenamefont {Brucher}, \citenamefont {Perrot},\
+  and\ \citenamefont {Duchesnay}}]{scikit-learn}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {F.}~\bibnamefont
+  {Pedregosa}}, \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont
+  {Varoquaux}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Gramfort}},
+  \bibinfo {author} {\bibfnamefont {V.}~\bibnamefont {Michel}}, \bibinfo
+  {author} {\bibfnamefont {B.}~\bibnamefont {Thirion}}, \bibinfo {author}
+  {\bibfnamefont {O.}~\bibnamefont {Grisel}}, \bibinfo {author} {\bibfnamefont
+  {M.}~\bibnamefont {Blondel}}, \bibinfo {author} {\bibfnamefont
+  {P.}~\bibnamefont {Prettenhofer}}, \bibinfo {author} {\bibfnamefont
+  {R.}~\bibnamefont {Weiss}}, \bibinfo {author} {\bibfnamefont
+  {V.}~\bibnamefont {Dubourg}}, \bibinfo {author} {\bibfnamefont
+  {J.}~\bibnamefont {Vanderplas}}, \bibinfo {author} {\bibfnamefont
+  {A.}~\bibnamefont {Passos}}, \bibinfo {author} {\bibfnamefont
+  {D.}~\bibnamefont {Cournapeau}}, \bibinfo {author} {\bibfnamefont
+  {M.}~\bibnamefont {Brucher}}, \bibinfo {author} {\bibfnamefont
+  {M.}~\bibnamefont {Perrot}}, \ and\ \bibinfo {author} {\bibfnamefont
+  {E.}~\bibnamefont {Duchesnay}},\ }\href@noop {} {\bibfield  {journal}
+  {\bibinfo  {journal} {Journal of Machine Learning Research}\ }\textbf
+  {\bibinfo {volume} {12}},\ \bibinfo {pages} {2825} (\bibinfo {year}
+  {2011})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Buitinck}\ \emph {et~al.}(2013)\citenamefont
+  {Buitinck}, \citenamefont {Louppe}, \citenamefont {Blondel}, \citenamefont
+  {Pedregosa}, \citenamefont {Mueller}, \citenamefont {Grisel}, \citenamefont
+  {Niculae}, \citenamefont {Prettenhofer}, \citenamefont {Gramfort},
+  \citenamefont {Grobler}, \citenamefont {Layton}, \citenamefont {VanderPlas},
+  \citenamefont {Joly}, \citenamefont {Holt},\ and\ \citenamefont
+  {Varoquaux}}]{sklearn_api}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {L.}~\bibnamefont
+  {Buitinck}}, \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont {Louppe}},
+  \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Blondel}}, \bibinfo
+  {author} {\bibfnamefont {F.}~\bibnamefont {Pedregosa}}, \bibinfo {author}
+  {\bibfnamefont {A.}~\bibnamefont {Mueller}}, \bibinfo {author} {\bibfnamefont
+  {O.}~\bibnamefont {Grisel}}, \bibinfo {author} {\bibfnamefont
+  {V.}~\bibnamefont {Niculae}}, \bibinfo {author} {\bibfnamefont
+  {P.}~\bibnamefont {Prettenhofer}}, \bibinfo {author} {\bibfnamefont
+  {A.}~\bibnamefont {Gramfort}}, \bibinfo {author} {\bibfnamefont
+  {J.}~\bibnamefont {Grobler}}, \bibinfo {author} {\bibfnamefont
+  {R.}~\bibnamefont {Layton}}, \bibinfo {author} {\bibfnamefont
+  {J.}~\bibnamefont {VanderPlas}}, \bibinfo {author} {\bibfnamefont
+  {A.}~\bibnamefont {Joly}}, \bibinfo {author} {\bibfnamefont {B.}~\bibnamefont
+  {Holt}}, \ and\ \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont
+  {Varoquaux}},\ }in\ \href@noop {} {\emph {\bibinfo {booktitle} {ECML PKDD
+  Workshop: Languages for Data Mining and Machine Learning}}}\ (\bibinfo {year}
+  {2013})\ pp.\ \bibinfo {pages} {108--122}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Raileanu}\ and\ \citenamefont
   {Stoffel}(2004)}]{raileanu2004theoretical}%
   \BibitemOpen

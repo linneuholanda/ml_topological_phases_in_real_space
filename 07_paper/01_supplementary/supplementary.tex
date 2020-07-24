@@ -48,14 +48,14 @@
 
 \begin{figure}
   \centering
-  \includegraphics[width=.37\textwidth]{./phase_diagrams/ssh_model.pdf}
+  \includegraphics[width=.37\textwidth]{./ssh/ssh_model.pdf}
   \caption{Schematic set-up of a 1D SSH system. Here $t_1$ and $t_2$ are nearest-neighbor hoppings while $T_1$ and $T_2$ are second nearest-neighbor hoppings.}
 \label{fig:model}
 \end{figure}
 
 \begin{figure}%[h!]
   \centering
-  \includegraphics[width=.37\textwidth]{./phase_diagrams/winding.png}
+  \includegraphics[width=.37\textwidth]{./ssh/winding.png}
   \caption{Winding number. The winding number of a closed, oriented curve with respect to a reference point is a topological invariant that counts how many times the curve winds around the point. Picture credits: Jim Belk, public domain.}
 \label{fig:winding}
 \end{figure}
@@ -122,6 +122,7 @@ where $H(k)$ is the kernel in wavevector space of a Hamiltonian $\mathbf{H}$$($$
 \subfigure[]{\label{eng_feat_ssh2:b}\includegraphics[width=.32\textwidth]{./supp_figures/ssh2/periodic_100_6561/dct_best_12_wavevector_sites_from_best_12_real_space_sites/merge_imshow_winding_grids_sim.png}}
 \subfigure[]{\label{eng_feat_ssh2:c}\includegraphics[width=.32\textwidth]{./supp_figures/ssh2/periodic_100_6561/dst_best_12_wavevector_sites_from_best_12_real_space_sites/merge_imshow_winding_grids_sim.png}}
 \caption{Phase diagrams learned from compressed representations of the SSH 2 system. (a) Phase diagram learned using the real space features \xSTwo.  (b) Phase diagram learned from the DCT topological features \xcSETwo. (b) Phase diagram learned from the DST topological features \xsSOTwo.}
+\label{eng_feat_ssh2}
 \end{figure}
 
 \subsection*{Learning topological phases from real space data}
@@ -165,7 +166,7 @@ There are still artifacts that might arise from the hyperparameters used to gene
 
 All results presented in the article were obtained for lattices with 50 unit cells. Each cell contains two different atoms, thus leading to 100$\times$100 Hamiltonian matrices and their corresponding eigenvectors in $\mathbb{R}^{100}$. Here we present the information entropy signatures obtained for lattices with 70, 90 and 110 unit cells for both experiments (figures \ref{feature_importances_ssh1_longer_lattices} and \ref{feature_importances_ssh2_longer_lattices}). These signals were generated in exactly the same way as the information entropy signatures obtained for 50 unit cells (i.e., after bootstrapping $n_{exp}$ = 100 times and averaging lattice site relevances across all iterations).
 
-It is clear from figures \ref{feature_importances_ssh1_longer_lattices} and \ref{feature_importances_ssh2_longer_lattices} that the patterns seen with 50 unit cells (figures 6(a) and 6(b) in the article) are stable across higher lattice sizes, with finer details emerging in the signals as the lattice size increases. This naturally leads us to speculation about the continuum limit of information entropy signatures, a matter formally explored in the article.  
+It is clear from figures \ref{feature_importances_ssh1_longer_lattices} and \ref{feature_importances_ssh2_longer_lattices} that the patterns seen with 50 unit cells (figures 6(a) and 6(b) in the article) are stable across higher lattice sizes, with finer details emerging in the signals as the lattice size is increased. This naturally leads us to speculation about the continuum limit of information entropy signatures, a matter formally explored in the article.  
 
 \begin{figure}
 \centering
@@ -206,34 +207,7 @@ It is clear from figures \ref{feature_importances_ssh1_longer_lattices} and \ref
 %\bibliographystylesupp{ieeetr}
 %\bibliographysupp{supp}
 
-\begin{thebibliography}{10}
-\bibitem{asboth2016short}
-J.~K. Asb{\'o}th, L.~Oroszl{\'a}ny, and A.~P{\'a}lyi, ``A short course on
-  topological insulators,'' {\em Lecture notes in physics}, vol.~919, 2016.
-
-\bibitem{goodfellow2016deep}
-I.~Goodfellow, Y.~Bengio, and A.~Courville, {\em Deep learning}.
-\newblock MIT press, Cambridge, MA, USA, 2016.
-
-\bibitem{bishop2006pattern}
-C.~M. Bishop, {\em Pattern recognition and machine learning}.
-\newblock Springer New York, NY, USA, 2006.
-
-\bibitem{cayton2005algorithms}
-L.~Cayton, ``Algorithms for manifold learning,'' {\em Univ. of California at
-  San Diego Tech. Rep}, vol.~12, no.~1-17, p.~1, 2005.
-
-\bibitem{narayanan2010sample}
-H.~Narayanan and S.~Mitter, ``Sample complexity of testing the manifold
-  hypothesis,'' in {\em Advances in Neural Information Processing Systems},
-  pp.~1786--1794, 2010.
-
-\bibitem{rifai2011manifold}
-S.~Rifai, Y.~N. Dauphin, P.~Vincent, Y.~Bengio, and X.~Muller, ``The manifold
-  tangent classifier,'' in {\em Advances in Neural Information Processing
-  Systems}, pp.~2294--2302, 2011.
-\end{thebibliography}
-
+\bibliography{supplementary_bib}{}
 
 
 \end{document}

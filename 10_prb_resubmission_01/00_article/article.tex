@@ -17,7 +17,21 @@
 \usepackage{bm}
 \usepackage{hyperref}
 \usepackage[resetlabels, labeled]{multibib}
+\usepackage{xcolor}
+\usepackage{bbm}
+\usepackage{xfp}
+\usepackage[labelfont=bf,textfont=md,justification=raggedright,font=footnotesize]{caption}
+\usepackage{booktabs}
+\renewcommand{\figurename}{Figure}
+\renewcommand{\tablename}{Table}
+\renewcommand{\thetable}{\arabic{table}}
+%\captionsetup{justification=raggedright, singlelinecheck = false}
+%\usepackage{makecell}
+%\usepackage{cellspace}
+
 %\newcites{supp}{References}
+
+%\def\basiceval#1{\the\numexpr#1\relax}
 
 \renewcommand{\Re}{\operatorname{{\mathrm Re}}}
 \renewcommand{\Im}{\operatorname{{\mathrm Im}}}
@@ -35,17 +49,289 @@
 \newcommand{\inp}[1]{\left( #1 \right)}
 \newcommand{\pd}{\partial}
 \newcommand{\pdf}[3]{\frac{\pd^{#1} #2}{\pd #3^{#1}}} %Partial derivative
-\newcommand{\fdf}[3][]{\frac{\delta^{#1} #2}{\delta #3^{#1}}} %Functional
-                                %derivative 
+\newcommand{\fdf}[3][]{\frac{\delta^{#1} #2}{\delta #3^{#1}}} %Functional derivative 
+
+
+%ssh1
+
+%Our test set in this experiment contained 1005 Hamiltonians (approx. 15.3\% of all data). Of the remaining 5556 Hamiltonians, 556 were %randomly assigned to the training set (approx. 8.5\%) and 5000 (approx. 76.2\%) were used to compute validation scores at each iteration. %These proportions between training and validation sets are such that approximately 10\%  of Hamiltonians from outside of the test set were %used for training at each iteration. The composition of the train + validation set for this experiment was 50.8\% of Hamiltonians with %winding number $W$ = 0 and 49.2\% with winding number $W$ = 1. The composition of the test set was 44.8\% of Hamiltonians with winding number %$W$ = 0 and 55.2\% with winding number $W=1$. \textcolor{blue}{Our learning algorithm of choice for this experiment was a simple decision %tree model \cite{breiman2017classification}}.\citequote{eigenvector_ensembling_alg}
+
+%\documentclass{article}
+%\usepackage{xfp}
+
+%\begin{document}
+
+%\fpeval{31/45}
+
+%\fpeval{round(31/45,5)}
+
+%\end{document}
+\newcommand{\indicator}[1]{\mathbbm{1}_{\mathcal{#1}}}
+%%%%%% Numerical experiments parameters
+\newcommand\nPrec{2}    % precision digits
+\newcommand\accPrec{4}  % precision digits for accuracy scores
+\newcommand\nHam{6561}  % total number of hamiltonians
+\newcommand\epsilonValue{0.01}  % epsilon criterium for test set
+\newcommand\nExp{100}   % number of experiments
+%%%table commands
+%\newcommand{\tableRow}[1]{\\[#1 cm]\hline} %deprecated table row, but might be useful
+\newcommand{\tableRow}[1]{\\[#1 cm]}
+\newcommand{\tableRowHeader}[1]{\\[#1 cm]\hline}
+\newcommand\tableRowHeaderEnd{\tableRowHeader{0.3}}
+\newcommand\tableRowEnd{\tableRow{0.15}}
+%\newcommand\SSHSys{\thead{SSH systems}}         deprecated, might be useful
+%\newcommand\Feat{\thead{Features}}              deprecated, might be useful
+%\newcommand\ValEig{\thead{Val. eigenvectors}}   deprecated, might be useful
+%\newcommand\TestEig{\thead{Test eigenvectors}}  deprecated, might be useful
+%\newcommand\ValHam{\thead{Val. Hamiltonians}}   deprecated, might be useful
+%\newcommand\TestHam{\thead{Test Hamiltonians}}  deprecated, might be useful
+\newcommand\SSHSys{SSH system}         
+\newcommand\Feat{Features}              
+\newcommand\ValEig{Val. eigenvectors}   
+\newcommand\TestEig{Test eigenvectors}  
+\newcommand\ValHam{Val. Hamiltonians}   
+\newcommand\TestHam{Test Hamiltonians}  
+
+%%%%%%%%%%%%%%% ssh1 experiments
+%%% data statistics
+\newcommand\sshOneTrainNHam{556}
+\newcommand\sshOneTrainFracHam{\fpeval{round(\sshOneTrainNHam/\nHam*100,\nPrec)}}
+\newcommand\sshOneValNHam{5000}
+\newcommand\sshOneValFracHam{\fpeval{round(\sshOneValNHam/\nHam*100,\nPrec)}}
+\newcommand\sshOneTrainPlusValNHam{\fpeval{\sshOneTrainNHam+\sshOneValNHam}}
+\newcommand\sshOneTestNHam{1005}
+\newcommand\sshOneTestFracHam{\fpeval{round(\sshOneTestNHam/\nHam*100,\nPrec)}}
+\newcommand\sshOneTrainPlusValWindZeroNHam{2822} %number of winding = 0 in train+val set
+\newcommand\sshOneTrainPlusValWindZeroFracHam{\fpeval{round(\sshOneTrainPlusValWindZeroNHam/(\sshOneTrainNHam+\sshOneValNHam)*100,\nPrec)}}
+\newcommand\sshOneTrainPlusValWindOneNHam{2734}  %number of winding = 1 in train+val set
+\newcommand\sshOneTrainPlusValWindOneFracHam{\fpeval{round(\sshOneTrainPlusValWindOneNHam/(\sshOneTrainNHam+\sshOneValNHam)*100,\nPrec)}}
+\newcommand\sshOneTestWindZeroNHam{378}      %number of winding = 0 in test set
+\newcommand\sshOneTestWindOneNHam{466}       %number of winding = 1 in test set
+\newcommand\sshOneTestWindZeroFracHam{\fpeval{round(\sshOneTestWindZeroNHam/(\sshOneTestWindZeroNHam+\sshOneTestWindOneNHam)*100,\nPrec)}}
+\newcommand\sshOneTestWindOneFracHam{\fpeval{round(\sshOneTestWindOneNHam/(\sshOneTestWindZeroNHam+\sshOneTestWindOneNHam)*100,\nPrec)}}
+%%% real space accuracies
+%\newcommand\sshOneEigenTrainAcc{0.981438129496403}       % eigenvector training accuracy
+%\newcommand\sshOneEigenValAcc{0.96392276}         % eigenvector val accuracy
+%\newcommand\sshOneEigenTestAcc{0.78966836492891}        % eigenvector test accuracy
+%\newcommand\sshOneHamTrainAcc{1.0}             % Hamiltonian training accuracy
+%\newcommand\sshOneHamValAcc{1.0}               % Hamiltonian val accuracy
+%\newcommand\sshOneHamTestAcc{0.9918720379146919}          % Hamiltonian test accuracy
+%\newcommand\sshOneHamTestBaseline{\fpeval{round(\sshOneTestWindOneNHam/(\sshOneTestWindZeroNHam+\sshOneTestWindOneNHam),\accPrec)}}
+
+%%% ssh1 baseline accuracy
+\newcommand\sshOneHamTestBaseline{\fpeval{round(\sshOneTestWindOneNHam/(\sshOneTestWindZeroNHam+\sshOneTestWindOneNHam),\accPrec)}}
+%%% x1 features table entries 
+\newcommand\xOne{$X_1$}
+\newcommand\xOneEigTrain{\fpeval{round(0.981438129496403,\accPrec)}}
+\newcommand\xOneEigVal{\fpeval{round(0.96392276,\accPrec)}}
+\newcommand\xOneEigTest{\fpeval{round(0.78966836492891,\accPrec)}}
+\newcommand\xOneHamTrain{\fpeval{round(1.0,\accPrec)}}
+\newcommand\xOneHamVal{\fpeval{round(1.0,\accPrec)}}
+\newcommand\xOneHamTest{\fpeval{round(0.9918720379146919,\accPrec)}}
+%%% x_S1 features table entries  
+\newcommand\xSOne{$X_{\mathcal{S}_1}$}
+\newcommand\xSOneEigTrain{\fpeval{round(0.9699771582733813,\accPrec)}}
+\newcommand\xSOneEigVal{\fpeval{round(0.9444134200000001,\accPrec)}}
+\newcommand\xSOneEigTest{\fpeval{round(0.7763444312796207,\accPrec)}}
+\newcommand\xSOneHamTrain{\fpeval{round(0.9880395683453237,\accPrec)}}
+\newcommand\xSOneHamVal{\fpeval{round(0.9853300000000002,\accPrec)}}
+\newcommand\xSOneHamTest{\fpeval{round(0.9904502369668248,\accPrec)}}
+%%% x^c_1 features table entries  
+\newcommand\xcOne{$\hat{X}^c_1$}
+\newcommand\xcOneEigTrain{\fpeval{round(0.9753276978417266,\accPrec)}}
+\newcommand\xcOneEigVal{\fpeval{round(0.9521145999999999,\accPrec)}}
+\newcommand\xcOneEigTest{\fpeval{round(0.7373592417061612,\accPrec)}}
+\newcommand\xcOneHamTrain{\fpeval{round(0.9982553956834532,\accPrec)}}
+\newcommand\xcOneHamVal{\fpeval{round(0.9975820000000002,\accPrec)}}
+\newcommand\xcOneHamTest{\fpeval{round(0.9916232227488153,\accPrec)}}
+%%% x^cE_1 features table entries  
+\newcommand\xcEOne{$\hat{X}^c_{\mathcal{E}_1}$}
+\newcommand\xcEOneEigTrain{\fpeval{round(0.9755357913669066,\accPrec)}}
+\newcommand\xcEOneEigVal{\fpeval{round(0.8280291200000001,\accPrec)}}
+\newcommand\xcEOneEigTest{\fpeval{round(0.6066537914691943,\accPrec)}}
+\newcommand\xcEOneHamTrain{\fpeval{round(0.998525179856115,\accPrec)}}
+\newcommand\xcEOneHamVal{\fpeval{round(0.997906,\accPrec)}}
+\newcommand\xcEOneHamTest{\fpeval{round(0.9190876777251185,\accPrec)}}
+%%% x^cSE_1 features table entries  
+\newcommand\xcSEOne{$\hat{X}^c_{\mathcal{S}_1,\mathcal{E}_1}$}
+\newcommand\xcSEOneEigTrain{\fpeval{round(0.9701161870503597,\accPrec)}}
+\newcommand\xcSEOneEigVal{\fpeval{round(0.9444223399999998,\accPrec)}}
+\newcommand\xcSEOneEigTest{\fpeval{round(0.8176174170616113,\accPrec)}}
+\newcommand\xcSEOneHamTrain{\fpeval{round(0.9882014388489206,\accPrec)}}
+\newcommand\xcSEOneHamVal{\fpeval{round(0.9853120000000001,\accPrec)}}
+\newcommand\xcSEOneHamTest{\fpeval{round(0.9933530805687205,\accPrec)}}
+%%% x^s_1 features table entries  
+\newcommand\xsOne{$\hat{X}^s_1$}
+\newcommand\xsOneEigTrain{\fpeval{round(0.9751985611510792,\accPrec)}}
+\newcommand\xsOneEigVal{\fpeval{round(0.9533083600000001,\accPrec)}}
+\newcommand\xsOneEigTest{\fpeval{round(0.7313738151658769,\accPrec)}}
+\newcommand\xsOneHamTrain{\fpeval{round(0.9930935251798562,\accPrec)}}
+\newcommand\xsOneHamVal{\fpeval{round(0.9905759999999999,\accPrec)}}
+\newcommand\xsOneHamTest{\fpeval{round(0.9855568720379146,\accPrec)}}
+%%% x^SO_1 features table entries  
+\newcommand\xsOOne{$\hat{X}^s_{\mathcal{O}_1}$}
+\newcommand\xsOOneEigTrain{\fpeval{round(0.807853597122302,\accPrec)}}
+\newcommand\xsOOneEigVal{\fpeval{round(0.6941595600000001,\accPrec)}}
+\newcommand\xsOOneEigTest{\fpeval{round(0.5419954976303317,\accPrec)}}
+\newcommand\xsOOneHamTrain{\fpeval{round(0.9919424460431654,\accPrec)}}
+\newcommand\xsOOneHamVal{\fpeval{round(0.7088179999999998,\accPrec)}}
+\newcommand\xsOOneHamTest{\fpeval{round(0.4797630331753555,\accPrec)}}
+%%% x^SSO_1 features table entries  
+\newcommand\xsSOOne{$\hat{X}^s_{\mathcal{S}_1,\mathcal{O}_1}$}
+\newcommand\xsSOOneEigTrain{\fpeval{round(0.96949190647482,\accPrec)}}
+\newcommand\xsSOOneEigVal{\fpeval{round(0.9456364800000001,\accPrec)}}
+\newcommand\xsSOOneEigTest{\fpeval{round(0.7818372037914694,\accPrec)}}
+\newcommand\xsSOOneHamTrain{\fpeval{round(0.9875539568345324,\accPrec)}}
+\newcommand\xsSOOneHamVal{\fpeval{round(0.9853839999999998,\accPrec)}}
+\newcommand\xsSOOneHamTest{\fpeval{round(0.9398933649289098,\accPrec)}}
+
+%ssh2
+\newcommand\sshTwoTrainNHam{2761}
+\newcommand\sshTwoTrainFracHam{\fpeval{round(\sshTwoTrainNHam/\nHam*100,\nPrec)}}
+\newcommand\sshTwoValNHam{2760}
+\newcommand\sshTwoValFracHam{\fpeval{round(\sshTwoValNHam/\nHam*100,\nPrec)}}
+\newcommand\sshTwoTrainPlusValNHam{\fpeval{\sshTwoTrainNHam+\sshTwoValNHam}}
+\newcommand\sshTwoTestNHam{1040}
+\newcommand\sshTwoTestFracHam{\fpeval{round(\sshTwoTestNHam/\nHam*100,\nPrec)}}
+
+\newcommand\sshTwoTrainPlusValWindMinusOneNHam{988} %number of winding = -1 in train+val set
+\newcommand\sshTwoTrainPlusValWindMinusOneFracHam{\fpeval{round(\sshTwoTrainPlusValWindMinusOneNHam/\sshTwoTrainPlusValNHam*100,\nPrec)}}
+\newcommand\sshTwoTrainPlusValWindZeroNHam{1795} %number of winding = 0 in train+val set
+\newcommand\sshTwoTrainPlusValWindZeroFracHam{\fpeval{round(\sshTwoTrainPlusValWindZeroNHam/\sshTwoTrainPlusValNHam*100,\nPrec)}}
+\newcommand\sshTwoTrainPlusValWindOneNHam{1781}  %number of winding = 1 in train+val set
+\newcommand\sshTwoTrainPlusValWindOneFracHam{\fpeval{round(\sshTwoTrainPlusValWindOneNHam/\sshTwoTrainPlusValNHam*100,\nPrec)}}
+\newcommand\sshTwoTrainPlusValWindTwoNHam{957}   %number of winding = 2 in train+val set
+\newcommand\sshTwoTrainPlusValWindTwoFracHam{\fpeval{round(\sshTwoTrainPlusValWindTwoNHam/\sshTwoTrainPlusValNHam*100,\nPrec)}} 
+
+\newcommand\sshTwoTestWindMinusOneNHam{312} %number of winding = -1 in test set
+\newcommand\sshTwoTestWindZeroNHam{95} %number of winding = 0 in test set
+\newcommand\sshTwoTestWindOneNHam{109}  %number of winding = 1 in test set
+\newcommand\sshTwoTestWindTwoNHam{343}   %number of winding = 2 in test set 
+\newcommand\sshTwoTestWindMinusOneFracHam{\fpeval{round(\sshTwoTestWindMinusOneNHam/(\sshTwoTestWindMinusOneNHam+\sshTwoTestWindZeroNHam+\sshTwoTestWindOneNHam+\sshTwoTestWindTwoNHam)*100,\nPrec)}}
+\newcommand\sshTwoTestWindZeroFracHam{\fpeval{round(\sshTwoTestWindZeroNHam/(\sshTwoTestWindMinusOneNHam+\sshTwoTestWindZeroNHam+\sshTwoTestWindOneNHam+\sshTwoTestWindTwoNHam)*100,\nPrec)}}
+\newcommand\sshTwoTestWindOneFracHam{\fpeval{round(\sshTwoTestWindOneNHam/(\sshTwoTestWindMinusOneNHam+\sshTwoTestWindZeroNHam+\sshTwoTestWindOneNHam+\sshTwoTestWindTwoNHam)*100,\nPrec)}}
+\newcommand\sshTwoTestWindTwoFracHam{\fpeval{round(\sshTwoTestWindTwoNHam/(\sshTwoTestWindMinusOneNHam+\sshTwoTestWindZeroNHam+\sshTwoTestWindOneNHam+\sshTwoTestWindTwoNHam)*100,\nPrec)}}
+
+
+\newcommand\sshTwoEigenTrainAcc{0.999655849329953}       % eigenvector training accuracy
+\newcommand\sshTwoEigenValAcc{0.9708922101449275}         % eigenvector val accuracy
+\newcommand\sshTwoEigenTestAcc{0.6634109429569267}        % eigenvector test accuracy
+\newcommand\sshTwoHamTrainAcc{1.0}             % Hamiltonian training accuracy
+\newcommand\sshTwoHamValAcc{0.9972499999999997}               % Hamiltonian val accuracy
+\newcommand\sshTwoHamTestAcc{0.879697322467986}          % Hamiltonian test accuracy
+
+%%% ssh2 baseline accuracy
+\newcommand\sshTwoHamTestBaseline{\fpeval{round(\sshTwoTestWindTwoNHam/(\sshTwoTestWindMinusOneNHam+\sshTwoTestWindZeroNHam+\sshTwoTestWindOneNHam+\sshTwoTestWindTwoNHam),\accPrec)}}
+%%% x2 features table entries 
+\newcommand\xTwo{$X_2$}
+\newcommand\xTwoEigTrain{\fpeval{round(0.999655849329953,\accPrec)}}
+\newcommand\xTwoEigVal{\fpeval{round(0.9708922101449275,\accPrec)}}
+\newcommand\xTwoEigTest{\fpeval{round(0.6634109429569267,\accPrec)}}
+\newcommand\xTwoHamTrain{\fpeval{round(1.0,\accPrec)}}
+\newcommand\xTwoHamVal{\fpeval{round(0.9972499999999997,\accPrec)}}
+\newcommand\xTwoHamTest{\fpeval{round(0.879697322467986,\accPrec)}}
+
+%%% x_S2 features table entries  
+\newcommand\xSTwo{$X_{\mathcal{S}_2}$}
+\newcommand\xSTwoEigTrain{\fpeval{round(0.9996107207533504,\accPrec)}}
+\newcommand\xSTwoEigVal{\fpeval{round(0.9589830072463768,\accPrec)}}
+\newcommand\xSTwoEigTest{\fpeval{round(0.6168351571594877,\accPrec)}}
+\newcommand\xSTwoHamTrain{\fpeval{round(1.0,\accPrec)}}
+\newcommand\xSTwoHamVal{\fpeval{round(0.9961050724637681,\accPrec)}}
+\newcommand\xSTwoHamTest{\fpeval{round(0.8625611175785797,\accPrec)}}
+%%% x^c_2 features table entries  
+\newcommand\xcTwo{$\hat{X}^c_2$}
+\newcommand\xcTwoEigTrain{\fpeval{round(0.9996471930459978,\accPrec)}}
+\newcommand\xcTwoEigVal{\fpeval{round(0.9740357971014493,\accPrec)}}
+\newcommand\xcTwoEigTest{\fpeval{round(0.6895051222351573,\accPrec)}}
+\newcommand\xcTwoHamTrain{\fpeval{round(1.0,\accPrec)}}
+\newcommand\xcTwoHamVal{\fpeval{round(0.9976050724637681,\accPrec)}}
+\newcommand\xcTwoHamTest{\fpeval{round(0.8862281722933641,\accPrec)}}
+%%% x^cE_2 features table entries  
+\newcommand\xcETwo{$\hat{X}^c_{\mathcal{E}_2}$}
+\newcommand\xcETwoEigTrain{\fpeval{round(0.99943379210431,\accPrec)}}
+\newcommand\xcETwoEigVal{\fpeval{round(0.8989626449275362,\accPrec)}}
+\newcommand\xcETwoEigTest{\fpeval{round(0.5356883585564609,\accPrec)}}
+\newcommand\xcETwoHamTrain{\fpeval{round(1.0,\accPrec)}}
+\newcommand\xcETwoHamVal{\fpeval{round(0.9954927536231883,\accPrec)}}
+\newcommand\xcETwoHamTest{\fpeval{round(0.7896856810244468,\accPrec)}}
+
+%%% x^cSE_2 features table entries  
+\newcommand\xcSETwo{$\hat{X}^c_{\mathcal{S}_2,\mathcal{E}_2}$}
+\newcommand\xcSETwoEigTrain{\fpeval{round(0.9994432452010141,\accPrec)}}
+\newcommand\xcSETwoEigVal{\fpeval{round(0.8998827173913044,\accPrec)}}
+\newcommand\xcSETwoEigTest{\fpeval{round(0.5029968568102445,\accPrec)}}
+\newcommand\xcSETwoHamTrain{\fpeval{round(1.0,\accPrec)}}
+\newcommand\xcSETwoHamVal{\fpeval{round(0.9956086956521739,\accPrec)}}
+\newcommand\xcSETwoHamTest{\fpeval{round(0.7670896391152502,\accPrec)}}
+%%% x^s_2 features table entries  
+\newcommand\xsTwo{$\hat{X}^s_2$}
+\newcommand\xsTwoEigTrain{\fpeval{round(0.9996523723288662,\accPrec)}}
+\newcommand\xsTwoEigVal{\fpeval{round(0.9735059057971014,\accPrec)}}
+\newcommand\xsTwoEigTest{\fpeval{round(0.6878407450523867,\accPrec)}}
+\newcommand\xsTwoHamTrain{\fpeval{round(1.0,\accPrec)}}
+\newcommand\xsTwoHamVal{\fpeval{round(0.9970652173913043,\accPrec)}}
+\newcommand\xsTwoHamTest{\fpeval{round(0.8898835855646101,\accPrec)}}
+%%% x^SO_2 features table entries  
+\newcommand\xsOTwo{$\hat{X}^s_{\mathcal{O}_2}$}
+\newcommand\xsOTwoEigTrain{\fpeval{round(0.9994471206084752,\accPrec)}}
+\newcommand\xsOTwoEigVal{\fpeval{round(0.9042001086956524,\accPrec)}}
+\newcommand\xsOTwoEigTest{\fpeval{round(0.552662980209546,\accPrec)}}
+\newcommand\xsOTwoHamTrain{\fpeval{round(1.0,\accPrec)}}
+\newcommand\xsOTwoHamVal{\fpeval{round(0.9917789855072465,\accPrec)}}
+\newcommand\xsOTwoHamTest{\fpeval{round(0.7427124563445866,\accPrec)}}
+%%% x^SSO_2 features table entries  
+\newcommand\xsSOTwo{$\hat{X}^s_{\mathcal{S}_2,\mathcal{O}_2}$}
+\newcommand\xsSOTwoEigTrain{\fpeval{round(0.9992071713147413,\accPrec)}}
+\newcommand\xsSOTwoEigVal{\fpeval{round(0.8203919927536232,\accPrec)}}
+\newcommand\xsSOTwoEigTest{\fpeval{round(0.41268987194412105,\accPrec)}}
+\newcommand\xsSOTwoHamTrain{\fpeval{round(1.0,\accPrec)}}
+\newcommand\xsSOTwoHamVal{\fpeval{round(0.9941884057971013,\accPrec)}}
+\newcommand\xsSOTwoHamTest{\fpeval{round(0.5903026775320139,\accPrec)}}
+
+%%% more feature commands
+%\newcommand\xcSE{$\hat{X}^c_{\mathcal{S},\mathcal{E}}$}
+%\newcommand\xsSO{$\hat{X}^s_{\mathcal{S},\mathcal{O}}$}
+
+\newcommand\xalpha{$X_\alpha$}
+\newcommand\xSalpha{$X_{\mathcal{S}_\alpha}$}
+
+\newcommand\xcalpha{$\hat{X}^c_\alpha$}
+\newcommand\xcEalpha{$\hat{X}^c_{\mathcal{E}_\alpha}$}
+\newcommand\xcSEalpha{$\hat{X}^c_{\mathcal{S}_\alpha,\mathcal{E}_\alpha}$}
+
+\newcommand\xsalpha{$\hat{X}^s_\alpha$}
+\newcommand\xsOalpha{$\hat{X}^s_{\mathcal{O}_\alpha}$}
+\newcommand\xsSOalpha{$\hat{X}^s_{\mathcal{S}_\alpha,\mathcal{O}_\alpha}$}
+
+
+\newcommand\nEst{25}   % number of estimators in random forest
+
+\newcounter{quoter}
+\setcounter{quoter}{0}
+\renewcommand*{\thequoter}{%
+  %\textbf{%
+  %  \ifnum\value{custom}<1000 0\fi
+  %  \ifnum\value{custom}<100 0\fi
+  %  \ifnum\value{custom}<10 0\fi
+  %  \arabic{custom}%
+  \textbf{[\arabic{quoter}]}
+  }%
+
+\newcommand{\genquote}[1]{\refstepcounter{quoter} \label{#1} \ref{#1}}
+\newcommand{\citequote}[1]{\ref{#1}}
+
+\definecolor{antiquefuchsia}{rgb}{0.57, 0.36, 0.51}
 
 \begin{document}
+
 \nocite{*}
 
 \title{Machine learning topological phases in real space}
 
 \author{N. L. Holanda}
 \email{linneuholanda@gmail.com, linneu@cbpf.br}
-\affiliation{Cavendish Laboratory, University of Cambridge, J. J. Thomson Avenue, Cambridge, CB3 0HE, United Kingdom}
+\affiliation{Integrated Quantum Materials, Cavendish Laboratory, University of Cambridge, J. J. Thomson Avenue, Cambridge, CB3 0HE, United Kingdom}
 \affiliation{Centro Brasileiro de Pesquisas F\'isicas, \\Rua Dr. Xavier Sigaud, 150 - Urca, 22290-180,  Rio de Janeiro, RJ, Brazil}
 
 \author{M. A. S. Griffith}
@@ -56,13 +342,14 @@
 \date{\today }
 
 \begin{abstract}
-We develop a supervised machine learning algorithm that is able to learn topological phases for finite condensed matter systems from bulk data in real lattice space. The algorithm employs diagonalization in real space together with any supervised learning algorithm to learn topological phases through an eigenvector ensembling procedure. We combine our algorithm with decision trees and random forests to successfully recover topological phase diagrams of Su-Schrieffer-Heeger (SSH) models from bulk lattice data in real space and show how the Shannon information entropy of ensembles of lattice eigenvectors can be used to retrieve a signal detailing how topological information is distributed in the bulk. The discovery of Shannon information entropy signals associated with topological phase transitions from the analysis of data from several thousand SSH systems illustrates how model explainability in machine learning can advance the research of exotic quantum materials with properties that may power future technological applications such as qubit engineering for quantum computing. 
+We develop a supervised machine learning algorithm that is able to learn topological phases of finite condensed matter systems from bulk data in real lattice space. The algorithm employs diagonalization in real space together with any supervised learning algorithm to learn topological phases through an eigenvector ensembling procedure. We combine our algorithm with decision trees and random forests to successfully recover topological phase diagrams of Su-Schrieffer-Heeger (SSH) models from bulk lattice data in real space and show how the Shannon information entropy of ensembles of lattice eigenvectors can be used to retrieve a signal detailing how topological information is distributed in the bulk. We further use insights obtained from these information entropy signatures to engineer global topological features from real space lattice data that still carry most of the topological information in the lattice, while greatly diminishing the size of feature space, thus effectively amounting to a topological lattice compression. Finally, we explore the theoretical possibility of interpreting the information entropy topological signatures in terms of emergent information entropy wave functions, which lead us to Heisenberg and Hirschman uncertainty relations for topological phase transitions. The discovery of Shannon information entropy signals associated with topological phase transitions from the analysis of data from several thousand SSH systems illustrates how model explainability in machine learning can advance the research of exotic quantum materials with properties that may power future technological applications such as qubit engineering for quantum computing. 
 \end{abstract}
 
 \maketitle
 
-\section*{Introduction}
 
+\section{Introduction}
+\label{introduction}
 The quest for innovative materials that harness exotic quantum properties has lured physicists into the realm of topological insulators and topological states of matter \cite{RevModPhys.82.3045}. These materials feature previously unthought-of traits like bulk insulation coupled with metallic conductance at the surface and the splitting of currents according to spin orientation. Adding to that, these properties are protected by non-trivial topology that renders them robust to many sources of perturbation like thermal noise. Such characteristics make them promising candidates to being the cornerstone of 21st century technologies like spintronics and quantum computing.
 
 These new topological states of matter have been studied in several contexts in condensed matter physics including superconductors \cite {CONTINENTINO2017A1}$^-$\cite{ryu2010topological}, ultracold atoms \cite{atala2013direct}$^-$\cite{meier2016observation}, photonic crystals \cite{hafezi2013imaging}$^-$\cite{PhysRevX.5.031011}, photonic quantum walks \cite{kitagawa2012observation}$^-$\cite{PhysRevX.7.031023} and Weyl semimetals \cite{soluyanov2015type,PhysRevX.5.031013}. Among these, the Su-Schrieffer-Heeger (SSH) model \cite{PhysRevLett.42.1698} has attracted particular theoretical interest due to its simplicity and generality.
@@ -70,18 +357,25 @@ These new topological states of matter have been studied in several contexts in 
 The SSH model is the simplest tight-binding model that exhibits a topological phase transition. As such, it can be viewed as the \emph{Drosophila} of the field, providing a simple framework for testing new techniques. The model can be expressed in terms of creation and annihilation operators by the Hamiltonian
 \begin{equation}
 \label{SSH_ham}
-\hat{H}(\mathbf{t})=\mathbf{c}^{\dagger}H(\mathbf{t})\mathbf{c}
+\mathbf{H}(\mathbf{t})=\mathbf{c}^{\dagger}H(\mathbf{t})\mathbf{c}
 \end{equation}
 and describes e.g. the hopping of electrons along a one-dimensional chain comprising two atoms per unit cell (a brief discussion of the SSH model and its topological properties can be found in the section \textbf{The SSH model} in the Supplementary Material). The SSH model has found several interesting applications in the modelling of diverse systems with non-trivial topology like optical lattices \cite{maffei2018topological}, polymeric materials \cite{RevModPhys.73.681} and topological mechanisms \cite{kane2014topological,Chen13004}.
 
 Many recent papers have explored the possibility of treating the general problem of determining phase transition boundaries of physical systems as machine learning tasks \cite{carrasquilla2017machine}$^-$\cite{rodriguez2018identifying}. In the particular case of topological phase transitions, the usual approach for supervised learning is to generate a data set $\big(H_1(k), W_1\big)$, ..., $\big(H_n(k), W_n\big)$ whose inputs are representations of Hamiltonians in wavevector space $H_i(k)$ and targets are their corresponding topological invariants $W_i$ (for the SSH model the topological invariant is the winding number). Our paper extends this task to the case of learning topological phase diagrams from input data in real space. Strikingly, we find that information localized on a few lattice sites in the bulk is sufficient to predict with high accuracy which topological phase a particular Hamiltonian belongs to.
 
-To investigate topological phases of matter in real space we have designed a novel supervised learning algorithm (here called eigenvector ensembling algorithm) tailored for the task of learning phase transition boundaries from local features. The algorithm is based on eigenvector decomposition and eigenvector ensembling and therefore will require minimal changes to be applicable to a broader class of data-driven physics problems. We demonstrate its effectiveness by combining it with decision trees and random forests to recover the topological phase diagrams of SSH systems from local coordinates of eigenstates in real space.
+The main motivation for developing a data-driven approach based on real space is that the canonical method of choice for the analysis of topological systems, i.e. wavevector space computations of topological invariants, is often only feasible for systems with translational symmetry, which many physical systems of current interest (e.g. disordered systems in condensed matter) do not have. Furthermore, it is not always granted that the topological invariants of a physical system being investigated are known in advance, as is presently the case for many gapless insulators. In such cases, being able to engineer topological features that encode the topological states of a system while at the same time reducing the system's complexity may provide an alternative strategy. Moreover, since real space and wavevector space eigenvectors are related by Fourier transforms, the latter are essentially delocalized and therefore so is any information recovered from them. Constructing theoretical methods to trace the distribution of information in topological systems may be an essential prerequisite to discovering new topological invariants and features. The data-driven approach designed in this article addresses these issues. %In particular, we employ it to scrutinize the issue of localizability of information in topological condensed matter systems.
 
-The advantage of using decision tree-based algorithms to learn topological phases from local eigenvector data is that their use of entropy-based cost functions (such as Shannon information entropy or Gini impurity) furnishes them with an intrinsinc model explanaibility tool that summarizes how important each feature was to learn the desired pattern in the data. This makes it much easier to trace the localization of relevant information along the features of a data set. Here we use the Shannon information entropy of ensembles of real space eigenvectors to recover a signal quantifying the amount of topological information available from each lattice site. This is a highly non-trivial proposition since the topological phase of a system is a global property of the whole system emerging from complex interactions between its components, and therefore even defining a local topological signal is a daunting theoretical task. To our knowledge this is the first time that a signal describing the localization of topological information in the bulk of topological condensed matter systems is presented in the literature.
+To investigate topological phases of matter in real space we have designed a novel supervised learning algorithm (here called eigenvector ensembling algorithm) tailored for the task of learning phase transition boundaries from local features. The algorithm is based on eigenvector decomposition and eigenvector ensembling and therefore will require minimal changes to be applicable to a broader class of data-driven physics problems. We describe the algorithm in detail in section \ref{the_eigenvector_ensembling_algorithm} and demonstrate its effectiveness by combining it with decision trees and random forests to recover the topological phase diagrams of SSH systems from local coordinates of eigenstates in real space. This is performed in section \ref{numerical_experiments}.
 
-The Shannon information entropy signals presented for the first time in this work provide a clear illustration of how model explainability in machine learning can guide new discoveries in condensed matter and quantum materials physics, since the existence of these signals was established by analyzing data from several thousand SSH systems which, taken individually, could not have provided any concrete hint of their existence. 
+The advantage of using decision tree-based algorithms to learn topological phases from local eigenvector data is that their use of entropy-based cost functions (such as Shannon information entropy or Gini impurity) furnishes them with an intrinsinc model explanaibility tool that summarizes how important each feature was to learning the desired patterns in the data. This makes it much easier to trace the localization of relevant information along the features of a data set. Here we use the Shannon information entropy of ensembles of real space eigenvectors to recover a signal quantifying the amount of topological information available from each lattice site. This is a highly non-trivial proposition since the topological phase of a system is a global property of the system as a whole emerging from complex interactions between its components, and therefore even defining a local topological signal is a daunting theoretical task. To our knowledge this is the first time that a signal describing the localization of topological information in the bulk of topological condensed matter systems is presented in the literature. These topological signals, here called information entropy signatures, are the subject of section \ref{information_entropy_signatures}. 
 
+In possession of the information entropy signatures, we demonstrate how the symmetries in real and wavevector space eigenvectors can be manipulated with signal processing tools commonly employed in audio and image processing to execute two standard unsupervised learning tasks, namely dimensionality reduction and feature engineering. The topological features resulting from this analysis, here denominated Discrete Cosine Transform and Discrete Sine Transform topological features, are discussed in section \ref{topological_feature_engineering}.    
+
+The information entropy signatures are finally explored as theoretical constructs in terms of information entropy mass functions along the lattices. By taking their continuum limit and admitting that they are quantum in nature, we show how the information entropy signatures can be naturally understood in terms of emergent information entropy wave functions along the lattices. The theoretical formulation of the results obtained with machine learning in terms of emergent quantum mechanical wave functions allows us to establish Heisenberg and Hirschman uncertainty principles for the localizability of information entropy in topological phase transitions. The emergent information entropy wave functions are the theme of section \ref{emergent_information_entropy_wave_functions}.      
+
+The  description of information entropy signatures as a measurable phenomenon emerging from information entropy wave functions provides a clear illustration of how model explainability in machine learning can guide new discoveries in condensed matter and quantum materials physics, since the existence of these signals was established by analyzing data from several thousand SSH systems which, taken individually, could not have provided any concrete hint of their existence.%\citequote{pipeline_not_work}
+
+As of yet model explainability \cite{gilpin2018explaining}-\cite{roscher2020explainable} is one of the topics at the edge of machine learning research that has been little explored by the physics community working at the interface between the two disciplines. This raises important questions as to whether machine learning can in fact help to advance theoretical investigation in physics, since the majority of physics papers published on the subject are proofs of concept aimed at showing that modern machine learning techniques are capable of recognizing the relevant patterns in data from physical systems whose properties were known in advance. By proposing new concepts from the data analysis of physical systems of contemporary interest and knitting together ideas from topological phase transitions and information theory by dint of model explainability, we expect to draw the physics community's attention to this essential machine learning tool. 
 \begin{figure}
 \centering
 \subfigure[]{\label{ssh1}\includegraphics[width=.45\textwidth]{./phase_diagrams/ssh1.png}}\quad
@@ -90,124 +384,366 @@ The Shannon information entropy signals presented for the first time in this wor
 \label{fig:phasediagrams}
 \end{figure}
 
-\section*{Numerical experiments}
+\section{The eigenvector ensembling algorithm}
+\label{the_eigenvector_ensembling_algorithm}
+The eigenvector ensembling algorithm consists of five steps: 1) Generating Hamiltonians in real space and their corresponding winding numbers; 2) Creating training, validation and test sets; 3) Training on real space eigenvectors of Hamiltonians in the training set; 4) Eigenvector ensembling and 5) Bootstrapping. We describe here in detail each of these steps as they were implemented in this work. For a comprehensive introduction to the concepts referenced in the steps below, we recommend the book \cite{friedman2001elements}.    
+\vspace{.3cm}
+\begin{enumerate}%[topsep=0pt, partopsep=0pt]
+\item[1)] \textbf{Generating Hamiltonians and winding numbers:} we start generating a number of paremeterized Hamiltonians $H(\mathbf{t})$ in real space and their corresponding winding numbers $W(\mathbf{t})$, where $\mathbf{t} = (t_1, t_2,...,t_h)$ is a vector of $h$ hopping parameters (in the simplest case of the SSH model $h$ = 2). These Hamiltonians are $N\times N$ matrices, where $N$ is twice the number of unit cells in the chain.
+\item[2)] \textbf{Creating training, validation and test sets:} we split our set of parameterized Hamiltonians and winding numbers into training, validation and test sets, as is usualy done in machine learning. More explicitly, assume our hopping parameters vector $\mathbf{t}$ takes on the values $\mathbf{t}_1, \mathbf{t}_2, ..., \mathbf{t}_n$ corresponding to the Hamiltonian-winding number pairs ($H_1$, $W_1$), ..., ($H_n$, $W_n$). We partition the set \{($H_i$, $W_i$)$\mid$ $i=1,...,n$\} in three disjoint subsets: the training set, the validation set and the test set.
+\item[3)] \textbf{Training on eigenvectors in real space:} since each Hamiltonian $H_i$ is represented by an $N\times N$ matrix, each one will provide $N$ eigenvectors $\mathbf{v}_i^{(1)}, \mathbf{v}_i^{(2)},...,\mathbf{v}_i^{(N)}$ to our data set. Our supervised learning algorithm of choice will take as inputs the real space eigenvectors $\mathbf{v}^{(j)}_i$ of each Hamiltonian $H_i$ in the training set and be trained to learn the winding number $W_i$ of their parent Hamiltonian $H_i$. Therefore, our dataset will consist of eigenvector-winding number pairs $(\mathbf{v}_i^{(j)}, W_i)$.
+\item[4)]\textbf{Eigenvector ensembling:} in order to predict the phase of a system described by a particular Hamiltonian we need to take into account how each of its eigenvectors were classified. This amounts to performing ensemble learning on the eigenvectors of each Hamiltonian. In this work we estimate the phase probabilities for each Hamiltonian as the fraction of its eigenvectors that were classified in each phase.
+\item[5)] \textbf{Bootstrapping:} We refine the phase probabilities for each Hamiltonian using a bootstrapping procedure, i.e., we repeat steps (1)-(4) $n_\text{exp}$ times, at each round sampling randomly a new training set from our grid in \textbf{t}-space. The final estimated probabilities are then arrived at by averaging the probabilities obtained in each experiment.
+\end{enumerate} 
 
-The eigenvector ensembling algorithm consists of five steps: 1) Generating Hamiltonians in real space and their corresponding winding numbers; 2) Creating training, validation and test sets; 3) Training on real space eigenvectors of Hamiltonians in the training set; 4) Eigenvector ensembling and 5) Bootstrapping. A detailed description of the algorithm is found in the section \textbf{The eigenvector ensembling algorithm} in the Supplementary Material. Here we present results of the numerical experiments we performed with it. We start with the results from the simplest case, the SSH model with nearest-neighbor hopping (here called SSH 1, figure \ref{ssh1}), then we analize the SSH model with first and second nearest-neighbor hoppings (here called SSH 2, figure \ref{ssh2}).
+\vspace{.3cm}
+Before continuing to the analyses of the SSH systems with the eigenvector ensembling algorithm, it will be timely to digress a moment and peek into the algorithm itself. The focus on eigenvectors (and hence the algorithm's name) as the input data to a machine learning algorithm of choice is a hallmark of the procedure as it differentiates it from related applications of machine learning to the study of phase transitions. The intuition that eigenvectors can be used in replacement of raw Hamiltonians can be grasped when we consider the spectral decomposition of a Hamiltonian $H$,    
+\begin{equation}
+\label{eigen_decomposition}
+H = \sum_{i=1}^{N}\lambda^{(i)} \ket{\mathbf{v}^{(i)}}\bra{\mathbf{v}^{(i)}}
+\end{equation}
+where $\lambda^{(i)}$ is the eigenenergy corresponding to the eigenstate $\ket{\mathbf{v}^{(i)}}$. It is therefore clear that all information available from a Hamiltonian can be recovered from its spectral decomposition. By expressing the eigenvectors in a basis suitable to a particular problem (e.g. the real space basis chosen in this article), it becomes possible to investigate the properties of a set of Hamiltonians using the coordinates of eigenvectors in the chosen basis as features. Thus the eigenvector ensembling procedure described above provides a broad framework for the implementation of model explainability in applications to data-driven physics. 
 
-In each experiment our grid consisted of 6561 Hamiltonians uniformly distributed in the closed square $[-2,2]\times[-2,2]$ in the $t_1$-$t_2$ plane in parameter space. The goal in each experiment is to recover the corresponding phase diagram in 2D (two-dimensional) parameter space, figures \ref{ssh1} and \ref{ssh2}, from local lattice data in the much higher-dimensional real space (100D - in both experiments lattices have 50 unit cells, yielding 100$\times$100 Hamiltonian matrices).
+\section{Numerical experiments}
+\label{numerical_experiments}
+We performed two numerical experiments with the eigenvector ensembling algorithm. The first experiment deals with the simplest case, the SSH model with nearest-neighbor hopping (here called SSH 1, figure \ref{ssh1}), while the second experiment uses the SSH model with first and second nearest-neighbor hoppings (here called SSH 2, figure \ref{ssh2}).
 
-This task is particularly hard near phase transition boundaries, where numerical computation of winding numbers become less stable. For this reason, when sampling the training set we only consider those Hamiltonians in the grid whose numerically computed winding numbers lie in a range $\epsilon = 0.01$ around the allowed winding number values. Therefore, a good performance metric is the accuracy measured at those Hamiltonians near phase transitions that are never used for training, and thus we assign them to the test set. The remaining Hamiltonians in the grid are split into training and validation sets as detailed in the subsections below.
+In each experiment our grid consisted of \nHam\ Hamiltonians uniformly distributed in the closed square $[-2,2]\times[-2,2]$ in the $t_1$-$t_2$ plane in parameter space. The goal in each experiment is to recover the corresponding phase diagram in 2D (two-dimensional) parameter space, figures \ref{ssh1} and \ref{ssh2}, from local lattice data in the much higher-dimensional real space (100D - in both experiments lattices have 50 unit cells, yielding 100$\times$100 Hamiltonian matrices).
+
+This task is particularly hard near phase transition boundaries, where numerical computation of winding numbers become less stable. For this reason, when sampling the training set we only consider those Hamiltonians in the grid whose numerically computed winding numbers lie in a minimum range of $\epsilon = \epsilonValue$ from the correct winding number values. Therefore, a good performance metric is the accuracy measured at those Hamiltonians near phase transitions that are never used for training, and thus we assign them to the test set. The remaining Hamiltonians in the grid are split into training and validation sets as detailed in the subsections below.
+
+As performance metrics, we report here both accuracy of predicted classes for eigenvectors as well as accuracy of predicted classes for Hamiltonians obtained from eigenvector ensembling. These accuracy scores are to be gauged against the baseline of a system that simply guesses the most frequent class for all Hamiltonians. Checking against this baseline is important because it indicates whether the decision trees are in fact learning the underlying patterns that relate real space coordinates to winding numbers, and therefore whether the associated information entropy signature is meaningful or not.
 
 When generating the Hamiltonians we applied periodic boundary conditions to eliminate border effects. This should make recovering a topological signal from local eigenvector coordinates even harder, since in this case the translational symmetry of the systems should allow for no obvious way to distinguish between unit cells. The choice of periodic boundary conditions also implies that the information recovered from real space data comes from the bulk of the topological systems considered and therefore provides strong evidence for the existence of topological signatures in the bulk of such systems. 
 
-Figures \ref{figexp1_exp} and \ref{figexp2_exp} respectively illustrate single iterations of experiments 1 and 2 as seen from parameter space. The accuracy statistics presented in the following subsections and probability heatmaps shown in figures \ref{ssh1_heatmaps} and \ref{ssh2_heatmaps} were obtained after bootstrapping each experiment $n_{exp}$ = 100 times. The recovered probability heatmaps faithfully portray the phase diagrams in figure \ref{fig:phasediagrams}, with clear phase transition lines appearing in the regions of highest uncertainty.
+Figures \ref{figexp1_exp} and \ref{figexp2_exp} respectively illustrate single iterations of experiment 1 (section \ref{experiment_1}) and experiment 2 (section \ref{experiment_2}) as seen from parameter space. The accuracy statistics presented in the following subsections, as well as the probability heatmaps and recovered phase diagrams shown in figures \ref{ssh1_heatmaps} and \ref{ssh2_heatmaps} were obtained after bootstrapping each experiment $n_{exp}$ = \nExp\ times. Thus, each probability heatmap shown in figures \ref{ssh1_heatmap_0}, \ref{ssh1_heatmap_1} and \ref{ssh2_heatmap_-1} to \ref{ssh2_heatmap_2} represents the averaged fraction of eigenvectors of each Hamiltonian in the grid that were classified with a given winding number across 100 experiments. The recovered phase diagrams \ref{ssh1_heatmap} and \ref{ssh2_heatmap} are constructed by superposing the corresponding probability heatmaps. As these figure make clear, the recovered phase diagrams faithfully portray the true phase diagrams in figure \ref{fig:phasediagrams}, with clear phase transition lines appearing in the regions of highest uncertainty.
 
-\subsection*{Experiment 1: Learning a first-neighbor hopping SSH model with decision trees}
+The numerical experiments with the eigenvector ensembling algorithm described in the next subsections were implemented in Python using the scikit-learn module \cite{scikit-learn,sklearn_api}. 
 
-Our test set in this experiment contained 1005 Hamiltonians (approx. 15.3\% of all data). Of the remaining 5556 Hamiltonians, 556 were randomly assigned to the training set (approx. 8.5\%) and 5000 (approx. 76.2\%) were used to compute validation scores at each iteration. These proportions between training and validation sets are such that approximately 10\%  of Hamiltonians from outside of the test set were used for training at each iteration. The composition of the train + validation set for this experiment was 50.8\% of Hamiltonians with winding number $W$ = 0 and 49.2\% with winding number $W$ = 1. The composition of the test set was 44.8\% of Hamiltonians with winding number $W$ = 0 and 55.2\% with winding number $W=1$. Our algorithm of choice for this experiment was a simple decision tree model \cite{breiman2017classification}.
+\subsection{Experiment 1: Learning a first-neighbor hopping SSH model with decision trees}
+\label{experiment_1}
+Our test set in this experiment contained \sshOneTestNHam\ Hamiltonians (approx. \sshOneTestFracHam\% of all data). Of the remaining \sshOneTrainPlusValNHam\ Hamiltonians, \sshOneTrainNHam\ were randomly assigned to the training set (approx. \sshOneTrainFracHam\%) and \sshOneValNHam\ (approx. \sshOneValFracHam\%) were used to compute validation scores at each iteration. These proportions between training and validation sets are such that approximately 10\%  of Hamiltonians from outside of the test set were used for training at each iteration. The composition of the train + validation set for this experiment was \sshOneTrainPlusValWindZeroFracHam\% of Hamiltonians with winding number $W$ = 0 and \sshOneTrainPlusValWindOneFracHam\% with winding number $W$ = 1. The composition of the test set was \sshOneTestWindZeroFracHam\% of Hamiltonians with winding number $W$ = 0 and \sshOneTestWindOneFracHam\% with winding number $W=1$. Our learning algorithm of choice for this experiment was a simple decision tree model \cite{breiman2017classification}.
 
-The bootstrap allows us to collect several statistics to evaluate performance. In particular, we report mean accuracies on training eigenvectors (98.2\%), validation eigenvectors (96.4\%) and test eigenvectors (78.8\%). Eigenvector ensembling substantially improved mean accuracies for Hamiltonians. These were 100\% for training Hamiltonians, 100\% for validation Hamiltonians and 99.1\% for test Hamiltonians.
+The bootstrap allows us to collect several statistics to evaluate performance. In particular, we report mean accuracies on training eigenvectors (\xOneEigTrain), validation eigenvectors (\xOneEigVal) and test eigenvectors (\xOneEigTest). Eigenvector ensembling substantially improved mean accuracies for Hamiltonians. These were \xOneHamTrain\ for training Hamiltonians, \xOneHamVal\ for validation Hamiltonians and \xOneHamTest\ for test Hamiltonians. When compared with the baseline test accuracy of \sshOneHamTestBaseline\ of a system that predicts the whole test set as having winding number $W=1$, the accuracy achieved on test Hamiltonians indicates that the decision trees indeed learned the patterns that relate real space coordinates to winding numbers.
 
-The probability heatmaps and phase diagram learned by the combination of decision trees with eigenvector ensembling used in experiment 1 are shown in figure \ref{ssh1_heatmaps}.
+The probability heatmaps and phase diagram learned by the combination of decision trees with eigenvector ensembling used in experiment 1 are shown in figure \ref{ssh1_heatmaps}. 
 
 \begin{figure}
 \centering
-\subfigure[]{\label{figexp1_exp:a}\includegraphics[width=.32\textwidth]{./ssh1/periodic_100_6561/scatter_train_val_test_experiment_0.png}}\quad
-\subfigure[]{\label{figexp1_exp:b}\includegraphics[width=.32\textwidth]{./ssh1/periodic_100_6561/scatter_winding_train_experiment_0.png}}
-\subfigure[]{\label{figexp1_exp:c}\includegraphics[width=.32\textwidth]{./ssh1/periodic_100_6561/pcolormesh_prediction_grid_experiment_0.png}}
-\caption{Visualization of a single iteration of experiment 1 as seen from 2D parameter space. (a) Train/validation/test split. (b) Distribution of winding numbers in the training set. (c) Phase diagram learned from real space lattice data by a combination of decision tree and eigenvector ensembling.}
+\subfigure[]{\label{figexp1_exp:a}\includegraphics[width=.32\textwidth]{./ssh1/real_space_all_sites/scatter_train_val_test_experiment_0-1.png}}\quad
+\subfigure[]{\label{figexp1_exp:b}\includegraphics[width=.32\textwidth]{./ssh1/real_space_all_sites/scatter_winding_train_experiment_0-1.png}}
+\subfigure[]{\label{figexp1_exp:c}\includegraphics[width=.32\textwidth]{./ssh1/real_space_all_sites/pcolormesh_prediction_grid_experiment_0-1.png}}
+\caption{Visualization of a single iteration of experiment 1 (section \ref{experiment_1}) as seen from 2D parameter space. (a) Train/validation/test split. (b) Distribution of winding numbers in the training set. (c) Phase diagram learned from real space lattice data by combining a decision tree with eigenvector ensembling.}
 \label{figexp1_exp}
 \end{figure}
 
-\subsection*{Experiment 2: Learning a first- and second-neighbor hoppings SSH model with random forests}
-\label{exp2}
+\subsection{Experiment 2: Learning a first- and second-neighbor hoppings SSH model with random forests}
+\label{experiment_2}
 
-This task is considerably more difficult than the previous one due to the higher number of classes and the fact that some of the labels encompass disconnected regions. For this reason, instead of using a single decision tree, we upgraded our model to a random forest \cite{Breiman2001} with 25 decision trees. Our data set consisted of 1040 (15.8\%) test Hamiltonians. The remaining Hamiltonians are randomly split in half between training and validation sets at each iteration, giving 2761 (42.1\%) training Hamiltonians and 2760 (42.1\%) validation Hamiltonians. The distribution of winding numbers for the Hamiltonians in the train + validation set for this experiment was $W$ = -1 (17.9\%), $W$ = 0 (32.5\%), $W$ = 1 (32.3\%) and $W$ = 2 (17.3\%). The distribution of winding numbers for the Hamiltonians in the test set was $W$ = -1 (36.3\%), $W$ = 0 (11.1\%), $W$ = 1 (12.7\%) and $W$ = 2 (39.9\%).
+This task is considerably more difficult than the previous one due to the higher number of classes and the fact that some of the labels encompass disconnected regions. For this reason, instead of using a single decision tree, we upgraded our model to a random forest \cite{Breiman2001} with \nEst\ decision trees. Our data set consisted of \sshTwoTestNHam\ (\sshTwoTestFracHam\%) test Hamiltonians. The remaining \sshTwoTrainPlusValNHam\ Hamiltonians are randomly split in half between training and validation sets at each iteration, giving \sshTwoTrainNHam\ (\sshTwoTrainFracHam\%) training Hamiltonians and \sshTwoValNHam\ (\sshTwoValFracHam\%) validation Hamiltonians. The distribution of winding numbers for the Hamiltonians in the train + validation set for this experiment was $W$ = -1 (\sshTwoTrainPlusValWindMinusOneFracHam\%), $W$ = 0 (\sshTwoTrainPlusValWindZeroFracHam\%), $W$ = 1 (\sshTwoTrainPlusValWindOneFracHam\%) and $W$ = 2 (\sshTwoTrainPlusValWindTwoFracHam\%). The distribution of winding numbers for the Hamiltonians in the test set was $W$ = -1 (\sshTwoTestWindMinusOneFracHam\%), $W$ = 0 (\sshTwoTestWindZeroFracHam\%), $W$ = 1 (\sshTwoTestWindOneFracHam\%) and $W$ = 2 (\sshTwoTestWindTwoFracHam\%).
 
-Mean accuracies across 100 repetitions of experiment 2 were 99.9\% for training eigenvectors, 97.1\% for validation eigenvectors and 66.4\% for test eigenvectors. Mean accuracies resulting from eigenvector ensembling were 100\% for training Hamiltonians, 99.7\% for validation Hamiltonians and 88.2\% for test Hamiltonians. The large accuracy gain achieved by eigenvector ensembling in the test set (going from 66.4\% eigenvector accuracy to 88.2\% Hamiltonian accuracy) attests to its power.
+Mean accuracies across \nExp\ repetitions of experiment 2 were \xTwoEigTrain\ for training eigenvectors, \xTwoEigVal\ for validation eigenvectors and \xTwoEigTest\ for test eigenvectors. Mean accuracies resulting from eigenvector ensembling were \xTwoHamTrain\ for training Hamiltonians, \xTwoHamVal\ for validation Hamiltonians and \xTwoHamTest\ for test Hamiltonians. The large accuracy gain achieved by eigenvector ensembling in the test set (going from \xTwoEigTest\ eigenvector accuracy to \xTwoHamTest\ Hamiltonian accuracy) attests to its power. The effectiveness of eigenvector ensembling is also evident from the much worse performance (\sshTwoHamTestBaseline) achieved by a baseline system that simply guesses $W=2$ for all test Hamiltonians in this experiment. 
+
+
 
 The probability heatmaps and phase diagram learned by the combination of random forests with eigenvector ensembling used in experiment 2 are shown in figure \ref{ssh2_heatmaps}.
 
 \begin{figure}
 \centering
-\subfigure[]{\label{figexp2_exp:a}\includegraphics[width=.32\textwidth]{./ssh2/periodic_100_6561/scatter_train_val_test_experiment_0.png}}\quad
-\subfigure[]{\label{figexp2_exp:b}\includegraphics[width=.32\textwidth]{./ssh2/periodic_100_6561/scatter_winding_train_experiment_0.png}}
-\subfigure[]{\label{figexp2_exp:c}\includegraphics[width=.32\textwidth]{./ssh2/periodic_100_6561/pcolormesh_prediction_grid_experiment_0.png}}
-\caption{Visualization of a single iteration of experiment 2 as seen from 2D parameter space. (a) Train/validation/test split. (b) Distribution of winding numbers in the training set. (c) Phase diagram learned from real space lattice data by a combination of random forest and eigenvector ensembling.}
+\subfigure[]{\label{figexp2_exp:a}\includegraphics[width=.32\textwidth]{./ssh2/real_space_all_sites/scatter_train_val_test_experiment_0-2.png}}\quad
+\subfigure[]{\label{figexp2_exp:b}\includegraphics[width=.32\textwidth]{./ssh2/real_space_all_sites/scatter_winding_train_experiment_0-2.png}}
+\subfigure[]{\label{figexp2_exp:c}\includegraphics[width=.32\textwidth]{./ssh2/real_space_all_sites/pcolormesh_prediction_grid_experiment_0-2.png}}
+\caption{Visualization of a single iteration of experiment 2 (section \ref{experiment_2}) as seen from 2D parameter space. (a) Train/validation/test split. (b) Distribution of winding numbers in the training set. (c) Phase diagram learned from real space lattice data by combining a random forest with eigenvector ensembling.}
 \label{figexp2_exp}
 \end{figure}
 
-\section*{Information entropy signatures}
+\section{Information entropy signatures}
+\label{information_entropy_signatures}
 
-We now analyze how the algorithm was able to recover a global property of the Hamiltonians (their topological phase) from bulk local features (real space eigenvector coordinates on each lattice site). Alongside the fact that decision trees and random forests are very easy to train and visualize, the other reason that led us to test our algorithm with them was that they allow us to check which features (and thus which lattice sites) were most informative in training.
+We now analyze how the algorithm was able to recover a global property of the Hamiltonians (their topological phase) from bulk local features (real space eigenvector coordinates on each lattice site). Alongside the fact that decision trees and random forests are very easy to train and visualize, the other reason that led us to test the eigenvector ensembling algorithm with them was that they allow us to check which features (and thus which lattice sites) were most informative in training.
 
-The (normalized) relevance of a feature is given by how much it reduces a loss function (e.g. Shannon information entropy or Gini impurity \cite{friedman2001elements}). By averaging normalized relevances as measured by reduction in the information entropy of ensembles of real space eigenvectors across $n_{exp}$ = 100 iterations of both experiment 1 and experiment 2 we recovered Shannon entropy signals that reveal which lattice sites were consistently more relevant in learning topological phases from data in real space for each experiment. These signals are the information entropy signatures of each topological phase transition. 
+The (normalized) relevance of a feature is given by how much it reduces a loss function (in this paper, the Shannon information entropy of ensembles of eigenvectors). By averaging normalized relevances as measured by reduction in the information entropy of ensembles of real space eigenvectors across $n_{exp}$ = 100 iterations of both experiment 1 (section \ref{experiment_1}) and experiment 2 (section \ref{experiment_2}) we recovered Shannon entropy signals that reveal which lattice sites were consistently more relevant in learning topological phases from data in real space for each experiment. These signals are the information entropy signatures of each topological phase transition. 
 
-The bar plots in figure \ref{feature_importances} show how informative each lattice site was in learning topological phases for experiments 1 and 2. They represent the information entropy signatures along the lattices in each SSH system. For experiment 1, only six lattice sites $S_1$ = (0, 1, 3, 50, 51, 53) corresponding to the two sharp peaks seen in figure \ref{feature_importances_ssh1} contributed approximately 70\% of total reduction in Shannon entropy. Similarly, approximately 30\% of total reduction in the Shannon information entropy of eigenvector data from experiment 2 was achieved by eighteen lattice sites $S_2$ = (0, 1, 2, 3, 4, 5, 46, 48, 49, 50, 51, 53, 94, 95, 96, 97, 98, 99) distributed along the three peaks in figure \ref{feature_importances_ssh2}.
+We should briefly comment on the possibility of using the Gini impurity of ensembles of eigenvectors \cite{friedman2001elements} instead of their Shannon entropy as cost function. This would similarly lead us to Gini impurity signatures of topological phase transitions. Given that in the examples analysed in this paper the Gini impurity signatures and the Shannon entropy signatures were very similar, the larger familiarity of a general physics audience with the latter influenced us to choose it over the former. Nevertheless, the question of which split criterion  should be used when training decision trees is as of yet largely undecided \cite{raileanu2004theoretical} and may be of relevance in the analysis of other physical systems than the ones studied here.       
 
-Each of the information entropy signatures shown in figure \ref{feature_importances} captures a general pattern that persists regardless of the length of the lattice (i.e, number of unit cells) used to compute them. They are not, therefore, artifacts of particular choices of hyperparameters used to run the eigenvector ensembling algorithm. We present the information entropy signatures for longer lattices in the section \textbf{Information entropy signatures in the macroscopic limit} in the Supplementary Material.
+The bar plots in figure \ref{feature_importances} show how informative each lattice site was in learning topological phases for each experiment. They represent the information entropy signatures along the lattices in each SSH system. For experiment 1 (section \ref{experiment_1}), only six lattice sites (0, 1, 3, 50, 51, 53) corresponding to the two sharp peaks seen in figure \ref{feature_importances_ssh1} contributed approximately 70\% of total reduction in Shannon entropy. Similarly, approximately 30\% of total reduction in the Shannon information entropy of eigenvector data from experiment 2 (section \ref{experiment_2}) was achieved by eighteen lattice sites (0, 1, 2, 3, 4, 5, 46, 48, 49, 50, 51, 53, 94, 95, 96, 97, 98, 99) distributed along the three peaks in figure \ref{feature_importances_ssh2}. As we shall see in section \ref{topological_feature_engineering}, the information entropy signatures can be used to compress the topological information in SSH lattices.
 
-To see if learning the topological phases can be achieved efficiently by employing simpler models we reran experiments 1 and 2 using only a small subset of most relevant lattice sites. In our rerun of experiment 1 using only lattice sites $S'_1$ = (0, 50, 51, 99) (which contributed approximately 45 \% of total reduction in Shannon information entropy in experiment 1), mean accuracies were 97.0\% for training eigenvectors, 91.5\% for validation eigenvectors and 72.8\% for test eigenvectors. Mean accuracies obtained from eigenvector ensembling were 99.1\% for training Hamiltonians, 99.5\% for validation Hamiltonians and 94.5\% for test Hamiltonians.
+The information entropy signatures presented here have some interesting subtleties. Although they give us a visualization of how important each lattice site was in determining the topological phases of Hamiltonians, they actually express a global property of the whole lattice. In section \ref{emergent_information_entropy_wave_functions}, where we develop a quantum formalism for the information entropy signatures obtained in this section, these seemingly antagonistic conceptions shall be harmonized. What is important to emphasize at this point is that an information entropy signature should not be naively taken at face value: a lattice site that appears unimportant in an information entropy signature plot may not be unimportant or void of topological information by itself.
 
-Mean accuracies for our rerun of experiment 2 using only lattice sites $S'_2$ = (0, 1, 3, 48, 50, 51, 96, 98, 99) (which contributed approximately 20 \% of total reduction in Shannon information entropy in experiment 2) were 99.9\% for training eigenvectors, 87.7\% for validation eigenvectors and 47.3\% for test eigenvectors. Eigenvector ensembling yields mean accuracies of 100\% for training Hamiltonians, 99.5\% for validation Hamiltonians and 74.5\% for test Hamiltonians.  
+To give a concrete example, reduction in Shannon entropy tends to be distributed among highly correlated variables. This implies that if only a single lattice site in a highly correlated subset is used by a learning algorithm, it will likely inherit most of the reduction in Shannon entropy from the other correlated lattice sites that were not taken into account by the algorithm. The corollary of this fact is that lattice sites that carry redundant information that is also available from other lattice sites tend to have decreased importance in the information entropy signature.  In this regard the information entropy signatures presented here express a summary of relations between lattice sites and are therefore intrinsically global.
 
-These results demonstrate that learning topological phases from local real space data in the bulk is still possible even for small subsets of lattice sites. We refer the reader to the section \textbf{Learning topological phases from real space data} in the Supplementary Material for a discussion of how this is possible.
+Each of the information entropy signatures shown in figure \ref{feature_importances} captures a general pattern that persists regardless of the length of the lattice (i.e., the number of unit cells) used to compute them. In fact, by rerunning each experiment with longer lattices we have verified that the signals in figures \ref{feature_importances_ssh1} and \ref{feature_importances_ssh2} appear to converge to well defined continuous density functions in the macroscopic limit. They are not, therefore, artifacts of particular choices of hyperparameters used to run the eigenvector ensembling algorithm. The information entropy signatures for longer lattices are presented in the section \textbf{Numerical explorations on longer lattices} in the Supplementary Material.
 
 \begin{figure}
 \centering
-\subfigure[]{\label{ssh1_heatmap_0}\includegraphics[width=.32\textwidth]{./ssh1/periodic_100_6561/imshow_winding_grid_winding_0_sim.png}}
-\subfigure[]{\label{ssh1_heatmap_1}\includegraphics[width=.32\textwidth]{./ssh1/periodic_100_6561/imshow_winding_grid_winding_1_sim.png}}
-\subfigure[]{\label{ssh1_heatmap}\includegraphics[width=.32\textwidth]{./ssh1/periodic_100_6561/merge_imshow_winding_grids_second_sim.png}}
-\caption{Probability heatmaps learned by a combination of decision trees with eigenvector ensembling from bulk real space eigenvector data in experiment 1. Heatmaps were averaged across all 100 iterations of the experiment. (a) Probability heatmap showing the probability that a Hamiltonian in the grid has winding number equal to 0.  (b) Probability heatmap showing the probability that a Hamiltonian in the grid has winding number equal to 1. (c) The phase diagram resulting from heatmaps (a) and (b).}
+\subfigure[]{\label{ssh1_heatmap_0}\includegraphics[width=.32\textwidth]{./ssh1/real_space_all_sites/imshow_winding_grid_winding_0_sim-1.png}}
+\subfigure[]{\label{ssh1_heatmap_1}\includegraphics[width=.32\textwidth]{./ssh1/real_space_all_sites/imshow_winding_grid_winding_1_sim-1.png}}
+\subfigure[]{\label{ssh1_heatmap}\includegraphics[width=.32\textwidth]{./ssh1/real_space_all_sites/merge_imshow_winding_grids_second_sim-1.png}}
+\caption{Probability heatmaps learned by a combination of decision trees with eigenvector ensembling from bulk real space eigenvector data in experiment 1 (section \ref{experiment_1}). Heatmaps were averaged across all 100 iterations of the experiment. (a) Probability heatmap showing the probability that a Hamiltonian in the grid has winding number equal to 0.  (b) Probability heatmap showing the probability that a Hamiltonian in the grid has winding number equal to 1. (c) The phase diagram resulting from heatmaps (a) and (b).}
 \label{ssh1_heatmaps}
 \end{figure}
 
 \begin{figure}
 \centering
-\subfigure[]{\label{ssh2_heatmap_-1}\includegraphics[width=.32\textwidth]{./ssh2/periodic_100_6561/imshow_winding_grid_winding_-1_sim.png}}
-\subfigure[]{\label{ssh2_heatmap_0}\includegraphics[width=.32\textwidth]{./ssh2/periodic_100_6561/imshow_winding_grid_winding_0_sim.png}}
-\subfigure[]{\label{ssh2_heatmap_1}\includegraphics[width=.32\textwidth]{./ssh2/periodic_100_6561/imshow_winding_grid_winding_1_sim.png}}
-\subfigure[]{\label{ssh2_heatmap_2}\includegraphics[width=.32\textwidth]{./ssh2/periodic_100_6561/imshow_winding_grid_winding_2_sim.png}}
-\subfigure[]{\label{ssh2_heatmap}\includegraphics[width=.32\textwidth]{./ssh2/periodic_100_6561/merge_imshow_winding_grids_sim.png}}
-\caption{Probability heatmaps learned by a combination of random forests with eigenvector ensembling from bulk real space eigenvector data in experiment 2. Heatmaps were averaged across all 100 iterations of the experiment. (a) Probability heatmap showing the probability that a Hamiltonian in the grid has winding number equal to -1.  (b) Probability heatmap showing the probability that a Hamiltonian in the grid has winding number equal to 0. (c) Probability heatmap showing the probability that a Hamiltonian in the grid has winding number equal to 1. (d) Probability heatmap showing the probability that a Hamiltonian in the grid has winding number equal to 2. (e) The phase diagram resulting from heatmaps (a)-(d).}
+\subfigure[]{\label{ssh2_heatmap_-1}\includegraphics[width=.32\textwidth]{./ssh2/real_space_all_sites/imshow_winding_grid_winding_-1_sim-2.png}}
+\subfigure[]{\label{ssh2_heatmap_0}\includegraphics[width=.32\textwidth]{./ssh2/real_space_all_sites/imshow_winding_grid_winding_0_sim-2.png}}
+\subfigure[]{\label{ssh2_heatmap_1}\includegraphics[width=.32\textwidth]{./ssh2/real_space_all_sites/imshow_winding_grid_winding_1_sim-2.png}}
+\subfigure[]{\label{ssh2_heatmap_2}\includegraphics[width=.32\textwidth]{./ssh2/real_space_all_sites/imshow_winding_grid_winding_2_sim-2.png}}
+\subfigure[]{\label{ssh2_heatmap}\includegraphics[width=.32\textwidth]{./ssh2/real_space_all_sites/merge_imshow_winding_grids_sim-2.png}}
+\caption{Probability heatmaps learned by a combination of random forests with eigenvector ensembling from bulk real space eigenvector data in experiment 2 (section \ref{experiment_2}). Heatmaps were averaged across all 100 iterations of the experiment. (a) Probability heatmap showing the probability that a Hamiltonian in the grid has winding number equal to -1.  (b) Probability heatmap showing the probability that a Hamiltonian in the grid has winding number equal to 0. (c) Probability heatmap showing the probability that a Hamiltonian in the grid has winding number equal to 1. (d) Probability heatmap showing the probability that a Hamiltonian in the grid has winding number equal to 2. (e) The phase diagram resulting from heatmaps (a)-(d).}
 \label{ssh2_heatmaps}
 \end{figure}
 
-\section*{Discussion}
 
-Given the increasing complexity of systems studied in condensed matter physics and the rising demand for materials with exotic and robust properties to power future technological progress, it is only expected that data-driven approaches to physics will grow in demand. Our work represents a step in this direction, as we have implemented a data-driven approach to the search for new topological materials bypassing the use of wavevector space data.
 
-The development of data-driven methods based on real space lattice data will be particularly relevant to the study of disordered systems in condensed matter. Such systems usually break translational symmetry and therefore are not amenable to wavevector space methods.
 
-An advantage of using data from real space is that it enables us to investigate how topological information is distributed in the system. This was demonstrated by the information entropy signatures recovered from the Shannon entropy of ensembles of eigenvectors in each experiment. The existence of such signals that can be recovered from data from many distinct physical systems but are hard to conceptualize from sheer theoretical reasoning provides a clear example of how machine learning can be an important tool in the investigation and discovery of new quantum materials.
+\begin{table}
+\begin{tabular}{||c@{\hskip 0.3in} c@{\hskip 0.3in} c@{\hskip 0.3in} c@{\hskip 0.3in} c@{\hskip 0.3in} c||} 
+%\caption{ACCURACY SCORES OF NUMERICAL EXPERIMENTS.} \label{numerical_results}
+%\begin{table}[th]
+%\caption{An Example of a Table}
+%\centering\label{table_example}
+%\begin{tabular}{|Sc*{9}{c|}}
+\toprule
+\SSHSys               &\Feat             &\ValEig            &\TestEig           &\ValHam              &\TestHam         \tableRowHeaderEnd 
+\midrule
+%                     &                  &                   &                   &                     &                   \tableRow{0.3}
+1                     &\xOne             &\xOneEigVal        &\xOneEigTest       &\xOneHamVal          &\xOneHamTest       \tableRowEnd
+1                     &\xSOne            &\xSOneEigVal       &\xSOneEigTest      &\xSOneHamVal         &\xSOneHamVal       \tableRowEnd
+1                     &\xcOne            &\xcOneEigVal       &\xcOneEigTest      &\xcOneHamVal         &\xcOneHamTest      \tableRowEnd
+1                     &\xcEOne           &\xcEOneEigVal      &\xcEOneEigTest     &\xcEOneHamVal        &\xcEOneHamTest     \tableRowEnd
+1                     &\xcSEOne          &\xcSEOneEigVal     &\xcSEOneEigTest    &\xcSEOneHamVal       &\xcSEOneHamTest    \tableRowEnd
+1                     &\xsOne            &\xsOneEigVal       &\xsOneEigTest      &\xsOneHamVal         &\xsOneHamTest      \tableRowEnd
+1                     &\xsOOne           &\xsOOneEigVal      &\xsOOneEigTest     &\xsOOneHamVal        &\xsOOneHamTest     \tableRowEnd
+1                     &\xsSOOne          &\xsSOOneEigVal     &\xsSOOneEigTest    &\xsSOOneHamVal       &\xsSOOneHamTest    \tableRowEnd
+2                     &\xTwo             &\xTwoEigVal        &\xTwoEigTest       &\xTwoHamVal          &\xTwoHamTest       \tableRowEnd
+2                     &\xSTwo            &\xSTwoEigVal       &\xSTwoEigTest      &\xSTwoHamVal         &\xSTwoHamVal       \tableRowEnd
+2                     &\xcTwo            &\xcTwoEigVal       &\xcTwoEigTest      &\xcTwoHamVal         &\xcTwoHamTest      \tableRowEnd
+2                     &\xcETwo           &\xcETwoEigVal      &\xcETwoEigTest     &\xcETwoHamVal        &\xcETwoHamTest     \tableRowEnd
+2                     &\xcSETwo          &\xcSETwoEigVal     &\xcSETwoEigTest    &\xcSETwoHamVal       &\xcSETwoHamTest    \tableRowEnd
+2                     &\xsTwo            &\xsTwoEigVal       &\xsTwoEigTest      &\xsTwoHamVal         &\xsTwoHamTest      \tableRowEnd
+2                     &\xsOTwo           &\xsOTwoEigVal      &\xsOTwoEigTest     &\xsOTwoHamVal        &\xsOTwoHamTest     \tableRowEnd
+2                     &\xsSOTwo          &\xsSOTwoEigVal     &\xsSOTwoEigTest    &\xsSOTwoHamVal       &\xsSOTwoHamTest    \tableRowEnd
+\bottomrule
+\end{tabular}
+\caption{\label{accuracy_scores}Accuracy scores of numerical experiments. The features used to train the decision trees (SSH 1) or random forests (SSH 2) in the numerical experiments with SSH systems were as follows. Real space features: all real space lattice sites (\xalpha) (sections \ref{experiment_1} and \ref{experiment_2}); real space lattice sites from subset $\mathcal{S}_{\alpha}$ (\xSalpha) (equation \eqref{lattice_subsets}). DCT topological features: all DCT topological features (\xcalpha) (equation \eqref{DCT}); DCT topological features from subset $\mathcal{E}_\alpha$ (\xcEalpha) (equation \eqref{DCT_subsets}); DCT topological features from subset $\mathcal{E}_\alpha$ computed using only real space lattice sites $\mathcal{S}_{\alpha}$ (\xcSEalpha) (equation \eqref{DCT_very_compressed}). DST topological features: all DST topological features (\xsalpha) (equation \eqref{DST}); DST topological features from subset $\mathcal{O}_\alpha$ (\xsOalpha) (equation \eqref{DST_subsets}); DST topological features from subset $\mathcal{O}_\alpha$ computed using only real space lattice sites $\mathcal{S}_{\alpha}$ (\xsSOalpha) (equation \eqref{DST_very_compressed}). }
+\end{table}
 
-We should remark on the subtleties of the information entropy signatures presented here. Although they give us a visualization of how important each lattice site was in determining the topological phases of Hamiltonians, these importances actually express a global property of the whole lattice. Therefore, a lattice site that appears unimportant in an information entropy signature plot may not be unimportant or void of topological information by itself. To give a concrete example, reduction in Shannon entropy tends to be distributed among highly correlated variables. This implies that if only a single lattice site in a highly correlated subset is used, it will likely inherit most of the reduction in Shannon entropy from the other correlated lattice sites in the subset. In this regard the information entropy signatures presented here express a summary of relations between lattice sites and are therefore intrinsically global. Furthermore, it should be emphasized that these signals were recovered from the analysis of data from several thousand SSH systems in each experiment and therefore they are not a property of a single SSH lattice. They are rather a pattern that emerges from correlating topological phase with lattice eigenvector data for several SSH systems.   
 
-We performed several tests on the information entropy signatures. By rerunning each experiment with longer lattices (i.e. increasing the number of unit cells) we have verified that the signals in figures \ref{feature_importances_ssh1} and \ref{feature_importances_ssh2} appear to converge to well defined continuous density functions in the macroscopic limit. The macroscopic limit of these information entropy signals may be an important signature of topological systems and thus merits further theoretical investigation. A detailed discussion of this point is presented in the section \textbf{Information entropy signatures in the macroscopic limit} in the Supplementary Material.
 
-Recent works have demonstrated the existence of local topological markers in real space that carry important information on the topological state of a system \cite{PhysRevB.84.241106,caio2019topological}.  Given that topological signals such as the ones shown in figures \ref{feature_importances_ssh1} and \ref{feature_importances_ssh2} are measured in terms of quantities that have actual physical meaning such as Shannon information entropy or Gini impurity, the results presented here suggest a new road for theoretical investigation. Whether there is any relationship between local topological markers and the information entropy of the ensemble of eigenvectors is left for speculation.
 
-The eigenvector ensembling algorithm employed in this work is likely to have further applications in data-driven physics. This is because most of physics is based on eigenvector decomposition, and statistical physics itself can be seen as an application of similar ensembling principles. It is therefore expected that a much broader class of data-driven physics problems could benefit from the techniques described in this paper.
+\section{Topological feature engineering and lattice compression}
+\label{topological_feature_engineering}
+
+In this section, we explore the information entropy signatures obtained in section \ref{information_entropy_signatures} from a signal processing perspective. As we shall see, this will enable us to perform two important unsupervised learning tasks on topological systems: dimensionality reduction and data compression. 
+
+As a cursory glance at figures \ref{feature_importances_ssh1} and \ref{feature_importances_ssh2} seems to suggest, the existence of peaks and symmetries in information entropy signatures can be exploited as a powerful dimensionality reduction tool: by keeping only the most relevant lattice sites in an information entropy signature, the amount of data needed to characterize the topological phase of a SSH system can be largely decreased with little loss of information. Nevertheless, given that the topological phase of a SSH system is a global property of the whole lattice, it is natural to expect that it should be possible to engineer global features from real space coordinates. Here we show how the symmetries in real space eigenvectors and information entropy signatures can be exploited to engineer new global topological features, leading to an effective compression of topological information.
+
+%simply extracting local coordinates of real space eigenvectors may not be the most effective way to condense a lattice's topological %information. Here we explore the engineering of new global topological features in real space, and how these global features lead to an %effective compression of topological information. 
+
+%The information entropy signatures in wavevector space can be easily computed from their counterparts in real space (figures %\ref{feature_importances_ssh1} and \ref{feature_importances_ssh2}) using equation \eqref{fourier_shannon_wave_function} and assuming that the %real space information entropy wave functions are real. 
+
+Given a real space eigenvector $x[m]$, we can compute its coordinates in wavevector space using the Discrete Fourier Transform (DFT),  
+\begin{equation}
+\label{discrete_fourier_transform}
+\hat{x}[n] = \frac{1}{\sqrt{N}}\sum_{m=0}^{N-1}x[m]e^{-i\frac{2\pi}{N}nm}, \quad n=0,\dots,N-1.
+\end{equation}
+Since the choice of phase of the real space eigenvectors was such that they were all in $\mathbb{R}^{N}$, the eigenvectors in wavevector space computed from equation \eqref{discrete_fourier_transform} will be Hermitian vectors in $\mathbb{C}^N$. The Hermitian symmetry of the wavevector space eigenvectors manifests itself mathematically in closed lattices with periodic boundary conditions as 
+\begin{equation}
+\label{hermitian_symmetry}
+\hat{x}[\overline{k}] = \hat{x}^*[\overline{N-k}], \quad k = 0,\dots, N-1,
+\end{equation}
+where  we have used the notation $\overline{k} = k \mod N$. 
+
+Equation \eqref{hermitian_symmetry} forks into two natural paths to topological feature engineering. In the first path, we exploit the fact that the real part of $\hat{x}[m]$ is even-symmetric around the reciprocal lattice sites $0$ and $\frac{N}{2}$. This leads us to the Discrete Cosine Transform (DCT) topological features,
+\begin{equation}
+\label{DCT}
+\hat{x}^{c}[n] = x[0] + (-1)^n x[M-1] + \sum_{m=1}^{M-2} 2x[m]\cos\bigg(\frac{\pi}{M-1}nm\bigg), \quad n=0,\dots,M-1, 
+\end{equation}
+where $M = \frac{N}{2}+1$. The second path capitalizes on the fact that the imaginary part of $\hat{x}[m]$ is odd-symetric around the reciprocal lattice sites $0$ and $\frac{N}{2}$, thus yielding the Discrete Sine Transform (DST) topological features,
+\begin{equation}
+\label{DST}
+\hat{x}^{s}[n] = \sum_{m=0}^{M-1} 2x[m+1]\sin\bigg(\frac{\pi}{M+1}(n+1)(m+1)\bigg), \quad n=0,\dots,M-1,
+\end{equation} 
+where $M = \frac{N}{2}-1$. 
+
+The topological features in both equations \eqref{DCT} and \eqref{DST} are generated from only half of the real space lattice, i.e. the sites $0 \leq l \leq \frac{N}{2}$. This is due to the fact that each equation assumes that the eigenvectors are even-symmetric (DCT topological features) or odd-symmetric (DST topological features) around the lattice sites $0$ and $\frac{N}{2}$ in real space as well. While these assumptions are strictly true for the eigenvector representations in wavevector space, they are not generally true for the real space representations. Therefore, equations \eqref{DCT} and \eqref{DST} achieve lattice compression by keeping only half of the real space eigenvector coordinates and imposing the corresponding boundary conditions (even symmetry or odd symmetry) on the lattice sites $0$ and $\frac{N}{2}$ to extrapolate the information from one half of the lattice to the other. 
+
+The topological feature engineering techniques described above are commonly employed in several applications of Digital Signal Processing like audio and image processing and, most importantly here, data compression. As equations \eqref{hermitian_symmetry}-\eqref{DST} show, signal transforms such as the DCT and DST profit from the redundance of information arising from the existence of certain symmetries in signals, allowing us to write a signal of length $N$ in terms of at most $M = \frac{N}{2}+1$ features. 
+   
+We ran several numerical experiments to evaluate if the DCT and DST topological features defined in equations \eqref{DCT} and \eqref{DST}  are able to efficiently encode the topological information existing in SSH lattices. The accuracy scores obtained in each experiment are listed in table \ref{accuracy_scores}, where we also report the accuracy scores of the numerical experiments of section \ref{numerical_experiments}.
+
+The lattice compression strategies tested in this work were: \emph{i)} learning topological phases from only a subset of real space lattice sites; \emph{ii)} learning topological phases from the DCT or DST engineered features of equations \eqref{DCT} and \eqref{DST}; \emph{iii)} learning topological phases from a fraction of the DCT or DST topological features and \emph{iv)} learning topological phases from a fraction of the DCT or DST features, computed from only a fraction of real space lattice sites. 
+
+In strategy \emph{i)} the lattice sites used in the SSH 1 and SSH 2 systems were
+\begin{equation}
+\label{lattice_subsets}
+\mathcal{S}_1 = (0, 1, 3, 50 ) \quad \text{and} \quad  \mathcal{S}_2 =(0, 1, 2, 3, 4, 5, 6, 7, 46, 48, 49, 50).   
+\end{equation}
+Note that for the nearest-neighbor SSH systems $\mathcal{S}_1$ corresponds to the four most informative sites such that $0\leq l \leq 50$ as indicated by the information entropy signature in figure \ref{feature_importances_ssh1}. Similarly, for the first- and second- nearest neighbors SSH systems $\mathcal{S}_2$ corresponds to the twelve most informative sites such that $0\leq l \leq 50$ in the corresponding information entropy signature in figure \ref{feature_importances_ssh2}. In table \ref{accuracy_scores}, the features used in strategy \emph{i)} are referred to as \xSOne and \xSTwo, according to the SSH systems they relate to.  
+
+In strategy \emph{ii)}, the full set of DCT or DST topological features written in equations \eqref{DCT} and \eqref{DST} were used. These features are denoted in table \ref{accuracy_scores} by \xcOne, \xsOne, \xcTwo, \xsTwo, according to which set of topological features and SSH systems they refer to. 
+
+Similarly to strategy \emph{i)}, in strategy \emph{iii)} we selected the most informative DCT topological features of both SSH 1 and SSH 2 systems that were obtained from strategy \emph{ii)},
+\begin{equation}
+\label{DCT_subsets}
+\mathcal{E}_1 = (1, 2, 36, 49) \quad \text{and} \quad  \mathcal{E}_2 =(0, 1, 2, 3, 4, 5, 6, 7, 47, 48, 49, 50) \qquad \text{(DCT)}  
+\end{equation}
+and the most informative DST topological features of both systems that were obtained from strategy \emph{ii)} as well,
+\begin{equation}
+\label{DST_subsets}
+\mathcal{O}_1 =  (0, 18, 28, 30) \quad \text{and} \quad  \mathcal{O}_2 = (0, 1, 2, 3, 4, 5, 43, 44, 45, 46, 47, 48) \qquad \text{(DST)}.  
+\end{equation}
+The features in strategy \emph{iii)} are denoted in table \ref{accuracy_scores} by \xcEOne, \xsOOne, \xcETwo, \xsOTwo,   according to the topological features and wavevector space subset used with each SSH system. 
+
+The most aggressive lattice compression strategy tested in this work was strategy \emph{iv)}. It consists of using the DCT (DST) topological features of equation \eqref{DCT_subsets} (equation \eqref{DST_subsets}), but having computed these topological features using only the real space lattice sites given in equation \eqref{lattice_subsets}. Thus in strategy \emph{iv)} a lossy compression is performed both on real space features and the engineered DCT (DST) topological features. Mathematically, we can express the topological features used in strategy \emph{iv)} as follows:
+\begin{equation}
+\label{DCT_very_compressed}
+\hat{x}_{\mathcal{S}, \mathcal{E}}^c[n] = \indicator{\mathcal{S}}[0]x[0] + (-1)^n\indicator{\mathcal{S}}[M-1] x[M-1] + \sum_{m \in \mathcal{S}^*} 2x[m]\cos\bigg(\frac{\pi}{M-1}nm\bigg), \quad n \in \mathcal{E} \qquad \text{(DCT)} 
+\end{equation}
+\begin{equation}
+\label{DST_very_compressed}
+\hat{x}_{\mathcal{S}, \mathcal{O}}^s[n] = \sum_{m \in \mathcal{S}}2x[m+1]\sin\bigg(\frac{\pi}{M+1}(n+1)(m+1)\bigg), \quad n \in \mathcal{O} \qquad \text{(DST)}
+\end{equation}
+where in equation \eqref{DCT_very_compressed} the notation $\mathbbm{1}_{\mathcal{S}}[l]$ stands for the indicator function of the lattice subset $\mathcal{S}$ and $\mathcal{S}^*$ is the complement of $\{0,M-1\}$ with respect to $\mathcal{S}$, 
+\begin{equation}
+\label{indicator_function}
+\indicator{\mathcal{S}}[l] = \begin{cases}
+      1 & \text{if } l \in \mathcal{S} \\
+      0 & \text{otherwise}
+    \end{cases}, \qquad \mathcal{S}^* = \mathcal{S}{\backslash} \{0,M-1\}.
+\end{equation}
+The features engineered in strategy \emph{iv)} are denoted in table \ref{accuracy_scores} by \xcSEOne, \xsSOOne, \xcSETwo, \xsSOTwo, again referencing the type of topological features used, which components in real and wavevector space engineered them and the appropriate SSH systems. 
+
+The results shown in table \ref{accuracy_scores} bring some startling surprises. For example, the topological phase transition boundaries of SSH 1 systems can be learned using only the four real space lattice sites $\mathcal{S}_1$ with virtually no loss in accuracy, as seen from eigenvector and Hamiltonian accuracy scores for the features \xSOne. The same appears to be true to SSH 2 systems, where the twelve real space lattice sites $\mathcal{S}_2$ corresponding to the features \xSTwo\ in the table produce accuracy scores at near the same level as using the whole lattice.    
+
+Even more striking is the performance achieved by the compressed DCT topological features \xcSEalpha\ defined in equation \eqref{DCT_very_compressed}. For SSH 1 systems, they perform on par with using the full set of real space features \xOne, while for SSH 2 systems a small loss in accuracy is incurred relative to the full set of real space features \xTwo.
+
+Another interesting insight comes from comparing the accuracy scores obtained with the DCT topological features versus the  DST topological features. The latter have poorer performance than the former, as is indicated by the sharp drops in accuracy scores obtained with the DST topological features in both SSH 1 and SSH 2 systems. This may be related to the fact that the odd-symmetric boundary conditions imposed on DST topological features imply discarding the lattice sites 0 and $50$, which correspond to sharp peaks in the information entropy signatures of figures \ref{feature_importances_ssh1} and \ref{feature_importances_ssh2}.  
+
+The accuracy scores obtained with the real space features \xSalpha\ and the DCT topological features \xcSEalpha, both of which use information from a small fraction of real space lattice sites, demonstrate that learning topological phases from local real space data in the bulk is still possible even for small subsets of lattice sites. In this sense, key topological information can be said to be localized on few sites in the lattice. We refer the reader to the section \textbf{Learning topological phases from real space data} in the Supplementary Material for a discussion of how this is possible.       
+
+\section{Emergent information entropy wave functions}
+\label{emergent_information_entropy_wave_functions}
+
+The information entropy signatures that we have been investigating pose an immediate theoretical question: how can a signal that is locally defined arise from a global property of the whole SSH lattice?    
+In this section we venture into a theoretical exploration of the information entropy signatures in the hope of elucidating this issue. Our goal is to arrive at a theoretical framework that will allow us to interpret the information entropy signatures in terms of quantum mechanics.  %The discussion presented here will be complemented by the numerical experiments in the section \textbf{Numerical explorations on longer lattices} in the Supplementary Material.
+
+We can think of the Shannon information entropy signatures in figures \ref{feature_importances_ssh1} and \ref{feature_importances_ssh2} as discrete information entropy mass functions that, in the continuum (i.e. macroscopic) limit of an infinite chain, lead to local entropy density functions along the lattices, which themselves become 1D manifolds. By mapping the lattice to a  partition of the 1D manifold, the cumulative distribution of topological information in the continuum limit will be given by
+
+\begin{equation}
+\label{entropy_density}
+F_S(x) = \int_{\ell}^{(x)}\rho_S(x')dx'
+\end{equation}
+where $\rho_S(x)$ is the local information entropy density function in the continuum limit and $x$ is defined by the coordinate system specified on the 1D manifold $\ell$. The index $S$ is meant to emphasize that in this paper we have used Shannon's definition of entropy to arrive at the information entropy signatures as opposed to e.g. Gini impurity. 
+
+Our use of periodic boundary conditions implies that the coordinate $x$ should be defined on the circle $ S^1 = [0, 1]/R$, where $R$ is the equivalence relation in $[0,1]$ defining the circle $S^1$ , 
+\begin{equation}
+x \text{ } R \text{ } y \iff x=y \text{ or } (x,y)\in \{(0,1), (1,0)\}.
+\end{equation}
+For open boundary conditions, the spatial coordinate $x$ is defined on the closed interval $[0,1]$ or, in the case of infinite systems, $\mathbb{R}$. However, for the sake of generality, we shall continue to use the caligraphic $\ell$ to denote an arbitrary 1D manifold in this section. 
+
+Given the quantum nature of the phase transitions being discussed, the information entropy density function $\rho_S(x)$ can be naturally interpreted as the squared magnitude of a spatial information entropy wave function,
+
+\begin{equation}
+\label{shannon_wave_function}
+\rho_S(x) = |\psi_S(x)|^2,
+\end{equation}
+the local density of topological information available from a single point in the 1D manifold then being expressed in bra-ket notation by Born's rule,  
+
+\begin{equation}
+\label{born_rule_spatial}
+\rho_S(x) = |\braket{x|\psi_S}|^2.
+\end{equation}
+
+The counterpart of the spatial information entropy wave function $\psi_S(x)$ in wavevector space is its Fourier transform 
+\begin{equation}
+\label{fourier_shannon_wave_function}
+\hat{\psi}_S(k) = \int_{\ell}\psi_S(x)e^{-2\pi ikx}dx
+\end{equation}
+from which the information entropy density function in wavevector space can be computed,
+\begin{equation}
+\label{shannon_wave_function_wavevector_space}
+\hat{\rho}_S(k) = |\hat{\psi}_S(k)|^2.
+\end{equation}
+
+The interpretation of information entropy signatures in terms of information entropy wave functions opens several avenues of investigation of possible connections between exotic states of matter and quantum information theory.  Here we explore its most forthright corollary, which is the establishment of uncertainty relations for topological phase transitions. 
+
+Let us denote the mean, the variance and the entropy associated with the probability distribution $\rho_S$ by $\mu_{\rho_S}$, $\sigma_{\rho_S}^2 $ and $H_{\rho_S}$ respectively. Explicitly, we have 
+\begin{subequations}
+\label{statistics}
+\begin{equation}
+\label{mean}
+\mu_{\rho_S} = \int_{\ell}x\rho_S(x)dx,
+\end{equation}
+\begin{equation}
+\label{variance}
+\sigma_{\rho_S}^2 = \int_{\ell}(x-\mu_{\rho_S})^2\rho_S(x)dx,\quad \text{and}
+\end{equation}
+\begin{equation}
+\label{entropy}
+H_{\rho_S} = \int_{\ell}\rho_S(x)\ln\big(\rho_S(x)\big) dx,
+\end{equation}
+\end{subequations}
+with analogous equations for the wavevector space counterparts $\mu_{\hat{\rho}_S}$, $\sigma_{\hat{\rho}_S}^2 $ and $H_{\hat{\rho}_S}$ in terms of $\hat{\rho}(k)$.
+
+In possession of this quantum formalism, we may write topological versions of two canonical uncertainty relations that bind together the real space and wavevector space information entropy density functions \eqref{shannon_wave_function} and \eqref{shannon_wave_function_wavevector_space}: 
+
+\begin{enumerate}
+\item[i)] \emph{the Heisenberg uncertainty principle}
+\begin{equation}
+\label{heisenberg}
+\sigma_{\rho_S} \cdot \sigma_{\hat{\rho}_S} \geq \frac{1}{4\pi}, \quad \text{and }
+\end{equation}
+\item[ii)] \emph{the Hirschman entropic uncertainty}
+\begin{equation}
+\label{hirschman}
+H_{\rho_S} + H_{\hat{\rho}_S} \geq \ln\Big(\frac{e}{2}\Big). 
+\end{equation}
+\end{enumerate}
+
+The information entropy density function $\rho_S$ devised in this section furnishes a physics-grounded interpretation of the information entropy signatures obtained in section \ref{information_entropy_signatures} from sheer data analysis of finite SSH systems in real space. In particular, the uncertainty relations \eqref{heisenberg} and \eqref{hirschman} express concisely the trade-off between the localizability of information in topological phase transitions in real space and wavevector space. 
+
+Perhaps the fundamental consequence of interpreting the information entropy density function $\rho_S(x)$ as the probability distribution resulting from an information entropy wave function $\psi_S(x)$ defined on a 1D manifold is that it reconciles the apparently conflicting notions of a local topological signal arising from a global property of the SSH systems. Indeed, while $\psi_S(x)$ is defined locally at every point of the 1D manifold, it is a single, global wave function encoding the distribution of topological information in a many-particle system. Therefore, the information entropy wave function $\psi_S(x)$ can be seen as an emergent property of a quantum many-body system.    
+
+\section{Discussion}
+\label{discussion}
+
+Given the increasing complexity of systems studied in condensed matter physics and the rising demand for materials with exotic and robust properties to power future technological progress, it is only expected that data-driven approaches to physics will grow in demand. Our work represents a step in this direction, as we have devised (section \ref{the_eigenvector_ensembling_algorithm}) and implemented (section \ref{numerical_experiments}) a data-driven approach to the discovery of previously unknown properties of topological materials from real space data.
+
+By starting from eigenvector data generated from the simulation of SSH systems in real space, proposing an approach based on eigenvector ensembling and decision trees and using model explainability to uncover the information entropy signatures presented in this article, and then exploring the numerical and theoretical possibilities offered by the information entropy signatures, our work exemplifies a full cycle of data-driven physics and illustrates how the interactions between machine learning and physics can be enriching to both disciplines.      
+ 
+The development of data-driven methods based on real space lattice data will be particularly relevant to the study of disordered systems in condensed matter. Such systems usually break translational symmetry and therefore are not amenable to canonical wavevector space methods. Thus, the discovery and engineering of topological features from real space data as demonstrated in this work carries great promise to the theoretical investigation of these systems.
+
+Furthermore, as is generally the case in engineering, the evolution of quantum technologies such as quantum computing and quantum communication  will likely depend on a delicate balance between simplicity and robustness of components such as topological qubits. On the simplicity side, engineers try to build their systems with as little redundancy as possible to reduce design complexity, whilst for robustness redundancy is a necessary commodity to ensure error-correction within the system. We expect that information theoretic approaches to quantum materials such as the one advanced by this paper shall eventually become a staple of quantum engineering.  
+
+As we have seen, the use of real space data enabled us to investigate how topological information is spatially distributed in SSH systems. This was demonstrated by the information entropy signatures of section \ref{information_entropy_signatures}, which were recovered from the Shannon entropy of ensembles of eigenvectors in each numerical experiment executed in section \ref{numerical_experiments} and led us to the new topological features of section \ref{topological_feature_engineering} and the emergent information entropy wave functions of section \ref{emergent_information_entropy_wave_functions}. The existence of such signals that can be recovered from data from many distinct physical systems but are hard to conceptualize from sheer theoretical reasoning provides a clear example of how machine learning and model explainability can be important tools in the investigation of quantum materials.
+
+The accuracy scores obtained in the numerical experiments performed in this paper were comparable to those reported in \cite{PhysRevLett.120.066401}, where dense and convolutional neural networks were trained on wavevector space data to predict the winding numbers of SSH Hamiltonians via supervised learning. This high accuracy level serves as a strong evidence that the entropy signatures presented here indeed express where topological information is most readily available in the SSH lattices investigated.
+
+This paper should also be contrasted with \cite{zhang2020interpreting}, where the subject of investigation is the interpretability of neural network models trained to recognize topological phase transitions in some condensed matter systems. In \cite{zhang2020interpreting}, interesting visualizations are shown demonstrating that the patterns captured by a single-layer feedforward neural network indeed map directly to known physical quantities that are relevant to the problems at hand. We agree that such tasks should be called \emph{model interpretability}, as in that case the authors introspect into their models to make sure that they are learning patterns of physical pertinence to the systems being investigated. In our paper we preferred the term \emph{model explainability}, as we used similar model introspection tools to propose previously unknown concepts and properties of the physical systems being investigated. While the nuances in the semantics of these two terms are the subject of often heated philosophical debates in the artificial intelligence community, this choice of nomenclature suits the practical application of these model introspection techniques to physics well.
+
+Recent works have demonstrated the existence of local topological markers in real space that carry important information on the topological state of a system \cite{PhysRevB.84.241106,caio2019topological}. Given the new DCT and DST topological features introduced in section \ref{topological_feature_engineering} which were shown to carry relevant topological information and the theoretical interpretation of the topological signals in terms of information entropy wave functions given in section \ref{emergent_information_entropy_wave_functions}, the results presented here suggest a new road for the theoretical exploration of local topological markers in terms of information theory as well. Whether there is any relationship between the local topological markers of \cite{PhysRevB.84.241106,caio2019topological} and the information entropy wave functions discussed here is left for speculation.
+ 
+The eigenvector ensembling algorithm employed in this work is likely to have further applications in data-driven physics. This is because most of physics is based on eigenvector decomposition, and statistical physics itself can be seen as an application of similar ensembling principles. 
+
+As a concrete example, the study of several many-body systems of current interest in condensed matter physics is hindered by their large dimensionality. This problem, known as \emph{the curse of dimensionality} in the scientific computing community, arises from the necessity of collecting or processing exponentially larger amounts of data as the feature space dimensionality of a problem grows. An approach based on eigenvector ensembling can be of use in such situations both as a dimensionality reduction tool and as a sampling strategy. The first case was illustrated in this work, where it was shown that relevant topological information of SSH systems can be retrieved from few sites in a lattice, which can be exploited as a dimensionality reduction strategy. The latter case, which was not explored here, also poses interesting possibilities, such as sampling eigenstates according to a desired distribution in Monte Carlo simulations of condensed matter systems. Indeed, sampling eigenvectors from a carefully designed probability distribution can ultimately lead to a great reduction in dimensionality  while still capturing all the relevant physics of a system. We therefore expect that a much broader class of data-driven physics problems could benefit from the techniques described in this paper.
+
+Another interesting prospect is the combination of eigenvector ensembling with unsupervised learning algorithms. In the paper, our preference for decision trees and random forests was based on their powerful and accessible model explainability aptitudes. This choice was made in conformity with our main purpose, which was to exploit model explainability tools to investigate how topological information is distributed along a spatial lattice in SSH systems. Nevertheless, the eigenvector ensembling procedure we described here is flexible and can easily be repurposed for other supervised or unsupervised learning tasks.
 
 One final comment should be made about the flourishing relationship between physics and machine learning. In this work we have demonstrated how a machine learning approach can provide new insights into complex physical phenomena of current interest. The other direction of this relationship (physics enhancing understanding in machine learning) is equally important. As the need for ever more powerful machine learning algorithms continues to grow, the development of mathematical frameworks for understanding general data spaces (i.e., a physics of data) will be of crucial relevance. This pursuit is seen in many theoretical works investigating the intriguing connections between geometry, topology and data \cite{carlsson2009topology}$^-$\cite{belkin2003problems}. The detailed study of data generated by physical models with non-trivial geometrical and topological properties such as the SSH model may provide invaluable insights into the structure and shape of real world high-dimensional data, since these models usually underscore well known mathematical frameworks behind the data generating process, a feature that is often absent from machine learning applications. Thus, far from being restricted to applications in physics, the study of the topological and geometrical properties of data sets generated by physical models will also be of great value to the machine learning and artificial intelligence communities.  
 
 \begin{figure}
 \centering
-\subfigure[]{\label{feature_importances_ssh1}\includegraphics[width=0.49\textwidth]{./ssh1/periodic_100_6561/plot_feature_importances.png}}\quad
-\subfigure[]{\label{feature_importances_ssh2}\includegraphics[width=0.49\textwidth]{./ssh2/periodic_100_6561/plot_feature_importances.png}}\quad
-\caption{Information entropy signatures of the topological phase transitions from experiments 1 and 2. (a) In experiment 1, the two sharp peaks in the Shannon entropy signal account for approximately 70\% of reduction in information entropy. These two peaks correspond to the lattice sites $S_1$. (b) In experiment 2, the three visible peaks account for approximately 30\% of reduction in information entropy. These three peaks are located along lattice sites $S_2$.}
+\subfigure[]{\label{feature_importances_ssh1}\includegraphics[width=0.49\textwidth]{./ssh1/real_space_all_sites/plot_feature_importances-1.png}}\quad
+\subfigure[]{\label{feature_importances_ssh2}\includegraphics[width=0.49\textwidth]{./ssh2/real_space_all_sites/plot_feature_importances-2.png}}\quad
+\caption{Information entropy signatures of the topological phase transitions from the numerical experiments of section \ref{numerical_experiments}. (a) In experiment 1 (section \ref{experiment_1}), the two sharp peaks in the Shannon entropy signal account for approximately 70\% of reduction in information entropy. (b) In experiment 2 (section \ref{experiment_2}), the three visible peaks account for approximately 30\% of reduction in information entropy.}
 \label{feature_importances}
 \end{figure}
 
-%merlin.mbs apsrev4-1.bst 2010-07-25 4.21a (PWD, AO, DPC) hacked
-%Control: key (0)
-%Control: author (8) initials jnrlst
-%Control: editor formatted (1) identically to author
-%Control: production of article title (-1) disabled
-%Control: page (0) single
-%Control: year (1) truncated
-%Control: production of eprint (0) enabled
-\begin{thebibliography}{56}%
+%%%%%%%%%% Bibliography %%%%%%%%%%%%%
+
+\begin{thebibliography}{63}%
 \makeatletter
 \providecommand \@ifxundefined [1]{%
  \@ifx{#1\undefined}
@@ -676,6 +1212,105 @@ One final comment should be made about the flourishing relationship between phys
   \bibnamefont {Scheurer}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo
   {journal} {arXiv preprint arXiv:1805.05961}\ } (\bibinfo {year}
   {2018})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Gilpin}\ \emph {et~al.}(2018)\citenamefont {Gilpin},
+  \citenamefont {Bau}, \citenamefont {Yuan}, \citenamefont {Bajwa},
+  \citenamefont {Specter},\ and\ \citenamefont {Kagal}}]{gilpin2018explaining}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {L.~H.}\ \bibnamefont
+  {Gilpin}}, \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont {Bau}},
+  \bibinfo {author} {\bibfnamefont {B.~Z.}\ \bibnamefont {Yuan}}, \bibinfo
+  {author} {\bibfnamefont {A.}~\bibnamefont {Bajwa}}, \bibinfo {author}
+  {\bibfnamefont {M.}~\bibnamefont {Specter}}, \ and\ \bibinfo {author}
+  {\bibfnamefont {L.}~\bibnamefont {Kagal}},\ }in\ \href@noop {} {\emph
+  {\bibinfo {booktitle} {2018 IEEE 5th International Conference on data science
+  and advanced analytics (DSAA)}}}\ (\bibinfo {organization} {IEEE},\ \bibinfo
+  {year} {2018})\ pp.\ \bibinfo {pages} {80--89}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Do{\v{s}}ilovi{\'c}}\ \emph
+  {et~al.}(2018)\citenamefont {Do{\v{s}}ilovi{\'c}}, \citenamefont
+  {Br{\v{c}}i{\'c}},\ and\ \citenamefont
+  {Hlupi{\'c}}}]{dovsilovic2018explainable}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {F.~K.}\ \bibnamefont
+  {Do{\v{s}}ilovi{\'c}}}, \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Br{\v{c}}i{\'c}}}, \ and\ \bibinfo {author} {\bibfnamefont {N.}~\bibnamefont
+  {Hlupi{\'c}}},\ }in\ \href@noop {} {\emph {\bibinfo {booktitle} {2018 41st
+  International convention on information and communication technology,
+  electronics and microelectronics (MIPRO)}}}\ (\bibinfo {organization}
+  {IEEE},\ \bibinfo {year} {2018})\ pp.\ \bibinfo {pages}
+  {0210--0215}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Roscher}\ \emph {et~al.}(2020)\citenamefont
+  {Roscher}, \citenamefont {Bohn}, \citenamefont {Duarte},\ and\ \citenamefont
+  {Garcke}}]{roscher2020explainable}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {R.}~\bibnamefont
+  {Roscher}}, \bibinfo {author} {\bibfnamefont {B.}~\bibnamefont {Bohn}},
+  \bibinfo {author} {\bibfnamefont {M.~F.}\ \bibnamefont {Duarte}}, \ and\
+  \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Garcke}},\ }\href@noop {}
+  {\bibfield  {journal} {\bibinfo  {journal} {IEEE Access}\ }\textbf {\bibinfo
+  {volume} {8}},\ \bibinfo {pages} {42200} (\bibinfo {year}
+  {2020})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Friedman}\ \emph {et~al.}(2001)\citenamefont
+  {Friedman}, \citenamefont {Hastie},\ and\ \citenamefont
+  {Tibshirani}}]{friedman2001elements}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Friedman}}, \bibinfo {author} {\bibfnamefont {T.}~\bibnamefont {Hastie}}, \
+  and\ \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont {Tibshirani}},\
+  }\href@noop {} {\emph {\bibinfo {title} {The elements of statistical
+  learning}}}\ (\bibinfo  {publisher} {Springer New York, NY, USA},\ \bibinfo
+  {year} {2001})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Pedregosa}\ \emph {et~al.}(2011)\citenamefont
+  {Pedregosa}, \citenamefont {Varoquaux}, \citenamefont {Gramfort},
+  \citenamefont {Michel}, \citenamefont {Thirion}, \citenamefont {Grisel},
+  \citenamefont {Blondel}, \citenamefont {Prettenhofer}, \citenamefont {Weiss},
+  \citenamefont {Dubourg}, \citenamefont {Vanderplas}, \citenamefont {Passos},
+  \citenamefont {Cournapeau}, \citenamefont {Brucher}, \citenamefont {Perrot},\
+  and\ \citenamefont {Duchesnay}}]{scikit-learn}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {F.}~\bibnamefont
+  {Pedregosa}}, \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont
+  {Varoquaux}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Gramfort}},
+  \bibinfo {author} {\bibfnamefont {V.}~\bibnamefont {Michel}}, \bibinfo
+  {author} {\bibfnamefont {B.}~\bibnamefont {Thirion}}, \bibinfo {author}
+  {\bibfnamefont {O.}~\bibnamefont {Grisel}}, \bibinfo {author} {\bibfnamefont
+  {M.}~\bibnamefont {Blondel}}, \bibinfo {author} {\bibfnamefont
+  {P.}~\bibnamefont {Prettenhofer}}, \bibinfo {author} {\bibfnamefont
+  {R.}~\bibnamefont {Weiss}}, \bibinfo {author} {\bibfnamefont
+  {V.}~\bibnamefont {Dubourg}}, \bibinfo {author} {\bibfnamefont
+  {J.}~\bibnamefont {Vanderplas}}, \bibinfo {author} {\bibfnamefont
+  {A.}~\bibnamefont {Passos}}, \bibinfo {author} {\bibfnamefont
+  {D.}~\bibnamefont {Cournapeau}}, \bibinfo {author} {\bibfnamefont
+  {M.}~\bibnamefont {Brucher}}, \bibinfo {author} {\bibfnamefont
+  {M.}~\bibnamefont {Perrot}}, \ and\ \bibinfo {author} {\bibfnamefont
+  {E.}~\bibnamefont {Duchesnay}},\ }\href@noop {} {\bibfield  {journal}
+  {\bibinfo  {journal} {Journal of Machine Learning Research}\ }\textbf
+  {\bibinfo {volume} {12}},\ \bibinfo {pages} {2825} (\bibinfo {year}
+  {2011})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Buitinck}\ \emph {et~al.}(2013)\citenamefont
+  {Buitinck}, \citenamefont {Louppe}, \citenamefont {Blondel}, \citenamefont
+  {Pedregosa}, \citenamefont {Mueller}, \citenamefont {Grisel}, \citenamefont
+  {Niculae}, \citenamefont {Prettenhofer}, \citenamefont {Gramfort},
+  \citenamefont {Grobler}, \citenamefont {Layton}, \citenamefont {VanderPlas},
+  \citenamefont {Joly}, \citenamefont {Holt},\ and\ \citenamefont
+  {Varoquaux}}]{sklearn_api}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {L.}~\bibnamefont
+  {Buitinck}}, \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont {Louppe}},
+  \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Blondel}}, \bibinfo
+  {author} {\bibfnamefont {F.}~\bibnamefont {Pedregosa}}, \bibinfo {author}
+  {\bibfnamefont {A.}~\bibnamefont {Mueller}}, \bibinfo {author} {\bibfnamefont
+  {O.}~\bibnamefont {Grisel}}, \bibinfo {author} {\bibfnamefont
+  {V.}~\bibnamefont {Niculae}}, \bibinfo {author} {\bibfnamefont
+  {P.}~\bibnamefont {Prettenhofer}}, \bibinfo {author} {\bibfnamefont
+  {A.}~\bibnamefont {Gramfort}}, \bibinfo {author} {\bibfnamefont
+  {J.}~\bibnamefont {Grobler}}, \bibinfo {author} {\bibfnamefont
+  {R.}~\bibnamefont {Layton}}, \bibinfo {author} {\bibfnamefont
+  {J.}~\bibnamefont {VanderPlas}}, \bibinfo {author} {\bibfnamefont
+  {A.}~\bibnamefont {Joly}}, \bibinfo {author} {\bibfnamefont {B.}~\bibnamefont
+  {Holt}}, \ and\ \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont
+  {Varoquaux}},\ }in\ \href@noop {} {\emph {\bibinfo {booktitle} {ECML PKDD
+  Workshop: Languages for Data Mining and Machine Learning}}}\ (\bibinfo {year}
+  {2013})\ pp.\ \bibinfo {pages} {108--122}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Breiman}\ \emph {et~al.}(1984)\citenamefont
   {Breiman}, \citenamefont {Friedman}, \citenamefont {Stone},\ and\
   \citenamefont {Olshen}}]{breiman2017classification}%
@@ -693,16 +1328,24 @@ One final comment should be made about the flourishing relationship between phys
   {Breiman}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
   {Machine Learning}\ }\textbf {\bibinfo {volume} {45}},\ \bibinfo {pages} {5}
   (\bibinfo {year} {2001})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Friedman}\ \emph {et~al.}(2001)\citenamefont
-  {Friedman}, \citenamefont {Hastie},\ and\ \citenamefont
-  {Tibshirani}}]{friedman2001elements}%
+\bibitem [{\citenamefont {Raileanu}\ and\ \citenamefont
+  {Stoffel}(2004)}]{raileanu2004theoretical}%
   \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
-  {Friedman}}, \bibinfo {author} {\bibfnamefont {T.}~\bibnamefont {Hastie}}, \
-  and\ \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont {Tibshirani}},\
-  }\href@noop {} {\emph {\bibinfo {title} {The elements of statistical
-  learning}}}\ (\bibinfo  {publisher} {Springer New York, NY, USA},\ \bibinfo
-  {year} {2001})\BibitemShut {NoStop}%
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {L.~E.}\ \bibnamefont
+  {Raileanu}}\ and\ \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont
+  {Stoffel}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
+  {Annals of Mathematics and Artificial Intelligence}\ }\textbf {\bibinfo
+  {volume} {41}},\ \bibinfo {pages} {77} (\bibinfo {year} {2004})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Zhang}\ \emph {et~al.}(2020)\citenamefont {Zhang},
+  \citenamefont {Ginsparg},\ and\ \citenamefont {Kim}}]{zhang2020interpreting}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont
+  {Zhang}}, \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont {Ginsparg}}, \
+  and\ \bibinfo {author} {\bibfnamefont {E.-A.}\ \bibnamefont {Kim}},\
+  }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Physical Review
+  Research}\ }\textbf {\bibinfo {volume} {2}},\ \bibinfo {pages} {023283}
+  (\bibinfo {year} {2020})}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Bianco}\ and\ \citenamefont
   {Resta}(2011)}]{PhysRevB.84.241106}%
   \BibitemOpen
@@ -813,6 +1456,9 @@ One final comment should be made about the flourishing relationship between phys
   {NoStop}%
 \end{thebibliography}%
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section*{Acknowledgements}
 
 We thank S. E. Rowley, J. F. de Oliveira, T. Micklitz and M. A. Continentino for insightful discussions and S. E. Rowley for carefully reading the manuscript and suggesting improvements. N. L. Holanda acknowledges financial support from CENPES/Petrobr\'as/CBPF. M. A. R. Griffith acknowledges financial support from Capes. N. L. Holanda is grateful to the Theory of Condensed Matter and Quantum Materials groups at the Cavendish Laboratory and the Quantum Information Group at CBPF.
@@ -828,7 +1474,8 @@ The authors declare no competing financial or non-financial interests.
 
 \section*{Additional information}
 
-Correspondence and requests for materials should be addressed to N. L. Holanda. The source code used to run simulations is available on \href{https://github.com/linneuholanda/ml_topological_phases_in_real_space}{Github}.
+Correspondence and requests for materials should be addressed to N. L. Holanda. 
+%The source code used to run simulations is available on \href{https://github.com/linneuholanda/ml_topological_phases_in_real_space}{Github}.
 
 
 

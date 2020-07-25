@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.5.2)  24 JUL 2020 19:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.5.2)  25 JUL 2020 17:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1052,19 +1052,116 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 348.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
-<./phase_diagrams/ssh1.png, id=143, 867.24pt x 867.24pt>
+) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+
+Package natbib Warning: Citation `RevModPhys.82.3045' on page 2 undefined on in
+put line 353.
+
+
+Package natbib Warning: Citation `CONTINENTINO2017A1' on page 2 undefined on in
+put line 355.
+
+
+Package natbib Warning: Citation `ryu2010topological' on page 2 undefined on in
+put line 355.
+
+
+Package natbib Warning: Citation `atala2013direct' on page 2 undefined on input
+ line 355.
+
+
+Package natbib Warning: Citation `meier2016observation' on page 2 undefined on 
+input line 355.
+
+
+Package natbib Warning: Citation `hafezi2013imaging' on page 2 undefined on inp
+ut line 355.
+
+
+Package natbib Warning: Citation `PhysRevX.5.031011' on page 2 undefined on inp
+ut line 355.
+
+
+Package natbib Warning: Citation `kitagawa2012observation' on page 2 undefined 
+on input line 355.
+
+
+Package natbib Warning: Citation `PhysRevX.7.031023' on page 2 undefined on inp
+ut line 355.
+
+
+Package natbib Warning: Citation `soluyanov2015type' on page 2 undefined on inp
+ut line 355.
+
+
+Package natbib Warning: Citation `PhysRevX.5.031013' on page 2 undefined on inp
+ut line 355.
+
+
+Package natbib Warning: Citation `PhysRevLett.42.1698' on page 2 undefined on i
+nput line 355.
+
+
+Package natbib Warning: Citation `maffei2018topological' on page 2 undefined on
+ input line 362.
+
+
+Package natbib Warning: Citation `RevModPhys.73.681' on page 2 undefined on inp
+ut line 362.
+
+
+Package natbib Warning: Citation `kane2014topological' on page 2 undefined on i
+nput line 362.
+
+
+Package natbib Warning: Citation `Chen13004' on page 2 undefined on input line 
+362.
+
+
+Package natbib Warning: Citation `carrasquilla2017machine' on page 2 undefined 
+on input line 364.
+
+
+Package natbib Warning: Citation `rodriguez2018identifying' on page 2 undefined
+ on input line 364.
+
+[2]
+
+Package natbib Warning: Citation `gilpin2018explaining' on page 3 undefined on 
+input line 378.
+
+
+Package natbib Warning: Citation `roscher2020explainable' on page 3 undefined o
+n input line 378.
+
+<./phase_diagrams/ssh1.png, id=101, 867.24pt x 867.24pt>
 File: ./phase_diagrams/ssh1.png Graphic file (type png)
 <use ./phase_diagrams/ssh1.png>
 Package pdftex.def Info: ./phase_diagrams/ssh1.png  used on input line 381.
 (pdftex.def)             Requested size: 229.49844pt x 229.48668pt.
-<./phase_diagrams/ssh2.png, id=145, 867.24pt x 867.24pt>
+<./phase_diagrams/ssh2.png, id=103, 867.24pt x 867.24pt>
 File: ./phase_diagrams/ssh2.png Graphic file (type png)
 <use ./phase_diagrams/ssh2.png>
 Package pdftex.def Info: ./phase_diagrams/ssh2.png  used on input line 382.
 (pdftex.def)             Requested size: 229.49844pt x 229.48668pt.
- [3 <./phase_diagrams/ssh1.png> <./phase_diagrams/ssh2.png>] [4]
-<./ssh1/real_space_all_sites/scatter_train_val_test_experiment_0.png, id=191, 4
+
+Package natbib Warning: Citation `friedman2001elements' on page 3 undefined on 
+input line 389.
+
+[3 <./phase_diagrams/ssh1.png> <./phase_diagrams/ssh2.png>] [4]
+
+Package natbib Warning: Citation `scikit-learn' on page 5 undefined on input li
+ne 421.
+
+
+Package natbib Warning: Citation `sklearn_api' on page 5 undefined on input lin
+e 421.
+
+
+Package natbib Warning: Citation `breiman2017classification' on page 5 undefine
+d on input line 425.
+
+<./ssh1/real_space_all_sites/scatter_train_val_test_experiment_0.png, id=142, 4
 33.62pt x 433.62pt>
 File: ./ssh1/real_space_all_sites/scatter_train_val_test_experiment_0.png Graph
 ic file (type png)
@@ -1072,7 +1169,7 @@ ic file (type png)
 Package pdftex.def Info: ./ssh1/real_space_all_sites/scatter_train_val_test_exp
 eriment_0.png  used on input line 433.
 (pdftex.def)             Requested size: 163.20374pt x 163.20258pt.
-<./ssh1/real_space_all_sites/scatter_winding_train_experiment_0.png, id=192, 43
+<./ssh1/real_space_all_sites/scatter_winding_train_experiment_0.png, id=143, 43
 3.62pt x 433.62pt>
 File: ./ssh1/real_space_all_sites/scatter_winding_train_experiment_0.png Graphi
 c file (type png)
@@ -1080,16 +1177,20 @@ c file (type png)
 Package pdftex.def Info: ./ssh1/real_space_all_sites/scatter_winding_train_expe
 riment_0.png  used on input line 434.
 (pdftex.def)             Requested size: 163.20374pt x 163.20258pt.
-<./ssh1/real_space_all_sites/pcolormesh_prediction_grid_experiment_0.png, id=19
-3, 433.62pt x 433.62pt>
+<./ssh1/real_space_all_sites/pcolormesh_prediction_grid_experiment_0.png, id=14
+4, 433.62pt x 433.62pt>
 File: ./ssh1/real_space_all_sites/pcolormesh_prediction_grid_experiment_0.png G
 raphic file (type png)
 <use ./ssh1/real_space_all_sites/pcolormesh_prediction_grid_experiment_0.png>
 Package pdftex.def Info: ./ssh1/real_space_all_sites/pcolormesh_prediction_grid
 _experiment_0.png  used on input line 435.
 (pdftex.def)             Requested size: 163.20374pt x 163.20258pt.
- [5]
-<./ssh2/real_space_all_sites/scatter_train_val_test_experiment_0.png, id=216, 4
+
+Package natbib Warning: Citation `Breiman2001' on page 5 undefined on input lin
+e 443.
+
+[5]
+<./ssh2/real_space_all_sites/scatter_train_val_test_experiment_0.png, id=162, 4
 33.62pt x 433.62pt>
 File: ./ssh2/real_space_all_sites/scatter_train_val_test_experiment_0.png Graph
 ic file (type png)
@@ -1097,7 +1198,7 @@ ic file (type png)
 Package pdftex.def Info: ./ssh2/real_space_all_sites/scatter_train_val_test_exp
 eriment_0.png  used on input line 453.
 (pdftex.def)             Requested size: 163.20374pt x 163.20258pt.
-<./ssh2/real_space_all_sites/scatter_winding_train_experiment_0.png, id=217, 43
+<./ssh2/real_space_all_sites/scatter_winding_train_experiment_0.png, id=163, 43
 3.62pt x 433.62pt>
 File: ./ssh2/real_space_all_sites/scatter_winding_train_experiment_0.png Graphi
 c file (type png)
@@ -1105,18 +1206,27 @@ c file (type png)
 Package pdftex.def Info: ./ssh2/real_space_all_sites/scatter_winding_train_expe
 riment_0.png  used on input line 454.
 (pdftex.def)             Requested size: 163.20374pt x 163.20258pt.
-<./ssh2/real_space_all_sites/pcolormesh_prediction_grid_experiment_0.png, id=21
-8, 433.62pt x 433.62pt>
+<./ssh2/real_space_all_sites/pcolormesh_prediction_grid_experiment_0.png, id=16
+4, 433.62pt x 433.62pt>
 File: ./ssh2/real_space_all_sites/pcolormesh_prediction_grid_experiment_0.png G
 raphic file (type png)
 <use ./ssh2/real_space_all_sites/pcolormesh_prediction_grid_experiment_0.png>
 Package pdftex.def Info: ./ssh2/real_space_all_sites/pcolormesh_prediction_grid
 _experiment_0.png  used on input line 455.
 (pdftex.def)             Requested size: 163.20374pt x 163.20258pt.
- [6 <./ssh1/real_space_all_sites/scatter_train_val_test_experiment_0.png> <./ss
-h1/real_space_all_sites/scatter_winding_train_experiment_0.png> <./ssh1/real_sp
-ace_all_sites/pcolormesh_prediction_grid_experiment_0.png>]
-<./ssh1/real_space_all_sites/imshow_winding_grid_winding_0_sim.png, id=246, 867
+
+
+Package natbib Warning: Citation `friedman2001elements' on page 6 undefined on 
+input line 467.
+
+
+Package natbib Warning: Citation `raileanu2004theoretical' on page 6 undefined 
+on input line 467.
+
+[6 <./ssh1/real_space_all_sites/scatter_train_val_test_experiment_0.png> <./ssh
+1/real_space_all_sites/scatter_winding_train_experiment_0.png> <./ssh1/real_spa
+ce_all_sites/pcolormesh_prediction_grid_experiment_0.png>]
+<./ssh1/real_space_all_sites/imshow_winding_grid_winding_0_sim.png, id=190, 867
 .24pt x 867.24pt>
 File: ./ssh1/real_space_all_sites/imshow_winding_grid_winding_0_sim.png Graphic
  file (type png)
@@ -1124,7 +1234,7 @@ File: ./ssh1/real_space_all_sites/imshow_winding_grid_winding_0_sim.png Graphic
 Package pdftex.def Info: ./ssh1/real_space_all_sites/imshow_winding_grid_windin
 g_0_sim.png  used on input line 479.
 (pdftex.def)             Requested size: 163.20374pt x 163.20259pt.
-<./ssh1/real_space_all_sites/imshow_winding_grid_winding_1_sim.png, id=247, 867
+<./ssh1/real_space_all_sites/imshow_winding_grid_winding_1_sim.png, id=191, 867
 .24pt x 867.24pt>
 File: ./ssh1/real_space_all_sites/imshow_winding_grid_winding_1_sim.png Graphic
  file (type png)
@@ -1132,7 +1242,7 @@ File: ./ssh1/real_space_all_sites/imshow_winding_grid_winding_1_sim.png Graphic
 Package pdftex.def Info: ./ssh1/real_space_all_sites/imshow_winding_grid_windin
 g_1_sim.png  used on input line 480.
 (pdftex.def)             Requested size: 163.20374pt x 163.20259pt.
-<./ssh1/real_space_all_sites/merge_imshow_winding_grids_second_sim.png, id=248,
+<./ssh1/real_space_all_sites/merge_imshow_winding_grids_second_sim.png, id=192,
  867.24pt x 867.24pt>
 File: ./ssh1/real_space_all_sites/merge_imshow_winding_grids_second_sim.png Gra
 phic file (type png)
@@ -1140,7 +1250,7 @@ phic file (type png)
 Package pdftex.def Info: ./ssh1/real_space_all_sites/merge_imshow_winding_grids
 _second_sim.png  used on input line 481.
 (pdftex.def)             Requested size: 163.20374pt x 163.20259pt.
-<./ssh2/real_space_all_sites/imshow_winding_grid_winding_-1_sim.png, id=251, 86
+<./ssh2/real_space_all_sites/imshow_winding_grid_winding_-1_sim.png, id=195, 86
 7.24pt x 867.24pt>
 File: ./ssh2/real_space_all_sites/imshow_winding_grid_winding_-1_sim.png Graphi
 c file (type png)
@@ -1148,7 +1258,7 @@ c file (type png)
 Package pdftex.def Info: ./ssh2/real_space_all_sites/imshow_winding_grid_windin
 g_-1_sim.png  used on input line 488.
 (pdftex.def)             Requested size: 163.20374pt x 163.20259pt.
-<./ssh2/real_space_all_sites/imshow_winding_grid_winding_0_sim.png, id=252, 867
+<./ssh2/real_space_all_sites/imshow_winding_grid_winding_0_sim.png, id=196, 867
 .24pt x 867.24pt>
 File: ./ssh2/real_space_all_sites/imshow_winding_grid_winding_0_sim.png Graphic
  file (type png)
@@ -1156,7 +1266,7 @@ File: ./ssh2/real_space_all_sites/imshow_winding_grid_winding_0_sim.png Graphic
 Package pdftex.def Info: ./ssh2/real_space_all_sites/imshow_winding_grid_windin
 g_0_sim.png  used on input line 489.
 (pdftex.def)             Requested size: 163.20374pt x 163.20259pt.
-<./ssh2/real_space_all_sites/imshow_winding_grid_winding_1_sim.png, id=253, 867
+<./ssh2/real_space_all_sites/imshow_winding_grid_winding_1_sim.png, id=197, 867
 .24pt x 867.24pt>
 File: ./ssh2/real_space_all_sites/imshow_winding_grid_winding_1_sim.png Graphic
  file (type png)
@@ -1164,7 +1274,7 @@ File: ./ssh2/real_space_all_sites/imshow_winding_grid_winding_1_sim.png Graphic
 Package pdftex.def Info: ./ssh2/real_space_all_sites/imshow_winding_grid_windin
 g_1_sim.png  used on input line 490.
 (pdftex.def)             Requested size: 163.20374pt x 163.20259pt.
-<./ssh2/real_space_all_sites/imshow_winding_grid_winding_2_sim.png, id=254, 867
+<./ssh2/real_space_all_sites/imshow_winding_grid_winding_2_sim.png, id=198, 867
 .24pt x 867.24pt>
 File: ./ssh2/real_space_all_sites/imshow_winding_grid_winding_2_sim.png Graphic
  file (type png)
@@ -1172,7 +1282,7 @@ File: ./ssh2/real_space_all_sites/imshow_winding_grid_winding_2_sim.png Graphic
 Package pdftex.def Info: ./ssh2/real_space_all_sites/imshow_winding_grid_windin
 g_2_sim.png  used on input line 491.
 (pdftex.def)             Requested size: 163.20374pt x 163.20259pt.
-<./ssh2/real_space_all_sites/merge_imshow_winding_grids_sim.png, id=255, 867.24
+<./ssh2/real_space_all_sites/merge_imshow_winding_grids_sim.png, id=199, 867.24
 pt x 867.24pt>
 File: ./ssh2/real_space_all_sites/merge_imshow_winding_grids_sim.png Graphic fi
 le (type png)
@@ -1194,8 +1304,45 @@ LaTeX Font Info:    Try loading font information for U+bbm on input line 602.
 
 (/usr/share/texlive/texmf-dist/tex/latex/bbm-macros/ubbm.fd
 File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
-) [11] [12] [13]
-<./ssh1/real_space_all_sites/plot_feature_importances.png, id=417, 867.24pt x 8
+) [11] [12]
+
+Package natbib Warning: Citation `PhysRevLett.120.066401' on page 13 undefined 
+on input line 722.
+
+
+Package natbib Warning: Citation `zhang2020interpreting' on page 13 undefined o
+n input line 724.
+
+
+Package natbib Warning: Citation `zhang2020interpreting' on page 13 undefined o
+n input line 724.
+
+[13]
+
+Package natbib Warning: Citation `PhysRevB.84.241106' on page 14 undefined on i
+nput line 726.
+
+
+Package natbib Warning: Citation `caio2019topological' on page 14 undefined on 
+input line 726.
+
+
+Package natbib Warning: Citation `PhysRevB.84.241106' on page 14 undefined on i
+nput line 726.
+
+
+Package natbib Warning: Citation `caio2019topological' on page 14 undefined on 
+input line 726.
+
+
+Package natbib Warning: Citation `carlsson2009topology' on page 14 undefined on
+ input line 734.
+
+
+Package natbib Warning: Citation `belkin2003problems' on page 14 undefined on i
+nput line 734.
+
+<./ssh1/real_space_all_sites/plot_feature_importances.png, id=350, 867.24pt x 8
 67.24pt>
 File: ./ssh1/real_space_all_sites/plot_feature_importances.png Graphic file (ty
 pe png)
@@ -1203,7 +1350,7 @@ pe png)
 Package pdftex.def Info: ./ssh1/real_space_all_sites/plot_feature_importances.p
 ng  used on input line 738.
 (pdftex.def)             Requested size: 249.9028pt x 249.89197pt.
-<./ssh2/real_space_all_sites/plot_feature_importances.png, id=418, 867.24pt x 8
+<./ssh2/real_space_all_sites/plot_feature_importances.png, id=351, 867.24pt x 8
 67.24pt>
 File: ./ssh2/real_space_all_sites/plot_feature_importances.png Graphic file (ty
 pe png)
@@ -1211,32 +1358,28 @@ pe png)
 Package pdftex.def Info: ./ssh2/real_space_all_sites/plot_feature_importances.p
 ng  used on input line 739.
 (pdftex.def)             Requested size: 249.9028pt x 249.89197pt.
+No file article.bbl.
+[14]
 
-(./article.bbl
+Package natbib Warning: There were undefined citations.
 
-LaTeX Warning: Reference `LastBibItem' on page 14 undefined on input line 9.
-
-[14] [15 <./ssh1/real_space_all_sites/plot_feature_importances.png> <./ssh2/rea
-l_space_all_sites/plot_feature_importances.png>]) [16]
+[15 <./ssh1/real_space_all_sites/plot_feature_importances.png> <./ssh2/real_spa
+ce_all_sites/plot_feature_importances.png>]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 766.
  (./article.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 766.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 766.
 Package rerunfilecheck Info: File `article.out' has not changed.
-(rerunfilecheck)             Checksum: 872052EE931D6DFA324BE93D29CCFED6;1270.
-
-
-LaTeX Warning: There were undefined references.
-
+(rerunfilecheck)             Checksum: AD20758622C50DE22FA1D16D89DD4F31;1212.
  ) 
 Here is how much of TeX's memory you used:
- 19425 strings out of 492982
- 337224 string characters out of 6134897
- 436616 words of memory out of 5000000
- 22625 multiletter control sequences out of 15000+600000
+ 19119 strings out of 492982
+ 329556 string characters out of 6134897
+ 432385 words of memory out of 5000000
+ 22386 multiletter control sequences out of 15000+600000
  552370 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,10n,56p,10444b,603s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,10n,56p,10444b,441s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/rio/.texlive2017/texmf-var/fonts/pk/ljfour/public/bbm/bbm10.600pk>{/u
 sr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texlive/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dis
@@ -1253,21 +1396,22 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-sy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm
-10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx0800.pfb></usr/share/t
-exmf/fonts/type1/public/cm-super/sfbx0900.pfb></usr/share/texmf/fonts/type1/pub
-lic/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx120
-0.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0700.pfb></usr/share/te
-xmf/fonts/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/publ
-ic/cm-super/sfrm0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000
-.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti0900.pfb></usr/share/tex
-mf/fonts/type1/public/cm-super/sfti1000.pfb>
-Output written on article.pdf (16 pages, 1064833 bytes).
+amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+</usr/share/texmf/fonts/type1/public/cm-super/sfbx0800.pfb></usr/share/texmf/fo
+nts/type1/public/cm-super/sfbx0900.pfb></usr/share/texmf/fonts/type1/public/cm-
+super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb><
+/usr/share/texmf/fonts/type1/public/cm-super/sfrm0700.pfb></usr/share/texmf/fon
+ts/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-s
+uper/sfrm0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></
+usr/share/texmf/fonts/type1/public/cm-super/sfti0900.pfb></usr/share/texmf/font
+s/type1/public/cm-super/sfti1000.pfb>
+Output written on article.pdf (15 pages, 1052046 bytes).
 PDF statistics:
- 604 PDF objects out of 1000 (max. 8388607)
- 499 compressed objects within 5 object streams
- 147 named destinations out of 1000 (max. 500000)
- 219 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 487 PDF objects out of 1000 (max. 8388607)
+ 383 compressed objects within 4 object streams
+ 82 named destinations out of 1000 (max. 500000)
+ 211 words of extra memory for PDF output out of 10000 (max. 10000000)
 

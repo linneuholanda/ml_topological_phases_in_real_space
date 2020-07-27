@@ -19,19 +19,8 @@
 \usepackage[resetlabels, labeled]{multibib}
 \usepackage{xcolor}
 \usepackage{bbm}
-\usepackage{xfp}
-\usepackage[labelfont=bf,textfont=md,justification=raggedright,font=footnotesize]{caption}
-\usepackage{booktabs}
-\renewcommand{\figurename}{Figure}
-\renewcommand{\tablename}{Table}
-\renewcommand{\thetable}{\arabic{table}}
-%\captionsetup{justification=raggedright, singlelinecheck = false}
-%\usepackage{makecell}
-%\usepackage{cellspace}
 
-%\newcites{supp}{References}
-
-%\def\basiceval#1{\the\numexpr#1\relax}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Some macros for mathematicall notation %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \renewcommand{\Re}{\operatorname{{\mathrm Re}}}
 \renewcommand{\Im}{\operatorname{{\mathrm Im}}}
@@ -50,279 +39,209 @@
 \newcommand{\pd}{\partial}
 \newcommand{\pdf}[3]{\frac{\pd^{#1} #2}{\pd #3^{#1}}} %Partial derivative
 \newcommand{\fdf}[3][]{\frac{\delta^{#1} #2}{\delta #3^{#1}}} %Functional derivative 
+\newcommand{\indicator}[1]{\mathbbm{1}_{\mathcal{#1}}} % Indicator function
 
-
-%ssh1
-
-%Our test set in this experiment contained 1005 Hamiltonians (approx. 15.3\% of all data). Of the remaining 5556 Hamiltonians, 556 were %randomly assigned to the training set (approx. 8.5\%) and 5000 (approx. 76.2\%) were used to compute validation scores at each iteration. %These proportions between training and validation sets are such that approximately 10\%  of Hamiltonians from outside of the test set were %used for training at each iteration. The composition of the train + validation set for this experiment was 50.8\% of Hamiltonians with %winding number $W$ = 0 and 49.2\% with winding number $W$ = 1. The composition of the test set was 44.8\% of Hamiltonians with winding number %$W$ = 0 and 55.2\% with winding number $W=1$. \textcolor{blue}{Our learning algorithm of choice for this experiment was a simple decision %tree model \cite{breiman2017classification}}.\citequote{eigenvector_ensembling_alg}
-
-%\documentclass{article}
-%\usepackage{xfp}
-
-%\begin{document}
-
-%\fpeval{31/45}
-
-%\fpeval{round(31/45,5)}
-
-%\end{document}
-\newcommand{\indicator}[1]{\mathbbm{1}_{\mathcal{#1}}}
-%%%%%% Numerical experiments parameters
-\newcommand\nPrec{2}    % precision digits
-\newcommand\accPrec{4}  % precision digits for accuracy scores
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Macros for section III. Numerical Experiments %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand\nHam{6561}  % total number of hamiltonians
 \newcommand\epsilonValue{0.01}  % epsilon criterium for test set
 \newcommand\nExp{100}   % number of experiments
-%%%table commands
-%\newcommand{\tableRow}[1]{\\[#1 cm]\hline} %deprecated table row, but might be useful
+%%%% experiment 1
+\newcommand\sshOneTestNHam{1005}
+\newcommand\sshOneTestFracHam{15.32}
+\newcommand\sshOneTrainPlusValNHam{5556}
+\newcommand\sshOneTrainNHam{556}
+\newcommand\sshOneTrainFracHam{8.47}
+\newcommand\sshOneValNHam{5000}
+\newcommand\sshOneValFracHam{76.21}
+\newcommand\sshOneTrainPlusValWindZeroFracHam{50.79}
+\newcommand\sshOneTrainPlusValWindOneFracHam{49.21}
+\newcommand\sshOneTestWindZeroFracHam{44.79}
+\newcommand\sshOneTestWindOneFracHam{55.21}
+\newcommand\sshOneHamTestBaseline{0.5521}
+%%%% experiment 2
+\newcommand\nEst{25}   % number of estimators in random forest
+\newcommand\sshTwoTestNHam{1040}
+\newcommand\sshTwoTestFracHam{15.85}
+\newcommand\sshTwoTrainPlusValNHam{5521}
+\newcommand\sshTwoTrainNHam{2761}
+\newcommand\sshTwoTrainFracHam{42.08}
+\newcommand\sshTwoValNHam{2760}
+\newcommand\sshTwoValFracHam{42.07}
+\newcommand\sshTwoTrainPlusValWindMinusOneFracHam{17.90}
+\newcommand\sshTwoTrainPlusValWindZeroFracHam{32.51}
+\newcommand\sshTwoTrainPlusValWindOneFracHam{32.26}
+\newcommand\sshTwoTrainPlusValWindTwoFracHam{17.33}
+\newcommand\sshTwoTestWindMinusOneFracHam{36.32}
+\newcommand\sshTwoTestWindZeroFracHam{11.06}
+\newcommand\sshTwoTestWindOneFracHam{12.69}
+\newcommand\sshTwoTestWindTwoFracHam{39.93}
+\newcommand\sshTwoHamTestBaseline{0.3993}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Macros for section IV. Information Entropy Signatures %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\sitesExpOne{(0, 1, 3, 50, 51, 53)}
+\newcommand\sitesExpTwo{(0, 1, 2, 3, 4, 5, 46, 48, 49, 50, 51, 53, 94, 95, 96, 97, 98, 99)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Macros for section V. Topological Feature Engineering And Lattice Compression  %%%%%%%%%%%%%%%%%%%%%%%%
+%%% ssh1 lattice sites
+\newcommand\sitesSOne{(0, 1, 3, 50)}
+\newcommand\sitesEOne{(1, 2, 36, 49)}
+\newcommand\sitesOOne{(0, 18, 28, 30)}
+%%% ssh2 lattice sites
+\newcommand\sitesSTwo{(0, 1, 2, 3, 4, 5, 6, 7, 46, 48, 49, 50)}
+\newcommand\sitesETwo{(0, 1, 2, 3, 4, 5, 6, 7, 47, 48, 49, 50)}
+\newcommand\sitesOTwo{(0, 1, 2, 3, 4, 5, 43, 44, 45, 46, 47, 48)}
+%%% feature names
+\newcommand\xalpha{$X_\alpha$}
+\newcommand\xSalpha{$X_{\mathcal{S}_\alpha}$}
+\newcommand\xcalpha{$\hat{X}^c_\alpha$}
+\newcommand\xcEalpha{$\hat{X}^c_{\mathcal{E}_\alpha}$}
+\newcommand\xcSEalpha{$\hat{X}^c_{\mathcal{S}_\alpha,\mathcal{E}_\alpha}$}
+\newcommand\xsalpha{$\hat{X}^s_\alpha$}
+\newcommand\xsOalpha{$\hat{X}^s_{\mathcal{O}_\alpha}$}
+\newcommand\xsSOalpha{$\hat{X}^s_{\mathcal{S}_\alpha,\mathcal{O}_\alpha}$}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Macros for table %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\tableRow}[1]{\\[#1 cm]}
-\newcommand{\tableRowHeader}[1]{\\[#1 cm]\hline}
+\newcommand{\tableRowHeader}[1]{\\[#1 cm]}
 \newcommand\tableRowHeaderEnd{\tableRowHeader{0.3}}
 \newcommand\tableRowEnd{\tableRow{0.15}}
-%\newcommand\SSHSys{\thead{SSH systems}}         deprecated, might be useful
-%\newcommand\Feat{\thead{Features}}              deprecated, might be useful
-%\newcommand\ValEig{\thead{Val. eigenvectors}}   deprecated, might be useful
-%\newcommand\TestEig{\thead{Test eigenvectors}}  deprecated, might be useful
-%\newcommand\ValHam{\thead{Val. Hamiltonians}}   deprecated, might be useful
-%\newcommand\TestHam{\thead{Test Hamiltonians}}  deprecated, might be useful
+%%% table columns
 \newcommand\SSHSys{SSH system}         
 \newcommand\Feat{Features}              
 \newcommand\ValEig{Val. eigenvectors}   
 \newcommand\TestEig{Test eigenvectors}  
 \newcommand\ValHam{Val. Hamiltonians}   
 \newcommand\TestHam{Test Hamiltonians}  
-
-%%%%%%%%%%%%%%% ssh1 experiments
-%%% data statistics
-\newcommand\sshOneTrainNHam{556}
-\newcommand\sshOneTrainFracHam{\fpeval{round(\sshOneTrainNHam/\nHam*100,\nPrec)}}
-\newcommand\sshOneValNHam{5000}
-\newcommand\sshOneValFracHam{\fpeval{round(\sshOneValNHam/\nHam*100,\nPrec)}}
-\newcommand\sshOneTrainPlusValNHam{\fpeval{\sshOneTrainNHam+\sshOneValNHam}}
-\newcommand\sshOneTestNHam{1005}
-\newcommand\sshOneTestFracHam{\fpeval{round(\sshOneTestNHam/\nHam*100,\nPrec)}}
-\newcommand\sshOneTrainPlusValWindZeroNHam{2822} %number of winding = 0 in train+val set
-\newcommand\sshOneTrainPlusValWindZeroFracHam{\fpeval{round(\sshOneTrainPlusValWindZeroNHam/(\sshOneTrainNHam+\sshOneValNHam)*100,\nPrec)}}
-\newcommand\sshOneTrainPlusValWindOneNHam{2734}  %number of winding = 1 in train+val set
-\newcommand\sshOneTrainPlusValWindOneFracHam{\fpeval{round(\sshOneTrainPlusValWindOneNHam/(\sshOneTrainNHam+\sshOneValNHam)*100,\nPrec)}}
-\newcommand\sshOneTestWindZeroNHam{378}      %number of winding = 0 in test set
-\newcommand\sshOneTestWindOneNHam{466}       %number of winding = 1 in test set
-\newcommand\sshOneTestWindZeroFracHam{\fpeval{round(\sshOneTestWindZeroNHam/(\sshOneTestWindZeroNHam+\sshOneTestWindOneNHam)*100,\nPrec)}}
-\newcommand\sshOneTestWindOneFracHam{\fpeval{round(\sshOneTestWindOneNHam/(\sshOneTestWindZeroNHam+\sshOneTestWindOneNHam)*100,\nPrec)}}
-%%% real space accuracies
-%\newcommand\sshOneEigenTrainAcc{0.981438129496403}       % eigenvector training accuracy
-%\newcommand\sshOneEigenValAcc{0.96392276}         % eigenvector val accuracy
-%\newcommand\sshOneEigenTestAcc{0.78966836492891}        % eigenvector test accuracy
-%\newcommand\sshOneHamTrainAcc{1.0}             % Hamiltonian training accuracy
-%\newcommand\sshOneHamValAcc{1.0}               % Hamiltonian val accuracy
-%\newcommand\sshOneHamTestAcc{0.9918720379146919}          % Hamiltonian test accuracy
-%\newcommand\sshOneHamTestBaseline{\fpeval{round(\sshOneTestWindOneNHam/(\sshOneTestWindZeroNHam+\sshOneTestWindOneNHam),\accPrec)}}
-
-%%% ssh1 baseline accuracy
-\newcommand\sshOneHamTestBaseline{\fpeval{round(\sshOneTestWindOneNHam/(\sshOneTestWindZeroNHam+\sshOneTestWindOneNHam),\accPrec)}}
 %%% x1 features table entries 
 \newcommand\xOne{$X_1$}
-\newcommand\xOneEigTrain{\fpeval{round(0.981438129496403,\accPrec)}}
-\newcommand\xOneEigVal{\fpeval{round(0.96392276,\accPrec)}}
-\newcommand\xOneEigTest{\fpeval{round(0.78966836492891,\accPrec)}}
-\newcommand\xOneHamTrain{\fpeval{round(1.0,\accPrec)}}
-\newcommand\xOneHamVal{\fpeval{round(1.0,\accPrec)}}
-\newcommand\xOneHamTest{\fpeval{round(0.9918720379146919,\accPrec)}}
+\newcommand\xOneEigTrain{0.9814}
+\newcommand\xOneEigVal{0.9639}
+\newcommand\xOneEigTest{0.7897}
+\newcommand\xOneHamTrain{1.000}
+\newcommand\xOneHamVal{1.000}
+\newcommand\xOneHamTest{0.9919}
 %%% x_S1 features table entries  
 \newcommand\xSOne{$X_{\mathcal{S}_1}$}
-\newcommand\xSOneEigTrain{\fpeval{round(0.9699771582733813,\accPrec)}}
-\newcommand\xSOneEigVal{\fpeval{round(0.9444134200000001,\accPrec)}}
-\newcommand\xSOneEigTest{\fpeval{round(0.7763444312796207,\accPrec)}}
-\newcommand\xSOneHamTrain{\fpeval{round(0.9880395683453237,\accPrec)}}
-\newcommand\xSOneHamVal{\fpeval{round(0.9853300000000002,\accPrec)}}
-\newcommand\xSOneHamTest{\fpeval{round(0.9904502369668248,\accPrec)}}
+\newcommand\xSOneEigTrain{0.9700}
+\newcommand\xSOneEigVal{0.9444}
+\newcommand\xSOneEigTest{0.7763}
+\newcommand\xSOneHamTrain{0.9880}
+\newcommand\xSOneHamVal{0.9853}
+\newcommand\xSOneHamTest{0.9905}
 %%% x^c_1 features table entries  
 \newcommand\xcOne{$\hat{X}^c_1$}
-\newcommand\xcOneEigTrain{\fpeval{round(0.9753276978417266,\accPrec)}}
-\newcommand\xcOneEigVal{\fpeval{round(0.9521145999999999,\accPrec)}}
-\newcommand\xcOneEigTest{\fpeval{round(0.7373592417061612,\accPrec)}}
-\newcommand\xcOneHamTrain{\fpeval{round(0.9982553956834532,\accPrec)}}
-\newcommand\xcOneHamVal{\fpeval{round(0.9975820000000002,\accPrec)}}
-\newcommand\xcOneHamTest{\fpeval{round(0.9916232227488153,\accPrec)}}
+\newcommand\xcOneEigTrain{0.9753}
+\newcommand\xcOneEigVal{0.9521}
+\newcommand\xcOneEigTest{0.7374}
+\newcommand\xcOneHamTrain{0.9983}
+\newcommand\xcOneHamVal{0.9976}
+\newcommand\xcOneHamTest{0.9916}
 %%% x^cE_1 features table entries  
 \newcommand\xcEOne{$\hat{X}^c_{\mathcal{E}_1}$}
-\newcommand\xcEOneEigTrain{\fpeval{round(0.9755357913669066,\accPrec)}}
-\newcommand\xcEOneEigVal{\fpeval{round(0.8280291200000001,\accPrec)}}
-\newcommand\xcEOneEigTest{\fpeval{round(0.6066537914691943,\accPrec)}}
-\newcommand\xcEOneHamTrain{\fpeval{round(0.998525179856115,\accPrec)}}
-\newcommand\xcEOneHamVal{\fpeval{round(0.997906,\accPrec)}}
-\newcommand\xcEOneHamTest{\fpeval{round(0.9190876777251185,\accPrec)}}
+\newcommand\xcEOneEigTrain{0.9755}
+\newcommand\xcEOneEigVal{0.8280}
+\newcommand\xcEOneEigTest{0.6067}
+\newcommand\xcEOneHamTrain{0.9985}
+\newcommand\xcEOneHamVal{0.9979}
+\newcommand\xcEOneHamTest{0.9191}
 %%% x^cSE_1 features table entries  
 \newcommand\xcSEOne{$\hat{X}^c_{\mathcal{S}_1,\mathcal{E}_1}$}
-\newcommand\xcSEOneEigTrain{\fpeval{round(0.9701161870503597,\accPrec)}}
-\newcommand\xcSEOneEigVal{\fpeval{round(0.9444223399999998,\accPrec)}}
-\newcommand\xcSEOneEigTest{\fpeval{round(0.8176174170616113,\accPrec)}}
-\newcommand\xcSEOneHamTrain{\fpeval{round(0.9882014388489206,\accPrec)}}
-\newcommand\xcSEOneHamVal{\fpeval{round(0.9853120000000001,\accPrec)}}
-\newcommand\xcSEOneHamTest{\fpeval{round(0.9933530805687205,\accPrec)}}
+\newcommand\xcSEOneEigTrain{0.9701}
+\newcommand\xcSEOneEigVal{0.9444}
+\newcommand\xcSEOneEigTest{0.8176}
+\newcommand\xcSEOneHamTrain{0.9882}
+\newcommand\xcSEOneHamVal{0.9853}
+\newcommand\xcSEOneHamTest{0.9934}
 %%% x^s_1 features table entries  
 \newcommand\xsOne{$\hat{X}^s_1$}
-\newcommand\xsOneEigTrain{\fpeval{round(0.9751985611510792,\accPrec)}}
-\newcommand\xsOneEigVal{\fpeval{round(0.9533083600000001,\accPrec)}}
-\newcommand\xsOneEigTest{\fpeval{round(0.7313738151658769,\accPrec)}}
-\newcommand\xsOneHamTrain{\fpeval{round(0.9930935251798562,\accPrec)}}
-\newcommand\xsOneHamVal{\fpeval{round(0.9905759999999999,\accPrec)}}
-\newcommand\xsOneHamTest{\fpeval{round(0.9855568720379146,\accPrec)}}
+\newcommand\xsOneEigTrain{0.9752}
+\newcommand\xsOneEigVal{0.9533}
+\newcommand\xsOneEigTest{0.7314}
+\newcommand\xsOneHamTrain{0.9931}
+\newcommand\xsOneHamVal{0.9906}
+\newcommand\xsOneHamTest{0.9856}
 %%% x^SO_1 features table entries  
 \newcommand\xsOOne{$\hat{X}^s_{\mathcal{O}_1}$}
-\newcommand\xsOOneEigTrain{\fpeval{round(0.807853597122302,\accPrec)}}
-\newcommand\xsOOneEigVal{\fpeval{round(0.6941595600000001,\accPrec)}}
-\newcommand\xsOOneEigTest{\fpeval{round(0.5419954976303317,\accPrec)}}
-\newcommand\xsOOneHamTrain{\fpeval{round(0.9919424460431654,\accPrec)}}
-\newcommand\xsOOneHamVal{\fpeval{round(0.7088179999999998,\accPrec)}}
-\newcommand\xsOOneHamTest{\fpeval{round(0.4797630331753555,\accPrec)}}
+\newcommand\xsOOneEigTrain{0.8079}
+\newcommand\xsOOneEigVal{0.6942}
+\newcommand\xsOOneEigTest{0.5420}
+\newcommand\xsOOneHamTrain{0.9919}
+\newcommand\xsOOneHamVal{0.7088}
+\newcommand\xsOOneHamTest{0.4798}
 %%% x^SSO_1 features table entries  
 \newcommand\xsSOOne{$\hat{X}^s_{\mathcal{S}_1,\mathcal{O}_1}$}
-\newcommand\xsSOOneEigTrain{\fpeval{round(0.96949190647482,\accPrec)}}
-\newcommand\xsSOOneEigVal{\fpeval{round(0.9456364800000001,\accPrec)}}
-\newcommand\xsSOOneEigTest{\fpeval{round(0.7818372037914694,\accPrec)}}
-\newcommand\xsSOOneHamTrain{\fpeval{round(0.9875539568345324,\accPrec)}}
-\newcommand\xsSOOneHamVal{\fpeval{round(0.9853839999999998,\accPrec)}}
-\newcommand\xsSOOneHamTest{\fpeval{round(0.9398933649289098,\accPrec)}}
-
-%ssh2
-\newcommand\sshTwoTrainNHam{2761}
-\newcommand\sshTwoTrainFracHam{\fpeval{round(\sshTwoTrainNHam/\nHam*100,\nPrec)}}
-\newcommand\sshTwoValNHam{2760}
-\newcommand\sshTwoValFracHam{\fpeval{round(\sshTwoValNHam/\nHam*100,\nPrec)}}
-\newcommand\sshTwoTrainPlusValNHam{\fpeval{\sshTwoTrainNHam+\sshTwoValNHam}}
-\newcommand\sshTwoTestNHam{1040}
-\newcommand\sshTwoTestFracHam{\fpeval{round(\sshTwoTestNHam/\nHam*100,\nPrec)}}
-
-\newcommand\sshTwoTrainPlusValWindMinusOneNHam{988} %number of winding = -1 in train+val set
-\newcommand\sshTwoTrainPlusValWindMinusOneFracHam{\fpeval{round(\sshTwoTrainPlusValWindMinusOneNHam/\sshTwoTrainPlusValNHam*100,\nPrec)}}
-\newcommand\sshTwoTrainPlusValWindZeroNHam{1795} %number of winding = 0 in train+val set
-\newcommand\sshTwoTrainPlusValWindZeroFracHam{\fpeval{round(\sshTwoTrainPlusValWindZeroNHam/\sshTwoTrainPlusValNHam*100,\nPrec)}}
-\newcommand\sshTwoTrainPlusValWindOneNHam{1781}  %number of winding = 1 in train+val set
-\newcommand\sshTwoTrainPlusValWindOneFracHam{\fpeval{round(\sshTwoTrainPlusValWindOneNHam/\sshTwoTrainPlusValNHam*100,\nPrec)}}
-\newcommand\sshTwoTrainPlusValWindTwoNHam{957}   %number of winding = 2 in train+val set
-\newcommand\sshTwoTrainPlusValWindTwoFracHam{\fpeval{round(\sshTwoTrainPlusValWindTwoNHam/\sshTwoTrainPlusValNHam*100,\nPrec)}} 
-
-\newcommand\sshTwoTestWindMinusOneNHam{312} %number of winding = -1 in test set
-\newcommand\sshTwoTestWindZeroNHam{95} %number of winding = 0 in test set
-\newcommand\sshTwoTestWindOneNHam{109}  %number of winding = 1 in test set
-\newcommand\sshTwoTestWindTwoNHam{343}   %number of winding = 2 in test set 
-\newcommand\sshTwoTestWindMinusOneFracHam{\fpeval{round(\sshTwoTestWindMinusOneNHam/(\sshTwoTestWindMinusOneNHam+\sshTwoTestWindZeroNHam+\sshTwoTestWindOneNHam+\sshTwoTestWindTwoNHam)*100,\nPrec)}}
-\newcommand\sshTwoTestWindZeroFracHam{\fpeval{round(\sshTwoTestWindZeroNHam/(\sshTwoTestWindMinusOneNHam+\sshTwoTestWindZeroNHam+\sshTwoTestWindOneNHam+\sshTwoTestWindTwoNHam)*100,\nPrec)}}
-\newcommand\sshTwoTestWindOneFracHam{\fpeval{round(\sshTwoTestWindOneNHam/(\sshTwoTestWindMinusOneNHam+\sshTwoTestWindZeroNHam+\sshTwoTestWindOneNHam+\sshTwoTestWindTwoNHam)*100,\nPrec)}}
-\newcommand\sshTwoTestWindTwoFracHam{\fpeval{round(\sshTwoTestWindTwoNHam/(\sshTwoTestWindMinusOneNHam+\sshTwoTestWindZeroNHam+\sshTwoTestWindOneNHam+\sshTwoTestWindTwoNHam)*100,\nPrec)}}
-
-
-\newcommand\sshTwoEigenTrainAcc{0.999655849329953}       % eigenvector training accuracy
-\newcommand\sshTwoEigenValAcc{0.9708922101449275}         % eigenvector val accuracy
-\newcommand\sshTwoEigenTestAcc{0.6634109429569267}        % eigenvector test accuracy
-\newcommand\sshTwoHamTrainAcc{1.0}             % Hamiltonian training accuracy
-\newcommand\sshTwoHamValAcc{0.9972499999999997}               % Hamiltonian val accuracy
-\newcommand\sshTwoHamTestAcc{0.879697322467986}          % Hamiltonian test accuracy
-
-%%% ssh2 baseline accuracy
-\newcommand\sshTwoHamTestBaseline{\fpeval{round(\sshTwoTestWindTwoNHam/(\sshTwoTestWindMinusOneNHam+\sshTwoTestWindZeroNHam+\sshTwoTestWindOneNHam+\sshTwoTestWindTwoNHam),\accPrec)}}
+\newcommand\xsSOOneEigTrain{0.9695}
+\newcommand\xsSOOneEigVal{0.9456}
+\newcommand\xsSOOneEigTest{0.7818}
+\newcommand\xsSOOneHamTrain{0.9876}
+\newcommand\xsSOOneHamVal{0.9854}
+\newcommand\xsSOOneHamTest{0.9399}
 %%% x2 features table entries 
 \newcommand\xTwo{$X_2$}
-\newcommand\xTwoEigTrain{\fpeval{round(0.999655849329953,\accPrec)}}
-\newcommand\xTwoEigVal{\fpeval{round(0.9708922101449275,\accPrec)}}
-\newcommand\xTwoEigTest{\fpeval{round(0.6634109429569267,\accPrec)}}
-\newcommand\xTwoHamTrain{\fpeval{round(1.0,\accPrec)}}
-\newcommand\xTwoHamVal{\fpeval{round(0.9972499999999997,\accPrec)}}
-\newcommand\xTwoHamTest{\fpeval{round(0.879697322467986,\accPrec)}}
-
+\newcommand\xTwoEigTrain{0.9997}
+\newcommand\xTwoEigVal{0.9709}
+\newcommand\xTwoEigTest{0.6634}
+\newcommand\xTwoHamTrain{1.000}
+\newcommand\xTwoHamVal{0.9972}
+\newcommand\xTwoHamTest{0.8797}
 %%% x_S2 features table entries  
 \newcommand\xSTwo{$X_{\mathcal{S}_2}$}
-\newcommand\xSTwoEigTrain{\fpeval{round(0.9996107207533504,\accPrec)}}
-\newcommand\xSTwoEigVal{\fpeval{round(0.9589830072463768,\accPrec)}}
-\newcommand\xSTwoEigTest{\fpeval{round(0.6168351571594877,\accPrec)}}
-\newcommand\xSTwoHamTrain{\fpeval{round(1.0,\accPrec)}}
-\newcommand\xSTwoHamVal{\fpeval{round(0.9961050724637681,\accPrec)}}
-\newcommand\xSTwoHamTest{\fpeval{round(0.8625611175785797,\accPrec)}}
+\newcommand\xSTwoEigTrain{0.9996}
+\newcommand\xSTwoEigVal{0.9590}
+\newcommand\xSTwoEigTest{0.6168}
+\newcommand\xSTwoHamTrain{1.000}
+\newcommand\xSTwoHamVal{0.9961}
+\newcommand\xSTwoHamTest{0.8626}
 %%% x^c_2 features table entries  
 \newcommand\xcTwo{$\hat{X}^c_2$}
-\newcommand\xcTwoEigTrain{\fpeval{round(0.9996471930459978,\accPrec)}}
-\newcommand\xcTwoEigVal{\fpeval{round(0.9740357971014493,\accPrec)}}
-\newcommand\xcTwoEigTest{\fpeval{round(0.6895051222351573,\accPrec)}}
-\newcommand\xcTwoHamTrain{\fpeval{round(1.0,\accPrec)}}
-\newcommand\xcTwoHamVal{\fpeval{round(0.9976050724637681,\accPrec)}}
-\newcommand\xcTwoHamTest{\fpeval{round(0.8862281722933641,\accPrec)}}
+\newcommand\xcTwoEigTrain{0.9996}
+\newcommand\xcTwoEigVal{0.9740}
+\newcommand\xcTwoEigTest{0.6895}
+\newcommand\xcTwoHamTrain{1.000}
+\newcommand\xcTwoHamVal{0.9976}
+\newcommand\xcTwoHamTest{0.8862}
 %%% x^cE_2 features table entries  
 \newcommand\xcETwo{$\hat{X}^c_{\mathcal{E}_2}$}
-\newcommand\xcETwoEigTrain{\fpeval{round(0.99943379210431,\accPrec)}}
-\newcommand\xcETwoEigVal{\fpeval{round(0.8989626449275362,\accPrec)}}
-\newcommand\xcETwoEigTest{\fpeval{round(0.5356883585564609,\accPrec)}}
-\newcommand\xcETwoHamTrain{\fpeval{round(1.0,\accPrec)}}
-\newcommand\xcETwoHamVal{\fpeval{round(0.9954927536231883,\accPrec)}}
-\newcommand\xcETwoHamTest{\fpeval{round(0.7896856810244468,\accPrec)}}
-
+\newcommand\xcETwoEigTrain{0.9994}
+\newcommand\xcETwoEigVal{0.8990}
+\newcommand\xcETwoEigTest{0.5357}
+\newcommand\xcETwoHamTrain{1.000}
+\newcommand\xcETwoHamVal{0.9955}
+\newcommand\xcETwoHamTest{0.7897}
 %%% x^cSE_2 features table entries  
 \newcommand\xcSETwo{$\hat{X}^c_{\mathcal{S}_2,\mathcal{E}_2}$}
-\newcommand\xcSETwoEigTrain{\fpeval{round(0.9994432452010141,\accPrec)}}
-\newcommand\xcSETwoEigVal{\fpeval{round(0.8998827173913044,\accPrec)}}
-\newcommand\xcSETwoEigTest{\fpeval{round(0.5029968568102445,\accPrec)}}
-\newcommand\xcSETwoHamTrain{\fpeval{round(1.0,\accPrec)}}
-\newcommand\xcSETwoHamVal{\fpeval{round(0.9956086956521739,\accPrec)}}
-\newcommand\xcSETwoHamTest{\fpeval{round(0.7670896391152502,\accPrec)}}
+\newcommand\xcSETwoEigTrain{0.9994}
+\newcommand\xcSETwoEigVal{0.8999}
+\newcommand\xcSETwoEigTest{0.5030}
+\newcommand\xcSETwoHamTrain{1.000}
+\newcommand\xcSETwoHamVal{0.9956}
+\newcommand\xcSETwoHamTest{0.7671}
 %%% x^s_2 features table entries  
 \newcommand\xsTwo{$\hat{X}^s_2$}
-\newcommand\xsTwoEigTrain{\fpeval{round(0.9996523723288662,\accPrec)}}
-\newcommand\xsTwoEigVal{\fpeval{round(0.9735059057971014,\accPrec)}}
-\newcommand\xsTwoEigTest{\fpeval{round(0.6878407450523867,\accPrec)}}
-\newcommand\xsTwoHamTrain{\fpeval{round(1.0,\accPrec)}}
-\newcommand\xsTwoHamVal{\fpeval{round(0.9970652173913043,\accPrec)}}
-\newcommand\xsTwoHamTest{\fpeval{round(0.8898835855646101,\accPrec)}}
+\newcommand\xsTwoEigTrain{0.9997}
+\newcommand\xsTwoEigVal{0.9735}
+\newcommand\xsTwoEigTest{0.6878}
+\newcommand\xsTwoHamTrain{1.000}
+\newcommand\xsTwoHamVal{0.9971}
+\newcommand\xsTwoHamTest{0.8899}
 %%% x^SO_2 features table entries  
 \newcommand\xsOTwo{$\hat{X}^s_{\mathcal{O}_2}$}
-\newcommand\xsOTwoEigTrain{\fpeval{round(0.9994471206084752,\accPrec)}}
-\newcommand\xsOTwoEigVal{\fpeval{round(0.9042001086956524,\accPrec)}}
-\newcommand\xsOTwoEigTest{\fpeval{round(0.552662980209546,\accPrec)}}
-\newcommand\xsOTwoHamTrain{\fpeval{round(1.0,\accPrec)}}
-\newcommand\xsOTwoHamVal{\fpeval{round(0.9917789855072465,\accPrec)}}
-\newcommand\xsOTwoHamTest{\fpeval{round(0.7427124563445866,\accPrec)}}
+\newcommand\xsOTwoEigTrain{0.9994}
+\newcommand\xsOTwoEigVal{0.9042}
+\newcommand\xsOTwoEigTest{0.5527}
+\newcommand\xsOTwoHamTrain{1.000}
+\newcommand\xsOTwoHamVal{0.9918}
+\newcommand\xsOTwoHamTest{0.7427}
 %%% x^SSO_2 features table entries  
 \newcommand\xsSOTwo{$\hat{X}^s_{\mathcal{S}_2,\mathcal{O}_2}$}
-\newcommand\xsSOTwoEigTrain{\fpeval{round(0.9992071713147413,\accPrec)}}
-\newcommand\xsSOTwoEigVal{\fpeval{round(0.8203919927536232,\accPrec)}}
-\newcommand\xsSOTwoEigTest{\fpeval{round(0.41268987194412105,\accPrec)}}
-\newcommand\xsSOTwoHamTrain{\fpeval{round(1.0,\accPrec)}}
-\newcommand\xsSOTwoHamVal{\fpeval{round(0.9941884057971013,\accPrec)}}
-\newcommand\xsSOTwoHamTest{\fpeval{round(0.5903026775320139,\accPrec)}}
+\newcommand\xsSOTwoEigTrain{0.9992}
+\newcommand\xsSOTwoEigVal{0.8204}
+\newcommand\xsSOTwoEigTest{0.4127}
+\newcommand\xsSOTwoHamTrain{1.000}
+\newcommand\xsSOTwoHamVal{0.9942}
+\newcommand\xsSOTwoHamTest{0.5903}
 
-%%% more feature commands
-%\newcommand\xcSE{$\hat{X}^c_{\mathcal{S},\mathcal{E}}$}
-%\newcommand\xsSO{$\hat{X}^s_{\mathcal{S},\mathcal{O}}$}
-
-\newcommand\xalpha{$X_\alpha$}
-\newcommand\xSalpha{$X_{\mathcal{S}_\alpha}$}
-
-\newcommand\xcalpha{$\hat{X}^c_\alpha$}
-\newcommand\xcEalpha{$\hat{X}^c_{\mathcal{E}_\alpha}$}
-\newcommand\xcSEalpha{$\hat{X}^c_{\mathcal{S}_\alpha,\mathcal{E}_\alpha}$}
-
-\newcommand\xsalpha{$\hat{X}^s_\alpha$}
-\newcommand\xsOalpha{$\hat{X}^s_{\mathcal{O}_\alpha}$}
-\newcommand\xsSOalpha{$\hat{X}^s_{\mathcal{S}_\alpha,\mathcal{O}_\alpha}$}
-
-
-\newcommand\nEst{25}   % number of estimators in random forest
-
-\newcounter{quoter}
-\setcounter{quoter}{0}
-\renewcommand*{\thequoter}{%
-  %\textbf{%
-  %  \ifnum\value{custom}<1000 0\fi
-  %  \ifnum\value{custom}<100 0\fi
-  %  \ifnum\value{custom}<10 0\fi
-  %  \arabic{custom}%
-  \textbf{[\arabic{quoter}]}
-  }%
-
-\newcommand{\genquote}[1]{\refstepcounter{quoter} \label{#1} \ref{#1}}
-\newcommand{\citequote}[1]{\ref{#1}}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Defining figures directory
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Figures for Main article
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Figures for Main article %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% phase diagrams (figure 1)
 %\newcommand\phaseDiagramsFigs{./00_article/phase_diagrams/}
 \newcommand\SSHOnePhaseDiagram{./ssh1_phase_diagram.png}
@@ -382,10 +301,6 @@
 \newcommand\SSHTwoCumulativeEntropyTwoTwoZero{./supp_ssh2_220_plot_cumulative_feature_importances.png}
 
 
-
-
-%\definecolor{antiquefuchsia}{rgb}{0.57, 0.36, 0.51}
-
 \begin{document}
 
 \nocite{*}
@@ -436,7 +351,7 @@ In possession of the information entropy signatures, we demonstrate how the symm
 
 The information entropy signatures are finally explored as theoretical constructs in terms of information entropy mass functions along the lattices. By taking their continuum limit and admitting that they are quantum in nature, we show how the information entropy signatures can be naturally understood in terms of emergent information entropy wave functions along the lattices. The theoretical formulation of the results obtained with machine learning in terms of emergent quantum mechanical wave functions allows us to establish Heisenberg and Hirschman uncertainty principles for the localizability of information entropy in topological phase transitions. The emergent information entropy wave functions are the theme of section \ref{emergent_information_entropy_wave_functions}.      
 
-The  discovery of information entropy signatures of topological phase transitions and their description as a measurable phenomenon emerging from information entropy wave functions provide clear illustrations of how model explainability in machine learning can guide new discoveries in condensed matter and quantum materials physics, since the existence of these signals was established by analyzing data from several thousand SSH systems which, taken individually, could not have provided any concrete hint of their existence.%\citequote{pipeline_not_work}
+The  discovery of information entropy signatures of topological phase transitions and their description as a measurable emergent phenomenon originating from the information entropy of ensembles of topological systems proximal to phase transition boundaries provide clear illustrations of how model explainability in machine learning can guide new discoveries in condensed matter and quantum materials physics, since the existence of these signals was established by analyzing data from several thousand SSH systems which, taken individually, could not have provided any concrete hint of their existence.%\citequote{pipeline_not_work}
 
 As of yet model explainability \cite{gilpin2018explaining}-\cite{roscher2020explainable} is one of the topics at the edge of machine learning research that has been little explored by the physics community working at the interface between the two disciplines. This raises important questions as to whether machine learning can in fact help to advance theoretical investigation in physics, since the majority of physics papers published on the subject are proofs of concept aimed at showing that modern machine learning techniques are capable of recognizing the relevant patterns in data from physical systems whose properties were known in advance. By proposing new concepts from the data analysis of physical systems of contemporary interest and knitting together ideas from topological phase transitions and information theory by dint of model explainability, we expect to draw the physics community's attention to this essential machine learning tool. 
 \begin{figure}
@@ -529,7 +444,7 @@ The (normalized) relevance of a feature is given by how much it reduces a loss f
 
 We should briefly comment on the possibility of using the Gini impurity of ensembles of eigenvectors \cite{friedman2001elements} instead of their Shannon entropy as cost function. This would similarly lead us to Gini impurity signatures of topological phase transitions. Given that in the examples analysed in this paper the Gini impurity signatures and the Shannon entropy signatures were very similar, the larger familiarity of a general physics audience with the latter influenced us to choose it over the former. Nevertheless, the question of which split criterion  should be used when training decision trees is as of yet largely undecided \cite{raileanu2004theoretical} and may be of relevance in the analysis of other physical systems than the ones studied here.       
 
-The bar plots in figure \ref{feature_importances} show how informative each lattice site was in learning topological phases for each experiment. They represent the information entropy signatures along the lattices in each SSH system. For experiment 1 (section \ref{experiment_1}), only six lattice sites (0, 1, 3, 50, 51, 53) corresponding to the two sharp peaks seen in figure \ref{feature_importances_ssh1} contributed approximately 70\% of total reduction in Shannon entropy. Similarly, approximately 30\% of total reduction in the Shannon information entropy of eigenvector data from experiment 2 (section \ref{experiment_2}) was achieved by eighteen lattice sites (0, 1, 2, 3, 4, 5, 46, 48, 49, 50, 51, 53, 94, 95, 96, 97, 98, 99) distributed along the three peaks in figure \ref{feature_importances_ssh2}. As we shall see in section \ref{topological_feature_engineering}, the information entropy signatures can be used to compress the topological information in SSH lattices.
+The bar plots in figure \ref{feature_importances} show how informative each lattice site was in learning topological phases for each experiment. They represent the information entropy signatures along the lattices in each SSH system. For experiment 1 (section \ref{experiment_1}), only six lattice sites \sitesExpOne\ corresponding to the two sharp peaks seen in figure \ref{feature_importances_ssh1} contributed approximately 70\% of total reduction in Shannon entropy. Similarly, approximately 30\% of total reduction in the Shannon information entropy of eigenvector data from experiment 2 (section \ref{experiment_2}) was achieved by eighteen lattice sites \sitesExpTwo\ distributed along the three peaks in figure \ref{feature_importances_ssh2}. As we shall see in section \ref{topological_feature_engineering}, the information entropy signatures can be used to compress the topological information in SSH lattices.
 
 The information entropy signatures presented here have some interesting subtleties. Although they give us a visualization of how important each lattice site was in determining the topological phases of Hamiltonians, they actually express a global property of the whole lattice. In section \ref{emergent_information_entropy_wave_functions}, where we develop a quantum formalism for the information entropy signatures obtained in this section, these seemingly antagonistic conceptions shall be harmonized. What is important to emphasize at this point is that an information entropy signature should not be naively taken at face value: a lattice site that appears unimportant in an information entropy signature plot may not be unimportant or void of topological information by itself.
 
@@ -567,9 +482,10 @@ Each of the information entropy signatures shown in figure \ref{feature_importan
 %\caption{An Example of a Table}
 %\centering\label{table_example}
 %\begin{tabular}{|Sc*{9}{c|}}
-\toprule
+%\toprule
+\hline
 \SSHSys               &\Feat             &\ValEig            &\TestEig           &\ValHam              &\TestHam         \tableRowHeaderEnd 
-\midrule
+%\midrule
 %                     &                  &                   &                   &                     &                   \tableRow{0.3}
 1                     &\xOne             &\xOneEigVal        &\xOneEigTest       &\xOneHamVal          &\xOneHamTest       \tableRowEnd
 1                     &\xSOne            &\xSOneEigVal       &\xSOneEigTest      &\xSOneHamVal         &\xSOneHamVal       \tableRowEnd
@@ -587,7 +503,8 @@ Each of the information entropy signatures shown in figure \ref{feature_importan
 2                     &\xsTwo            &\xsTwoEigVal       &\xsTwoEigTest      &\xsTwoHamVal         &\xsTwoHamTest      \tableRowEnd
 2                     &\xsOTwo           &\xsOTwoEigVal      &\xsOTwoEigTest     &\xsOTwoHamVal        &\xsOTwoHamTest     \tableRowEnd
 2                     &\xsSOTwo          &\xsSOTwoEigVal     &\xsSOTwoEigTest    &\xsSOTwoHamVal       &\xsSOTwoHamTest    \tableRowEnd
-\bottomrule
+%\bottomrule
+\hline
 \end{tabular}
 \caption{\label{accuracy_scores}Accuracy scores of numerical experiments. The features used to train the decision trees (SSH 1) or random forests (SSH 2) in the numerical experiments with SSH systems were as follows. Real space features: all real space lattice sites (\xalpha) (sections \ref{experiment_1} and \ref{experiment_2}); real space lattice sites from subset $\mathcal{S}_{\alpha}$ (\xSalpha) (equation \eqref{lattice_subsets}). DCT topological features: all DCT topological features (\xcalpha) (equation \eqref{DCT}); DCT topological features from subset $\mathcal{E}_\alpha$ (\xcEalpha) (equation \eqref{DCT_subsets}); DCT topological features from subset $\mathcal{E}_\alpha$ computed using only real space lattice sites $\mathcal{S}_{\alpha}$ (\xcSEalpha) (equation \eqref{DCT_very_compressed}). DST topological features: all DST topological features (\xsalpha) (equation \eqref{DST}); DST topological features from subset $\mathcal{O}_\alpha$ (\xsOalpha) (equation \eqref{DST_subsets}); DST topological features from subset $\mathcal{O}_\alpha$ computed using only real space lattice sites $\mathcal{S}_{\alpha}$ (\xsSOalpha) (equation \eqref{DST_very_compressed}). }
 \end{table}
@@ -641,7 +558,7 @@ The lattice compression strategies tested in this work were: \emph{i)} learning 
 In strategy \emph{i)} the lattice sites used in the SSH 1 and SSH 2 systems were
 \begin{equation}
 \label{lattice_subsets}
-\mathcal{S}_1 = (0, 1, 3, 50 ) \quad \text{and} \quad  \mathcal{S}_2 =(0, 1, 2, 3, 4, 5, 6, 7, 46, 48, 49, 50).   
+\mathcal{S}_1 = \sitesSOne \quad \text{and} \quad  \mathcal{S}_2 =\sitesSTwo.   
 \end{equation}
 Note that for the nearest-neighbor SSH systems $\mathcal{S}_1$ corresponds to the four most informative sites such that $0\leq l \leq 50$ as indicated by the information entropy signature in figure \ref{feature_importances_ssh1}. Similarly, for the first- and second- nearest neighbors SSH systems $\mathcal{S}_2$ corresponds to the twelve most informative sites such that $0\leq l \leq 50$ in the corresponding information entropy signature in figure \ref{feature_importances_ssh2}. In table \ref{accuracy_scores}, the features used in strategy \emph{i)} are referred to as \xSOne and \xSTwo, according to the SSH systems they relate to.  
 
@@ -650,12 +567,12 @@ In strategy \emph{ii)}, the full set of DCT or DST topological features written 
 Similarly to strategy \emph{i)}, in strategy \emph{iii)} we selected the most informative DCT topological features of both SSH 1 and SSH 2 systems that were obtained from strategy \emph{ii)},
 \begin{equation}
 \label{DCT_subsets}
-\mathcal{E}_1 = (1, 2, 36, 49) \quad \text{and} \quad  \mathcal{E}_2 =(0, 1, 2, 3, 4, 5, 6, 7, 47, 48, 49, 50) \qquad \text{(DCT)}  
+\mathcal{E}_1 = \sitesEOne \quad \text{and} \quad  \mathcal{E}_2 =\sitesETwo \qquad \text{(DCT)}  
 \end{equation}
 and the most informative DST topological features of both systems that were obtained from strategy \emph{ii)} as well,
 \begin{equation}
 \label{DST_subsets}
-\mathcal{O}_1 =  (0, 18, 28, 30) \quad \text{and} \quad  \mathcal{O}_2 = (0, 1, 2, 3, 4, 5, 43, 44, 45, 46, 47, 48) \qquad \text{(DST)}.  
+\mathcal{O}_1 =  \sitesOOne \quad \text{and} \quad  \mathcal{O}_2 = \sitesOTwo \qquad \text{(DST)}.  
 \end{equation}
 The features in strategy \emph{iii)} are denoted in table \ref{accuracy_scores} by \xcEOne, \xsOOne, \xcETwo, \xsOTwo,   according to the topological features and wavevector space subset used with each SSH system. 
 
@@ -767,7 +684,7 @@ H_{\rho_S} + H_{\hat{\rho}_S} \geq \ln\Big(\frac{e}{2}\Big).
 
 The information entropy density function $\rho_S$ devised in this section furnishes a physics-grounded interpretation of the information entropy signatures obtained in section \ref{information_entropy_signatures} from sheer data analysis of finite SSH systems in real space. In particular, the uncertainty relations \eqref{heisenberg} and \eqref{hirschman} express concisely the trade-off between the localizability of information in topological phase transitions in real space and wavevector space. 
 
-Perhaps the fundamental consequence of interpreting the information entropy density function $\rho_S(x)$ as the probability distribution resulting from an information entropy wave function $\psi_S(x)$ defined on a 1D manifold is that it reconciles the apparently conflicting notions of a local topological signal arising from a global property of the SSH systems. Indeed, while $\psi_S(x)$ is defined locally at every point of the 1D manifold, it is a single, global wave function encoding the distribution of topological information of an ensemble of SSH Hamiltonians. Therefore, the information entropy wave function $\psi_S(x)$ and its corresponding information entropy density function $\rho_S(x)$ can be pictured as emergent properties of an ensemble of quantum many-body systems.    
+Perhaps the fundamental consequence of interpreting the information entropy density function $\rho_S(x)$ as the probability distribution resulting from an information entropy wave function $\psi_S(x)$ defined on a 1D manifold is that it reconciles the apparently conflicting notions of a local topological signal arising from a global property of the SSH systems. Indeed, while $\psi_S(x)$ is defined locally at every point of the 1D manifold, it is a single, global wave function encoding the spatial distribution of topological information of an ensemble of SSH Hamiltonians close to phase transition boundaries in parameter space. Therefore, the information entropy wave function $\psi_S(x)$ and its corresponding information entropy density function $\rho_S(x)$ can be pictured as emergent properties of an ensemble of quantum many-body systems near phase transitions.    
 
 \section{Discussion}
 \label{discussion}

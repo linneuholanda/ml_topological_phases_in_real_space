@@ -341,7 +341,7 @@ and describes e.g. the hopping of electrons along a one-dimensional chain compri
 
 Many recent papers have explored the possibility of treating the general problem of determining phase transition boundaries of physical systems as machine learning tasks \cite{carrasquilla2017machine}$^-$\cite{rodriguez2018identifying}. In the particular case of topological phase transitions, the usual approach for supervised learning is to generate a data set $\big(H_1(k), W_1\big)$, ..., $\big(H_n(k), W_n\big)$ whose inputs are representations of Hamiltonians in wavevector space $H_i(k)$ and targets are their corresponding topological invariants $W_i$ (for the SSH model the topological invariant is the winding number). Our paper extends this task to the case of learning topological phase diagrams from input data in real space. Strikingly, we find that information localized on a few lattice sites in the bulk is sufficient to predict with high accuracy which topological phase a particular Hamiltonian belongs to.
 
-The main motivation for developing a data-driven approach based on real space is that the canonical method of choice for the analysis of topological systems, i.e. wavevector space computations of topological invariants, is often only feasible for systems with translational symmetry, which many physical systems of current interest (e.g. disordered systems in condensed matter) do not have. Furthermore, it is not always granted that the topological invariants of a physical system being investigated are known in advance, as is presently the case for many gapless insulators. In such cases, being able to engineer topological features that encode the topological states of a system while at the same time reducing the system's complexity may provide an alternative strategy. Moreover, since real space and wavevector space eigenvectors are related by Fourier transforms, the latter are essentially delocalized and therefore so is any information recovered from them. Constructing theoretical methods to trace the distribution of information in topological systems may be an essential prerequisite to discovering new topological invariants and features. The data-driven approach designed in this article addresses these issues. %In particular, we employ it to scrutinize the issue of localizability of information in topological condensed matter systems.
+The main motivation for developing a data-driven approach based on real space is that the canonical method of choice for the analysis of topological systems, i.e. wavevector space computations of topological invariants, is often only feasible for systems with translational symmetry, which many physical systems of current interest (e.g. disordered systems in condensed matter) do not have. Furthermore, it is not always granted that the topological invariants of a physical system being investigated are known in advance, as is presently the case for many gapless insulators. In such cases, being able to engineer topological features that encode the topological states of a system while at the same time reducing the system's complexity may provide an alternative strategy. Moreover, since real space and wavevector space eigenvectors are related by Fourier transforms, the latter are essentially delocalized and therefore so is any information recovered from them. Constructing theoretical methods to trace the distribution of information in topological systems may be an essential prerequisite to discovering new topological invariants and features. The data-driven approach designed in this article addresses these issues. 
 
 To investigate topological phases of matter in real space we have designed a novel supervised learning algorithm (here called eigenvector ensembling algorithm) tailored for the task of learning phase transition boundaries from local features. The algorithm is based on eigenvector decomposition and eigenvector ensembling and therefore will require minimal changes to be applicable to a broader class of data-driven physics problems. We describe the algorithm in detail in section \ref{the_eigenvector_ensembling_algorithm} and demonstrate its effectiveness by combining it with decision trees and random forests to recover the topological phase diagrams of SSH systems from local coordinates of eigenstates in real space. This is performed in section \ref{numerical_experiments}.
 
@@ -351,7 +351,7 @@ In possession of the information entropy signatures, we demonstrate how the symm
 
 The information entropy signatures are finally explored as theoretical constructs in terms of information entropy mass functions along the lattices. By taking their continuum limit and admitting that they are quantum in nature, we show how the information entropy signatures can be naturally understood in terms of emergent information entropy wave functions along the lattices. The theoretical formulation of the results obtained with machine learning in terms of emergent quantum mechanical wave functions allows us to establish Heisenberg and Hirschman uncertainty principles for the localizability of information entropy in topological phase transitions. The emergent information entropy wave functions are the theme of section \ref{emergent_information_entropy_wave_functions}.      
 
-The  discovery of information entropy signatures of topological phase transitions and their description as a measurable emergent phenomenon originating from the information entropy of ensembles of topological systems proximal to phase transition boundaries provide clear illustrations of how model explainability in machine learning can guide new discoveries in condensed matter and quantum materials physics, since the existence of these signals was established by analyzing data from several thousand SSH systems which, taken individually, could not have provided any concrete hint of their existence.%\citequote{pipeline_not_work}
+The  discovery of information entropy signatures of topological phase transitions and their description as a measurable emergent phenomenon originating from the information entropy of ensembles of topological systems proximal to phase transition boundaries provide clear illustrations of how model explainability in machine learning can guide new discoveries in condensed matter and quantum materials physics, since the existence of these signals was established by analyzing data from several thousand SSH systems which, taken individually, could not have provided any concrete hint of their existence.
 
 As of yet model explainability \cite{gilpin2018explaining}-\cite{roscher2020explainable} is one of the topics at the edge of machine learning research that has been little explored by the physics community working at the interface between the two disciplines. This raises important questions as to whether machine learning can in fact help to advance theoretical investigation in physics, since the majority of physics papers published on the subject are proofs of concept aimed at showing that modern machine learning techniques are capable of recognizing the relevant patterns in data from physical systems whose properties were known in advance. By proposing new concepts from the data analysis of physical systems of contemporary interest and knitting together ideas from topological phase transitions and information theory by dint of model explainability, we expect to draw the physics community's attention to this essential machine learning tool. 
 \begin{figure}
@@ -366,7 +366,7 @@ As of yet model explainability \cite{gilpin2018explaining}-\cite{roscher2020expl
 \label{the_eigenvector_ensembling_algorithm}
 The eigenvector ensembling algorithm consists of five steps: 1) Generating Hamiltonians in real space and their corresponding winding numbers; 2) Creating training, validation and test sets; 3) Training on real space eigenvectors of Hamiltonians in the training set; 4) Eigenvector ensembling and 5) Bootstrapping. We describe here in detail each of these steps as they were implemented in this work. For a comprehensive introduction to the concepts referenced in the steps below, we recommend the book \cite{friedman2001elements}.    
 \vspace{.3cm}
-\begin{enumerate}%[topsep=0pt, partopsep=0pt]
+\begin{enumerate}
 \item[1)] \textbf{Generating Hamiltonians and winding numbers:} we start generating a number of paremeterized Hamiltonians $H(\mathbf{t})$ in real space and their corresponding winding numbers $W(\mathbf{t})$, where $\mathbf{t} = (t_1, t_2,...,t_h)$ is a vector of $h$ hopping parameters (in the simplest case of the SSH model $h$ = 2). These Hamiltonians are $N\times N$ matrices, where $N$ is twice the number of unit cells in the chain.
 \item[2)] \textbf{Creating training, validation and test sets:} we split our set of parameterized Hamiltonians and winding numbers into training, validation and test sets, as is usualy done in machine learning. More explicitly, assume our hopping parameters vector $\mathbf{t}$ takes on the values $\mathbf{t}_1, \mathbf{t}_2, ..., \mathbf{t}_n$ corresponding to the Hamiltonian-winding number pairs ($H_1$, $W_1$), ..., ($H_n$, $W_n$). We partition the set \{($H_i$, $W_i$)$\mid$ $i=1,...,n$\} in three disjoint subsets: the training set, the validation set and the test set.
 \item[3)] \textbf{Training on eigenvectors in real space:} since each Hamiltonian $H_i$ is represented by an $N\times N$ matrix, each one will provide $N$ eigenvectors $\mathbf{v}_i^{(1)}, \mathbf{v}_i^{(2)},...,\mathbf{v}_i^{(N)}$ to our data set. Our supervised learning algorithm of choice will take as inputs the real space eigenvectors $\mathbf{v}^{(j)}_i$ of each Hamiltonian $H_i$ in the training set and be trained to learn the winding number $W_i$ of their parent Hamiltonian $H_i$. Therefore, our dataset will consist of eigenvector-winding number pairs $(\mathbf{v}_i^{(j)}, W_i)$.
@@ -477,16 +477,9 @@ Each of the information entropy signatures shown in figure \ref{feature_importan
 
 \begin{table}
 \begin{tabular}{||c@{\hskip 0.3in} c@{\hskip 0.3in} c@{\hskip 0.3in} c@{\hskip 0.3in} c@{\hskip 0.3in} c||} 
-%\caption{ACCURACY SCORES OF NUMERICAL EXPERIMENTS.} \label{numerical_results}
-%\begin{table}[th]
-%\caption{An Example of a Table}
-%\centering\label{table_example}
-%\begin{tabular}{|Sc*{9}{c|}}
-%\toprule
 \hline
 \SSHSys               &\Feat             &\ValEig            &\TestEig           &\ValHam              &\TestHam         \tableRowHeaderEnd 
-%\midrule
-%                     &                  &                   &                   &                     &                   \tableRow{0.3}
+
 1                     &\xOne             &\xOneEigVal        &\xOneEigTest       &\xOneHamVal          &\xOneHamTest       \tableRowEnd
 1                     &\xSOne            &\xSOneEigVal       &\xSOneEigTest      &\xSOneHamVal         &\xSOneHamVal       \tableRowEnd
 1                     &\xcOne            &\xcOneEigVal       &\xcOneEigTest      &\xcOneHamVal         &\xcOneHamTest      \tableRowEnd
@@ -503,7 +496,7 @@ Each of the information entropy signatures shown in figure \ref{feature_importan
 2                     &\xsTwo            &\xsTwoEigVal       &\xsTwoEigTest      &\xsTwoHamVal         &\xsTwoHamTest      \tableRowEnd
 2                     &\xsOTwo           &\xsOTwoEigVal      &\xsOTwoEigTest     &\xsOTwoHamVal        &\xsOTwoHamTest     \tableRowEnd
 2                     &\xsSOTwo          &\xsSOTwoEigVal     &\xsSOTwoEigTest    &\xsSOTwoHamVal       &\xsSOTwoHamTest    \tableRowEnd
-%\bottomrule
+
 \hline
 \end{tabular}
 \caption{\label{accuracy_scores}Accuracy scores of numerical experiments. The features used to train the decision trees (SSH 1) or random forests (SSH 2) in the numerical experiments with SSH systems were as follows. Real space features: all real space lattice sites (\xalpha) (sections \ref{experiment_1} and \ref{experiment_2}); real space lattice sites from subset $\mathcal{S}_{\alpha}$ (\xSalpha) (equation \eqref{lattice_subsets}). DCT topological features: all DCT topological features (\xcalpha) (equation \eqref{DCT}); DCT topological features from subset $\mathcal{E}_\alpha$ (\xcEalpha) (equation \eqref{DCT_subsets}); DCT topological features from subset $\mathcal{E}_\alpha$ computed using only real space lattice sites $\mathcal{S}_{\alpha}$ (\xcSEalpha) (equation \eqref{DCT_very_compressed}). DST topological features: all DST topological features (\xsalpha) (equation \eqref{DST}); DST topological features from subset $\mathcal{O}_\alpha$ (\xsOalpha) (equation \eqref{DST_subsets}); DST topological features from subset $\mathcal{O}_\alpha$ computed using only real space lattice sites $\mathcal{S}_{\alpha}$ (\xsSOalpha) (equation \eqref{DST_very_compressed}). }
@@ -518,10 +511,6 @@ Each of the information entropy signatures shown in figure \ref{feature_importan
 In this section, we explore the information entropy signatures obtained in section \ref{information_entropy_signatures} from a signal processing perspective. As we shall see, this will enable us to perform two important unsupervised learning tasks on topological systems: dimensionality reduction and data compression. 
 
 As a cursory glance at figures \ref{feature_importances_ssh1} and \ref{feature_importances_ssh2} seems to suggest, the existence of peaks and symmetries in information entropy signatures can be exploited as a powerful dimensionality reduction tool: by keeping only the most relevant lattice sites in an information entropy signature, the amount of data needed to characterize the topological phase of a SSH system can be largely decreased with little loss of information. Nevertheless, given that the topological phase of a SSH system is a global property of the whole lattice, it is natural to expect that it should be possible to engineer global features from real space coordinates. Here we show how the symmetries in real space eigenvectors and information entropy signatures can be exploited to engineer new global topological features, leading to an effective compression of topological information.
-
-%simply extracting local coordinates of real space eigenvectors may not be the most effective way to condense a lattice's topological %information. Here we explore the engineering of new global topological features in real space, and how these global features lead to an %effective compression of topological information. 
-
-%The information entropy signatures in wavevector space can be easily computed from their counterparts in real space (figures %\ref{feature_importances_ssh1} and \ref{feature_importances_ssh2}) using equation \eqref{fourier_shannon_wave_function} and assuming that the %real space information entropy wave functions are real. 
 
 Given a real space eigenvector $x[m]$, we can compute its coordinates in wavevector space using the Discrete Fourier Transform (DFT),  
 \begin{equation}
@@ -607,7 +596,7 @@ The accuracy scores obtained with the real space features \xSalpha\ and the DCT 
 \label{emergent_information_entropy_wave_functions}
 
 The information entropy signatures that we have been investigating pose an immediate theoretical question: how can a signal that is locally defined arise from a global property of the whole SSH lattice?    
-In this section we venture into a theoretical exploration of the information entropy signatures in the hope of elucidating this issue. Our goal is to arrive at a theoretical framework that will allow us to interpret the information entropy signatures in terms of quantum mechanics.  %The discussion presented here will be complemented by the numerical experiments in the section \textbf{Numerical explorations on longer lattices} in the Supplementary Material.
+In this section we venture into a theoretical exploration of the information entropy signatures in the hope of elucidating this issue. Our goal is to arrive at a theoretical framework that will allow us to interpret the information entropy signatures in terms of quantum mechanics.  
 
 We can think of the Shannon information entropy signatures in figures \ref{feature_importances_ssh1} and \ref{feature_importances_ssh2} as discrete information entropy mass functions that, in the continuum (i.e. macroscopic) limit of an infinite chain, lead to local entropy density functions along the lattices, which themselves become 1D manifolds. By mapping the lattice to a  partition of the 1D manifold, the cumulative distribution of topological information in the continuum limit will be given by
 
@@ -1463,184 +1452,177 @@ The authors declare no competing financial or non-financial interests.
 \section*{Additional information}
 
 Correspondence and requests for materials should be addressed to N. L. Holanda. 
-%The source code used to run simulations is available on \href{https://github.com/linneuholanda/ml_topological_phases_in_real_space}{Github}.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% Supplementary %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% Supplementary %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% Supplementary %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% Supplementary %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% Supplementary %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% Supplementary %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% Supplementary %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% Supplementary %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% Supplementary %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Supplementary %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Supplementary %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Supplementary %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Supplementary %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Supplementary %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Supplementary %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Supplementary %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Supplementary %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Supplementary %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-%\pagebreak
+%%\pagebreak
 
-\begin{figure}
-  \centering
-  \includegraphics[width=.37\textwidth]{\SSHModel}
-  \caption{Schematic set-up of a 1D SSH system. Here $t_1$ and $t_2$ are nearest-neighbor hoppings while $T_1$ and $T_2$ are second nearest-neighbor hoppings.}
-\label{fig:model}
-\end{figure}
+%\begin{figure}
+%  \centering
+%  \includegraphics[width=.37\textwidth]{\SSHModel}
+%  \caption{Schematic set-up of a 1D SSH system. Here $t_1$ and $t_2$ are nearest-neighbor hoppings while $T_1$ and $T_2$ are second nearest-neighbor hoppings.}
+%\label{fig:model}
+%\end{figure}
 
-\begin{figure}%[h!]
-  \centering
-  \includegraphics[width=.37\textwidth]{\WindingNumber}
-  \caption{Winding number. The winding number of a closed, oriented curve with respect to a reference point is a topological invariant that counts how many times the curve winds around the point. Picture credits: Jim Belk, public domain.}
-\label{fig:winding}
-\end{figure}
+%\begin{figure}
+%  \centering
+%  \includegraphics[width=.37\textwidth]{\WindingNumber}
+%  \caption{Winding number. The winding number of a closed, oriented curve with respect to a reference point is a topological invariant that counts how many times the curve winds around the point. Picture credits: Jim Belk, public domain.}
+%\label{fig:winding}
+%\end{figure}
 
-\section*{Supplementary Material}
-\subsection*{The SSH model}
-\label{sshapp}
+%\section*{Supplementary Material}
+%\subsection*{The SSH model}
+%\label{sshapp}
 
-The SSH model \cite{asboth2016short} describes the movement of free electrons along a dimerized chain whose basic units consist of two distinct atoms. This movement, usually called ``hopping'' in the literature, can be made either between atoms in a unit cell or between unit cells, and the allowed hopping rules for a given system completely determine its Hamiltonian. This is because the kinetic energies of the electrons are parameterized by a vector of real numbers $\mathbf{t}$ that also encodes hopping terms, thus allowing for a compact mathematical description of a Hamiltonian in terms of creation/annihilation operators as
-\begin{equation}
-\label{SSH}
-\mathbf{H}(\mathbf{t})=\mathbf{c}^{\dagger}H(\mathbf{t})\mathbf{c}
-\end{equation}
-where the column vector
-\begin{equation*}
-\mathbf{c} =\Big(c^{A}_1,c^{B}_1,\cdots,c^{A}_\frac{N}{2},c^{B}_\frac{N}{2}\Big)^T
-\end{equation*}
-contains annihilation operators $c^{A(B)}_p$ that erase electrons at atom A (B) and lattice site $p$ and similarly the row vector
-\begin{equation*}
-\mathbf{c}^\dagger =\Big(c^{A\dagger}_1,c^{B\dagger}_1,\cdots,c^{A\dagger}_\frac{N}{2},c^{B\dagger}_\frac{N}{2}\Big)
-\end{equation*}
-contains creation operators $c^{A(B)\dagger}_p$ that produce electrons at atom A (B) and lattice site $p$. Please note that $N$ is twice the number of unit cells in the chain and therefore an even integer.
+%The SSH model \cite{asboth2016short} describes the movement of free electrons along a dimerized chain whose basic units consist of two distinct atoms. This movement, usually called ``hopping'' in the literature, can be made either between atoms in a unit cell or between unit cells, and the allowed hopping rules for a given system completely determine its Hamiltonian. This is because the kinetic energies of the electrons are parameterized by a vector of real numbers $\mathbf{t}$ that also encodes hopping terms, thus allowing for a compact mathematical description of a Hamiltonian in terms of creation/annihilation operators as
+%\begin{equation}
+%\label{SSH}
+%\mathbf{H}(\mathbf{t})=\mathbf{c}^{\dagger}H(\mathbf{t})\mathbf{c}
+%\end{equation}
+%where the column vector
+%\begin{equation*}
+%\mathbf{c} =\Big(c^{A}_1,c^{B}_1,\cdots,c^{A}_\frac{N}{2},c^{B}_\frac{N}{2}\Big)^T
+%\end{equation*}
+%contains annihilation operators $c^{A(B)}_p$ that erase electrons at atom A (B) and lattice site $p$ and similarly the row vector
+%\begin{equation*}
+%\mathbf{c}^\dagger =\Big(c^{A\dagger}_1,c^{B\dagger}_1,\cdots,c^{A\dagger}_\frac{N}{2},c^{B\dagger}_\frac{N}{2}\Big)
+%\end{equation*}
+%contains creation operators $c^{A(B)\dagger}_p$ that produce electrons at atom A (B) and lattice site $p$. Please note that $N$ is twice the number of unit cells in the chain and therefore an even integer.
 
-The convenience of equation \eqref{SSH} is that all information about a system such as its eigenstates and eigenenergies can be recovered from the $N\times N$ matrix $H(\mathbf{t})$. We can thus think of the vectors $\mathbf{t}$ in parameter space as very compact representations of SSH models: each point in $\mathbf{t}$-space can be mapped to a $N\times N$ matrix $H(\mathbf{t})$ whose eigenvectors and eigenvalues can then be computed, as is usually done in quantum mechanics. As an example, a general matrix $H(\mathbf{t})$ describing a SSH system with hoppings between nearest and second nearest neighbors is given by
-\begin{equation}\label{hmatrix}
-H(t_1,t_2,T_1,T_2)=\left(
-  \begin{array}{cccccc}
-    0 & t_1 & 0 & T_1 & 0 & \cdots \\
-    t_1 & 0 & t_2& 0 & T_2 & \cdots\\
-    0 & t_2 & 0 & t_1 & 0 & \cdots\\
-    T_1 & 0 & t_1 & 0 & t_2 & \cdots\\
-    0 & T_2 & 0 & t_2 &  0& \cdots\\
-    \vdots & \vdots    & \vdots & \vdots &  \vdots & \ddots\\
-  \end{array}
-  \right)_{N \times N}.
-\end{equation}
-Knowing the vector $\mathbf{t}=(t_1,t_2,T_1,T_2)$ corresponding to a particular system described by the Hamiltonian in equation \eqref{hmatrix} should suffice to compute any of its physical properties, including its topological phase. Figure \ref{fig:model} depicts a SSH system described by equation \eqref{hmatrix}.
+%The convenience of equation \eqref{SSH} is that all information about a system such as its eigenstates and eigenenergies can be recovered from the $N\times N$ matrix $H(\mathbf{t})$. We can thus think of the vectors $\mathbf{t}$ in parameter space as very compact representations of SSH models: each point in $\mathbf{t}$-space can be mapped to a $N\times N$ matrix $H(\mathbf{t})$ whose eigenvectors and eigenvalues can then be computed, as is usually done in quantum mechanics. As an example, a general matrix $H(\mathbf{t})$ describing a SSH system with hoppings between nearest and second nearest neighbors is given by
+%\begin{equation}\label{hmatrix}
+%H(t_1,t_2,T_1,T_2)=\left(
+%  \begin{array}{cccccc}
+%    0 & t_1 & 0 & T_1 & 0 & \cdots \\
+%    t_1 & 0 & t_2& 0 & T_2 & \cdots\\
+%    0 & t_2 & 0 & t_1 & 0 & \cdots\\
+%    T_1 & 0 & t_1 & 0 & t_2 & \cdots\\
+%    0 & T_2 & 0 & t_2 &  0& \cdots\\
+%    \vdots & \vdots    & \vdots & \vdots &  \vdots & \ddots\\
+%  \end{array}
+%  \right)_{N \times N}.
+%\end{equation}
+%Knowing the vector $\mathbf{t}=(t_1,t_2,T_1,T_2)$ corresponding to a particular system described by the Hamiltonian in equation \eqref{hmatrix} should suffice to compute any of its physical properties, including its topological phase. Figure \ref{fig:model} depicts a SSH system described by equation \eqref{hmatrix}.
 
-The reason why topological materials garnered so much interest in recent years is that their physical properties are topologically robust.
-This means that these properties are stable under continuous (i.e., adiabatic) mathematical operations performed on the system's underlying wave functions. This topological robustness is expressed theoretically in terms of a topological invariant that characterizes different phases of a system. In the particular case of the SSH model, the topological invariant used to classify the topological phases is the winding number.
+%The reason why topological materials garnered so much interest in recent years is that their physical properties are topologically robust.
+%This means that these properties are stable under continuous (i.e., adiabatic) mathematical operations performed on the system's underlying wave functions. This topological robustness is expressed theoretically in terms of a topological invariant that characterizes different phases of a system. In the particular case of the SSH model, the topological invariant used to classify the topological phases is the winding number.
 
-The winding number is a topological property of any closed, oriented curve that measures how many times the curve winds around a point that does not belong to itself. It can be any integer and is usually chosen to be positive when the curve winds in counterclockwise motion with respect to the reference point (equivalently, when a closed, oriented curve winds in clockwise motion around a reference point its winding number is negative). Figure \ref{fig:winding} shows several closed, oriented curves and their winding numbers computed with respect to a given point.
+%The winding number is a topological property of any closed, oriented curve that measures how many times the curve winds around a point that does not belong to itself. It can be any integer and is usually chosen to be positive when the curve winds in counterclockwise motion with respect to the reference point (equivalently, when a closed, oriented curve winds in clockwise motion around a reference point its winding number is negative). Figure \ref{fig:winding} shows several closed, oriented curves and their winding numbers computed with respect to a given point.
 
-An interesting property of topological invariants like the winding number is that they are a global feature of geometric objects: for each of the curves in figure \ref{fig:winding} for example the winding number is a property of the whole curve that cannot be defined locally for each of its points. This fundamental characteristic of topological invariants makes the study of topological phases of matter from local lattice data a challenging task.   
+%An interesting property of topological invariants like the winding number is that they are a global feature of geometric objects: for each of the curves in figure \ref{fig:winding} for example the winding number is a property of the whole curve that cannot be defined locally for each of its points. This fundamental characteristic of topological invariants makes the study of topological phases of matter from local lattice data a challenging task.   
 
-For SSH systems with translational symmetry like the finite systems with periodic boundary conditions investigated in the article, the winding number is usually computed in wavevector space via
-\begin{equation}\label{winding_number}
-W=\frac{1}{4\pi i}\int_0^{2\pi} dk Tr( \sigma_3 H(k)^{-1} \partial_k H(k)),
-\end{equation}
-where $H(k)$ is the kernel in wavevector space of a Hamiltonian $\mathbf{H}$$($$\mathbf{t}$$)$ and $\sigma_3$ is the chiral operator. Equation \eqref{winding_number} can be evaluated for several Hamiltonians by varying the parameter $\mathbf{t}$, resulting in phase diagrams in parameter space like the ones shown in figure 1 in the article. %\ref{fig:phasediagrams}.
+%For SSH systems with translational symmetry like the finite systems with periodic boundary conditions investigated in the article, the winding number is usually computed in wavevector space via
+%\begin{equation}\label{winding_number}
+%W=\frac{1}{4\pi i}\int_0^{2\pi} dk Tr( \sigma_3 H(k)^{-1} \partial_k H(k)),
+%\end{equation}
+%where $H(k)$ is the kernel in wavevector space of a Hamiltonian $\mathbf{H}$$($$\mathbf{t}$$)$ and $\sigma_3$ is the chiral operator. Equation \eqref{winding_number} can be evaluated for several Hamiltonians by varying the parameter $\mathbf{t}$, resulting in phase diagrams in parameter space like the ones shown in figure 1 in the article.
 
-\begin{figure}
-\centering
-\subfigure[]{\label{eng_feat_ssh1:a}\includegraphics[width=.32\textwidth]{\SSHOneCompressedRealSpacePhaseDiagram}}
-\subfigure[]{\label{eng_feat_ssh1:b}\includegraphics[width=.32\textwidth]{\SSHOneCompressedDCTPhaseDiagram}}
-\subfigure[]{\label{eng_feat_ssh1:c}\includegraphics[width=.32\textwidth]{\SSHOneCompressedDSTPhaseDiagram}}
-\caption{Phase diagrams learned from compressed representations of the SSH 1 system. (a) Phase diagram learned using the real space features \xSOne.  (b) Phase diagram learned from the DCT topological features \xcSEOne. (b) Phase diagram learned from the DST topological features \xsSOOne.}
-\label{eng_feat_ssh1}
-\end{figure}
+%\begin{figure}
+%\centering
+%\subfigure[]{\label{eng_feat_ssh1:a}\includegraphics[width=.32\textwidth]{\SSHOneCompressedRealSpacePhaseDiagram}}
+%\subfigure[]{\label{eng_feat_ssh1:b}\includegraphics[width=.32\textwidth]{\SSHOneCompressedDCTPhaseDiagram}}
+%\subfigure[]{\label{eng_feat_ssh1:c}\includegraphics[width=.32\textwidth]{\SSHOneCompressedDSTPhaseDiagram}}
+%\caption{Phase diagrams learned from compressed representations of the SSH 1 system. (a) Phase diagram learned using the real space features \xSOne.  (b) Phase diagram learned from the DCT topological features \xcSEOne. (b) Phase diagram learned from the DST topological features \xsSOOne.}
+%\label{eng_feat_ssh1}
+%\end{figure}
 
-\begin{figure}
-\centering
-\subfigure[]{\label{eng_feat_ssh2:a}\includegraphics[width=.32\textwidth]{\SSHTwoCompressedRealSpacePhaseDiagram}}
-\subfigure[]{\label{eng_feat_ssh2:b}\includegraphics[width=.32\textwidth]{\SSHTwoCompressedDCTPhaseDiagram}}
-\subfigure[]{\label{eng_feat_ssh2:c}\includegraphics[width=.32\textwidth]{\SSHTwoCompressedDSTPhaseDiagram}}
-\caption{Phase diagrams learned from compressed representations of the SSH 2 system. (a) Phase diagram learned using the real space features \xSTwo.  (b) Phase diagram learned from the DCT topological features \xcSETwo. (b) Phase diagram learned from the DST topological features \xsSOTwo.}
-\label{eng_feat_ssh2}
-\end{figure}
+%\begin{figure}
+%\centering
+%\subfigure[]{\label{eng_feat_ssh2:a}\includegraphics[width=.32\textwidth]{\SSHTwoCompressedRealSpacePhaseDiagram}}
+%\subfigure[]{\label{eng_feat_ssh2:b}\includegraphics[width=.32\textwidth]{\SSHTwoCompressedDCTPhaseDiagram}}
+%\subfigure[]{\label{eng_feat_ssh2:c}\includegraphics[width=.32\textwidth]{\SSHTwoCompressedDSTPhaseDiagram}}
+%\caption{Phase diagrams learned from compressed representations of the SSH 2 system. (a) Phase diagram learned using the real space features \xSTwo.  (b) Phase diagram learned from the DCT topological features \xcSETwo. (b) Phase diagram learned from the DST topological features \xsSOTwo.}
+%\label{eng_feat_ssh2}
+%\end{figure}
 
-\subsection*{Learning topological phases from real space data}
+%\subsection*{Learning topological phases from real space data}
 
-%The main motivations for developing a data-driven approach based on real space are that wavevector space computations such as eq. %\eqref{winding_number} are only possible for systems with translational symmetry, which many physical systems of current interest (e.g. %disordered systems in condensed matter) do not have. Moreover, since real space and wavevector space eigenvectors are related by Fourier %transforms, the latter are essentially delocalized and therefore so is any information recovered from them. We argue here that a data-driven %approach based on real space offers a viable alternative to wavevector space computations that addresses these shortcomings.
+%We now discuss the principles that lead us to the intuition that learning topological phases from local real space data should be possible. First, while the topological invariants that characterize distinct topological phases are usually computed in wavevector space, the topological properties of a Hamiltonian are the same regardless of the basis in Hilbert space used to represent it. Thus, information on the topological phase of a Hamiltonian should still be available when it is represented in real lattice space. Second, even though the topological properties of a Hamiltonian are global, meaning that in general they cannot be said to be localized at a particular lattice site, in parameter space topology is indeed a local property: knowing the vector $\mathbf{t}$ associated with a Hamiltonian completely determines its topological phase.
 
-We now discuss the principles that lead us to the intuition that learning topological phases from local real space data should be possible.
+%In a data-driven approach, locality is often exploited by means of a local constancy hypothesis \cite{goodfellow2016deep}. Mathematically, this policy prescribes the value of a function $W(\mathbf{t}')$ at points where it is unknown in a vicinity of a data point $\mathbf{t}$ as approximately equal to its known value $W(\mathbf{t})$,
+%\begin{equation}
+%\label{localconstancy}
+%W(\mathbf{t} + \boldsymbol{\delta}) \approx W(\mathbf{t}).
+%\end{equation}
 
-First, while the topological invariants that characterize distinct topological phases are usually computed in wavevector space, the topological properties of a Hamiltonian are the same regardless of the basis in Hilbert space used to represent it. Thus, information on the topological phase of a Hamiltonian should still be available when it is represented in real lattice space. 
+%That such a policy will be successful in classifying topological phases in parameter space can be visualized in figure 1 in the article %\ref{fig:phasediagrams}, 
+%where we draw phase diagrams of SSH models with first-neighbor (figure 1(a)) and first- and second-neighbor (figure 1(b)) hoppings. In figure 1(a) for example, it is clear that knowing a particular Hamiltonian $H(t_1,t_2)$ with winding number $W = 0$ (that is, in one of the red regions) means that there is a small neighborhood around $(t_1,t_2)$ in which all Hamiltonians  belong to the same topological phase. Were we able to collect data on the topological phases of several Hamiltonians in parameter space, the problem of learning phase boundaries in a supervised setting would reduce to a standard problem of curve estimation which could be tackled with conventional machine learning algorithms.
 
-Second, even though the topological properties of a Hamiltonian are global, meaning that in general they cannot be said to be localized at a particular lattice site, in parameter space topology is indeed a local property: knowing the vector $\mathbf{t}$ associated with a Hamiltonian completely determines its topological phase.
+%It does not immediately follow, however, that the same strategy will be successful in real space. Indeed, at first sight it may appear that a local constancy policy should be able to easily exploit locality in real space through the diagonalization maps $v^{(j,l)}: \mathbb{R}^h \rightarrow \mathbb{R}^{N}$,
 
-In a data-driven approach, locality is often exploited by means of a local constancy hypothesis \cite{goodfellow2016deep}. Mathematically, this policy prescribes the value of a function $W(\mathbf{t}')$ at points where it is unknown in a vicinity of a data point $\mathbf{t}$ as approximately equal to its known value $W(\mathbf{t})$,
-\begin{equation}
-\label{localconstancy}
-W(\mathbf{t} + \boldsymbol{\delta}) \approx W(\mathbf{t}).
-\end{equation}
+%\begin{equation}
+%\label{parameter_to_real}
+%\mathbf{t} = (t_1,..,t_h) \rightarrow \Big(v^{(j,1)}(t_1,...,t_h),...,v^{(j,N)}(t_1,...,t_h)\Big) = \mathbf{v}^{(j)}(\mathbf{t}) 
+%\end{equation}
+%where $j$ $=$ $1$, ..., $N$ and $\mathbf{v}^{(j)}$$($$\mathbf{t}$$)$ is an eigenvector of the Hamiltonian $H$$($$\mathbf{t}$$)$. The trouble with this reasoning is that it disregards the high dimensionality of real space, i.e., the fact that $h$ $\ll$ $N$.
 
-That such a policy will be successful in classifying topological phases in parameter space can be visualized in figure 1 in the article %\ref{fig:phasediagrams}, 
-where we draw phase diagrams of SSH models with first-neighbor (figure 1(a)) and first- and second-neighbor (figure 1(b)) hoppings. In figure 1(a) for example, it is clear that knowing a particular Hamiltonian $H(t_1,t_2)$ with winding number $W = 0$ (that is, in one of the red regions) means that there is a small neighborhood around $(t_1,t_2)$ in which all Hamiltonians  belong to the same topological phase. Were we able to collect data on the topological phases of several Hamiltonians in parameter space, the problem of learning phase boundaries in a supervised setting would reduce to a standard problem of curve estimation which could be tackled with conventional machine learning algorithms.
+%This fact is well illustrated by the numerical experiments discussed in the article. Although it may seem from figures 2(b) and 3(b) (from the article) in 2D parameter space that we have used a large number of data points for this learning task, it is important to note that in the numerical experiments the decision trees have taken as inputs 100D eigenvectors in real lattice space. In such high-dimensional spaces, the data should be much sparser.
 
-It does not immediately follow, however, that the same strategy will be successful in real space. Indeed, at first sight it may appear that a local constancy policy should be able to easily exploit locality in real space through the diagonalization maps $v^{(j,l)}: \mathbb{R}^h \rightarrow \mathbb{R}^{N}$,
+%The difficulty arising from machine learning problems in high-dimensional spaces is commonly referred to as \emph{the curse of dimensionality} \cite{bishop2006pattern}. It essentially expresses the fact that the amount of data needed to ensure a machine learning algorithm will generalize well out of its training set grows exponentially with the dimensionality of feature space.
 
-\begin{equation}
-\label{parameter_to_real}
-\mathbf{t} = (t_1,..,t_h) \rightarrow \Big(v^{(j,1)}(t_1,...,t_h),...,v^{(j,N)}(t_1,...,t_h)\Big) = \mathbf{v}^{(j)}(\mathbf{t}) 
-\end{equation}
-where $j$ $=$ $1$, ..., $N$ and $\mathbf{v}^{(j)}$$($$\mathbf{t}$$)$ is an eigenvector of the Hamiltonian $H$$($$\mathbf{t}$$)$. The trouble with this reasoning is that it disregards the high dimensionality of real space, i.e., the fact that $h$ $\ll$ $N$.
+%These apparently conflicting facets of our learning problem are harmonized by the manifold hypothesis \cite{cayton2005algorithms,narayanan2010sample}: even though the eigenvectors exist in a high-dimensional space (100D in the numerical experiments), they are actually much lower-dimensional surfaces (2D in the numerical experiments) embedded in this space. Furthermore, the different classes in our problem correspond to different submanifolds as can easily be seen in parameter space (this is often referred to as the manifold hypothesis for classification \cite{rifai2011manifold}). As we have demonstrated in the article, only a small fraction of the 2D surfaces (i.e., eigenvector lattice coordinates $v^{(j,l)}(t_1,t_2)$) were needed to retrieve the 2D parameter space phase diagrams from the 100D real space data, which reveals that there is a lot of redundancy in the information content of real space eigenvectors. This fact can be exploited to generate compressed representations of SSH systems that still carry most of the relevant topological information, as can be seen in figures \ref{eng_feat_ssh1} and \ref{eng_feat_ssh2}.  
 
-This fact is well illustrated by the numerical experiments discussed in the article. Although it may seem from figures 2(b) and 3(b) (from the article) in 2D parameter space that we have used a large number of data points for this learning task, it is important to note that in the numerical experiments the decision trees have taken as inputs 100D eigenvectors in real lattice space. In such high-dimensional spaces, the data should be much sparser.
+%\subsection*{Numerical explorations on longer lattices}
 
-The difficulty arising from machine learning problems in high-dimensional spaces is commonly referred to as \emph{the curse of dimensionality} \cite{bishop2006pattern}. It essentially expresses the fact that the amount of data needed to ensure a machine learning algorithm will generalize well out of its training set grows exponentially with the dimensionality of feature space.
+%A natural question that comes to mind regarding the information entropy signatures presented here is whether these signals are artifacts of the numerical procedure used to generate them.
 
-These apparently conflicting facets of our learning problem are harmonized by the manifold hypothesis \cite{cayton2005algorithms,narayanan2010sample}: even though the eigenvectors exist in a high-dimensional space (100D in the numerical experiments), they are actually much lower-dimensional surfaces (2D in the numerical experiments) embedded in this space. Furthermore, the different classes in our problem correspond to different submanifolds as can easily be seen in parameter space (this is often referred to as the manifold hypothesis for classification \cite{rifai2011manifold}). As we have demonstrated in the article, only a small fraction of the 2D surfaces (i.e., eigenvector lattice coordinates $v^{(j,l)}(t_1,t_2)$) were needed to retrieve the 2D parameter space phase diagrams from the 100D real space data, which reveals that there is a lot of redundancy in the information content of real space eigenvectors. This fact can be exploited to generate compressed representations of SSH systems that still carry most of the relevant topological information, as can be seen in figures \ref{eng_feat_ssh1} and \ref{eng_feat_ssh2}.  
+%The eigenvector ensembling algorithm used in this work contains steps for generating data (step 1), sampling training data (step 2) and training a supervised learning algorithm on the sampled training data (step 3). Each of these steps can generate misleading artifacts that do not represent real properties of the physical systems we are investigating.
 
-\subsection*{Numerical explorations on longer lattices}
+%Artifacts resulting from randomization in the eigenvector ensembling algorithm can be traced to sampling (step 2) or any random components in the supervised learning algorithm used (step 3). As an example, random forests allocate subsets of features stochastically to each of its decision trees, thus generating a randomization effect. The bootstrapping (step 5) is designed to remove artifacts originating from randomization in the eigenvector ensembling algorithm.
 
-A natural question that comes to mind regarding the information entropy signatures presented here is whether these signals are artifacts of the numerical procedure used to generate them.
+%There are still artifacts that might arise from the hyperparameters used to generate the data. These hyperparameters include lattice size and grid specifications (i.e., choices regarding the discretization of parameter space). Such artifacts can only be controlled for by bootstrapping over different hyperparameter settings, which may be computationally prohibitive. Intuitively, the hyperparameter we identify as likely having the most noticeable effect in the information entropy signatures is lattice size.
 
-The eigenvector ensembling algorithm used in this work contains steps for generating data (step 1), sampling training data (step 2) and training a supervised learning algorithm on the sampled training data (step 3). Each of these steps can generate misleading artifacts that do not represent real properties of the physical systems we are investigating.
+%All results presented in the article were obtained for lattices with 50 unit cells. Each cell contains two different atoms, thus leading to 100$\times$100 Hamiltonian matrices and their corresponding eigenvectors in $\mathbb{R}^{100}$. Here we present the information entropy signatures obtained for lattices with 70, 90 and 110 unit cells for both experiments (figures \ref{feature_importances_ssh1_longer_lattices} and \ref{feature_importances_ssh2_longer_lattices}). These signals were generated in exactly the same way as the information entropy signatures obtained for 50 unit cells (i.e., after bootstrapping $n_{exp}$ = 100 times and averaging lattice site relevances across all iterations).
 
-Artifacts resulting from randomization in the eigenvector ensembling algorithm can be traced to sampling (step 2) or any random components in the supervised learning algorithm used (step 3). As an example, random forests allocate subsets of features stochastically to each of its decision trees, thus generating a randomization effect. The bootstrapping (step 5) is designed to remove artifacts originating from randomization in the eigenvector ensembling algorithm.
+%It is clear from figures \ref{feature_importances_ssh1_longer_lattices} and \ref{feature_importances_ssh2_longer_lattices} that the patterns seen with 50 unit cells (figures 6(a) and 6(b) in the article) are stable across higher lattice sizes, with finer details emerging in the signals as the lattice size is increased. This naturally leads us to speculation about the continuum limit of information entropy signatures, a matter formally explored in the article.  
 
-There are still artifacts that might arise from the hyperparameters used to generate the data. These hyperparameters include lattice size and grid specifications (i.e., choices regarding the discretization of parameter space). Such artifacts can only be controlled for by bootstrapping over different hyperparameter settings, which may be computationally prohibitive. Intuitively, the hyperparameter we identify as likely having the most noticeable effect in the information entropy signatures is lattice size.
+%\begin{figure}
+%\centering
+%\subfigure[]{\label{feature_importances_ssh1_140}\includegraphics[width=.32\textwidth]{\SSHOneEntropySignatureOneFourZero}}
+%\subfigure[]{\label{feature_importances_ssh1_180}\includegraphics[width=.32\textwidth]{\SSHOneEntropySignatureOneEightZero}}
+%\subfigure[]{\label{feature_importances_ssh1_220}\includegraphics[width=.32\textwidth]{\SSHOneEntropySignatureTwoTwoZero}}
+%\caption{Information entropy signatures obtained for experiment 1 with higher lattice sizes. (a) Information entropy signature for 70 unit cells. (b) Information entropy signature for 90 unit cells. (c) Information entropy signature for 110 unit cells.}
+%\label{feature_importances_ssh1_longer_lattices}
+%\end{figure}
+%\begin{figure}
+%\centering
+%\subfigure[]{\label{feature_importances_ssh2_140}\includegraphics[width=.32\textwidth]{\SSHTwoEntropySignatureOneFourZero}}
+%\subfigure[]{\label{feature_importances_ssh2_180}\includegraphics[width=.32\textwidth]{\SSHTwoEntropySignatureOneEightZero}}
+%\subfigure[]{\label{feature_importances_ssh2_220}\includegraphics[width=.32\textwidth]{\SSHTwoEntropySignatureTwoTwoZero}}
+%\caption{Information entropy signatures obtained for experiment 2 with higher lattice sizes. (a) Information entropy signature for 70 unit cells. (b) Information entropy signature for 90 unit cells. (c) Information entropy signature for 110 unit cells.}
+%\label{feature_importances_ssh2_longer_lattices}
+%\end{figure}
 
-All results presented in the article were obtained for lattices with 50 unit cells. Each cell contains two different atoms, thus leading to 100$\times$100 Hamiltonian matrices and their corresponding eigenvectors in $\mathbb{R}^{100}$. Here we present the information entropy signatures obtained for lattices with 70, 90 and 110 unit cells for both experiments (figures \ref{feature_importances_ssh1_longer_lattices} and \ref{feature_importances_ssh2_longer_lattices}). These signals were generated in exactly the same way as the information entropy signatures obtained for 50 unit cells (i.e., after bootstrapping $n_{exp}$ = 100 times and averaging lattice site relevances across all iterations).
+%\pagebreak 
 
-It is clear from figures \ref{feature_importances_ssh1_longer_lattices} and \ref{feature_importances_ssh2_longer_lattices} that the patterns seen with 50 unit cells (figures 6(a) and 6(b) in the article) are stable across higher lattice sizes, with finer details emerging in the signals as the lattice size is increased. This naturally leads us to speculation about the continuum limit of information entropy signatures, a matter formally explored in the article.  
+%\begin{figure}
+%\centering
+%\subfigure[]{\label{cumulative_entropy_ssh1_140}\includegraphics[width=.32\textwidth]{\SSHOneCumulativeEntropyOneFourZero}}
+%\subfigure[]{\label{cumulative_entropy_ssh1_180}\includegraphics[width=.32\textwidth]{\SSHOneCumulativeEntropyOneEightZero}}
+%\subfigure[]{\label{cumulative_entropy_ssh1_220}\includegraphics[width=.32\textwidth]{\SSHOneCumulativeEntropyTwoTwoZero}}
+%\caption{Cumulative entropy distributions for higher lattice sizes in experiment 1. (a) Cumulative entropy distribution for 70 unit cells. (b) Cumulative entropy distribution for 90 unit cells. (c) Cumulative entropy distribution for 110 unit cells.}
+%\label{cdf1}
+%\end{figure}
 
-\begin{figure}
-\centering
-\subfigure[]{\label{feature_importances_ssh1_140}\includegraphics[width=.32\textwidth]{\SSHOneEntropySignatureOneFourZero}}
-\subfigure[]{\label{feature_importances_ssh1_180}\includegraphics[width=.32\textwidth]{\SSHOneEntropySignatureOneEightZero}}
-\subfigure[]{\label{feature_importances_ssh1_220}\includegraphics[width=.32\textwidth]{\SSHOneEntropySignatureTwoTwoZero}}
-\caption{Information entropy signatures obtained for experiment 1 with higher lattice sizes. (a) Information entropy signature for 70 unit cells. (b) Information entropy signature for 90 unit cells. (c) Information entropy signature for 110 unit cells.}
-\label{feature_importances_ssh1_longer_lattices}
-\end{figure}
-\begin{figure}
-\centering
-\subfigure[]{\label{feature_importances_ssh2_140}\includegraphics[width=.32\textwidth]{\SSHTwoEntropySignatureOneFourZero}}
-\subfigure[]{\label{feature_importances_ssh2_180}\includegraphics[width=.32\textwidth]{\SSHTwoEntropySignatureOneEightZero}}
-\subfigure[]{\label{feature_importances_ssh2_220}\includegraphics[width=.32\textwidth]{\SSHTwoEntropySignatureTwoTwoZero}}
-\caption{Information entropy signatures obtained for experiment 2 with higher lattice sizes. (a) Information entropy signature for 70 unit cells. (b) Information entropy signature for 90 unit cells. (c) Information entropy signature for 110 unit cells.}
-\label{feature_importances_ssh2_longer_lattices}
-\end{figure}
-
-\pagebreak 
-
-\begin{figure}
-\centering
-\subfigure[]{\label{cumulative_entropy_ssh1_140}\includegraphics[width=.32\textwidth]{\SSHOneCumulativeEntropyOneFourZero}}
-\subfigure[]{\label{cumulative_entropy_ssh1_180}\includegraphics[width=.32\textwidth]{\SSHOneCumulativeEntropyOneEightZero}}
-\subfigure[]{\label{cumulative_entropy_ssh1_220}\includegraphics[width=.32\textwidth]{\SSHOneCumulativeEntropyTwoTwoZero}}
-\caption{Cumulative entropy distributions for higher lattice sizes in experiment 1. (a) Cumulative entropy distribution for 70 unit cells. (b) Cumulative entropy distribution for 90 unit cells. (c) Cumulative entropy distribution for 110 unit cells.}
-\label{cdf1}
-\end{figure}
-
-\begin{figure}
-\centering
-\subfigure[]{\label{cumulative_entropy_ssh2_140}\includegraphics[width=.32\textwidth]{\SSHTwoCumulativeEntropyOneFourZero}}
-\subfigure[]{\label{cumulative_entropy_ssh2_180}\includegraphics[width=.32\textwidth]{\SSHTwoCumulativeEntropyOneEightZero}}
-\subfigure[]{\label{cumulative_entropy_ssh2_220}\includegraphics[width=.32\textwidth]{\SSHTwoCumulativeEntropyTwoTwoZero}}
-\caption{Cumulative entropy distributions for higher lattice sizes in experiment 2. (a) Cumulative entropy distributions for 70 unit cells. (b) Cumulative entropy distributions for 90 unit cells. (c) Cumulative entropy distributions for 110 unit cells.}
-\label{cdf2}
-\end{figure}
+%\begin{figure}
+%\centering
+%\subfigure[]{\label{cumulative_entropy_ssh2_140}\includegraphics[width=.32\textwidth]{\SSHTwoCumulativeEntropyOneFourZero}}
+%\subfigure[]{\label{cumulative_entropy_ssh2_180}\includegraphics[width=.32\textwidth]{\SSHTwoCumulativeEntropyOneEightZero}}
+%\subfigure[]{\label{cumulative_entropy_ssh2_220}\includegraphics[width=.32\textwidth]{\SSHTwoCumulativeEntropyTwoTwoZero}}
+%\caption{Cumulative entropy distributions for higher lattice sizes in experiment 2. (a) Cumulative entropy distributions for 70 unit cells. (b) Cumulative entropy distributions for 90 unit cells. (c) Cumulative entropy distributions for 110 unit cells.}
+%\label{cdf2}
+%\end{figure}
 
 \end{document}
 

@@ -1,0 +1,16 @@
+\BOOKMARK [0][-]{section*.2}{Machine learning topological phases in real space}{}% 2
+\BOOKMARK [1][-]{section*.1}{Abstract}{section*.2}% 1
+\BOOKMARK [1][-]{section*.3}{Introduction}{section*.2}% 3
+\BOOKMARK [1][-]{section*.4}{The eigenvector ensembling algorithm}{section*.2}% 4
+\BOOKMARK [1][-]{section*.5}{Numerical experiments}{section*.2}% 5
+\BOOKMARK [2][-]{section*.6}{Experiment 1: Learning a first-neighbor hopping SSH model with decision trees}{section*.5}% 6
+\BOOKMARK [2][-]{section*.7}{Experiment 2: Learning a first- and second-neighbor hoppings SSH model with random forests}{section*.5}% 7
+\BOOKMARK [1][-]{section*.8}{Information entropy signatures}{section*.2}% 8
+\BOOKMARK [1][-]{section*.9}{Topological feature engineering and lattice compression}{section*.2}% 9
+\BOOKMARK [1][-]{section*.10}{Emergent information entropy wave functions}{section*.2}% 10
+\BOOKMARK [1][-]{section*.11}{Discussion}{section*.2}% 11
+\BOOKMARK [1][-]{section*.12}{References}{section*.2}% 12
+\BOOKMARK [1][-]{section*.13}{Acknowledgements}{section*.2}% 13
+\BOOKMARK [1][-]{section*.14}{Author contributions}{section*.2}% 14
+\BOOKMARK [1][-]{section*.15}{Competing financial interests}{section*.2}% 15
+\BOOKMARK [1][-]{section*.16}{Additional information}{section*.2}% 16

@@ -1,0 +1,84 @@
+\documentclass[10pt]{revtex4-1}
+\usepackage{xcolor} 
+\usepackage{hyperref}
+\newcounter{quoter}
+\setcounter{quoter}{0}
+\renewcommand*{\thequoter}{%
+  %\textbf{%
+  %  \ifnum\value{custom}<1000 0\fi
+  %  \ifnum\value{custom}<100 0\fi
+  %  \ifnum\value{custom}<10 0\fi
+  %  \arabic{custom}%
+  \textbf{[\arabic{quoter}]}
+  }%
+\newcommand{\genquote}[1]{\refstepcounter{quoter} \label{#1} \ref{#1}}
+\newcommand{\citequote}[1]{\ref{#1}}
+\begin{document}
+
+\section*{Specific Questions and Comments to Address for This Paper}
+
+Dear editor, 
+
+below are the revisions for each topic raised, as well as a few typos that we found in the text. 
+
+\begin{enumerate} %[\begingroup\color{blue} 1)\endgroup]
+%\textcolor{blue}{
+    \item OK.
+    \item OK.
+    \item OK.
+    \item Line 838 should be replaced with "connections between geometry, topology, and data [54-64].", to explicitly cite those references. 
+    \item OK. 
+    \item The full reference details of reference [53] are provided below.
+    \begin{itemize}
+    \item title: Topological marker currents in Chern insulators
+    \item author: Caio, Marcello Davide and M{\"o}ller, Gunnar and Cooper, Nigel R and Bhaseen, MJ
+    \item journal: Nature Physics
+    \item volume: 15
+    \item number: 3
+    \item pages: 257--261
+    \item year: 2019
+    \item publisher: Nature Publishing Group.
+    \end{itemize}
+    \item The full reference details of reference [59] are provided below. 
+    \begin{itemize}
+    \item title: A short course on topological insulators
+    \item author: Asb{\'o}th, J{\'a}nos K and Oroszl{\'a}ny, L{\'a}szl{\'o} and P{\'a}lyi, Andr{\'a}s
+    \item journal: Lecture notes in physics
+    \item volume: 919
+    \item pages: 997--1000
+    \item year: 2016
+    \item publisher: Springer
+    \end{itemize}
+    \item[FQ.] Replace Capes with CAPES (BR).
+    \item[Q.] The full details of reference [46] are provided below.
+    \begin{itemize}
+    \item title: Scikit-learn: Machine learning in Python
+    \item author: Pedregosa, Fabian and Varoquaux, Ga{\"e}l and Gramfort, Alexandre and Michel, Vincent and Thirion, Bertrand and Grisel, Olivier and Blondel, Mathieu and Prettenhofer, Peter and Weiss, Ron and Dubourg, Vincent and others
+    \item journal: the Journal of machine Learning research
+    \item volume: 12
+    \item pages: 2825--2830
+    \item year: 2011
+    \item publisher: JMLR. org
+    \end{itemize}
+    \item[Q.] The full details of reference [62] are provided below.
+    \begin{itemize}
+    \item title: Algorithms for manifold learning
+    \item author: Cayton, Lawrence
+    \item journal: Univ. of California at San Diego Tech. Rep
+    \item volume: 12
+    \item number: 1-17
+    \item pages: 1
+    \item year: 2005
+    \end{itemize}
+    \item In line 6, apparently a comma is missing: "and Centro Brasileiro de Pesquisas F\'isicas Rua Dr. Xavier Sigaud..." should become "and Centro Brasileiro de Pesquisas F\'isicas, Rua Dr. Xavier Sigaud..." 
+    \item Equation (19c) is missing a minus sign before the integration symbol.  
+    \item The numbering of references in the Supplemental Material was incorrect. Also, the header of the Supplemental Material originally read "Supplementary Material" instead of "Supplemental Material", as used throughout the main paper. We are sending a new pdf of the Supplemental Material that fixes theses issues. 
+    \item The ORCID links for both authors are: N. L. Holanda (\url{https://orcid.org/0000-0002-8484-4635}), M. A. R. Griffith (\url{https://orcid.org/0000-0003-4090-1156})
+
+\end{enumerate}
+
+Best regards,
+N. L. Holanda.
+
+\end{document}
+
